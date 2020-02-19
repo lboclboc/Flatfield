@@ -12,8 +12,8 @@
 		<relativePath />
 	</parent>
 
-	<groupId>com.mycompany</groupId>
-	<artifactId>Process_Pixels</artifactId>
+	<groupId>se.cecilia-data</groupId>
+	<artifactId>Flatfield</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 
 	<name>Process Pixels</name>
