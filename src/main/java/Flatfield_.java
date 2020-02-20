@@ -6,7 +6,6 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package se.cecilia_data.imagej;
 
 import ij.IJ;
 import ij.ImageJ;
