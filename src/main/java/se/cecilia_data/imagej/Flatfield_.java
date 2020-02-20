@@ -6,22 +6,16 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package com.mycompany.imagej;
+package se.cecilia_data.imagej;
 
 import ij.IJ;
 import ij.ImageJ;
 import ij.ImagePlus;
 import ij.gui.GenericDialog;
-import ij.plugin.filter.PlugInFilter;
+import ij.plugin.PlugIn;
 import ij.process.ImageProcessor;
 
-/**
- * A template for processing each pixel of either
- * GRAY8, GRAY16, GRAY32 or COLOR_RGB images.
- *
- * @author Johannes Schindelin
- */
-public class Flatfield implements PlugInFilter {
+public class Flatfield_ implements PlugIn {
 	protected ImagePlus image;
 
 	// image property members
@@ -29,29 +23,22 @@ public class Flatfield implements PlugInFilter {
 	private int height;
 
 	// plugin parameters
-	public double z0;
-	public double z1;
-	public double z2;
+	private double z0;
+	private double z1;
+	private double z2;
 
 	@Override
-	public int setup(String arg, ImagePlus imp) {
-		if (arg.equals("about")) {
-			showAbout();
-			return DONE;
-		}
-
-		image = imp;
-		return DOES_8G | DOES_16 | DOES_32 | DOES_RGB;
-	}
-
-	@Override
-	public void run(ImageProcessor ip) {
+	public void run(String value) {
 		// get width and height
-		width = ip.getWidth();
-		height = ip.getHeight();
 
 		if (showDialog()) {
-			process(ip);
+			// open the Clown sample
+			image = IJ.createImage("Flatfield", width, height, 1, 32);
+			if (image == null) {
+				throw new RuntimeException("Null image");
+			}
+			process(image.getProcessor());
+			image.show();
 			image.updateAndDraw();
 		}
 	}
@@ -60,6 +47,8 @@ public class Flatfield implements PlugInFilter {
 		GenericDialog gd = new GenericDialog("Generate flatfield");
 
 		// default value is 0.00, 2 digits right of the decimal point
+		gd.addNumericField("Width:", 1024, 0);
+		gd.addNumericField("Height:", 768, 0);
 		gd.addNumericField("z⁰ factor:", 0.00, 2);
 		gd.addNumericField("z¹ factor:", 0.00, 2);
 		gd.addNumericField("z² factor:", 0.00, 2);
@@ -69,6 +58,8 @@ public class Flatfield implements PlugInFilter {
 			return false;
 
 		// get entered values
+		width = (int)gd.getNextNumber();
+		height = (int)gd.getNextNumber();
 		z0 = gd.getNextNumber();
 		z1 = gd.getNextNumber();
 		z2 = gd.getNextNumber();
@@ -134,18 +125,13 @@ public class Flatfield implements PlugInFilter {
 	public static void main(String[] args) throws Exception {
 		// set the plugins.dir property to make the plugin appear in the Plugins menu
 		// see: https://stackoverflow.com/a/7060464/1207769
-		Class<?> clazz = Flatfield.class;
+		Class<?> clazz = Flatfield_.class;
 		java.net.URL url = clazz.getProtectionDomain().getCodeSource().getLocation();
 		java.io.File file = new java.io.File(url.toURI());
 		System.setProperty("plugins.dir", file.getAbsolutePath());
 
 		// start ImageJ
 		new ImageJ();
-
-		// open the Clown sample
-		ImagePlus image = IJ.createImage("Flatfield", 300, 300, 1, 32);
-
-		image.show();
 
 		// run the plugin
 		IJ.runPlugIn(clazz.getName(), "");
