@@ -13,6 +13,7 @@ import ij.ImagePlus;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
 import ij.process.ImageProcessor;
+import java.lang.System;
 
 public class Flatfield_ implements PlugIn {
 	protected ImagePlus image;
@@ -32,7 +33,7 @@ public class Flatfield_ implements PlugIn {
 
 		if (showDialog()) {
 			// open the Clown sample
-			image = IJ.createImage("Flatfield", width, height, 1, 32);
+			image = IJ.createImage("Flatfield", width, height, 1, 16);
 			if (image == null) {
 				throw new RuntimeException("Null image");
 			}
@@ -90,21 +91,24 @@ public class Flatfield_ implements PlugIn {
 	// Select processing method depending on image type
 	public void process(ImageProcessor ip) {
 		int type = image.getType();
-		if (type == ImagePlus.GRAY32)
-			process( (float[]) ip.getPixels() );
+		if (type == ImagePlus.GRAY16)
+			process( (short[]) ip.getPixels() );
 		else {
 			throw new RuntimeException("not supported: " + Integer.toString(type));
 		}
 	}
 
+
 	// processing of COLOR_RGB images
-	public void process(float[] pixels) {
+	public void process(short[] pixels) {
 		for (int y=0; y < height; y++) {
 			for (int x=0; x < width; x++) {
-				// process each pixel of the line
-				// example: add 'number' to each pixel
 				double z = Math.sqrt(Math.pow(x - width/2, 2) + Math.pow(y - height/2, 2));
-				pixels[x + y * width] += z0 + z1*z + z2*z*z;
+				double v = 65535 - (z0 + z1*z + z2*z*z);
+				if (v < 0) {
+					v = 0;
+				}
+				pixels[x + y * width] = (short)v;
 			}
 		}
 	}
