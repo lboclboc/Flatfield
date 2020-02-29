@@ -50,8 +50,8 @@ public class Flatfield_ implements PlugIn {
 		gd.addNumericField("Width:", 1024, 0);
 		gd.addNumericField("Height:", 768, 0);
 		gd.addNumericField("z⁰ factor:", 0.00, 2);
-		gd.addNumericField("z¹ factor:", 0.00, 2);
-		gd.addNumericField("z² factor:", 0.00, 2);
+		gd.addNumericField("z¹ factor:", 20.00, 2);
+		gd.addNumericField("z² factor:", 0.05, 2);
 
 		gd.showDialog();
 		if (gd.wasCanceled())
@@ -132,6 +132,7 @@ public class Flatfield_ implements PlugIn {
 		java.net.URL url = clazz.getProtectionDomain().getCodeSource().getLocation();
 		java.io.File file = new java.io.File(url.toURI());
 		System.setProperty("plugins.dir", file.getAbsolutePath());
+		System.out.println("plugins.dir: " + System.getProperty("plugins.dir"));
 
 		// start ImageJ
 		new ImageJ();
