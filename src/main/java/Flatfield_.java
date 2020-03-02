@@ -5,7 +5,8 @@
  * See the CC0 1.0 Universal license for details:
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
-
+// sPECIAL VERSION BY lAS kARLSSON
+// Added z4, z5 and opticl center
 
 import ij.IJ;
 import ij.ImageJ;
@@ -21,19 +22,23 @@ public class Flatfield_ implements PlugIn {
 	// image property members
 	private int width;
 	private int height;
-
+	private int opt_cent_x; // In pixels
+	private int opt_cent_y; // In pixels
+	
 	// plugin parameters
-	private double z0;
-	private double z1;
-	private double z2;
+	private float a; // polynomial, constants
+	private float b;
+	private float c;
+	private float d;
+	private float e;
 
 	@Override
 	public void run(String value) {
-		// get width and height
+		// get width, height and optical center
 
 		if (showDialog()) {
 			// open the Clown sample
-			image = IJ.createImage("Flatfield", width, height, 1, 16);
+			image = IJ.createImage("Flatfield", width, height, 1, 32);
 			if (image == null) {
 				throw new RuntimeException("Null image");
 			}
@@ -44,15 +49,24 @@ public class Flatfield_ implements PlugIn {
 	}
 
 	private boolean showDialog() {
-		GenericDialog gd = new GenericDialog("Generate flatfield");
+		GenericDialog gd = new GenericDialog("Generate flatfield from Excel sheet constants");
 
 		// default value is 0.00, 2 digits right of the decimal point
-		gd.addNumericField("Width:", 1024, 0);
-		gd.addNumericField("Height:", 768, 0);
-		gd.addNumericField("z⁰ factor:", 0.00, 2);
-		gd.addNumericField("z¹ factor:", 0.00, 2);
-		gd.addNumericField("z² factor:", 0.00, 2);
-
+		gd.addMessage("Flat image dimensions");
+		gd.addNumericField("Width:", 4500, 0);
+		gd.addNumericField("Height:", 3000, 0);
+		gd.addNumericField("Optical center X:", 2250, 0);
+		gd.addNumericField("Optical center Y:", 1500, 0);
+		gd.addMessage("Polynomial constants");
+		gd.addNumericField("a const:", 0.6, 10); // should be normalized to 1 in center !
+		gd.addNumericField("b const:", 0.0000544, 10);
+		gd.addNumericField("c const:", 0.000000247, 10);
+		gd.addNumericField("d const:", -0.000000000115, 10);
+		gd.addNumericField("e const:", 0.000000000000021, 10);
+		gd.addMessage("Flat image should be normalized to =1 in center");
+		gd.addMessage("Use Excel sheet to calculate constants");
+		gd.addMessage("www.astrofriend.eu/astronomy/tutorials");
+		
 		gd.showDialog();
 		if (gd.wasCanceled())
 			return false;
@@ -60,10 +74,14 @@ public class Flatfield_ implements PlugIn {
 		// get entered values
 		width = (int)gd.getNextNumber();
 		height = (int)gd.getNextNumber();
-		z0 = gd.getNextNumber();
-		z1 = gd.getNextNumber();
-		z2 = gd.getNextNumber();
-
+		opt_cent_x = (int)gd.getNextNumber();
+		opt_cent_y = (int)gd.getNextNumber();
+		a = (float)gd.getNextNumber();
+		b = (float)gd.getNextNumber();
+		c = (float)gd.getNextNumber();
+		d = (float)gd.getNextNumber();
+		e = (float)gd.getNextNumber();
+		
 		return true;
 	}
 
@@ -91,8 +109,8 @@ public class Flatfield_ implements PlugIn {
 	// Select processing method depending on image type
 	public void process(ImageProcessor ip) {
 		int type = image.getType();
-		if (type == ImagePlus.GRAY16)
-			process( (short[]) ip.getPixels() );
+		if (type == ImagePlus.GRAY32)
+			process( (float[]) ip.getPixels() );
 		else {
 			throw new RuntimeException("not supported: " + Integer.toString(type));
 		}
@@ -100,15 +118,15 @@ public class Flatfield_ implements PlugIn {
 
 
 	// processing of COLOR_RGB images
-	public void process(short[] pixels) {
+	public void process(float[] pixels) {
 		for (int y=0; y < height; y++) {
 			for (int x=0; x < width; x++) {
-				double z = Math.sqrt(Math.pow(x - width/2, 2) + Math.pow(y - height/2, 2));
-				double v = 65535 - (z0 + z1*z + z2*z*z);
-				if (v < 0) {
-					v = 0;
+				float radie = Math.sqrt(Math.pow(x - opt_cent_x, 2) + Math.pow(y - opt_cent_y, 2)); // only integers
+				float level = (a + b*radie + c*radie*radie + d*radie*radie*radie + e*radie*radie*radie*radie);
+				if (level < 0.3) { // no corection of abnorm vignetting
+					level = 0.3;
 				}
-				pixels[x + y * width] = (short)v;
+				pixels[x + y * width] = level;
 			}
 		}
 	}
