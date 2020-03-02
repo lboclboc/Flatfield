@@ -30,7 +30,7 @@ public class Flatfield_ implements PlugIn {
 	private float b;
 	private float c;
 	private float d;
-	private float e;
+	private float e; // 4th degree
 
 	@Override
 	public void run(String value) {
