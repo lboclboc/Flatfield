@@ -52,6 +52,7 @@ public class Flatfield_ implements PlugIn {
 		GenericDialog gd = new GenericDialog("Generate flatfield from Excel sheet constants");
 
 		// default value is 0.00, 2 digits right of the decimal point
+<<<<<<< HEAD
 		gd.addMessage("Flat image dimensions");
 		gd.addNumericField("Width:", 4500, 0);
 		gd.addNumericField("Height:", 3000, 0);
@@ -67,6 +68,14 @@ public class Flatfield_ implements PlugIn {
 		gd.addMessage("Use Excel sheet to calculate constants");
 		gd.addMessage("www.astrofriend.eu/astronomy/tutorials");
 		
+=======
+		gd.addNumericField("Width:", 1024, 0);
+		gd.addNumericField("Height:", 768, 0);
+		gd.addNumericField("z⁰ factor:", 0.00, 2);
+		gd.addNumericField("z¹ factor:", 20.00, 2);
+		gd.addNumericField("z² factor:", 0.05, 2);
+
+>>>>>>> branch 'master' of git@github.com:lboclboc/Flatfield.git
 		gd.showDialog();
 		if (gd.wasCanceled())
 			return false;
@@ -150,6 +159,7 @@ public class Flatfield_ implements PlugIn {
 		java.net.URL url = clazz.getProtectionDomain().getCodeSource().getLocation();
 		java.io.File file = new java.io.File(url.toURI());
 		System.setProperty("plugins.dir", file.getAbsolutePath());
+		System.out.println("plugins.dir: " + System.getProperty("plugins.dir"));
 
 		// start ImageJ
 		new ImageJ();
