@@ -52,7 +52,6 @@ public class Flatfield_ implements PlugIn {
 		GenericDialog gd = new GenericDialog("Generate flatfield from Excel sheet constants");
 
 		// default value is 0.00, 2 digits right of the decimal point
-<<<<<<< HEAD
 		gd.addMessage("Flat image dimensions");
 		gd.addNumericField("Width:", 4500, 0);
 		gd.addNumericField("Height:", 3000, 0);
@@ -68,14 +67,6 @@ public class Flatfield_ implements PlugIn {
 		gd.addMessage("Use Excel sheet to calculate constants");
 		gd.addMessage("www.astrofriend.eu/astronomy/tutorials");
 		
-=======
-		gd.addNumericField("Width:", 1024, 0);
-		gd.addNumericField("Height:", 768, 0);
-		gd.addNumericField("z⁰ factor:", 0.00, 2);
-		gd.addNumericField("z¹ factor:", 20.00, 2);
-		gd.addNumericField("z² factor:", 0.05, 2);
-
->>>>>>> branch 'master' of git@github.com:lboclboc/Flatfield.git
 		gd.showDialog();
 		if (gd.wasCanceled())
 			return false;
@@ -130,10 +121,10 @@ public class Flatfield_ implements PlugIn {
 	public void process(float[] pixels) {
 		for (int y=0; y < height; y++) {
 			for (int x=0; x < width; x++) {
-				float radie = Math.sqrt(Math.pow(x - opt_cent_x, 2) + Math.pow(y - opt_cent_y, 2)); // only integers
+				float radie = (float)Math.sqrt(Math.pow(x - opt_cent_x, 2) + Math.pow(y - opt_cent_y, 2)); // only integers
 				float level = (a + b*radie + c*radie*radie + d*radie*radie*radie + e*radie*radie*radie*radie);
-				if (level < 0.3) { // no corection of abnorm vignetting
-					level = 0.3;
+				if (level < 0.3f) { // no corection of abnorm vignetting
+					level = 0.3f;
 				}
 				pixels[x + y * width] = level;
 			}
