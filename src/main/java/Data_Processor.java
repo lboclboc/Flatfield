@@ -4019,7 +4019,7 @@ void openDragAndDropFiles(java.io.File[] files)
             OpenDialog.setDefaultDirectory(files[0].getParent());
             try {
                 InputStream is = new BufferedInputStream(new FileInputStream(files[0].getCanonicalPath()));
-                Prefs.ijPrefs.load(is);
+                Prefs.getControlPanelProperties().load(is);
                 is.close();
                 }
             catch (Exception e) {

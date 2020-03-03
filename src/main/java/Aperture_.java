@@ -85,7 +85,7 @@ import ij.text.TextPanel;
  * @changes Merged fix from F.V. Hessman - now uses the centers of pixels
  * as a measure of position when the user has turned off the automatic centering.
  */
-public class Aperture_ implements PlugInFilter
+public class Aperture_ extends MouseAdapter implements PlugInFilter
 	{
 	ImagePlus imp;
 	ImageProcessor ip;
@@ -93,6 +93,8 @@ public class Aperture_ implements PlugInFilter
 	ImageCanvas canvas;
 	OverlayCanvas ocanvas;
     TextPanel tablePanel;
+    int xClicked;
+    int yClicked;
 
 	double xCenter=0, yCenter=0, radius=25, rBack1=40, rBack2=60, back, source, mean, serror;
 	double xWidth, yWidth, width, fwhm, saturationWarningLevel=55000, linearityWarningLevel=30000, vradius, vrBack1, vrBack2, fradius=25, fwhmMult = 1.0, radialCutoff = 0.010;
@@ -301,10 +303,11 @@ public class Aperture_ implements PlugInFilter
 		canvas = imp.getCanvas();
 		ocanvas = null;
 		if (starOverlay || skyOverlay || valueOverlay || nameOverlay)
-			{
+		{
 			ocanvas = OverlayCanvas.getOverlayCanvas (imp);
 			canvas = ocanvas;
-			}
+			canvas.addMouseListener(this);
+		}
 
 		stackSize=imp.getStackSize();
 		slice = imp.getCurrentSlice();
@@ -354,8 +357,8 @@ public class Aperture_ implements PlugInFilter
 
     	ip = ipt;							// NOTE IMAGE PROCESSOR FOR LATER USE
 		// if (IJ.escapePressed()) { shutDown(); return; }
-        xCenter = canvas.offScreenXD(canvas.xClicked);
-        yCenter = canvas.offScreenYD(canvas.yClicked);
+        xCenter = canvas.offScreenXD(xClicked);
+        yCenter = canvas.offScreenYD(yClicked);
 //        addApertureRoi();
 //        canvas.repaint();
 //		getCrudeCenter();
@@ -1056,7 +1059,14 @@ protected boolean adjustAperture(boolean updatePhotometry)
 		rect.y = (int)(y-Centroid.PIXELCENTER) - rect.height/2;
 		return rect;
 		}
+
+	@Override
+	public void mouseReleased(MouseEvent e)
+	{
+        xClicked = e.getX();
+        yClicked = e.getY();
 	}
+}
 
 /*
 			addOvalRoi (xCenter,yCenter,radius);

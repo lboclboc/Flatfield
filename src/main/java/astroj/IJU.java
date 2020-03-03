@@ -342,7 +342,7 @@ public class IJU
         String path = sf.getDirectory()+sf.getFileName();
         try 
             {
-            Prefs.savePrefs(Prefs.ijPrefs, path);
+            Prefs.savePrefs(Prefs.getControlPanelProperties(), path);
             }
         catch (IOException ioe)
             {
@@ -370,7 +370,7 @@ public class IJU
 
         try 
             {
-            Prefs.savePrefs(Prefs.ijPrefs, Prefs.getPrefsDir()+separator+autoBackupName);
+            Prefs.savePrefs(Prefs.getControlPanelProperties(), Prefs.getPrefsDir()+separator+autoBackupName);
             }
         catch (IOException ioe)
             {
@@ -422,7 +422,7 @@ public class IJU
         String path = sf.getDirectory()+sf.getFileName();
         try 
             {
-            Prefs.savePrefs(Prefs.ijPrefs, path);
+            Prefs.savePrefs(Prefs.getControlPanelProperties(), path);
             }
         catch (IOException ioe)
             {
@@ -1479,7 +1479,7 @@ public static void saveApertures(String apsPath)
             }
         if (outFile.isFile()) outFile.delete();
         Properties prefs = new Properties();
-        Enumeration e = Prefs.ijPrefs.keys();
+        Enumeration e = Prefs.getControlPanelProperties().keys();
         while (e.hasMoreElements()) {
             String key = (String) e.nextElement();
             if (key.startsWith(".aperture.radius") || key.startsWith(".aperture.rback1") ||
@@ -1490,7 +1490,7 @@ public static void saveApertures(String apsPath)
                 key.startsWith(".multiaperture.yapertures") || key.startsWith(".multiaperture.isrefstar") || 
                 key.startsWith(".multiaperture.isalignstar") || key.startsWith(".multiaperture.centroidstar") || 
                 key.startsWith(".multiaperture.naperturesmax") || key.startsWith(".multiaperture.absmagapertures"))
-                prefs.put(key, Prefs.ijPrefs.getProperty(key));
+                prefs.put(key, Prefs.getControlPanelProperties().getProperty(key));
         }
         try
             {

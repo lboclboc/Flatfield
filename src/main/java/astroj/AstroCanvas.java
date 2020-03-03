@@ -412,38 +412,22 @@ public class AstroCanvas extends OverlayCanvas {
    @Override
 	/** Sets the cursor based on the current tool and cursor location. */
 	public void setCursor(int sx, int sy, int ox, int oy) {
-		xMouse = ox;
-		yMouse = oy; 
-		mouseExited = false;
+	   super.setCursor(sx, sy, ox, oy);
 		Roi roi = imp.getRoi();
-		ImageWindow win = imp.getWindow();
-		if (win==null)
-			return;
-		if (IJ.spaceBarDown()) {
-			setCursor(handCursor);
-			return;
-		}
+
 		int id = Toolbar.getToolId();
-		switch (Toolbar.getToolId()) {
-			case Toolbar.MAGNIFIER:
-				setCursor(moveCursor);
-				break;
-			case Toolbar.HAND:
-				setCursor(handCursor);
-				break;
-			default:  //selection tool
+		if (id != Toolbar.MAGNIFIER && id != Toolbar.HAND)
+		{
 				PlugInTool tool = Toolbar.getPlugInTool();
 				boolean arrowTool = roi!=null && (roi instanceof Arrow) && tool!=null && "Arrow Tool".equals(tool.getToolName());
-				if ((id==Toolbar.SPARE1 || id>=Toolbar.SPARE2) && !arrowTool) {
-					if (Prefs.usePointerCursor)
-						setCursor(defaultCursor);
-					else
-                        {
+				if ((id==Toolbar.SPARE1 || id>=Toolbar.SPARE2) && !arrowTool)
+				{
+					if (!Prefs.usePointerCursor) {
                         if (showRedCrossHairCursor || !showPhotometerCursor || !mouseInImage || !astronomyMode)
                             setCursor(redCrossHairCursor);
                         else
                             setCursor(clearCursor);
-                        }
+					}
 				} else if (roi!=null && roi.getState()!=roi.CONSTRUCTING && roi.isHandle(sx, sy)>=0)
 					setCursor(handCursor);
 				else if (Prefs.usePointerCursor || (roi!=null && roi.getState()!=roi.CONSTRUCTING && roi.contains(ox, oy)))

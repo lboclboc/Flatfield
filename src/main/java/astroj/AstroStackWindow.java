@@ -501,8 +501,7 @@ public class AstroStackWindow extends StackWindow implements LayoutManager, Acti
                 this.imp = imp;
                 this.ac = ac;
                 cal = imp.getCalibration();
-                
-                super.hasMenus = true;
+
 
 //                super.ic.setBackground(Color.WHITE);
 
@@ -580,7 +579,7 @@ public class AstroStackWindow extends StackWindow implements LayoutManager, Acti
                 wcs = new WCS(imp);
                 goodWCS = wcs.hasWCS();
                 wcs.setUseSIPAlways(useSIPAllProjections);
-                extraInfo = " ("+wcs.coordsys+")";
+                setExtraInfo(" ("+wcs.coordsys+")");
                 ac.setWCS(wcs); 
                 if (autoNupEleft) setBestOrientation();
                 ac.setOrientation(invertX, invertY, rotation);
@@ -2981,7 +2980,7 @@ protected ImageIcon createImageIcon(String path, String description) {
                 if (wcs != null)
                     {
                     wcs.setUseSIPAlways(useSIPAllProjections);
-                    extraInfo = " ("+wcs.coordsys+")";
+                    setExtraInfo(" ("+wcs.coordsys+")");
                     repaint();
                     }
                 }   
@@ -3331,7 +3330,7 @@ protected ImageIcon createImageIcon(String path, String description) {
                 if (wcs != null) 
                     {
                     wcs.setUseSIPAlways(useSIPAllProjections);
-                    extraInfo = " ("+wcs.coordsys+")";
+                    setExtraInfo(" ("+wcs.coordsys+")");
                     imp.updateAndDraw();
 //                    ac.paint(getGraphics());
                     }
@@ -4519,7 +4518,7 @@ protected ImageIcon createImageIcon(String path, String description) {
 
     void setSaveStateDialog()
         {
-        GenericDialog gd = new GenericDialog ("Save all settings", getX()+getWidth()/2-165, getY()+getHeight()/2-77);
+        GenericDialog gd = new GenericDialog ("Save all settings");
         gd.enableYesNoCancel("Save Files Now", "Save Settings Only");
         saveImage = Prefs.get("Astronomy_Tool.saveImage", saveImage);
         savePlot = Prefs.get("Astronomy_Tool.savePlot", savePlot);
@@ -4592,7 +4591,7 @@ protected ImageIcon createImageIcon(String path, String description) {
 
     void setPixelScaleDialog()
         {
-        GenericDialog gd = new GenericDialog ("Set pixel scale for images without WCS", getX()+getWidth()/2-165, getY()+getHeight()/2-77);
+        GenericDialog gd = new GenericDialog ("Set pixel scale for images without WCS");
 
         gd.addMessage ("Enter 0 to report length in pixels.");
 		gd.addNumericField ("X-pixel scale: ",pixelScaleX,4,8, "(seconds of arc per pixel in x-direction)");
@@ -4612,7 +4611,7 @@ protected ImageIcon createImageIcon(String path, String description) {
 
     void setZoomIndicatorSizeDialog()
         {
-        GenericDialog gd = new GenericDialog ("Set Zoom Indicator Size", getX()+getWidth()/2-170, getY()+getHeight()/2-90);
+        GenericDialog gd = new GenericDialog ("Set Zoom Indicator Size");
 
 		gd.addNumericField ("Zoom indicator height: ",ac.zoomIndicatorSize,0,6,"(pixels)");
         gd.addMessage ("(width is scaled according to image aspect ratio)");
@@ -4627,7 +4626,7 @@ protected ImageIcon createImageIcon(String path, String description) {
     
     void setSimbadSearchRadiusDialog()
         {
-        GenericDialog gd = new GenericDialog ("Set SIMBAD Search Radius", getX()+getWidth()/2-170, getY()+getHeight()/2-90);
+        GenericDialog gd = new GenericDialog ("Set SIMBAD Search Radius");
 
 		gd.addNumericField ("Search Radius: ",simbadSearchRadius,3,9,"(arcsec)");
 
@@ -4640,7 +4639,7 @@ protected ImageIcon createImageIcon(String path, String description) {
 
     void setDirAngleDialog()
         {
-        GenericDialog gd = new GenericDialog ("Set Direction Indicator Angles",getX()+getWidth()/2-250,getY()+getHeight()/2-125);
+        GenericDialog gd = new GenericDialog ("Set Direction Indicator Angles");
 //        gd.addMessage ("Direction angles are used when WCS is not available for an image.");
 		gd.addNumericField ("North direction indicator angle: ",ac.NdirAngle,0,6,"(degrees CCW from +y-axis)***");
         gd.addNumericField ("East direction indicator angle: ",ac.EdirAngle,0,6,"(degrees CCW from north direction)***");
@@ -4660,7 +4659,7 @@ protected ImageIcon createImageIcon(String path, String description) {
 
     void setAutoScaleParametersDialog()
         {
-        GenericDialog gd = new GenericDialog ("Set Autoscale Parameters", getX()+getWidth()/2-337, getY()+getHeight()/2-175);
+        GenericDialog gd = new GenericDialog ("Set Autoscale Parameters");
         gd.addMessage ("Auto brightness & contrast displays a range of pixel values based on the image's mean and standard deviation.");
         gd.addMessage ("");
         gd.addMessage ("Monochrome Images:");
@@ -5185,7 +5184,7 @@ public void openApertures(String apsPath)
                 Prefs.set("multiaperture.centroidstar", "");
                 Prefs.set("multiaperture.absmagapertures", "");
                 InputStream is = new BufferedInputStream(new FileInputStream(apsPath));
-                Prefs.ijPrefs.load(is);
+                Prefs.getControlPanelProperties().load(is);
                 is.close();
                 }
             ac.removeApertureRois();
@@ -5830,7 +5829,7 @@ void setupListeners() {
             RATextField.setEditable(goodWCS);
             DecTextField.setEditable(goodWCS);
             wcs.setUseSIPAlways(useSIPAllProjections);
-            extraInfo = " ("+wcs.coordsys+")";
+            setExtraInfo(" ("+wcs.coordsys+")");
             ac.setWCS(wcs);
             if (autoSaveWCStoPrefs) updatePrefsFromWCS(false);
             ac.setShowPixelScale(showScaleX, showScaleY, pixelScaleX, pixelScaleY);
@@ -8047,7 +8046,7 @@ double[] processCoordinatePair(JTextField textFieldA, int decimalPlacesA, int ba
     
     void editApertureRoi(ApertureRoi roi)
         {
-        GenericDialog gd = new GenericDialog ("Edit Aperture", getX()+getWidth()/2-165, getY()+getHeight()/2-77);
+        GenericDialog gd = new GenericDialog ("Edit Aperture");
         gd.enableYesNoCancel("Save", "Delete");
         gd.addCheckbox("Display Centroid Crosshair", roi.getIsCentroid());
         gd.addNumericField("Aperture Radius:",roi.getRadius(), 6, 20,"(pixels)");
@@ -8084,7 +8083,7 @@ double[] processCoordinatePair(JTextField textFieldA, int decimalPlacesA, int ba
 
     void editMeasurementRoi(MeasurementRoi roi)
         {
-        GenericDialog gd = new GenericDialog ("Edit Measurement", getX()+getWidth()/2-165, getY()+getHeight()/2-77);
+        GenericDialog gd = new GenericDialog ("Edit Measurement");
         gd.enableYesNoCancel("Save", "Delete");
         gd.addCheckboxGroup(2, 4, new String[]{"Display ArcLen","Display PA","Display \u0394Mag", "Display F2/F1",
                                                "Start Crosshair", "End Crosshair", "Display Apertures"},
@@ -8126,7 +8125,7 @@ double[] processCoordinatePair(JTextField textFieldA, int decimalPlacesA, int ba
     
     void setDefaultMeasurementColor()
         {
-        GenericDialog gd = new GenericDialog ("Default Measurement Color", getX()+getWidth()/2-165, getY()+getHeight()/2-77);
+        GenericDialog gd = new GenericDialog ("Default Measurement Color");
         gd.addChoice("Default Measurement Color", colors, defaultMeasurementColor);
         gd.showDialog();
         if (gd.wasCanceled()) return;
@@ -8137,7 +8136,7 @@ double[] processCoordinatePair(JTextField textFieldA, int decimalPlacesA, int ba
     
     void setDefaultAnnotationColor()
         {
-        GenericDialog gd = new GenericDialog ("Default Annotation Color", getX()+getWidth()/2-165, getY()+getHeight()/2-77);
+        GenericDialog gd = new GenericDialog ("Default Annotation Color");
         gd.addChoice("Default Annotation Color", colors, defaultAnnotationColor);
         gd.showDialog();
         if (gd.wasCanceled()) return;
@@ -8171,7 +8170,7 @@ double[] processCoordinatePair(JTextField textFieldA, int decimalPlacesA, int ba
                 {
                 coordsText = hms(coords[0]/15.0, 3)+ ((coords[1] > 0.0) ? "+" : "") + hms(coords[1], 2);
                 boolean useHarvard = Prefs.get("coords.useHarvard",false);
-                extraInfo = " ("+wcs.coordsys+")  Accessing SIMBAD...";
+                setExtraInfo(" ("+wcs.coordsys+")  Accessing SIMBAD...");
                 repaint();              
                 try {
                     simbadSearchRadius = Prefs.get("Astronomy_Tool.simbadSearchRadius", simbadSearchRadius);
@@ -8253,11 +8252,11 @@ double[] processCoordinatePair(JTextField textFieldA, int decimalPlacesA, int ba
                                 "try "+ (useHarvard ? "France" : "Harvard")+" server (see Coordinate Converter Network menu)."+"</html>");
 
                     }
-                extraInfo = " ("+wcs.coordsys+")";
+                setExtraInfo(" ("+wcs.coordsys+")");
                 repaint(); 
                 }
 
-            GenericDialog gd = new GenericDialog ("Select Annotation Text", getX()+getWidth()/2-165, getY()+getHeight()/2-77);
+            GenericDialog gd = new GenericDialog ("Select Annotation Text");
 
             gd.addMessage ("Select object description or enter custom text.");
             if (!coordsText.equals(""))
@@ -8352,7 +8351,7 @@ double[] processCoordinatePair(JTextField textFieldA, int decimalPlacesA, int ba
             if (useSimbadSearch)
                 {
                 boolean useHarvard = Prefs.get("coords.useHarvard",false);
-                extraInfo = " ("+wcs.coordsys+")  Accessing SIMBAD...";
+                setExtraInfo(" ("+wcs.coordsys+")  Accessing SIMBAD...");
                 repaint();              
                 try {
                     String objectCoords = URLEncoder.encode(coordsText,"UTF-8");
@@ -8433,12 +8432,12 @@ double[] processCoordinatePair(JTextField textFieldA, int decimalPlacesA, int ba
                                 "try "+ (useHarvard ? "France" : "Harvard")+" server (see Coordinate Converter Network menu)."+"</html>");
 
                     }
-                extraInfo = " ("+wcs.coordsys+")";
+                setExtraInfo(" ("+wcs.coordsys+")");
                 repaint(); 
                 }
             }
 
-        GenericDialog gd = new GenericDialog ("Edit Annotation", getX()+getWidth()/2-165, getY()+getHeight()/2-77);
+        GenericDialog gd = new GenericDialog ("Edit Annotation");
         gd.enableYesNoCancel("Save", "Delete");
         gd.addMessage ("**Clear custom text to use the following object description selection**");
         if (!coordsText.equals(""))
@@ -8495,6 +8494,10 @@ double[] processCoordinatePair(JTextField textFieldA, int decimalPlacesA, int ba
         ac.repaint();
         }          
     
+    void setExtraInfo(String info)
+    {
+    	// FIXME: setExtraInfo()
+    }
     protected AnnotateRoi findAnnotateRoi(double x, double y)
         {
         return OverlayCanvas.getOverlayCanvas(imp).findAnnotateRoi(x, y);

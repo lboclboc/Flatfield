@@ -1614,7 +1614,7 @@ public class MultiAperture_ extends Aperture_ implements MouseListener, MouseMot
                 yAbsMagLocation = 10;
                 }
 
-            GenericDialog gd = new GenericDialog("Magnitude Entry", xAbsMagLocation, yAbsMagLocation);
+            GenericDialog gd = new GenericDialog("Magnitude Entry");
             gd.addStringField("Enter "+(isRefStar[ap]?"C":"T")+(ap+1)+" Magnitude", ""+(absMag[ap]>99.0?"":uptoEightPlaces.format(absMag[ap])), 20);
             if (hasWCS && ra>-1000000 && dec>-1000000) 
                 {
@@ -3245,7 +3245,7 @@ public class MultiAperture_ extends Aperture_ implements MouseListener, MouseMot
             yLocation = 10;
             }
 
-		GenericDialog gd = new GenericDialog("Multi-Aperture Measurements", xLocation, yLocation);
+		GenericDialog gd = new GenericDialog("Multi-Aperture Measurements");
 //		gd.addMessage ("Aperture radii should have been set with the \"Set Aperture\" tool (double-click icon).");
 
 //		gd.addNumericField ("   Maximum number of apertures per image :", nAperturesMax,0,6,"");

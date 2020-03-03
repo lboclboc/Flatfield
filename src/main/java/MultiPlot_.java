@@ -5611,14 +5611,14 @@ static public void updateColumnLists()
             }
         if (num < 1)
             {
-            gd = new GenericDialog ("No curves selected", mainFrame.getX()+100, mainFrame.getY()+100);
+            gd = new GenericDialog ("No curves selected");
             gd.addMessage ("At least one curve must be enabled for plotting.");
             gd.hideCancelButton();
             gd.showDialog();
             return -1;               
             }
         curves = Arrays.copyOf(curves, num);
-        gd = new GenericDialog ("Select plot curve", mainFrame.getX()+100, mainFrame.getY()+100);
+        gd = new GenericDialog ("Select plot curve");
         gd.addChoice("Add data to table from curve:", curves, curves[0]);
         gd.showDialog();
         if (gd.wasCanceled()) return -1; 
@@ -5631,7 +5631,7 @@ static public void updateColumnLists()
         GenericDialog gd;
         if (tableName.equalsIgnoreCase("No Table Selected"))
             {
-            gd = new GenericDialog ("No Table Selected", (main?mainFrame.getX():subFrame.getX())+100, (main?mainFrame.getY():subFrame.getY())+100);
+            gd = new GenericDialog ("No Table Selected");
             gd.addMessage ("A table must be open and selected to add new columns.");
             gd.hideCancelButton();
             gd.showDialog();
@@ -5724,7 +5724,7 @@ static public void updateColumnLists()
             xHeading += "_B";
             }
 
-        gd = new GenericDialog ("Add new columns to table", (main?mainFrame.getX():subFrame.getX())+100, (main?mainFrame.getY():subFrame.getY())+100);
+        gd = new GenericDialog ("Add new columns to table");
         gd.addCheckbox("Add new column from X-data", saveNewXColumn);
         gd.addStringField("New column name (from X-data): ", xHeading, 40);
         gd.addCheckbox("Add new column from Y-data", saveNewYColumn);
@@ -17779,8 +17779,7 @@ static void initializeVariables()
 
         static void setVMarkerText()
             {
-            GenericDialog gd = new GenericDialog ("Set Vertical Marker Text", mainFrame.getX()+mainFrame.getWidth()/2-165,
-                                                                              mainFrame.getY()+mainFrame.getHeight()/2-77);
+            GenericDialog gd = new GenericDialog ("Set Vertical Marker Text");
             gd.addStringField("Vertical Marker 1 Text - Line 1:", vMarker1TopText, 40);
             gd.addStringField("Vertical Marker 1 Text - Line 2:", vMarker1BotText, 40);
             gd.addMessage ("");
@@ -17801,8 +17800,7 @@ static void initializeVariables()
 
         static void changePixelScale()
             {
-            GenericDialog gd = new GenericDialog ("Change Pixel Scale", mainFrame.getX()+mainFrame.getWidth()/2-165,
-                                                                        mainFrame.getY()+mainFrame.getHeight()/2-77);
+            GenericDialog gd = new GenericDialog ("Change Pixel Scale");
 
             gd.addNumericField ("Pixel scale: ",pixelScale,4,8, "(seconds of arc per pixel)");
             gd.addMessage ("");
@@ -17817,8 +17815,7 @@ static void initializeVariables()
 
         static void setEphemeris()
             {
-            GenericDialog gd = new GenericDialog ("Set Ref. Epoch and Period for x-Axis Phase Display", mainFrame.getX()+mainFrame.getWidth()/2-165,
-                                                                        mainFrame.getY()+mainFrame.getHeight()/2-77);
+            GenericDialog gd = new GenericDialog ("Set Ref. Epoch and Period for x-Axis Phase Display");
 
             gd.addNumericField ("Reference Epoch: ", T0, 8, 20, "(days)");
             gd.addNumericField ("Orbital Period: ", period, 8, 20, "(days)");
@@ -17849,8 +17846,7 @@ static void initializeVariables()
         
         static void changeMaxDataLength()
             {
-            GenericDialog gd = new GenericDialog ("Change minimum data column length", mainFrame.getX()+mainFrame.getWidth()/2-165,
-                                                                                       mainFrame.getY()+mainFrame.getHeight()/2-77);
+            GenericDialog gd = new GenericDialog ("Change minimum data column length");
 
             gd.addMessage ("The default length is 1000, but can be made smaller or larger\n"
                 + "in order to optimize your system's speed and memory utilization.\n"
@@ -17872,8 +17868,7 @@ static void initializeVariables()
 
         static void changePriorityColumns()
             {
-            GenericDialog gd = new GenericDialog ("Change data name priorities in pulldown lists", mainFrame.getX()+mainFrame.getWidth()/2-165,
-                                                                                                   mainFrame.getY()+mainFrame.getHeight()/2-77);
+            GenericDialog gd = new GenericDialog ("Change data name priorities in pulldown lists");
             gd.addMessage ("Enter data names to be placed at the top of data selection pulldown lists,\n"
                 + "in the order desired, with each name separated by a comma (case insensitive).\n"
                 + "All data column names starting with a comma separated value will be included.");
@@ -17897,8 +17892,7 @@ static void initializeVariables()
         
         static void changeRefStarHorizontalWidth()
             {
-            GenericDialog gd = new GenericDialog ("Change reference star window width", mainFrame.getX()+mainFrame.getWidth()/2-165,
-                                                                                                   mainFrame.getY()+mainFrame.getHeight()/2-77);
+            GenericDialog gd = new GenericDialog ("Change reference star window width");
             gd.addMessage ("Enter the number of reference stars to display per\n" +
                            "line in the reference star selection window.");
             gd.addNumericField("Stars per line:", refStarHorzWidth, 0);
@@ -17994,7 +17988,7 @@ static void initializeVariables()
                     try {
                         InputStream is = new BufferedInputStream(new FileInputStream(files[0].getCanonicalPath()));
                         errorCode = 4;
-                        Prefs.ijPrefs.load(is);
+                        Prefs.getControlPanelProperties().load(is);
                         errorCode = 5;
                         is.close();
                         errorCode = 6;
@@ -18017,7 +18011,7 @@ static void initializeVariables()
                         OpenDialog.setDefaultDirectory(files[0].getParent());
                         try {
                             InputStream is = new BufferedInputStream(new FileInputStream(files[0].getCanonicalPath()));
-                            Prefs.ijPrefs.load(is);
+                            Prefs.getControlPanelProperties().load(is);
                             is.close();
                             }
                         catch (Exception e) {
@@ -18092,7 +18086,7 @@ static void initializeVariables()
                                             IJ.beep();
                                             IJ.showMessage("DragAndDrop: Error operning input stream to read plot configuration file.");
                                             }
-                                        try {Prefs.ijPrefs.load(is);}
+                                        try {Prefs.getControlPanelProperties().load(is);}
                                         catch(Exception e) 
                                             {
                                             IJ.beep();
@@ -18483,8 +18477,7 @@ static void initializeVariables()
         
         static boolean appendTableDialog()
             {
-            GenericDialog gd = new GenericDialog ("Append settings", mainFrame.getX()+20,
-                                                                     mainFrame.getY()+mainFrame.getHeight()/2-77);
+            GenericDialog gd = new GenericDialog ("Append settings");
 
             gd.addStringField("Enter name for combined table:", combinedTableName, 80);
             
@@ -18540,8 +18533,7 @@ static void initializeVariables()
                 }
             else                            // IF MORE THAN ONE, ASK WHICH TABLE SHOULD BE USED
                 {
-                GenericDialog gd = new GenericDialog((firstTableName.equals("") ? "Select table" : "Select table to append"),
-                                   mainFrame.getX()+mainFrame.getWidth()/2-165, mainFrame.getY()+mainFrame.getHeight()/2-77);
+                GenericDialog gd = new GenericDialog((firstTableName.equals("") ? "Select table" : "Select table to append"));
                 gd.addChoice ((firstTableName.equals("") ? "Select table" : "Select table to append"), filteredTables, "Measurements");
                 gd.showDialog();
                 if (gd.wasCanceled())
@@ -18579,7 +18571,7 @@ static void initializeVariables()
                 }
             try {
                 InputStream is = new BufferedInputStream(new FileInputStream(of.getDirectory()+of.getFileName()));
-                Prefs.ijPrefs.load(is);
+                Prefs.getControlPanelProperties().load(is);
                 is.close();
                 setupArrays();
                 getPreferences();
@@ -18623,7 +18615,7 @@ static void initializeVariables()
                         {
                         try {
                             InputStream is = new BufferedInputStream(new FileInputStream(cfgPath));
-                            Prefs.ijPrefs.load(is);
+                            Prefs.getControlPanelProperties().load(is);
                             is.close();
                             }
                         catch (Exception e) {
@@ -18657,7 +18649,7 @@ static void initializeVariables()
                 {
                 try {
                     InputStream is = new BufferedInputStream(new FileInputStream(cfgPath));
-                    Prefs.ijPrefs.load(is);
+                    Prefs.getControlPanelProperties().load(is);
                     is.close();
                     }
                 catch (Exception e) {
@@ -18718,7 +18710,7 @@ static void initializeVariables()
                 subsetColumn[i] = "";
                 }            
             
-            GenericDialog gd = new GenericDialog ("Save data subset", mainFrame.getX()+25, mainFrame.getY()+50);
+            GenericDialog gd = new GenericDialog ("Save data subset");
 
             for (int i=0; i<maxSubsetColumns; i++)
                 {
@@ -18975,7 +18967,7 @@ static void initializeVariables()
             String raColumnName = Prefs.get("plot2.raColumnName","");
             String decColumnName = Prefs.get("plot2.decColumnName","");
 
-            GenericDialog gd = new GenericDialog ("Create Minor Planet Center Format", mainFrame.getX()+10, mainFrame.getY()+10);
+            GenericDialog gd = new GenericDialog ("Create Minor Planet Center Format");
             
             gd.addMessage("*** Detailed instructions for each field are at: http://www.minorplanetcenter.net/iau/info/OpticalObs.html ***");
             gd.addStringField("Definitive Designation (5 chars or empty)", definitiveDesignation, 5);
@@ -19377,7 +19369,7 @@ static String Dec_to_MPCDec(double dec)
         
         static boolean meridianFlipTimeColumnNotice()
             {
-            GenericDialog gd = new GenericDialog ("Meridian Flip Output Warning", mainFrame.getX()+25, mainFrame.getY()+100);            
+            GenericDialog gd = new GenericDialog ("Meridian Flip Output Warning");            
             gd.addMessage ("Meridian_Flip has been selected as an output data column.\n"+
                            "Certain plot settings are first required to ensure that proper meridian flip data are written.\n"+
                            "(1) The meridian flip time marker must be set properly in the 'Multi-plot Main' panel.\n"+
@@ -19453,11 +19445,11 @@ static String Dec_to_MPCDec(double dec)
             if (lastDot >= 0) savepath = savepath.substring(0, lastDot);
             savepath += ".plotcfg";
             Properties prefs = new Properties();
-            Enumeration e = Prefs.ijPrefs.keys();
+            Enumeration e = Prefs.getControlPanelProperties().keys();
             while (e.hasMoreElements()) {
                 String key = (String) e.nextElement();
                 if (key.indexOf(".plot.") == 0)
-                    prefs.put(key, Prefs.ijPrefs.getProperty(key));
+                    prefs.put(key, Prefs.getControlPanelProperties().getProperty(key));
             }
 
             try
@@ -19506,11 +19498,11 @@ static String Dec_to_MPCDec(double dec)
                 return;
             if (outFile.isFile()) outFile.delete();
             Properties prefs = new Properties();
-            Enumeration e = Prefs.ijPrefs.keys();
+            Enumeration e = Prefs.getControlPanelProperties().keys();
             while (e.hasMoreElements()) {
                 String key = (String) e.nextElement();
                 if (key.indexOf(".plot.") == 0)
-                    prefs.put(key, Prefs.ijPrefs.getProperty(key));
+                    prefs.put(key, Prefs.getControlPanelProperties().getProperty(key));
             }
             try
                 {
@@ -19610,11 +19602,11 @@ static String Dec_to_MPCDec(double dec)
                     }
                 if (outFile.isFile()) outFile.delete();
                 Properties prefs = new Properties();
-                Enumeration e = Prefs.ijPrefs.keys();
+                Enumeration e = Prefs.getControlPanelProperties().keys();
                 while (e.hasMoreElements()) {
                     String key = (String) e.nextElement();
                     if (key.indexOf(".plot.") == 0)
-                        prefs.put(key, Prefs.ijPrefs.getProperty(key));
+                        prefs.put(key, Prefs.getControlPanelProperties().getProperty(key));
                 }
                 try
                     {
@@ -19654,7 +19646,7 @@ static String Dec_to_MPCDec(double dec)
         dataSubsetSuffix = Prefs.get("Astronomy_Tool.dataSubsetSuffix", dataSubsetSuffix);
         saveAllPNG = Prefs.get("Astronomy_Tool.saveAllPNG", saveAllPNG);        
         
-        GenericDialog gd = new GenericDialog ("Save all settings", mainFrame.getX()+mainFrame.getWidth()/2-300, mainFrame.getY()+mainFrame.getHeight()/2-200);
+        GenericDialog gd = new GenericDialog ("Save all settings");
         gd.enableYesNoCancel("Save Files Now", "Save Settings Only");
 
         gd.addMessage ("Select items to save when using save all:");
