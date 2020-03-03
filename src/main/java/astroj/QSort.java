@@ -1,3 +1,5 @@
+package astroj;
+
 // QSort.java  : quick hack based on ij.util.StringSorter
 
 /** A simple QuickSort for double arrays. */
