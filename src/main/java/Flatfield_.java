@@ -26,11 +26,11 @@ public class Flatfield_ implements PlugIn {
 	private int opt_cent_y; // In pixels
 	
 	// plugin parameters
-	private float a; // polynomial, constants
-	private float b;
-	private float c;
-	private float d;
-	private float e; // 4th degree
+	private double a; // polynomial, constants
+	private double b;
+	private double c;
+	private double d;
+	private double e; // 4th degree
 
 	@Override
 	public void run(String value) {
@@ -49,33 +49,65 @@ public class Flatfield_ implements PlugIn {
 	}
 
 	private boolean showDialog() {
-		GenericDialog gd = new GenericDialog("Generate flatfield from Excel sheet constants");
-
+		GenericDialog gd = new GenericDialog("Flatfield");
+		
+		String[] exponentDef = {"-16","-15","-14","-13","-12","-11","-10","-09","-08","-07","-06","-05","-04","-03","-02","-01","0","+01","+02"};
+		// position                0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15  16    17    18
+		
 		// default value is 0.00, 2 digits right of the decimal point
-<<<<<<< HEAD
+		
+		gd.addMessage("Generate flat image from polynomial");
 		gd.addMessage("Flat image dimensions");
-		gd.addNumericField("Width:", 4500, 0);
-		gd.addNumericField("Height:", 3000, 0);
-		gd.addNumericField("Optical center X:", 2250, 0);
-		gd.addNumericField("Optical center Y:", 1500, 0);
+		gd.addNumericField("Width:", 4500, 0, 6, "pixel");
+		gd.addNumericField("Height:", 3000, 0, 6, "pixel");
+		gd.addNumericField("Optical center X:", 2250, 0, 6, "pixel");
+		gd.addNumericField("Optical center Y:", 1500, 0, 6, "pixel");
+		
 		gd.addMessage("Polynomial constants");
-		gd.addNumericField("a const:", 0.6, 10); // should be normalized to 1 in center !
-		gd.addNumericField("b const:", 0.0000544, 10);
-		gd.addNumericField("c const:", 0.000000247, 10);
-		gd.addNumericField("d const:", -0.000000000115, 10);
-		gd.addNumericField("e const:", 0.000000000000021, 10);
+		gd.addNumericField("a bas: ", +1.0, 5, 7, "* 10^"); // should be normalized to 1 in center !gd.addToSameRow();
+		gd.addToSameRow();
+		gd.addChoice("exp: ", exponentDef, exponentDef[16]);
+		gd.addToSameRow();
+		gd.addMessage(" * r^0");
+		
+		gd.addNumericField("b bas: ", 0.0, 5, 7, "* 10^");
+		gd.addToSameRow();
+		gd.addChoice("exp: ", exponentDef, exponentDef[16]);
+		gd.addToSameRow();
+		gd.addMessage(" * r^1, normally not used");
+		
+		gd.addNumericField("c bas:", -1.4, 5, 7, "* 10^");
+		gd.addToSameRow();
+		
+		gd.addToSameRow();
+		gd.addChoice("exp: ", exponentDef, exponentDef[9]);
+		gd.addToSameRow();
+		gd.addMessage(" * r^2");
+		
+		gd.addNumericField("d bas: ", +0.0, 5, 7, "* 10^");
+		gd.addToSameRow();
+		
+		gd.addToSameRow();
+		gd.addChoice("exp: ", exponentDef, exponentDef[16]);
+		gd.addToSameRow();
+		gd.addMessage(" * r^3, normally not used");
+		
+		gd.addNumericField("e bas: ", -1.3, 5, 7, "* 10^");
+		gd.addToSameRow();
+		
+		gd.addToSameRow();
+		gd.addChoice("exp: ", exponentDef, exponentDef[2]);
+		gd.addToSameRow();
+		gd.addMessage(" * r^4");
+		
 		gd.addMessage("Flat image should be normalized to =1 in center");
+		gd.addMessage("Values lower than 0.3 i.e. vignetting of 70% will be cut");
 		gd.addMessage("Use Excel sheet to calculate constants");
 		gd.addMessage("www.astrofriend.eu/astronomy/tutorials");
+		gd.addMessage("See AstroImageJ tutorial page 3");
+		gd.addMessage(" ");
+		gd.addMessage("Version 20200303");
 		
-=======
-		gd.addNumericField("Width:", 1024, 0);
-		gd.addNumericField("Height:", 768, 0);
-		gd.addNumericField("z⁰ factor:", 0.00, 2);
-		gd.addNumericField("z¹ factor:", 20.00, 2);
-		gd.addNumericField("z² factor:", 0.05, 2);
-
->>>>>>> branch 'master' of git@github.com:lboclboc/Flatfield.git
 		gd.showDialog();
 		if (gd.wasCanceled())
 			return false;
@@ -85,11 +117,29 @@ public class Flatfield_ implements PlugIn {
 		height = (int)gd.getNextNumber();
 		opt_cent_x = (int)gd.getNextNumber();
 		opt_cent_y = (int)gd.getNextNumber();
-		a = (float)gd.getNextNumber();
-		b = (float)gd.getNextNumber();
-		c = (float)gd.getNextNumber();
-		d = (float)gd.getNextNumber();
-		e = (float)gd.getNextNumber();
+		
+		double a_bas = gd.getNextNumber();
+		String a_exp = gd.getNextChoice();
+		a = a_bas * Math.pow(10, Double.parseDouble(a_exp));
+		
+		double b_bas = gd.getNextNumber();
+		String b_exp = gd.getNextChoice();
+		b = b_bas * Math.pow(10, Double.parseDouble(b_exp));
+				
+		double c_bas = gd.getNextNumber();
+		String c_exp = gd.getNextChoice();
+		c = c_bas * Math.pow(10, Double.parseDouble(c_exp));
+		
+		double d_bas = gd.getNextNumber();
+		String d_exp = gd.getNextChoice();
+		d = d_bas * Math.pow(10, Double.parseDouble(d_exp));
+				
+		double e_bas = gd.getNextNumber();
+		String e_exp = gd.getNextChoice();
+		e = e_bas * Math.pow(10, Double.parseDouble(e_exp));
+		
+		// Check calculations:
+		System.out.println("A constant = " + a + ", B constant = " + b + ", C constant = " + c + ", D constant = " + d + ", E constant = " + e);
 		
 		return true;
 	}
@@ -130,12 +180,12 @@ public class Flatfield_ implements PlugIn {
 	public void process(float[] pixels) {
 		for (int y=0; y < height; y++) {
 			for (int x=0; x < width; x++) {
-				float radie = Math.sqrt(Math.pow(x - opt_cent_x, 2) + Math.pow(y - opt_cent_y, 2)); // only integers
-				float level = (a + b*radie + c*radie*radie + d*radie*radie*radie + e*radie*radie*radie*radie);
-				if (level < 0.3) { // no corection of abnorm vignetting
-					level = 0.3;
+				double radie = Math.sqrt(Math.pow(x - opt_cent_x, 2) + Math.pow(y - opt_cent_y, 2)); // only integers
+				float level = (float)(a + b*radie + c*Math.pow(radie, 2) + d*Math.pow(radie, 3) + e*Math.pow(radie, 4));
+				if (level < 0.3f) { // no correction of abnorm vignetting
+					level = 0.3f;
 				}
-				pixels[x + y * width] = level;
+				pixels[x + y * width] = level; // built flat image with 32 float
 			}
 		}
 	}
