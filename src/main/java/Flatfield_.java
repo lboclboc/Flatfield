@@ -64,31 +64,21 @@ public class Flatfield_ implements PlugIn {
 		gd.addNumericField("Optical center Y:", 1500, 0, 6, "pixel");
 		
 		gd.addMessage("Polynomial constants");
-		gd.addNumericField("a bas: ", +1.0, 5, 7, "* 10^"); // should be normalized to 1 in center !gd.addToSameRow();
+		gd.addNumericField("a bas: ", +1.0, 5, 7, "* 10^exp * r^0"); // should be normalized to 1 in center !gd.addToSameRow();
 		gd.addChoice("a exp: ", exponentDef, exponentDef[16]);
-		gd.addToSameRow();
-		gd.addMessage(" * r^0");
-		
-		gd.addNumericField("b bas: ", 0.0, 5, 7, "* 10^");
+				
+		gd.addNumericField("b bas: ", 0.0, 5, 7, "* 10^exp * r^1, normally not used");
 		gd.addChoice("b exp: ", exponentDef, exponentDef[16]);
-		gd.addToSameRow();
-		gd.addMessage(" * r^1, normally not used");
-		
-		gd.addNumericField("c bas:", -1.4, 5, 7, "* 10^");
+				
+		gd.addNumericField("c bas:", -1.4, 5, 7, "* 10^exp * r^2");
 		gd.addChoice("c exp: ", exponentDef, exponentDef[9]);
-		gd.addToSameRow();
-		gd.addMessage(" * r^2");
-		
-		gd.addNumericField("d bas: ", +0.0, 5, 7, "* 10^");
+				
+		gd.addNumericField("d bas: ", +0.0, 5, 7, "* 10^exp * r^3,  normally not used");
 		gd.addChoice("d exp: ", exponentDef, exponentDef[16]);
-		gd.addToSameRow();
-		gd.addMessage(" * r^3, normally not used");
-		
-		gd.addNumericField("e bas: ", -1.3, 5, 7, "* 10^");
+				
+		gd.addNumericField("e bas: ", -1.3, 5, 7, "* 10^exp * r^4");
 		gd.addChoice("e exp: ", exponentDef, exponentDef[2]);
-		gd.addToSameRow();
-		gd.addMessage(" * r^4");
-		
+				
 		gd.addMessage("Choose parameters to get it normalized to =1 in center");
 		gd.addMessage("Values lower than 0.3, i.e. vignetting of 70% will be cut");
 		gd.addMessage("Use Excel sheet to simulate curve and calculate constants");
