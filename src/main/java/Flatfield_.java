@@ -66,14 +66,14 @@ public class Flatfield_ implements PlugIn {
 		gd.addNumericField("Optical center Y:", 730, 0, 6, "pixel");
 		
 		gd.addMessage("Polynomial constants");
-		gd.addNumericField("a bas: ", +9.65, 5, 7, "* 10^exp * r^0"); // should be normalized to 1 in center !gd.addToSameRow();
+		gd.addNumericField("a bas: ", +9.57, 5, 7, "* 10^exp * r^0"); // should be normalized to 1 in center !gd.addToSameRow();
 		gd.addChoice("a exp: ", exponentDef, exponentDef[20]);
 						
 		gd.addNumericField("c bas:", -9.4, 5, 7, "* 10^exp * r^2");
 		gd.addChoice("c exp: ", exponentDef, exponentDef[14]);
 						
 		gd.addNumericField("e bas: ", +1.3, 5, 7, "* 10^exp * r^4");
-		gd.addChoice("e exp: ", exponentDef, exponentDef[9]);
+		gd.addChoice("e exp: ", exponentDef, exponentDef[8]);
 		
 		gd.addNumericField("d bas: ", -6.7, 5, 7, "* 10^exp * r^6, only in difficult case");
 		gd.addChoice("d exp: ", exponentDef, exponentDef[2]);
@@ -84,7 +84,7 @@ public class Flatfield_ implements PlugIn {
 		gd.addMessage("www.astrofriend.eu/astronomy/tutorials");
 		gd.addMessage("See AstroImageJ tutorial page 3");
 		gd.addMessage(" ");
-		gd.addMessage("Version 20200303");
+		gd.addMessage("Version 20200304");
 		
 		gd.showDialog();
 		if (gd.wasCanceled())
