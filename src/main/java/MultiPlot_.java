@@ -11,7 +11,7 @@ import ij.Prefs;
 import ij.process.*;
 import ij.io.*;
 import ij.measure.CurveFitter;
-import flanagan.analysis.*; 
+import flanagan.analysis.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -60,7 +60,7 @@ import javax.swing.border.EmptyBorder;
  * semi-custom, and auto scaling
  *
  *
- * 
+ *
  */
 
 /**
@@ -281,7 +281,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static int n;
         static int[] nn;
         static int[] nnr;
-        
+
         static String[] xlabel2;
         static int selectedRowStart, selectedRowEnd;
         static java.util.List<String> deletedRowList;
@@ -304,7 +304,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
 
         static double[] yAverage, yBaselineAverage, yDepthEstimate, detrendYAverage;
         static double[][] lcModel;
-       
+
 
         static double[][] xc1;
         static double[][] xc2;
@@ -324,19 +324,19 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static double xPlotMax;
         static double yPlotMin;
         static double yPlotMax;
-        
-                
+
+
         static boolean addAirmass, addAltitude, addAzimuth, addBJD, addBJDCorr, addDecNow, addRaNow;
         static boolean addDec2000, addRA2000, addGJD, addHJD, addHJDCorr, addHourAngle, addZenithDistance;
-        
+
         static String airmassName, altitudeName, azimuthName, bjdName, bjdCorrName, decNowName, raNowName;
         static String dec2000Name, ra2000Name, gjdName, hjdName, hjdCorrName, hourAngleName, zenithDistanceName;
-        
-        
+
+
         static JCheckBox airmassCB, altitudeCB, azimuthCB, bjdCB, bjdCorrCB, decNowCB, raNowCB;
         static JCheckBox dec2000CB, ra2000CB, gjdCB, hjdCB, hjdCorrCB, hourAngleCB, zenithDistanceCB;
-                
-        static JTextField airmassField, altitudeField, azimuthField, bjdField, bjdCorrField, decNowField, raNowField;        
+
+        static JTextField airmassField, altitudeField, azimuthField, bjdField, bjdCorrField, decNowField, raNowField;
         static JTextField dec2000Field, ra2000Field, gjdField, hjdField, hjdCorrField, hourAngleField, zenithDistanceField;
 
         static int startDragX, startDragY, endDragX, endDragY;
@@ -358,10 +358,10 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JScrollPane mainscrollpane;
         static JPanel mainsubpanel, refStarMainPanel, refStarBPanel, starsPlusSpacerPanel, starsPanel, spacerPanel, allNonePanel;
         static JScrollPane subscrollpane, refStarScrollPane;
-        
-        
+
+
         //----------Transit Fit Panel
-        
+
         static double[] orbitalPeriod, eccentricity, omega, lonAscNode, teff;
         static double orbitalPeriodStep, eccentricityStep, omegaStep, teffStep, jminuskStep, mStarStep, rStarStep, rhoStarStep;
         static boolean[] forceCircularOrbit, useLonAscNode;
@@ -373,12 +373,12 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JButton[] extractPriorsButton;
         static JCheckBox[] autoUpdatePriorsCB;
         static boolean[] autoUpdatePriors;
-        
+
         static JMenuBar[] fitMenuBar;
         static JMenu[] fitFileMenu, autoPriorsMenu;
         static JCheckBoxMenuItem[] baselinePriorCB, depthPriorCB, arPriorCB, tcPriorCB, inclPriorCB;
         static JMenuItem[] saveFitPanelPngMenuItem, saveFitPanelJpgMenuItem, saveFitTextMenuItem;
-        
+
         static boolean[][] autoUpdatePrior;
         static double[] sigma, tolerance, residualShift, autoResidualShift;
 //        static double residualShiftStep;
@@ -394,13 +394,13 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static boolean[][] lockToCenter, isFitted;
         static JCheckBox[][] lockToCenterCB;
         static double[][] priorCenter;
-        
+
         static double[] priorCenterStep;
         static JSpinner[][] priorCenterSpinner;
         static JSpinner[] priorCenterStepSpinner;
         static JPopupMenu[] priorCenterStepPopup;
         static JPanel[] priorCenterStepPanel;
-        
+
 
         static boolean[][] usePriorWidth;
         static JCheckBox[][] usePriorWidthCB;
@@ -410,7 +410,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JSpinner[] priorWidthStepSpinner;
         static JPopupMenu[] priorWidthStepPopup;
         static JPanel[] priorWidthStepPanel;
-        
+
         static boolean[][] useCustomFitStep;
         static JCheckBox[][] useCustomFitStepCB;
         static double[][] fitStep;
@@ -419,21 +419,21 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JSpinner[] fitStepStepSpinner;
         static JPopupMenu[] fitStepStepPopup;
         static JPanel[] fitStepStepPanel;
-        
+
         static JTextField[] chi2dofLabel, dofLabel, chi2Label, bicLabel, sigmaLabel;
-        static JTextField[] t14Label, t14HoursLabel, t23Label, tauLabel, bpLabel, stellarDensityLabel; 
+        static JTextField[] t14Label, t14HoursLabel, t23Label, tauLabel, bpLabel, stellarDensityLabel;
         static JTextField[] spectralTypeLabel, planetRadiusLabel, stepsTakenLabel;
         static JPanel[] sigmaPanel;
         static Border[] sigmaBorder;
-        
+
         static double[][] bestFit;
         static JTextField[][] bestFitLabel;
-        
+
         static JComboBox[][] fitDetrendComboBox;
         static JCheckBox[][] useFitDetrendCB;
-        
+
         static JButton[] fitNowButton;
-        
+
         static double[][] start, width, step, coeffs;
         static int[][] index;
         static int[] nTries, dof, modelLineWidth, residualLineWidth, startDetrendPars, endDetrendPars;
@@ -452,7 +452,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JPanel[] fitPanel;
         static JScrollPane[] fitScrollPane;
         static int[] fitFrameLocationX, fitFrameLocationY;
-        static Dimension labelSize, legendLabelSize, spinnerSize, orbitalSpinnerSize, stellarSpinnerSize; 
+        static Dimension labelSize, legendLabelSize, spinnerSize, orbitalSpinnerSize, stellarSpinnerSize;
         static Dimension  bestFitSize, statSize, checkBoxSize, choiceBoxSize, spacerSize, controlSpinnerSize, lineWidthSpinnerSize, colorSelectorSize;
         static double xPlotMinRaw;
         static Color defaultBackground;
@@ -467,7 +467,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static Border lockBorder = new CompoundBorder(BorderFactory.createLineBorder(Color.ORANGE, 2), new EmptyBorder(2,2,2,2));
         static Border convergedBorder = new CompoundBorder(BorderFactory.createLineBorder(new Color(0, 200, 0), 2), new EmptyBorder(2,2,2,2));
         static Border failedBorder = new CompoundBorder(BorderFactory.createLineBorder(Color.RED, 2), new EmptyBorder(2,2,2,2));
-        
+
 //----------------------------------------------------
 
         static JMenuBar mainmenubar;
@@ -477,7 +477,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JMenu yaxismenu;
         static JMenu tablemenu;
         static JCheckBoxMenuItem opendatasetCB, openrefstarCB, openFitPanelsCB;
-        static JCheckBoxMenuItem usewidedataCB, divideNotSubtractCB, useNelderMeadChi2ForDetrendCB;  
+        static JCheckBoxMenuItem usewidedataCB, divideNotSubtractCB, useNelderMeadChi2ForDetrendCB;
         static JCheckBoxMenuItem rememberwindowlocationsCB, keepSeparateLocationsForFitWindowsCB;
         static JCheckBoxMenuItem showtooltipsCB;
         static JCheckBoxMenuItem usedefaultsettingsCB;
@@ -497,7 +497,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JCheckBoxMenuItem usePriorityColumnsCB;
         static JMenuItem changePriorityColumnsmenuitem;
         static JMenuItem changemaxdatalengthmenuitem;
-        
+
         static JTextField titleField, subtitleField, legendField, xlegendField, ylegendField;
         static JLabel statusLabel, xcolumnlabel, ycolumnslabel, ycolumnlabel, operatorlabel;
         static JLabel xcolumnlabelsub, ycolumnlabelsub, operatorlabelsub;
@@ -514,7 +514,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JRadioButton autoxButton, firstxButton, customxButton;
         static JRadioButton autoyButton, firstyButton, customyButton;
         static JRadioButton unphasedButton, dayssincetcButton, hourssincetcButton, orbitalphaseButton;
-        
+
         static JRadioButton useGJDButton, useHJDButton, useBJDButton, useManualRaDecButton, useTableRaDecButton;
         static boolean useGJD = true, useHJD = false, useBJD = false, useTableRaDec = false;
         static ButtonGroup JDRadioGroup, RaDecRadioGroup;
@@ -547,7 +547,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JSpinner yminspinner, ymaxspinner, plotheightspinner, plotwidthspinner;
         static JSpinner trimdataheadspinner, trimdatatailspinner, trimdataheadstepspinner, trimdatatailstepspinner;
         static JSpinner vmarker1spinner, vmarker2spinner;
-        static JSpinner xstepspinner, mfmarker1spinner, dmarker1spinner, dmarker2spinner, dmarker3spinner, dmarker4spinner;        
+        static JSpinner xstepspinner, mfmarker1spinner, dmarker1spinner, dmarker2spinner, dmarker3spinner, dmarker4spinner;
         static JSpinner T0stepspinner, periodstepspinner, durationstepspinner;
         static JSpinner T0spinner, periodspinner, durationspinner;
 
@@ -561,7 +561,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static String tableName;
         static String[] columns, unfilteredColumns, oldUnfilteredColumns;
         static String[] columnswd, columnsDetrend;
-        
+
         static MeasurementTable table;
         static TextPanel tpanel;
         static JLabel dummylabel1, binsizespinnerlabel, mmagrefsspinnerlabel, dummylabel4;
@@ -586,7 +586,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static double vMarker1Value=0.5, vMarker2Value=0.7;
         static double xStep=0.001;
         static double T0Step=0.001, periodStep=0.0001, durationStep=0.01;
-        static double dMarker1Value=0.3, dMarker2Value=0.5, dMarker3Value=0.7, dMarker4Value=0.9;  
+        static double dMarker1Value=0.3, dMarker2Value=0.5, dMarker3Value=0.7, dMarker4Value=0.9;
         static double mfMarker1Value=0.6;
         static boolean showMFMarkers=false;
         static String[] xlabel;
@@ -654,7 +654,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static int[] normIndex;
         static int[] detrendFitIndex;
         static int[][] detrendIndex;
-        
+
         static boolean[] plotY;
         static boolean[] useColumnName;
         static boolean[] useLegend;
@@ -679,7 +679,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JCheckBox[] usesmoothbox;
         static JCheckBox[] autoscaleincludebox;
         static JCheckBox[] forcebox, shiftAboveBox, shiftBelowBox;
-        
+
         static JPanel[] refStarPanel;
         static JLabel[] refStarLabel;
         static JCheckBox[] refStarCB;
@@ -694,7 +694,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static boolean showSaturationWarning;
         static double saturationWarningLevel;
 		static boolean showLinearityWarning;
-		static double linearityWarningLevel;        
+		static double linearityWarningLevel;
         static int numAps;
 
         static JComboBox[] xdatacolumn;
@@ -704,7 +704,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JComboBox[] detrendbox;
         static JComboBox[] markersymbolselection;
         static JComboBox[] residualSymbolSelection;
-        
+
         static JComboBox[] markercolorselection, spectralTypeSelection;
         static JComboBox[] modelColorSelection, residualModelColorSelection;
         static JComboBox[] residualColorSelection;
@@ -745,7 +745,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JSpinner[] customscalespinner;
         static JSpinner[] customscalestepspinner;
         static JSpinner[] detrendfactorspinner;
-        static JSpinner[] detrendfactorstepspinner;        
+        static JSpinner[] detrendfactorstepspinner;
         static JPopupMenu[] autoscalesteppopup;
         static JPopupMenu[] autoshiftsteppopup;
         static JPopupMenu[] customscalesteppopup;
@@ -777,7 +777,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static JButton legendslabelconfigureButton;
         static JPanel legendgroup;
         static JPanel mainpanelgroupa;
-        
+
         static String[] markers;
         static String[] residualSymbols;
         static String[] colors;
@@ -791,12 +791,12 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static String[] spinnerscalelist;
 
         static String[] integerspinnerscalelist;
-        
+
         static TimerTask delayedUpdateTask;
-        static java.util.Timer delayedUpdateTimer;   
-        
+        static java.util.Timer delayedUpdateTimer;
+
         static AstroConverter acc;
-        
+
         static String fontName = Font.DIALOG;
         static Font p8  = new Font(fontName, Font.PLAIN,  8);
         static Font p9  = new Font(fontName, Font.PLAIN,  9);
@@ -805,18 +805,18 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static Font p12 = new Font(fontName, Font.PLAIN, 12);
         static Font b11 = new Font(fontName, Font.BOLD,  11);
         static Font b12 = new Font(fontName, Font.BOLD,  12);
-        static Font b14 = new Font(fontName, Font.BOLD,  14);   
-        
+        static Font b14 = new Font(fontName, Font.BOLD,  14);
+
         static Color mainBorderColor = new Color(118,142,229);
         static Color subBorderColor = Color.LIGHT_GRAY;
         static Color defaultCBColor = Color.LIGHT_GRAY;
-        
-        static TitledBorder dataSectionBorder;  
+
+        static TitledBorder dataSectionBorder;
         static String fitFormat = "#####0.0########";
         static DecimalFormat uptoNinePlaces = new DecimalFormat("########0.#########", IJU.dfs);
-        static DecimalFormat uptoEightPlaces = new DecimalFormat("#####0.########", IJU.dfs); 
+        static DecimalFormat uptoEightPlaces = new DecimalFormat("#####0.########", IJU.dfs);
         static DecimalFormat uptoSixPlaces = new DecimalFormat("#####0.######", IJU.dfs);
-        static DecimalFormat uptoFivePlaces = new DecimalFormat("#####0.#####", IJU.dfs); 
+        static DecimalFormat uptoFivePlaces = new DecimalFormat("#####0.#####", IJU.dfs);
         static DecimalFormat uptoThreePlaces = new DecimalFormat("#####0.###", IJU.dfs);
         static DecimalFormat onetoThreePlaces = new DecimalFormat("#####0.0##", IJU.dfs);
         static DecimalFormat uptoTwoPlaces = new DecimalFormat("#####0.##", IJU.dfs);
@@ -832,20 +832,20 @@ public class MultiPlot_ implements PlugIn, KeyListener
         static DecimalFormat threePlaces = new DecimalFormat("######0.000", IJU.dfs);
         static DecimalFormat sixPlaces = new DecimalFormat("######0.000000", IJU.dfs);
         static DecimalFormat detrendParameterFormat = new DecimalFormat("######0.000000000000", IJU.dfs);
-    
+
 	public void run(String inTableName)
 		{
         Locale.setDefault(IJU.locale);
         //SET DEFAULT SYSTEM LOOK AND FEEL
         if (IJ.isWindows())
                 {
-                
+
 //                        try {UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");}
                 try {UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");}
 //                        try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
                 catch (Exception e) { }
                 JLabel testlabel = new JLabel ("test");
-                p11 = testlabel.getFont();  
+                p11 = testlabel.getFont();
                 String winFont = p11.getFontName();
                 p8  = new Font(winFont, Font.PLAIN,  8);
                 p9  = new Font(winFont, Font.PLAIN,  9);
@@ -854,7 +854,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
                 p12 = new Font(winFont, Font.PLAIN, 12);
                 b11 = new Font(winFont, Font.BOLD,  11);
                 b12 = new Font(winFont, Font.BOLD,  12);
-                b14 = new Font(winFont, Font.BOLD,  14);                
+                b14 = new Font(winFont, Font.BOLD,  14);
                 }
         else if (IJ.isLinux())
                 {
@@ -865,14 +865,14 @@ public class MultiPlot_ implements PlugIn, KeyListener
                 p10 = new Font(fontName, Font.PLAIN,  9);
                 p11 = new Font(fontName, Font.PLAIN, 10);
                 p12 = new Font(fontName, Font.PLAIN, 11);
-                b11 = new Font(fontName, Font.BOLD,  10);                
+                b11 = new Font(fontName, Font.BOLD,  10);
                 b12 = new Font(fontName, Font.BOLD,  11);
-                b14 = new Font(fontName, Font.BOLD,  13);                
+                b14 = new Font(fontName, Font.BOLD,  13);
                 }
 //                    try {UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");}
 //                    try {UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");}
 //                    try {UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");}
-        else 
+        else
                 {
                 try {UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");}
 //                        try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
@@ -884,7 +884,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
                 p12 = new Font(fontName, Font.PLAIN, 11);
                 b11 = new Font(fontName, Font.BOLD,  10);
                 b12 = new Font(fontName, Font.BOLD,  11);
-                b14 = new Font(fontName, Font.BOLD,  13);                
+                b14 = new Font(fontName, Font.BOLD,  13);
                 }
         dataSectionBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Data ()", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.DARK_GRAY);
         plotAutoMode = Prefs.get("plot.automode",plotAutoMode);
@@ -896,7 +896,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
             Prefs.set("plot.automode",false);
             return;
             }
-        
+
         if (mainFrame == null || !mainFrame.isVisible())
             {
             if (mainFrame != null)
@@ -1004,7 +1004,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
             {
             tableName = table.shortTitle();
             tpanel = MeasurementTable.getTextPanel(MeasurementTable.longerName(tableName));
-            dataSectionBorder.setTitle("Data ("+MeasurementTable.shorterName(tableName) +")"); 
+            dataSectionBorder.setTitle("Data ("+MeasurementTable.shorterName(tableName) +")");
             unfilteredColumns = table.getColumnHeadings().split("\t");
             if (unfilteredColumns == null || unfilteredColumns.length == 0)
                 {
@@ -1019,7 +1019,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
                 }
             }
         }
-    
+
     static public MeasurementTable getTable()
         {
         return table;
@@ -1037,7 +1037,7 @@ public class MultiPlot_ implements PlugIn, KeyListener
 //            for (int i=0; i<(oldUnfilteredColumns==null?0:oldUnfilteredColumns.length); i++)
 //                IJ.log("oldUnfilteredColumn["+i+"]="+oldUnfilteredColumns[i]);
 //            for (int i=0; i<(unfilteredColumns==null?0:unfilteredColumns.length); i++)
-//                IJ.log("unfilteredColumn["+i+"]="+unfilteredColumns[i]);              
+//                IJ.log("unfilteredColumn["+i+"]="+unfilteredColumns[i]);
 //            }
         else if (forceUpdate || !Arrays.equals(unfilteredColumns, oldUnfilteredColumns))
             {
@@ -1077,15 +1077,15 @@ static public void updateColumnLists()
                         columns[j] = unfilteredColumns[i];
                         j++;
                         }
-        
+
         columnsDetrend = new String[columns.length+1];
         columnsDetrend[0] = columns[0];
         columnsDetrend[1] = "Meridian_Flip";
         for (int i=2; i< columnsDetrend.length; i++)
-            columnsDetrend[i]=columns[i-1]; 
-        
+            columnsDetrend[i]=columns[i-1];
+
         if (prioritizeColumns) sortColumns();
-        
+
         columnswd = new String[columns.length+1];
         columnswd[0] = columns[0];
         columnswd[1] = "default";
@@ -1119,7 +1119,7 @@ static public void updateColumnLists()
             else
                 {
                 for (int i=1; i<cols.length; i++)
-                    {                
+                    {
                     if (cols[i].toLowerCase().startsWith(pcol))
                         {
                         columns[j]=cols[i];
@@ -1128,7 +1128,7 @@ static public void updateColumnLists()
                         }
                     }
                 }
-            
+
             }
         for (int i=1; i<cols.length; i++) //get all non-priority columns
             {
@@ -1163,7 +1163,7 @@ static public void updateColumnLists()
             else
                 {
                 for (int i=2; i<cols.length; i++)
-                    {                
+                    {
                     if (cols[i].toLowerCase().startsWith(pcol))
                         {
                         columnsDetrend[j]=cols[i];
@@ -1172,7 +1172,7 @@ static public void updateColumnLists()
                         }
                     }
                 }
-            
+
             }
         for (int i=2; i<cols.length; i++)
             {
@@ -1205,7 +1205,7 @@ static public void updateColumnLists()
             subFrame.dispose();
             if(refStarFrame != null)
                 {
-                if (refStarFrame.isVisible()) 
+                if (refStarFrame.isVisible())
                     refStarPanelWasShowing = true;
                 else
                     refStarPanelWasShowing = false;
@@ -1217,7 +1217,7 @@ static public void updateColumnLists()
                 }
             if(addAstroDataFrame != null)
                 {
-                if (addAstroDataFrame.isVisible()) 
+                if (addAstroDataFrame.isVisible())
                     addAstroDataFrameWasShowing = true;
                 else
                     addAstroDataFrameWasShowing = false;
@@ -1247,13 +1247,13 @@ static public void updateColumnLists()
         {
         plotAutoMode = mode;
         }
-    
+
     static public void clearPlot()
         {
         checkAndLockTable();
         table = new MeasurementTable(tableName);
         table.setLock(false);
-//        table.show();        
+//        table.show();
         if (plot != null)
             {
             plotImage = WindowManager.getImage("Plot of "+tableName);
@@ -1266,12 +1266,12 @@ static public void updateColumnLists()
                 if (useTitle)
                         {
                         plot.changeFont(new java.awt.Font("Dialog",java.awt.Font.PLAIN,18));
-                        plot.addTitle(titlePosX, titlePosY/plotSizeY>1?1:titlePosY/plotSizeY,title);
+                        // FIXME: plot.addTitle(titlePosX, titlePosY/plotSizeY>1?1:titlePosY/plotSizeY,title);
                         }
                 if (useSubtitle)
                         {
                         plot.changeFont(new java.awt.Font("Dialog",java.awt.Font.PLAIN,14));
-                        plot.addTitle(subtitlePosX, subtitlePosY/plotSizeY>1?1:subtitlePosY/plotSizeY,subtitle);
+                        // FIXME: plot.addTitle(subtitlePosX, subtitlePosY/plotSizeY>1?1:subtitlePosY/plotSizeY,subtitle);
                         }
                 plot.draw();
                 ImageProcessor ip = plot.getProcessor();
@@ -1290,30 +1290,30 @@ static public void updateColumnLists()
 //            }
 //        table.show();
         }
-    
+
 	/**
 	 * Starts timer which handles simultaneous updatePlot requests.
 	 */
 	static protected void startDelayedUpdateTimer (final boolean[] updateFit)
         {
 		try	{
-            if (delayedUpdateTimer != null) 
+            if (delayedUpdateTimer != null)
                 {
                 delayedUpdateTimer.cancel();
-                
+
                 }
             if (delayedUpdateTask != null)
                 {
                 delayedUpdateTask.cancel();
                 }
-            
+
 			delayedUpdateTask = new TimerTask()
                 {
                 public void run()
                     {
                     updatePlot(updateFit);
                     }
-                
+
                 };
             delayedUpdateTimer = new java.util.Timer();
             delayedUpdateTimer.schedule(delayedUpdateTask,200);
@@ -1322,11 +1322,11 @@ static public void updateColumnLists()
             {
             //IJ.showMessage ("Error starting delayed plot update timer : "+e.getMessage());
             }
-        }    
+        }
 
 
 //------------------------UPDATEPLOT()---------------------------------------
-    
+
         static public void updatePlot(boolean[] updateFit)
                 {
 //                IJ.log("table "+(table == null?"==":"!=")+" null");
@@ -1343,7 +1343,7 @@ static public void updateColumnLists()
                 checkAndLockTable();
 //                table = MeasurementTable.getTable (tableName);
 //                tpanel = MeasurementTable.getTextPanel(MeasurementTable.longerName(tableName));
-                
+
                 if (table == null || tableName.equals("No Table Selected"))
                     {
                     updatePlotRunning = false;
@@ -1367,7 +1367,7 @@ static public void updateColumnLists()
                 if (!Arrays.equals(unfilteredColumns, oldUnfilteredColumns))
                     {
                     updatePlotRunning = false;
-                    if (table != null) table.setLock(false);                  
+                    if (table != null) table.setLock(false);
                     updateColumnLists();
                     updatePanels();
                     }
@@ -1391,7 +1391,7 @@ static public void updateColumnLists()
                     excludedTailSamples = n - excludedHeadSamples - 1;
                     }
                 excluded = excludedHeadSamples + excludedTailSamples;
-                
+
                 netT0 = (twoxPeriod && oddNotEven) ? T0 - period : T0;
                 netPeriod = twoxPeriod ? 2*period : period;
 
@@ -1437,9 +1437,9 @@ static public void updateColumnLists()
 
                 xMultiplierFactor = Math.pow(10, (double)xExponent);
                 yMultiplierFactor = Math.pow(10, (double)yExponent);
-                
+
                 int[] detrendVarsUsed = new int[maxCurves];
-                
+
                 for (int curve=0; curve<maxCurves; curve++)
                         {
                         nn[curve] = (n-excluded)/binSize[curve];
@@ -1452,7 +1452,7 @@ static public void updateColumnLists()
 //                        yModel2[curve] = null;
 //                        coeffs[curve] = null;
                         }
-                
+
                 for (int curve=0; curve<maxCurves; curve++)
                         {
                         if (xlabel[curve].trim().length() == 0 ||
@@ -1480,7 +1480,7 @@ static public void updateColumnLists()
                                     }
                                 xlabel2[curve]=xlabeldefault.trim();
                                 }
-                            else 
+                            else
                                 {
                                 xcolumn[curve] = table.getColumnIndex (xlabel[curve]);
                                 if (xcolumn[curve] == ResultsTable.COLUMN_NOT_FOUND)
@@ -1497,7 +1497,7 @@ static public void updateColumnLists()
                                         }
                                 xlabel2[curve]=xlabel[curve].trim();
                                 }
-                            
+
                             if (plotY[curve])
                                 {
                                 int bucketSize = binSize[curve];
@@ -1527,7 +1527,7 @@ static public void updateColumnLists()
                                                 x[curve][j] = Double.NaN;
                                                 numNaN = 0;
                                                 break;
-                                                }                                               
+                                                }
                                             }
                                         else
                                             {
@@ -1589,7 +1589,7 @@ static public void updateColumnLists()
                                                         operatorIndex[curve] = 0;
                                                         operatorselection[curve].setSelectedIndex(operatorIndex[curve]);
                                                         plotY[curve] = false;
-                                                        usecurvebox[curve].setSelected(false);  
+                                                        usecurvebox[curve].setSelected(false);
                                                         savecolumnbutton[curve].setEnabled(plotY[curve]);
                                                         }
                                                 }
@@ -1598,7 +1598,7 @@ static public void updateColumnLists()
                                             for (int v = 0; v < maxDetrendVars; v++)
                                                 {
                                                 if (detrendIndex[curve][v] > 1)
-                                                    { 
+                                                    {
                                                     detrendcolumn[curve][v] = table.getColumnIndex(detrendlabel[curve][v]);
 
                                                     if (detrendcolumn[curve][v] == ResultsTable.COLUMN_NOT_FOUND)
@@ -1614,7 +1614,7 @@ static public void updateColumnLists()
                                                 else if (detrendIndex[curve][v] == 1)  //Meridian Flip Detrend Selected
                                                     {
                                                     detrendVarsUsed[curve]++;
-                                                    }                                                    
+                                                    }
                                                 }
                                             }
 //                                        if (showErrors[curve] == true || operatorIndex[curve] == 6)
@@ -1636,11 +1636,11 @@ static public void updateColumnLists()
                                         else if (ylabel[curve].startsWith("tot_C_cnts"))
                                             {
                                             errcolumn[curve] = table.getColumnIndex ("tot_C_err"+ylabel[curve].substring(10));
-                                            }        
+                                            }
                                         else if (ylabel[curve].startsWith("Source_AMag_"))
                                             {
                                             errcolumn[curve] = table.getColumnIndex ("Source_AMag_Err_"+ylabel[curve].substring(12));
-                                            }                                         
+                                            }
                                         if (errcolumn[curve] == ResultsTable.COLUMN_NOT_FOUND)
                                             {
 //                                            showErrors[curve] = false;
@@ -1652,10 +1652,10 @@ static public void updateColumnLists()
                                             }
 //                                                }
 
-                                        
+
 //                                        if (!errlabel[curve].equals(""))
 //                                                {
-//                                                errcolumn[curve] = table.getColumnIndex (errlabel[curve]);	
+//                                                errcolumn[curve] = table.getColumnIndex (errlabel[curve]);
 //                                                if (errcolumn[curve] == ResultsTable.COLUMN_NOT_FOUND)
 //                                                        {
 ////                                                        if (errlabel[curve].trim().length() != 0)
@@ -1667,12 +1667,12 @@ static public void updateColumnLists()
 //                                                        showErrors[curve] = true;
 //                                                }
 //                                        else
-//                                                showErrors[curve] = false;                                        
-                                        
+//                                                showErrors[curve] = false;
+
 
                                         if (operatorIndex[curve] != 0)
                                                 {
-                                                opcolumn[curve] = table.getColumnIndex (oplabel[curve]);	
+                                                opcolumn[curve] = table.getColumnIndex (oplabel[curve]);
                                                 if (opcolumn[curve] == ResultsTable.COLUMN_NOT_FOUND)
                                                         {
 //                                                        if (oplabel[curve].trim().length() != 0)
@@ -1700,11 +1700,11 @@ static public void updateColumnLists()
                                                                 operatorselection[curve].setSelectedIndex(operatorIndex[curve]);
                                                                 }
                                                         }
-                                                
+
                                                 }
 //                                        if (!operrlabel[curve].equals(""))
 //                                                {
-//                                                operrcolumn[curve] = table.getColumnIndex (operrlabel[curve]);	
+//                                                operrcolumn[curve] = table.getColumnIndex (operrlabel[curve]);
 //                                                if (operrcolumn[curve] == ResultsTable.COLUMN_NOT_FOUND)
 //                                                        {
 ////                                                        if (operrlabel[curve].trim().length() != 0)
@@ -1717,7 +1717,7 @@ static public void updateColumnLists()
 //                                                }
 //                                        else
 //                                                showOpErrors[curve] = false;
-                                        
+
                                         if (operatorIndex[curve] > 0 && operatorIndex[curve] < 5)// && showErrors[curve] == true)
                                             {
                                             operrcolumn[curve] = ResultsTable.COLUMN_NOT_FOUND;
@@ -1745,10 +1745,10 @@ static public void updateColumnLists()
 //                                                showOpErrors[curve] = true;
                                                 hasOpErrors[curve] = true;
                                                 }
-                                            } 
+                                            }
                                         else
                                             {
-//                                            showOpErrors[curve] = false;    
+//                                            showOpErrors[curve] = false;
                                             hasOpErrors[curve] = false;
                                             }
 
@@ -1775,7 +1775,7 @@ static public void updateColumnLists()
                                                 if (nnr[curve] > 0 && j == nn[curve] - 1)
                                                     bucketSize = nnr[curve];
                                                 else
-                                                    bucketSize = binSize[curve];                                               
+                                                    bucketSize = binSize[curve];
                                                 for (int k=excludedHeadSamples; k < (bucketSize+excludedHeadSamples); k++)
                                                         {
                                                         yin = table.getValueAsDouble (ycolumn[curve],j*binSize[curve]+k);
@@ -1798,7 +1798,7 @@ static public void updateColumnLists()
                                                                             {
                                                                             detrend[curve][v][j] = Double.NaN;
                                                                             }
-                                                                        }              
+                                                                        }
                                                                     }
 
                                                                 if (operatorIndex[curve] == 5) //calculate distance
@@ -1812,23 +1812,23 @@ static public void updateColumnLists()
                                                                         yoperr[curve][j] = Double.NaN;
                                                                 numNaN = 0;
                                                                 break;
-                                                                }                                                                
+                                                                }
                                                             }
                                                         else
                                                             {
                                                             if (fromMag[curve])
                                                                 {
                                                                 yin = Math.pow(10, -yin/2.5);
-                                                                } 
+                                                                }
                                                             y[curve][j] += yin;
-                                                         
+
                                                             if (hasErrors[curve])
                                                                 {
                                                                 errin = table.getValueAsDouble (errcolumn[curve],j*binSize[curve]+k);
                                                                 if (fromMag[curve])
                                                                     {
                                                                     errin = yin * (-Math.pow(10, -errin/2.5) + 1);
-                                                                    } 
+                                                                    }
                                                                 yerr[curve][j] += errin * errin;
                                                                 }
                                                             if (operatorIndex[curve] != 0)
@@ -1848,8 +1848,8 @@ static public void updateColumnLists()
                                                                         {
                                                                         detrend[curve][v][j] += table.getValueAsDouble (detrendcolumn[curve][v],j*binSize[curve]+k);
                                                                         }
-                                                                    }              
-                                                                }                                                            
+                                                                    }
+                                                                }
                                                             if (operatorIndex[curve] == 5) //calculate distance
                                                                 {
                                                                 xc1[curve][j] += table.getValueAsDouble (xc1column[curve],j*binSize[curve]+k);
@@ -1883,8 +1883,8 @@ static public void updateColumnLists()
                                                             {
                                                             detrend[curve][v][j] /= bucketSize;
                                                             }
-                                                        }              
-                                                    }                                                 
+                                                        }
+                                                    }
                                                 if (operatorIndex[curve] != 0)
                                                         {
                                                         yop[curve][j] = yop[curve][j]/bucketSize; //*yMultiplierFactor
@@ -1948,7 +1948,7 @@ static public void updateColumnLists()
                                                         {
                                                         y[curve][j] = (usePixelScale?pixelScale:1.0)*Math.sqrt(((xc1[curve][j]-xc2[curve][j])*(xc1[curve][j]-xc2[curve][j]))+
                                                                                 ((yc1[curve][j]-yc2[curve][j])*(yc1[curve][j]-yc2[curve][j])));
-                                                        }           
+                                                        }
                                                 }
                                         if (ylabel[curve].trim().startsWith("J.D.-2400000"))
                                             {
@@ -1956,10 +1956,10 @@ static public void updateColumnLists()
                                                 {
                                                 y[curve][j] += 2400000;
                                                 }
-                                            } 
+                                            }
                                         }
                                 }
-                
+
                         if (plotY[curve] && smooth[curve] && nn[curve]>2*smoothLen[curve])
                             {
                             double[] xl = new double[nn[curve]];
@@ -1999,7 +1999,7 @@ static public void updateColumnLists()
                             if (true) //!showXAxisNormal
                                 {
                                 xl = new double[nn[curve]-nskipped];
-                                yl = new double[nn[curve]-nskipped];                                
+                                yl = new double[nn[curve]-nskipped];
                                 for (int xx=0; xx<nn[curve]-nskipped; xx++)
                                     {
                                     yl[xx] = yphase[xx];
@@ -2047,7 +2047,7 @@ static public void updateColumnLists()
 
                 xPlotMin = xMin;
                 xPlotMax = xMax;
-                
+
                 xautoscalemin = Double.POSITIVE_INFINITY;
                 xautoscalemax = Double.NEGATIVE_INFINITY;
 
@@ -2066,7 +2066,7 @@ static public void updateColumnLists()
                                     if (x[curve][j] > 0.5) x[curve][j] -= 1.0;
                                     else if (x[curve][j] < -0.5) x[curve][j] += 1.0;
                                     }
-                                }   
+                                }
                             else if (showXAxisAsDaysSinceTc)
                                 {
                                 double halfPeriod = netPeriod/2.0;
@@ -2075,8 +2075,8 @@ static public void updateColumnLists()
                                     x[curve][j] = ((x[curve][j] - netT0)%netPeriod);
                                     if (x[curve][j] > halfPeriod) x[curve][j] -= netPeriod;
                                     else if (x[curve][j] < -halfPeriod) x[curve][j] += netPeriod;
-                                    }                                      
-                                } 
+                                    }
+                                }
                             else if (showXAxisAsHoursSinceTc)
                                 {
                                 double halfPeriod = netPeriod/2.0;
@@ -2086,7 +2086,7 @@ static public void updateColumnLists()
                                     if (x[curve][j] > halfPeriod) x[curve][j] -= netPeriod;
                                     else if (x[curve][j] < -halfPeriod) x[curve][j] += netPeriod;
                                     x[curve][j] *= 24;
-                                    }                                      
+                                    }
                                 }
                             }
                         xMinimum[curve] = minOf(x[curve],nn[curve]); //FIND MIN AND MAX X OF EACH SELECTED DATASET
@@ -2103,11 +2103,11 @@ static public void updateColumnLists()
 
                 if (firstCurve == -1)   //IF NO CURVES SELECTED FOR DISPLAY, USE THE FIRST CURVE
                         firstCurve = 0;
-                
+
                 if (showVMarker1 || showVMarker2)
                     {
                     double v1 = vMarker1Value;
-                    double v2 = vMarker2Value; 
+                    double v2 = vMarker2Value;
                     if ((xlabel2[firstCurve].contains("J.D.") || xlabel2[firstCurve].contains("JD")) && showXAxisNormal)
                         {
                         v1 += (int)xautoscalemin;
@@ -2115,14 +2115,14 @@ static public void updateColumnLists()
                         }
                     if (showVMarker1)
                         {
-                        if (v1 < xautoscalemin && (!showVMarker2 || (showVMarker2 && v1 <= v2))) xautoscalemin = v1; 
-                        if (v1 > xautoscalemax && (!showVMarker2 || (showVMarker2 && v1 >= v2))) xautoscalemax = v1; 
+                        if (v1 < xautoscalemin && (!showVMarker2 || (showVMarker2 && v1 <= v2))) xautoscalemin = v1;
+                        if (v1 > xautoscalemax && (!showVMarker2 || (showVMarker2 && v1 >= v2))) xautoscalemax = v1;
                         }
                     if (showVMarker2)
                         {
-                        if (v2 < xautoscalemin && (!showVMarker1 || (showVMarker1 && v2 < v1))) xautoscalemin = v2; 
-                        if (v2 > xautoscalemax && (!showVMarker1 || (showVMarker1 && v2 > v1))) xautoscalemax = v2; 
-                        }           
+                        if (v2 < xautoscalemin && (!showVMarker1 || (showVMarker1 && v2 < v1))) xautoscalemin = v2;
+                        if (v2 > xautoscalemax && (!showVMarker1 || (showVMarker1 && v2 > v1))) xautoscalemax = v2;
+                        }
                     }
 
                 if (Double.isInfinite(xautoscalemin)) xautoscalemin = Double.isInfinite(xautoscalemax) ? 0.0 : xautoscalemax - 1.0;
@@ -2136,7 +2136,7 @@ static public void updateColumnLists()
                     }
                 else if (useFirstX)
                     {
-                    firstXmin = xautoscalemin;                    
+                    firstXmin = xautoscalemin;
                     xPlotMin = xautoscalemin;
                     if (xWidth < 0.0001) xWidth = 0.0001;
                     xPlotMax = xautoscalemin+xWidth;
@@ -2145,7 +2145,7 @@ static public void updateColumnLists()
                 dx = (xPlotMax-xPlotMin)/99.0;
                 xJD = 0;
                 xOffset = 0.0;
-                if ((xlabel2[firstCurve].contains("J.D.") || xlabel2[firstCurve].contains("JD")) && showXAxisNormal)                            
+                if ((xlabel2[firstCurve].contains("J.D.") || xlabel2[firstCurve].contains("JD")) && showXAxisNormal)
                     {
                     if (xExponent != 0) xmultiplierspinner.setValue(0);
                     xJD = (int)xPlotMin;
@@ -2189,30 +2189,30 @@ static public void updateColumnLists()
                                 fitMin[curve] = fitLeft[curve];
                                 break;
                             case 8: // use all data
-                                break;   
+                                break;
                             case 9: // use all data to fit transit with simultaneaous detrend
-                                break;                                        
+                                break;
                             default: // use all data
                                 detrendFitIndex[curve] = 0;
                                 break;
-                            }       
+                            }
 //                        IJ.log("");
 //                        IJ.log("fitMin[curve]="+fitMin[curve]);
 //                        IJ.log("fitMax[curve]="+fitMax[curve]);
 //                        IJ.log("fitLeft[curve]="+fitLeft[curve]);
-//                        IJ.log("fitRight[curve]="+fitRight[curve]);                    
+//                        IJ.log("fitRight[curve]="+fitRight[curve]);
 //                        IJ.log("");
-                        
+
                         boolean atLeastOne = false;
                         boolean detrendYNotConstant = false;
                         detrendYDNotConstant = new boolean[maxDetrendVars];
                         detrendYAverage[curve] = 0.0;
-                        
+
                         for (int v = 0; v <maxDetrendVars; v++)
                             {
                             if (detrendFitIndex[curve] == 1) detrendYDNotConstant[v] = true;
                             else detrendYDNotConstant[v] = false;
-                            }                        
+                            }
                         if (detrendFitIndex[curve] != 0)
                             {
                             for (int v = 0; v <maxDetrendVars; v++)
@@ -2230,7 +2230,7 @@ static public void updateColumnLists()
                                 detrendPower[v] = 1;
                                 int numNaNs = 0;
                                 for (int j=0; j < nn[curve]; j++)
-                                    { 
+                                    {
                                     if (Double.isNaN(detrend[curve][v][j]))
                                         numNaNs++;
                                     else
@@ -2238,8 +2238,8 @@ static public void updateColumnLists()
                                     }
                                 detrendAverage[v] = ((double)nn[curve]/((double)nn[curve]-(double)numNaNs))*detrendAverage[v];
                                 for (int j=0; j < nn[curve]; j++)
-                                    { 
-                                    detrend[curve][v][j] -= detrendAverage[v]; 
+                                    {
+                                    detrend[curve][v][j] -= detrendAverage[v];
                                     }
 
                                 if (v > 0)
@@ -2255,34 +2255,34 @@ static public void updateColumnLists()
                                     detrendAverage[v] = 0.0;
                                     numNaNs = 0;
                                     for (int j=0; j < nn[curve]; j++)
-                                        { 
+                                        {
                                         if (Double.isNaN(detrend[curve][v][j]))
                                             numNaNs++;
-                                        else                                        
+                                        else
                                             detrendAverage[v] += detrend[curve][v][j];
                                         }
                                     detrendAverage[v] /= (nn[curve]-numNaNs);
                                     for (int j=0; j < nn[curve]; j++)
-                                        { 
-                                        detrend[curve][v][j] -= detrendAverage[v]; 
-                                        }                                    
+                                        {
+                                        detrend[curve][v][j] -= detrendAverage[v];
+                                        }
                                     }
-                                } 
+                                }
                             for(int v = 0; v < maxDetrendVars; v++)
                                 {
                                 if (detrendPower[v] == 2)
                                     {
                                     for (int j=0; j < nn[curve]; j++)
-                                        { 
-                                        detrend[curve][v][j] *= detrend[curve][v][j]; 
-                                        }          
+                                        {
+                                        detrend[curve][v][j] *= detrend[curve][v][j];
+                                        }
                                     }
                                 else if (detrendPower[v] > 2)
                                     {
                                     for (int j=0; j < nn[curve]; j++)
-                                        { 
-                                        detrend[curve][v][j] = Math.pow(detrend[curve][v][j], detrendPower[v]); 
-                                        }          
+                                        {
+                                        detrend[curve][v][j] = Math.pow(detrend[curve][v][j], detrendPower[v]);
+                                        }
                                     }
                                 }
                             double meridianFlip = mfMarker1Value + xOffset;
@@ -2291,15 +2291,15 @@ static public void updateColumnLists()
                                 if (detrendIndex[curve][v] == 1)    //Meridian Flip Detrend Selected
                                     {
                                     for (int j=0; j < nn[curve]; j++)
-                                        { 
+                                        {
                                         if (x[curve][j] < meridianFlip)  //meridian flip fitting data = -1.0 to left and 1.0 to right of flip
                                             detrend[curve][v][j] = -1.0;
                                         else
                                             detrend[curve][v][j] =  1.0;
-                                        }          
-                                    }                                
-                                }                            
-                            
+                                        }
+                                    }
+                                }
+
                             yAverage[curve] = 0.0;
                             yDepthEstimate[curve] = 0.0;
                             yBaselineAverage[curve] = 0.0;
@@ -2324,7 +2324,7 @@ static public void updateColumnLists()
                                         if (!Double.isNaN(y[curve][j]))
                                             {
                                             for(int v = 0; v < maxDetrendVars; v++)
-                                                {                                                
+                                                {
                                                 if (detrendIndex[curve][v] != 0 && Double.isNaN(detrend[curve][v][j]))
                                                     {
 //                                                    IJ.log("found a detrend var NaN");
@@ -2339,10 +2339,10 @@ static public void updateColumnLists()
                                             }
                                         if (noNaNs)
                                             {
-                                            avgCount++;                                             
+                                            avgCount++;
                                             yAverage[curve] += y[curve][j];
 //                                            for(int v = 0; v < maxDetrendVars; v++)
-//                                                { 
+//                                                {
 //                                                detrendAverage[v] += detrend[curve][v][j];
 //                                                }
                                             if ((x[curve][j] > fitMin[curve] && x[curve][j] < fitLeft[curve]) ||
@@ -2379,10 +2379,10 @@ static public void updateColumnLists()
                                         {
                                         for(int v = 0; v < maxDetrendVars; v++)
                                             {
-                                            if (detrendIndex[curve][v] > 0)    
+                                            if (detrendIndex[curve][v] > 0)
                                                 {
-                                                detrendFactor[curve][v] = 0.0;          
-                                                }                                
+                                                detrendFactor[curve][v] = 0.0;
+                                                }
                                             }
                                         }
                                     }
@@ -2394,7 +2394,7 @@ static public void updateColumnLists()
                                         if (!Double.isNaN(y[curve][j]))
                                             {
                                             for(int v = 0; v < maxDetrendVars; v++)
-                                                {                                                
+                                                {
                                                 if (detrendIndex[curve][v] != 0 && Double.isNaN(detrend[curve][v][j]))
                                                     {
                                                     noNaNs = false;
@@ -2407,12 +2407,12 @@ static public void updateColumnLists()
                                             }
                                         if (noNaNs)
                                             {
-                                            avgCount++;                                             
+                                            avgCount++;
                                             yAverage[curve] += y[curve][j];
 //                                            for(int v = 0; v < maxDetrendVars; v++)
-//                                                {  
+//                                                {
 //                                                detrendAverage[v] += detrend[curve][v][j];
-//                                                } 
+//                                                }
                                             if (x[curve][j] > fitMin[curve])
                                                 {
                                                 if (x[curve][j] < fitMax[curve])
@@ -2461,10 +2461,10 @@ static public void updateColumnLists()
                                         {
                                         for(int v = 0; v < maxDetrendVars; v++)
                                             {
-                                            if (detrendIndex[curve][v] > 0)   
+                                            if (detrendIndex[curve][v] > 0)
                                                 {
-                                                detrendFactor[curve][v] = 0.0;          
-                                                }                                
+                                                detrendFactor[curve][v] = 0.0;
+                                                }
                                             }
                                         }
                                     }
@@ -2480,10 +2480,10 @@ static public void updateColumnLists()
                                     if (depthCount > 0)
                                         yDepthEstimate[curve] /= depthCount;
                                     else
-                                        yDepthEstimate[curve] = detrendYAverage[curve] * 0.995;   
-                                    
+                                        yDepthEstimate[curve] = detrendYAverage[curve] * 0.995;
+
                                     for (int j=0; j < detrendCount; j++)
-                                        {  
+                                        {
                                         detrendY[j] -= detrendYAverage[curve];//yAverage[curve];
                                         }
                                     for (int v=0; v<maxDetrendVars; v++)
@@ -2503,9 +2503,9 @@ static public void updateColumnLists()
 //                                    IJ.log("varCount="+varCount);
                                     if ((detrendVarsUsed[curve] > 0 || detrendFitIndex[curve]==9 && useTransitFit[curve]) && detrendYNotConstant && detrendCount > (detrendFitIndex[curve]==9&&useTransitFit[curve]?7:0) + detrendVarsUsed[curve]+2) //need enough data to provide degrees of freedom for successful fit
                                         {
-                                        detrendXs[curve] = Arrays.copyOf(detrendX,detrendCount);    
+                                        detrendXs[curve] = Arrays.copyOf(detrendX,detrendCount);
                                         detrendYs[curve] = Arrays.copyOf(detrendY,detrendCount);
-                                        detrendYEs[curve] = Arrays.copyOf(detrendYE,detrendCount);                                        
+                                        detrendYEs[curve] = Arrays.copyOf(detrendYE,detrendCount);
                                         if (updateFit[curve])
                                             {
                                             int fittedDetrendParStart = 0;
@@ -2533,7 +2533,7 @@ static public void updateColumnLists()
                                                     if (detrendIndex[curve][p-7] != 0 && detrendYDNotConstant[p-7] && !lockToCenter[curve][p])
                                                         {
                                                         isFitted[curve][p] = true;
-                                                        nFitted++;                                                            
+                                                        nFitted++;
                                                         }
                                                     else
                                                         {
@@ -2549,7 +2549,7 @@ static public void updateColumnLists()
                                                 int fp=0;  //fitted parameter
                                                 for (int p=0; p<maxFittedVars; p++)
                                                     {
-                                                    if (isFitted[curve][p]) 
+                                                    if (isFitted[curve][p])
                                                         {
                                                         index[curve][fp] = p;
                                                         fp++;
@@ -2566,11 +2566,11 @@ static public void updateColumnLists()
                                                 // 5 = u1 = quadratic limb darkening parameter 1
                                                 // 6 = u2 = quadratic limb darkening parameter 2
                                                 // 7+ = detrend parameters
-                                                for (fp=0; fp<nFitted; fp++) 
+                                                for (fp=0; fp<nFitted; fp++)
                                                     {
                                                     if (index[curve][fp]==1)
                                                         {
-                                                        start[curve][fp] = Math.sqrt(priorCenter[curve][1]);  
+                                                        start[curve][fp] = Math.sqrt(priorCenter[curve][1]);
                                                         width[curve][fp] = Math.sqrt(priorWidth[curve][1]);
                                                         step [curve][fp] = Math.sqrt(getFitStep(curve, 1));
                                                         minimization.addConstraint(fp, -1, 0.0);
@@ -2598,7 +2598,7 @@ static public void updateColumnLists()
                                                             minimization.addConstraint(fp,  1,  1.0);
                                                             minimization.addConstraint(fp, -1, -1.0);
                                                             }
-                                                        start[curve][fp] = priorCenter[curve][index[curve][fp]];  
+                                                        start[curve][fp] = priorCenter[curve][index[curve][fp]];
                                                         width[curve][fp] = priorWidth[curve][index[curve][fp]];
                                                         step [curve][fp] = getFitStep(curve, index[curve][fp]);
                                                         }
@@ -2624,7 +2624,7 @@ static public void updateColumnLists()
                                                 fp=0;
                                                 for (int p=0; p<maxFittedVars; p++)
                                                     {
-                                                    if (isFitted[curve][p]) 
+                                                    if (isFitted[curve][p])
                                                         {
                                                         bestFit[curve][p] = coeffs[curve][fp];
                                                         fp++;
@@ -2654,7 +2654,7 @@ static public void updateColumnLists()
                                                     else if (!Double.isNaN(bestFit[curve][p]))
                                                         bestFitLabel[curve][p].setText(p<7?ninePlaces.format(bestFit[curve][p]):detrendParameterFormat.format(bestFit[curve][p]));
                                                     else if (p>=7 && p<7+maxDetrendVars && detrendIndex[curve][p-7] != 0 && !detrendYDNotConstant[p-7])
-                                                        bestFitLabel[curve][p].setText("constant var");    
+                                                        bestFitLabel[curve][p].setText("constant var");
                                                     else
                                                         bestFitLabel[curve][p].setText("");
                                                     }
@@ -2674,7 +2674,7 @@ static public void updateColumnLists()
                                                     double sin2tTpioP = Math.pow(Math.sin(t14[curve]*Math.PI/orbitalPeriod[curve]), 2);
                                                     stellarDensity[curve] = 0.0189/(orbitalPeriod[curve]*orbitalPeriod[curve])*
                                                                             Math.pow(((1.0+bestFit[curve][1])*(1.0+bestFit[curve][1])-bp2*(1-sin2tTpioP))/sin2tTpioP, 1.5);
-                                                    
+
                                                     bpLabel[curve].setText(Double.isNaN(bp[curve])?"NaN":threePlaces.format(bp[curve]));
                                                     t14Label[curve].setText(Double.isNaN(t14[curve])?"NaN":sixPlaces.format(t14[curve]));
                                                     t14HoursLabel[curve].setText(Double.isNaN(t14[curve])?"NaN":IJU.decToSex(24*t14[curve], 0, 24, false));
@@ -2689,12 +2689,12 @@ static public void updateColumnLists()
                                                     t14Label[curve].setText("");
                                                     t14HoursLabel[curve].setText("");
                                                     t23Label[curve].setText("");
-                                                    tauLabel[curve].setText("");  
-                                                    stellarDensityLabel[curve].setText(""); 
+                                                    tauLabel[curve].setText("");
+                                                    stellarDensityLabel[curve].setText("");
                                                     spectralTypeLabel[curve].setText("");
                                                     }
                                                 chi2dof[curve] = minimization.getMinimum();
-                                                bic[curve] = chi2dof[curve]*(detrendXs[curve].length-bestFit[curve].length)+bestFit[curve].length*Math.log(detrendXs[curve].length);                                                    
+                                                bic[curve] = chi2dof[curve]*(detrendXs[curve].length-bestFit[curve].length)+bestFit[curve].length*Math.log(detrendXs[curve].length);
                                                 chi2dofLabel[curve].setText(sixPlaces.format(chi2dof[curve]));
                                                 bicLabel[curve].setText(fourPlaces.format(bic[curve]));
                                                 dofLabel[curve].setText(""+dof[curve]);
@@ -2707,7 +2707,7 @@ static public void updateColumnLists()
                                                     if (isFitted[curve][p])
                                                         detrendFactor[curve][p-7] = coeffs[curve][fp++];
                                                     else if (lockToCenter[curve][p])
-                                                        detrendFactor[curve][p-7] = priorCenter[curve][p];        
+                                                        detrendFactor[curve][p-7] = priorCenter[curve][p];
                                                     if (detrendVarDisplayed[curve] == p-7)
                                                         {
                                                         detrendfactorspinner[curve].setValue(detrendFactor[curve][p-7]);
@@ -2720,7 +2720,7 @@ static public void updateColumnLists()
                                                 else
                                                     detrendpanelgroup[curve].setBorder(BorderFactory.createLineBorder(Color.RED));
                                                 }
-                                            else if (useNelderMeadChi2ForDetrend) 
+                                            else if (useNelderMeadChi2ForDetrend)
                                                 {
                                                 minimization.removeConstraints();
                                                 start[curve] = new double[detrendVars.length];
@@ -2731,7 +2731,7 @@ static public void updateColumnLists()
                                                     step[curve][i]  = 1.0;
                                                     }
                                                 double fTol = 1e-10;
-                                                int nMax = 20000;                                                    
+                                                int nMax = 20000;
                                                 minimization.nelderMead(new FitDetrendChi2(), start[curve], step[curve], fTol,  nMax);
                                                 coeffs[curve] = minimization.getParamValues();
 
@@ -2747,7 +2747,7 @@ static public void updateColumnLists()
                                                             }
                                                         varCount++;
                                                         }
-                                                    }    
+                                                    }
 
                                                 if (minimization.getConvStatus())
                                                     detrendpanelgroup[curve].setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
@@ -2760,7 +2760,7 @@ static public void updateColumnLists()
                                                 {
     //                                          IJ.log("Setting up Regression, Curve = "+curve+" ,VarsUsed = "+detrendVarsUsed[curve]+" ,detrendCount = "+detrendCount);
                                                 Regression regression = new Regression(detrendVars, detrendYs[curve]);
-    //                                          IJ.log("Starting Regression");                                            
+    //                                          IJ.log("Starting Regression");
                                                 regression.linear();
     //                                            IJ.log("Getting coeffs");
                                                 coeffs[curve] = regression.getCoeff();
@@ -2792,35 +2792,35 @@ static public void updateColumnLists()
                                             int xModel2Len = (int)(plotSizeX) + 1;
                                             double xModel2Step = ((useDMarker4&&fitMax[curve]<xPlotMax?fitMax[curve]:xPlotMax) - (useDMarker1&&fitMin[curve]>xPlotMin?fitMin[curve]:xPlotMin))/(xModel2Len-1);
                                             xModel2[curve] = new double[xModel2Len];
-                                            xModel2[curve][0] = useDMarker1&&fitMin[curve]>xPlotMin?fitMin[curve]:xPlotMin; 
+                                            xModel2[curve][0] = useDMarker1&&fitMin[curve]>xPlotMin?fitMin[curve]:xPlotMin;
                                             for (int i=1; i<xModel2Len;i++)
                                                 {
                                                 xModel2[curve][i] = xModel2[curve][i-1]+xModel2Step;
                                                 }
-                                            
+
 
                                             yModel1[curve] = IJU.transitModel(xModel1[curve], bestFit[curve][0], bestFit[curve][4], bestFit[curve][1], bestFit[curve][2],
-                                                                              bestFit[curve][3], orbitalPeriod[curve], forceCircularOrbit[curve]?0.0:eccentricity[curve], forceCircularOrbit[curve]?0.0:omega[curve], bestFit[curve][5], bestFit[curve][6], 
+                                                                              bestFit[curve][3], orbitalPeriod[curve], forceCircularOrbit[curve]?0.0:eccentricity[curve], forceCircularOrbit[curve]?0.0:omega[curve], bestFit[curve][5], bestFit[curve][6],
                                                                               useLonAscNode[curve], lonAscNode[curve]);
-                                            
+
                                             yModel2[curve] = IJU.transitModel(xModel2[curve], bestFit[curve][0], bestFit[curve][4], bestFit[curve][1], bestFit[curve][2],
-                                                                              bestFit[curve][3], orbitalPeriod[curve], forceCircularOrbit[curve]?0.0:eccentricity[curve], forceCircularOrbit[curve]?0.0:omega[curve], bestFit[curve][5], bestFit[curve][6], 
+                                                                              bestFit[curve][3], orbitalPeriod[curve], forceCircularOrbit[curve]?0.0:eccentricity[curve], forceCircularOrbit[curve]?0.0:omega[curve], bestFit[curve][5], bestFit[curve][6],
                                                                               useLonAscNode[curve], lonAscNode[curve]);
-                                            
+
                                                 // f0 = param[curve][0]; // baseline flux
                                                 // p0 = param[curve][1]; // r_p/r_*
                                                 // ar = param[curve][2]; // a/r_*
                                                 // tc = param[curve][3]; //transit center time
                                                 // incl = param[curve][4];  //inclination
                                                 // u1 = param[curve][5];
-                                                // u2 = param[curve][6]; 
+                                                // u2 = param[curve][6];
                                             }
-                                        else 
+                                        else
                                             {
                                             planetRadiusLabel[curve].setText("");
                                             createDetrendModel = true;
                                             }
-                                        }   
+                                        }
                                     else
                                         {
                                         xModel1[curve]=null;
@@ -2848,7 +2848,7 @@ static public void updateColumnLists()
                                     if (!Double.isNaN(y[curve][j]))
                                         {
                                         for(int v = 0; v < maxDetrendVars; v++)
-                                            {                                                
+                                            {
                                             if (detrendIndex[curve][v] != 0 && Double.isNaN(detrend[curve][v][j]))
                                                 {
                                                 noNaNs = false;
@@ -2863,9 +2863,9 @@ static public void updateColumnLists()
                                         {
                                         yAverage[curve] += y[curve][j];
 //                                        for(int v = 0; v < maxDetrendVars; v++)
-//                                            {                                                
+//                                            {
 //                                            detrendAverage[v] += detrend[curve][v][j];
-//                                            }                                         
+//                                            }
                                         avgCount++;
                                         }
                                     }
@@ -2873,18 +2873,18 @@ static public void updateColumnLists()
                                     {
                                     yAverage[curve] /= avgCount;
 //                                    for(int v = 0; v < maxDetrendVars; v++)
-//                                        {                                                
+//                                        {
 //                                        detrendAverage[v] /= avgCount;
-//                                        }                                     
+//                                        }
                                     }
                                 xModel1[curve] = new double[2];
                                 xModel1[curve][0] = fitMin[curve] > xPlotMin ? fitMin[curve] : xPlotMin;
-                                xModel1[curve][1] = fitMax[curve] < xPlotMax ? fitMax[curve] : xPlotMax; 
+                                xModel1[curve][1] = fitMax[curve] < xPlotMax ? fitMax[curve] : xPlotMax;
                                 xModel2[curve] = null;
                                 yModel1[curve] = new double[2];
                                 yModel1[curve][0] = yAverage[curve];
                                 yModel1[curve][1] = yAverage[curve];
-                                yModel2[curve] = null;                               
+                                yModel2[curve] = null;
                                 detrendpanelgroup[curve].setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
                                 }
 
@@ -2910,7 +2910,7 @@ static public void updateColumnLists()
                                             if (hasErrors[curve] || hasOpErrors[curve])
                                                 {
                                                 yerr[curve][j] /= trend;
-                                                }           
+                                                }
                                             }
                                         }
                                     }
@@ -2927,20 +2927,20 @@ static public void updateColumnLists()
                                             {
                                             trend += detrendFactor[curve][v]*(detrend[curve][v][j]);//-detrendAverage[v]);
                                             }
-                                        }  
+                                        }
                                     if (hasErrors[curve] || hasOpErrors[curve])
                                         {
                                         yerr[curve][j] /= (y[curve][j]/(y[curve][j]-trend));
-                                        }                                     
+                                        }
                                     y[curve][j] -= trend;
                                     }
-                                } 
+                                }
                             }
                         else
                             {
                             detrendpanelgroup[curve].setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
                             }
-                        
+
                         if (detrendFitIndex[curve] == 9 && useTransitFit[curve] && yModel1[curve] != null)
                             {
                             int cnt = 0;
@@ -2952,12 +2952,12 @@ static public void updateColumnLists()
                                 if (cnt < len && !Double.isNaN(x[curve][j]) && !Double.isNaN(y[curve][j]) && x[curve][j] > fitMin[curve] && x[curve][j] < fitMax[curve])
                                     {
                                     residual[curve][cnt] = y[curve][j] - yModel1[curve][cnt];
-                                    if (hasErrors[curve] || hasOpErrors[curve]) yModel1Err[curve][cnt] = yerr[curve][j]; 
+                                    if (hasErrors[curve] || hasOpErrors[curve]) yModel1Err[curve][cnt] = yerr[curve][j];
                                     cnt++;
                                     }
                                 }
                             }
-                        
+
                         if (showSigmaForAllCurves && detrendFitIndex[curve] < 2) //calculate standard deviation using all data
                             {
                             int cnt = 0;
@@ -2985,12 +2985,12 @@ static public void updateColumnLists()
                             {
                             int cnt = 0;
                             detrendYAverage[curve] = 0;
-                            double y2Ave = 0;                            
+                            double y2Ave = 0;
                             if (detrendFitIndex[curve] == 4)
                                 {
                                 for (int j=0; j < nn[curve]; j++)
                                     {
-                                    if (!Double.isNaN(y[curve][j]) && 
+                                    if (!Double.isNaN(y[curve][j]) &&
                                        ((x[curve][j] > fitMin[curve] && x[curve][j] < fitLeft[curve]) ||
                                         (x[curve][j] > fitRight[curve] && x[curve][j] < fitMax[curve])))
                                         {
@@ -3021,7 +3021,7 @@ static public void updateColumnLists()
                                         }
                                     }
                                 }
-                            
+
                             if (cnt>0)
                                 {
                                 if (detrendFitIndex[curve] == 9 && useTransitFit[curve] && residual[curve] != null)
@@ -3030,9 +3030,9 @@ static public void updateColumnLists()
                                     detrendYAverage[curve] = 0.0;
                                     cnt = 0;
                                     for (int nnn=0; nnn < xModel1[curve].length; nnn++)
-                                        {                                
+                                        {
                                         if (((xModel1[curve][nnn] > fitMin[curve] && xModel1[curve][nnn] < fitLeft[curve]) ||
-                                             (xModel1[curve][nnn] > fitRight[curve] && xModel1[curve][nnn] < fitMax[curve])))    
+                                             (xModel1[curve][nnn] > fitRight[curve] && xModel1[curve][nnn] < fitMax[curve])))
                                             {
                                             detrendYAverage[curve] += yModel1[curve][nnn];
                                             cnt++;
@@ -3048,7 +3048,7 @@ static public void updateColumnLists()
                                         detrendYAverage[curve] = 0.0;
                                         cnt = 0;
                                         for (int nnn=0; nnn < xModel1[curve].length; nnn++)
-                                            {                                
+                                            {
                                             detrendYAverage[curve] += yModel1[curve][nnn];
                                             cnt++;
                                             }
@@ -3072,29 +3072,29 @@ static public void updateColumnLists()
                             else
                                 detrendYAverage[curve] = 1;
                             }
-                        
+
                         if (createDetrendModel)
                             {
                             createDetrendModel = false;
                             double average = 0.0;
-                            double count = 0; 
-                            double invVar = 0;                                            
+                            double count = 0;
+                            double invVar = 0;
                             if (useNelderMeadChi2ForDetrend)
                                 {
                                 if (detrendFitIndex[curve] == 4)
                                     {
                                     for (int j=0; j < nn[curve]; j++)
-                                        {                                
+                                        {
                                         if (!Double.isNaN(y[curve][j]) && !Double.isNaN(x[curve][j]) &&
                                         ((x[curve][j] > fitMin[curve] && x[curve][j] < fitLeft[curve] || (x[curve][j] > fitRight[curve] && x[curve][j] < fitMax[curve]))))
                                             {
                                             invVar = 1/(yerr[curve][j]*yerr[curve][j]);
                                             average += y[curve][j]*invVar;
-                                            count += invVar;                                      
+                                            count += invVar;
                                             }
                                         }
                                     }
-                                else 
+                                else
                                     {
                                     for (int j=0; j < nn[curve]; j++)
                                         {
@@ -3103,7 +3103,7 @@ static public void updateColumnLists()
                                             invVar = 1/(yerr[curve][j]*yerr[curve][j]);
                                             average += y[curve][j]*invVar;
                                             count += invVar;
-                                            } 
+                                            }
                                         }
                                     }
 
@@ -3117,21 +3117,21 @@ static public void updateColumnLists()
                                             invVar = 1/(yerr[curve][j]*yerr[curve][j]);
                                             average += y[curve][j]*invVar;
                                             count += invVar;
-                                            } 
-                                        } 
-                                    }                                
+                                            }
+                                        }
+                                    }
                                 }
                             else
                                 {
                                 if (detrendFitIndex[curve] == 4)
                                     {
                                     for (int j=0; j < nn[curve]; j++)
-                                        {                                
+                                        {
                                         if (!Double.isNaN(y[curve][j]) && !Double.isNaN(x[curve][j]) &&
                                         ((x[curve][j] > fitMin[curve] && x[curve][j] < fitLeft[curve]) || (x[curve][j] > fitRight[curve] && x[curve][j] < fitMax[curve])))
                                             {
                                             average += y[curve][j];
-                                            count += 1.0;                                       
+                                            count += 1.0;
                                             }
                                         }
                                     }
@@ -3143,7 +3143,7 @@ static public void updateColumnLists()
                                             {
                                             average += y[curve][j];
                                             count += 1.0;
-                                            } 
+                                            }
                                         }
                                     }
 
@@ -3156,8 +3156,8 @@ static public void updateColumnLists()
                                             {
                                             average += y[curve][j];
                                             count += 1.0;
-                                            } 
-                                        } 
+                                            }
+                                        }
                                     }
                                 }
 
@@ -3172,13 +3172,13 @@ static public void updateColumnLists()
                                 xModel1[curve] = detrendXs[curve];
                                 xModel2[curve] = new double[2];
                                 xModel2[curve][0] = fitMin[curve] > xPlotMin ? fitMin[curve] : xPlotMin;
-                                xModel2[curve][1] = fitMax[curve] < xPlotMax ? fitMax[curve] : xPlotMax;     
+                                xModel2[curve][1] = fitMax[curve] < xPlotMax ? fitMax[curve] : xPlotMax;
                                 yModel1[curve] = new double[xModel1[curve].length];
                                 for (int i=0; i<xModel1[curve].length;i++)
                                     yModel1[curve][i] = detrendYAverage[curve];
                                 yModel2[curve] = new double[2];
                                 yModel2[curve][0] = detrendYAverage[curve];
-                                yModel2[curve][1] = detrendYAverage[curve]; 
+                                yModel2[curve][1] = detrendYAverage[curve];
                                 }
                             else //if (useNelderMeadChi2ForDetrend)
                                 {
@@ -3200,7 +3200,7 @@ static public void updateColumnLists()
 //                                }
                             }
 
-                        
+
                         if (normIndex[curve] != 0)
                             {
                             double normMin = (useDMarker1 ? dMarker1Value : Double.NEGATIVE_INFINITY) + xOffset;
@@ -3208,15 +3208,15 @@ static public void updateColumnLists()
                             double normLeft = dMarker2Value + xOffset;
                             double normRight = dMarker3Value + xOffset;
 
-//                            if ((xlabel2[firstCurve].contains("J.D.") || xlabel2[firstCurve].contains("JD")) && showXAxisNormal)                                
+//                            if ((xlabel2[firstCurve].contains("J.D.") || xlabel2[firstCurve].contains("JD")) && showXAxisNormal)
 //                                {
 //                                normMin += (int)xPlotMin;
-//                                normMax += (int)xPlotMin;    
+//                                normMax += (int)xPlotMin;
 //                                normLeft += (int)xPlotMin;
 //                                normRight += (int)xPlotMin;
-//                                }                             
+//                                }
                             double normAverage = 0.0;
-                            double normCount = 0; 
+                            double normCount = 0;
                             double invVar = 0;
                             switch(normIndex[curve])
                                 {
@@ -3239,7 +3239,7 @@ static public void updateColumnLists()
                                     normMin = normLeft;
                                     break;
                                 case 7: // use all data
-                                    break;                            
+                                    break;
                                 default:
                                     normIndex[curve] = 0;
                                     normMax = normMin;
@@ -3251,17 +3251,17 @@ static public void updateColumnLists()
                                 if (normIndex[curve] == 3)
                                     {
                                     for (int j=0; j < nnn; j++)
-                                        {                                
+                                        {
                                         if (!Double.isNaN(yModel1[curve][j]) && !Double.isNaN(detrendXs[curve][j]) &&
                                         ((detrendXs[curve][j] > normMin && detrendXs[curve][j] < normLeft) || (detrendXs[curve][j] > normRight && detrendXs[curve][j] < normMax)))
                                             {
                                             invVar = 1/(detrendYEs[curve][j]*detrendYEs[curve][j]);
                                             normAverage += yModel1[curve][j]*invVar;
-                                            normCount += invVar;                                      
+                                            normCount += invVar;
                                             }
                                         }
                                     }
-                                else 
+                                else
                                     {
                                     for (int j=0; j < nnn; j++)
                                         {
@@ -3270,7 +3270,7 @@ static public void updateColumnLists()
                                             invVar = 1/(detrendYEs[curve][j]*detrendYEs[curve][j]);
                                             normAverage += yModel1[curve][j]*invVar;
                                             normCount += invVar;
-                                            } 
+                                            }
                                         }
                                     }
 
@@ -3284,26 +3284,26 @@ static public void updateColumnLists()
                                             invVar = 1/(detrendYEs[curve][j]*detrendYEs[curve][j]);
                                             normAverage += yModel1[curve][j]*invVar;
                                             normCount += invVar;
-                                            } 
-                                        } 
-                                    }                                
-                                }                                
+                                            }
+                                        }
+                                    }
+                                }
                             else if (useNelderMeadChi2ForDetrend)
                                 {
                                 if (normIndex[curve] == 3)
                                     {
                                     for (int j=0; j < nn[curve]; j++)
-                                        {                                
+                                        {
                                         if (!Double.isNaN(y[curve][j]) && !Double.isNaN(x[curve][j]) &&
                                         ((x[curve][j] > normMin && x[curve][j] < normLeft) || (x[curve][j] > normRight && x[curve][j] < normMax)))
                                             {
                                             invVar = 1/(yerr[curve][j]*yerr[curve][j]);
                                             normAverage += y[curve][j]*invVar;
-                                            normCount += invVar;                                      
+                                            normCount += invVar;
                                             }
                                         }
                                     }
-                                else 
+                                else
                                     {
                                     for (int j=0; j < nn[curve]; j++)
                                         {
@@ -3312,7 +3312,7 @@ static public void updateColumnLists()
                                             invVar = 1/(yerr[curve][j]*yerr[curve][j]);
                                             normAverage += y[curve][j]*invVar;
                                             normCount += invVar;
-                                            } 
+                                            }
                                         }
                                     }
 
@@ -3326,21 +3326,21 @@ static public void updateColumnLists()
                                             invVar = 1/(yerr[curve][j]*yerr[curve][j]);
                                             normAverage += y[curve][j]*invVar;
                                             normCount += invVar;
-                                            } 
-                                        } 
-                                    }                                
+                                            }
+                                        }
+                                    }
                                 }
                             else
                                 {
                                 if (normIndex[curve] == 3)
                                     {
                                     for (int j=0; j < nn[curve]; j++)
-                                        {                                
+                                        {
                                         if (!Double.isNaN(y[curve][j]) && !Double.isNaN(x[curve][j]) &&
                                         ((x[curve][j] > normMin && x[curve][j] < normLeft) || (x[curve][j] > normRight && x[curve][j] < normMax)))
                                             {
                                             normAverage += y[curve][j];
-                                            normCount += 1.0;                                       
+                                            normCount += 1.0;
                                             }
                                         }
                                     }
@@ -3352,7 +3352,7 @@ static public void updateColumnLists()
                                             {
                                             normAverage += y[curve][j];
                                             normCount += 1.0;
-                                            } 
+                                            }
                                         }
                                     }
 
@@ -3365,11 +3365,11 @@ static public void updateColumnLists()
                                             {
                                             normAverage += y[curve][j];
                                             normCount += 1.0;
-                                            } 
-                                        } 
+                                            }
+                                        }
                                     }
                                 }
-                            
+
                             if (normAverage == 0.0 || normCount == 0)
                                 {
                                 normAverage = 1.0;
@@ -3409,14 +3409,14 @@ static public void updateColumnLists()
                                     {
                                     yModel1Err[curve][nnn] /= normAverage;
                                     }
-                                }                            
+                                }
                             if (residual[curve] != null)
                                 {
                                 for (int nnn=0; nnn<residual[curve].length; nnn++)
                                     {
                                     residual[curve][nnn] /= normAverage;
                                     }
-                                }                            
+                                }
                             if (yModel2[curve] != null)
                                 {
                                 for (int nnn=0; nnn<yModel2[curve].length; nnn++)
@@ -3449,9 +3449,9 @@ static public void updateColumnLists()
                                 {
                                 baseline[curve] = 1.0;
                                 }
-                            
+
                             if (residual[curve] != null)
-                                {    
+                                {
                                 int nnn = 0;
                                 int len = residual[curve].length;
                                 for (int j=0; j < nn[curve]; j++)
@@ -3463,8 +3463,8 @@ static public void updateColumnLists()
                                         nnn++;
                                         }
                                     }
-                                }                            
-                            
+                                }
+
                             int cnt = 0;
                             for (int j=0; j < nn[curve]; j++)
                                 {
@@ -3492,14 +3492,14 @@ static public void updateColumnLists()
                                     yModel1[curve][nnn] = magSign*2.5*Math.log10(yModel1[curve][nnn]/baseline[curve]);   //  yMultiplierFactor*
                                     }
                                 }
-                           
+
                             if (yModel2[curve] != null)
                                 {
                                 for (int nnn=0; nnn<yModel2[curve].length; nnn++)
                                     {
                                     yModel2[curve][nnn] = magSign*2.5*Math.log10(yModel2[curve][nnn]/baseline[curve]);   // yMultiplierFactor*
                                     }
-                                }                            
+                                }
                             }
                         if (normIndex[curve] == 0 && !mmag[curve])
                             {
@@ -3512,8 +3512,8 @@ static public void updateColumnLists()
                                                                 "Gray Border: no fit in this session</html>");
                             sigmaPanel[curve].setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"RMS (raw)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
                             }
-                        
-                        
+
+
                         }
                     else
                         {
@@ -3528,9 +3528,9 @@ static public void updateColumnLists()
 
                 yPlotMin = yMin;
                 yPlotMax = yMax;
-                
+
                 yautoscalemin = Double.POSITIVE_INFINITY;
-                yautoscalemax = Double.NEGATIVE_INFINITY;                
+                yautoscalemax = Double.NEGATIVE_INFINITY;
 
                 for (int curve = 0; curve<maxCurves; curve++)
                     {
@@ -3543,8 +3543,8 @@ static public void updateColumnLists()
                         if (showResidual[curve] && residual[curve] != null && useTransitFit[curve] && detrendFitIndex[curve] == 9)
                             {
                             resMin = (showResidualError[curve]&&yModel1Err[curve] != null)?resMinOf(residual[curve],yModel1Err[curve],residual[curve].length, detrendYAverage[curve]+(force[curve]?yWidthOrig[curve]*autoResidualShift[curve]/autoScaleFactor[curve]:residualShift[curve]/(normIndex[curve] != 0 && !mmag[curve] && !force[curve]?1.0:yMultiplierFactor))):
-                                                                                    resMinOf(residual[curve],residual[curve].length, detrendYAverage[curve]+(force[curve]?yWidthOrig[curve]*autoResidualShift[curve]/autoScaleFactor[curve]:residualShift[curve]/(normIndex[curve] != 0 && !mmag[curve] && !force[curve]?1.0:yMultiplierFactor))); 
-                            
+                                                                                    resMinOf(residual[curve],residual[curve].length, detrendYAverage[curve]+(force[curve]?yWidthOrig[curve]*autoResidualShift[curve]/autoScaleFactor[curve]:residualShift[curve]/(normIndex[curve] != 0 && !mmag[curve] && !force[curve]?1.0:yMultiplierFactor)));
+
                             resMax = (showResidualError[curve]&&yModel1Err[curve] != null)?resMaxOf(residual[curve],yModel1Err[curve],residual[curve].length, detrendYAverage[curve]+(force[curve]?yWidthOrig[curve]*autoResidualShift[curve]/autoScaleFactor[curve]:residualShift[curve]/(normIndex[curve] != 0 && !mmag[curve] && !force[curve]?1.0:yMultiplierFactor))):
                                                                                     resMaxOf(residual[curve],residual[curve].length, detrendYAverage[curve]+(force[curve]?yWidthOrig[curve]*autoResidualShift[curve]/autoScaleFactor[curve]:residualShift[curve]/(normIndex[curve] != 0 && !mmag[curve] && !force[curve]?1.0:yMultiplierFactor)));
                             if (resMin < yMn[curve]) yMn[curve] = resMin;
@@ -3554,7 +3554,7 @@ static public void updateColumnLists()
                             {
                             yMinimum[curve] = 1 + customScaleFactor[curve]*(yMn[curve] - 1.0) + customShiftFactor[curve];
                             yMaximum[curve] = 1 + customScaleFactor[curve]*(yMx[curve] - 1.0) + customShiftFactor[curve];
-                            }                        
+                            }
                         else if (customScaleFactor[curve] >= 0)
                             {
                             yMinimum[curve] = force[curve] ? yMn[curve] : yMn[curve]*yMultiplierFactor*customScaleFactor[curve] + customShiftFactor[curve]; //FIND MIN AND MAX Y OF EACH SELECTED DATASET
@@ -3574,7 +3574,7 @@ static public void updateColumnLists()
                     }
 
                 if (Double.isInfinite(yautoscalemin)) yautoscalemin = Double.isInfinite(yautoscalemax) ? 0.0 : yautoscalemax - 1.0;
-                if (Double.isInfinite(yautoscalemax)) yautoscalemax = yautoscalemin + 1.0;                        
+                if (Double.isInfinite(yautoscalemax)) yautoscalemax = yautoscalemin + 1.0;
 
                 if (autoScaleY)
                     {
@@ -3585,7 +3585,7 @@ static public void updateColumnLists()
 
                 // IF MJD, SHOW DECIMAL DATE DUE TO float API OF PlotWindow
                 yOffset = 0.0;
-                if (ylabel[firstCurve].contains("J.D.") || ylabel[firstCurve].contains("JD"))                            
+                if (ylabel[firstCurve].contains("J.D.") || ylabel[firstCurve].contains("JD"))
                     {
                     if (yExponent != 0) ymultiplierspinner.setValue(0);
                     yJD = (int)yPlotMin;
@@ -3604,20 +3604,20 @@ static public void updateColumnLists()
                         {
                         if (showXAxisAsPhase)
                                 {
-                                xlab = "Orbital Phase (periods) (T0 = "+netT0+", P = "+netPeriod+")"; 
+                                xlab = "Orbital Phase (periods) (T0 = "+netT0+", P = "+netPeriod+")";
                                 xGoodLabel = true;
                                 }
                         else if (showXAxisAsDaysSinceTc)
                                 {
-                                xlab = "Days Since Tc (T0 = "+netT0+", P = "+netPeriod+")"; 
+                                xlab = "Days Since Tc (T0 = "+netT0+", P = "+netPeriod+")";
                                 xGoodLabel = true;
-                                }                        
+                                }
                         else if (showXAxisAsHoursSinceTc)
                                 {
-                                xlab = "Hours Since Tc (T0 = "+netT0+", P = "+netPeriod+")"; 
+                                xlab = "Hours Since Tc (T0 = "+netT0+", P = "+netPeriod+")";
                                 xGoodLabel = true;
-                                }                        
-                        else if (xlabel2[curve].contains("J.D.") || xlabel2[curve].contains("JD"))                            
+                                }
+                        else if (xlabel2[curve].contains("J.D.") || xlabel2[curve].contains("JD"))
                                 {
                                 if (curve == firstCurve)
                                     {
@@ -3676,7 +3676,7 @@ static public void updateColumnLists()
                                         {
                                         xModel2[curve][nnn] -=xOffset;
                                         }
-                                    }                                
+                                    }
                                 }
                         else if (useXColumnName && curve == firstCurve)
                                 {
@@ -3700,7 +3700,7 @@ static public void updateColumnLists()
                     {
                     if (plotY[curve])
                         {
-                        if (ylabel[curve].contains("J.D.") || ylabel[curve].contains("JD"))                            
+                        if (ylabel[curve].contains("J.D.") || ylabel[curve].contains("JD"))
                                 {
                                 if (curve == firstCurve)
                                     {
@@ -3724,7 +3724,7 @@ static public void updateColumnLists()
                                             else if (ylabel[curve].trim().startsWith("HJD_SOBS"))
                                                 ylab = "Heliocentric Julian Date (UTC) - "+yJD+" (exposure start)";
                                             else if (ylabel[curve].trim().startsWith("HJD"))
-                                                ylab = "Heliocentric Julian Date (UTC) - "+yJD;         
+                                                ylab = "Heliocentric Julian Date (UTC) - "+yJD;
                                             else if (ylabel[curve].trim().startsWith("JD_UTC"))
                                                 ylab = "Geocentric Julian Date (UTC) - "+yJD+" (mid-exposure)";
                                             else if (ylabel[curve].trim().startsWith("JD_SOBS"))
@@ -3756,7 +3756,7 @@ static public void updateColumnLists()
                                     {
                                     ylab=ylabel[firstCurve];
                                     if (operatorIndex[firstCurve] != 0)
-                                            ylab += opSymbol[operatorIndex[firstCurve]]+oplabel[firstCurve];   
+                                            ylab += opSymbol[operatorIndex[firstCurve]]+oplabel[firstCurve];
                                     }
                                 else
                                     {
@@ -3774,7 +3774,7 @@ static public void updateColumnLists()
                     }
                 //FINISH Y-LABEL AFTER FINDING SCALING FACTORS BELOW
 
-              
+
                 //SCALE AND SHIFT SECONDARY CURVES TO FIT ON PLOT
 
                 yRange = yPlotMax - yPlotMin;
@@ -3804,10 +3804,10 @@ static public void updateColumnLists()
                                 totalScaleFactor[curve] = (normIndex[curve] != 0 && !mmag[curve]) ? subtotalScaleFactor[curve] : subtotalScaleFactor[curve]*yMultiplierFactor;
                                 totalShiftFactor[curve] = subtotalShiftFactor[curve];
                                 }
-                        
+
                         if (!(normIndex[curve] != 0 || mmag[curve] || force[curve])) sigma[curve] = totalScaleFactor[curve]*sigma[curve];
                         if (mmag[curve] && totalScaleFactor[curve] == 1000) sigma[curve] *= 1000;
-                        
+
                         if (normIndex[curve] != 0 && !mmag[curve] && !force[curve])
                             {
                             detrendYAverage[curve] = 1 + totalScaleFactor[curve]*(detrendYAverage[curve] - 1.0) + subtotalShiftFactor[curve];
@@ -3847,15 +3847,15 @@ static public void updateColumnLists()
                                 if (residual[curve]!=null) residual[curve][nnn] = totalScaleFactor[curve]*residual[curve][nnn];
                                 }
                             }
-                        
+
                         if (yModel1Err[curve] != null)
                             {
                             for (int nnn=0; nnn<yModel1Err[curve].length; nnn++)
                                 {
                                 yModel1Err[curve][nnn] = totalScaleFactor[curve]*yModel1Err[curve][nnn];
                                 }
-                            }                        
-                        
+                            }
+
                         if (yModel2[curve] != null)
                             {
                             for (int nnn=0; nnn<yModel2[curve].length; nnn++)
@@ -3867,9 +3867,9 @@ static public void updateColumnLists()
                                 else
                                     {
                                     yModel2[curve][nnn] = totalScaleFactor[curve]*yModel2[curve][nnn] + subtotalShiftFactor[curve];
-                                    }                                
+                                    }
                                 }
-                            }                        
+                            }
                         }
                     }
 
@@ -3883,7 +3883,7 @@ static public void updateColumnLists()
                                         ylab += " (mmag)";
                                 else
                                         ylab += " (mag)";
-                        
+
                         if ((binSize[firstCurve]!=1) && showYBinInfo)
                                 ylab += " (bin size = "+binSize[firstCurve]+")";
                         if (showYSymbolInfo)
@@ -3901,7 +3901,7 @@ static public void updateColumnLists()
                 if (xNumbers) plotOptions += ij.gui.Plot.X_NUMBERS;
                 if (yNumbers) plotOptions += ij.gui.Plot.Y_NUMBERS;
 
-                
+
                 plot = new Plot ("Plot of "+tableName,xlab,ylab,nullX,nullY,plotOptions);
                 plot.setSize(plotSizeX, plotSizeY);
                 pltMinX = xPlotMin-5.*dx;
@@ -3936,7 +3936,7 @@ static public void updateColumnLists()
                     newPanOffsetY=0.0;
                     leftDragReleased=false;
                     }
-                
+
                 plot.setLimits (plotMinX, plotMaxX, plotMinY, plotMaxY);
                 double legPosY = legendPosY;
                 for (int curve=0; curve<maxCurves; curve++)
@@ -3948,18 +3948,18 @@ static public void updateColumnLists()
                             if (showModel[curve])
                                 {
                                 plot.setLineWidth((showResidualError[curve] && yModel1Err[curve] != null)?residualLineWidth[curve]+1:residualLineWidth[curve]);
-                                plot.setColor(residualModelColor[curve]);    
+                                plot.setColor(residualModelColor[curve]);
                                 double dLen = 7*(plotMaxX - plotMinX)/plotSizeX;
                                 double min = fitMin[curve]-xOffset > xPlotMin ? fitMin[curve]-xOffset : xPlotMin;
                                 double max = fitMax[curve]-xOffset < xPlotMax ? fitMax[curve]-xOffset : xPlotMax;
                                 double nDashes = ((max-min)/dLen);
                                 double ypos = detrendYAverage[curve]+(force[curve]?autoResidualShift[curve]*totalScaleFactor[curve]*(yWidthOrig[curve]/autoScaleFactor[curve]):residualShift[curve]);//*(normIndex[curve] != 0 && !mmag[curve]?1.0:yMultiplierFactor));
-                                for (int dashCount = 0; dashCount < nDashes; dashCount +=2)    
+                                for (int dashCount = 0; dashCount < nDashes; dashCount +=2)
                                     {
                                     plot.drawLine(min+dLen*dashCount, ypos, min+dLen*(dashCount+1), ypos);
-                                    }   
-                                }                            
-                            
+                                    }
+                                }
+
                             if (residualSymbol[curve] == ij.gui.Plot.DOT)
                                 plot.setLineWidth(4);
                             else
@@ -3970,7 +3970,7 @@ static public void updateColumnLists()
                                 {
                                 plottedResidual[curve][nnn]+= detrendYAverage[curve]+(force[curve]?autoResidualShift[curve]*totalScaleFactor[curve]*(yWidthOrig[curve]/autoScaleFactor[curve]):residualShift[curve]);//*(normIndex[curve] != 0 && !mmag[curve]?1.0:yMultiplierFactor));
                                 }
-                            plot.setColor(residualColor[curve]);                            
+                            plot.setColor(residualColor[curve]);
                             plot.addPoints(Arrays.copyOf(xModel1[curve],xModel1[curve].length),plottedResidual[curve],residualSymbol[curve]);
                             if (showResidualError[curve] && yModel1Err[curve] != null)     //code to replace plot.addErrorBars
                                 {
@@ -3983,19 +3983,19 @@ static public void updateColumnLists()
                                     }
                                 }
 
-                            }                         
-                        if (((showErrors[curve] || operatorIndex[curve] == 6) && (hasErrors[curve] || hasOpErrors[curve]))) 
+                            }
+                        if (((showErrors[curve] || operatorIndex[curve] == 6) && (hasErrors[curve] || hasOpErrors[curve])))
                             plot.setLineWidth(2);
-                        else 
+                        else
                             plot.setLineWidth(1);
-                        plot.setColor(color[curve]);                        
+                        plot.setColor(color[curve]);
                         if (xModel1[curve] != null && yModel1[curve] != null && xModel1[curve].length == yModel1[curve].length && detrendFitIndex[curve] != 9)
                             {
                             plot.addPoints(Arrays.copyOf(xModel1[curve],xModel1[curve].length),Arrays.copyOf(yModel1[curve],yModel1[curve].length),ij.gui.Plot.LINE);
                             }
                         if (xModel2[curve] != null && yModel2[curve] != null && xModel2[curve].length == yModel2[curve].length && (detrendFitIndex[curve] != 9 || showModel[curve]))
                             {
-                            if (detrendFitIndex[curve] == 9) 
+                            if (detrendFitIndex[curve] == 9)
                                 {
                                 plot.setLineWidth(((showErrors[curve] || operatorIndex[curve] == 6) && (hasErrors[curve] || hasOpErrors[curve]))?modelLineWidth[curve]+1:modelLineWidth[curve]);
                                 plot.setColor(modelColor[curve]);
@@ -4004,7 +4004,7 @@ static public void updateColumnLists()
 //                            IJ.log("yModel2["+curve+"].length="+yModel2[curve].length);
                             plot.addPoints(Arrays.copyOf(xModel2[curve],xModel2[curve].length),Arrays.copyOf(yModel2[curve],yModel2[curve].length),ij.gui.Plot.LINE);
                             }
-                        
+
                         plot.setColor (color[curve]);
                         if (marker[curve] == ij.gui.Plot.DOT)
                             plot.setLineWidth(4);
@@ -4035,7 +4035,7 @@ static public void updateColumnLists()
                                     }
                                 }
                             }
-                        
+
                         plot.setLineWidth(1);
                         if (legendLeft)
                             plot.setJustification(ij.process.ImageProcessor.LEFT_JUSTIFY);
@@ -4045,7 +4045,7 @@ static public void updateColumnLists()
                             plot.setJustification(ij.process.ImageProcessor.CENTER_JUSTIFY);
 
                         // MAKE FULL LEGEND STRING FOR CURVE
-                        
+
                         String llab = "";
 
                         if (detrendFitIndex[curve] == 9 && useTransitFit[curve] && showResidual[curve] && showLResidual[curve] && residualShift[curve]>0.0)
@@ -4055,8 +4055,8 @@ static public void updateColumnLists()
                             drawLegendSymbol(residualSymbol[curve], residualSymbol[curve]==ij.gui.Plot.DOT?4:1, residualColor[curve], legPosY, llab);
                             plot.addLabel(legendPosX, legPosY, llab);
                             legPosY += 18./plotSizeY;
-                            }                          
-                        
+                            }
+
                         llab = "";
 
                         if (useColumnName[curve])
@@ -4087,7 +4087,7 @@ static public void updateColumnLists()
                                         }
                                     else
                                         {
-                                        llab += " detrended)"; 
+                                        llab += " detrended)";
                                         }
                                     }
                                 else
@@ -4129,7 +4129,7 @@ static public void updateColumnLists()
                                             atLeastOne = true;
                                             }
                                         }
-                                    }  
+                                    }
                                 if (atLeastOne)
                                     {
                                     if (detrendFitIndex[curve] == 9 && useTransitFit[curve])
@@ -4138,7 +4138,7 @@ static public void updateColumnLists()
                                         }
                                     else
                                         {
-                                        llab += " detrended)"; 
+                                        llab += " detrended)";
                                         }
                                     }
                                 else
@@ -4148,7 +4148,7 @@ static public void updateColumnLists()
                                         llab += " (transit fit)";
                                         }
                                     }
-                                if (((detrendFitIndex[curve] > 1 && showSigmaForDetrendedCurves) || showSigmaForAllCurves))  //!force[curve] && 
+                                if (((detrendFitIndex[curve] > 1 && showSigmaForDetrendedCurves) || showSigmaForAllCurves))  //!force[curve] &&
                                     {
                                     if (mmag[curve] && totalScaleFactor[curve] == 1000) sigma[curve] *= 1000;
                                     llab += " (RMS="+(sigma[curve]>=1.0?uptoThreePlaces.format(sigma[curve]):uptoFivePlaces.format(sigma[curve]))+")";
@@ -4172,19 +4172,19 @@ static public void updateColumnLists()
                             if (showLSymbolInfo)
                                 llab += " ("+markers[markerIndex[curve]]+")";
                             }
-                        
+
                         if (useLegend[curve])
                             {
                             llab += (useColumnName[curve]?" ":"")+legend[curve];
                             }
-                        
+
                         if (useColumnName[curve] || useLegend[curve])
                             {
                             drawLegendSymbol(marker[curve], (marker[curve]==ij.gui.Plot.DOT)?4:1, color[curve], legPosY, llab);
                             plot.addLabel(legendPosX, legPosY, llab);
-                            legPosY += 18./plotSizeY;                            
+                            legPosY += 18./plotSizeY;
                             }
-                                                        
+
                         if (detrendFitIndex[curve] == 9 && useTransitFit[curve] && showModel[curve] && showLTranParams[curve])
                             {
                             llab = ylabel[curve]+ " Transit Model ([P="+uptoTwoPlaces.format(orbitalPeriod[curve])+"], "+(lockToCenter[curve][1]?"[":"")+"(Rp/R*)^2=";
@@ -4206,8 +4206,8 @@ static public void updateColumnLists()
                             drawLegendSymbol(residualSymbol[curve], residualSymbol[curve]==ij.gui.Plot.DOT?4:1, residualColor[curve], legPosY, llab);
                             plot.addLabel(legendPosX, legPosY, llab);
                             legPosY += 18./plotSizeY;
-                            }                            
-                            
+                            }
+
                         }
                     }
 
@@ -4227,7 +4227,7 @@ static public void updateColumnLists()
                             if (curve == firstCurve)
                                 {
                                 xx[0] = x[curve][boldedDatum];
-                                yy[0] = y[curve][boldedDatum];                                
+                                yy[0] = y[curve][boldedDatum];
                                 }
                             else
                                 {
@@ -4248,7 +4248,7 @@ static public void updateColumnLists()
                                     if (nnn>=0 && nnn<plottedResidual[curve].length)
                                         {
                                         xx[0] = xModel1[curve][boldedDatum-nFitTrim[curve]];
-                                        yy[0] = plottedResidual[curve][boldedDatum-nFitTrim[curve]]; 
+                                        yy[0] = plottedResidual[curve][boldedDatum-nFitTrim[curve]];
                                         plot.addPoints(xx,yy,residualSymbol[curve]);
                                         }
                                     }
@@ -4269,7 +4269,7 @@ static public void updateColumnLists()
 
                 plot.setLineWidth(1);
                 plot.setJustification(plot.CENTER);
-                
+
                 if (showDMarkers)
                     {
                     plot.setColor (Color.GRAY);
@@ -4283,8 +4283,8 @@ static public void updateColumnLists()
                         samples2[i] = Double.NaN;
                         samples3[i] = Double.NaN;
                         samples4[i] = Double.NaN;
-                        }                    
-                    
+                        }
+
                     double preDmark1Ref = invertYAxis?yPlotMin:yPlotMax;
                     double preDmark2Ref = preDmark1Ref;
                     double postDMarker3Ref = preDmark1Ref;
@@ -4308,21 +4308,21 @@ static public void updateColumnLists()
                                 }
                             else if (nAfter2 < 5)
                                 {
-                                samples2[5+nAfter2]=y[firstCurve][i]; 
+                                samples2[5+nAfter2]=y[firstCurve][i];
                                 nAfter2++;
                                 }
-                                
+
                             if (useDMarker1 && x[firstCurve][i] < dMarker1Value)
                                 {
                                 samples1[4]=samples1[3]; samples1[3]=samples1[2]; samples1[2]=samples1[1]; samples1[1]=samples1[0]; samples1[0]=y[firstCurve][i];
                                 nBefore1++;
-                                }   
+                                }
                             else if (useDMarker1 && nAfter1 < 5)
                                 {
-                                samples1[5+nAfter1]=y[firstCurve][i]; 
+                                samples1[5+nAfter1]=y[firstCurve][i];
                                 nAfter1++;
                                 }
-                            
+
                             if (x[firstCurve][i] < dMarker3Value)
                                 {
                                 samples3[4]=samples3[3]; samples3[3]=samples3[2]; samples3[2]=samples3[1]; samples3[1]=samples3[0]; samples3[0]=y[firstCurve][i];
@@ -4330,20 +4330,20 @@ static public void updateColumnLists()
                                 }
                             else if (nAfter3 < 5)
                                 {
-                                samples3[5+nAfter3]=y[firstCurve][i]; 
+                                samples3[5+nAfter3]=y[firstCurve][i];
                                 nAfter3++;
                                 }
-                                
+
                             if (useDMarker4 && x[firstCurve][i] < dMarker4Value)
                                 {
                                 samples4[4]=samples4[3]; samples4[3]=samples4[2]; samples4[2]=samples4[1]; samples4[1]=samples4[0]; samples4[0]=y[firstCurve][i];
                                 nBefore4++;
-                                }   
+                                }
                             else if (useDMarker4 && nAfter4 < 5)
                                 {
-                                samples4[5+nAfter4]=y[firstCurve][i]; 
+                                samples4[5+nAfter4]=y[firstCurve][i];
                                 nAfter4++;
-                                }                           
+                                }
                             }
                         }
                     if (nBefore2+nAfter2 > 0)
@@ -4355,38 +4355,38 @@ static public void updateColumnLists()
                         {
                         postDMarker3Ref = invertYAxis?minOf(samples3,10):maxOf(samples3,10);
                         postDMarker3Ref = invertYAxis?Math.max(postDMarker3Ref, plotMaxY):Math.min(postDMarker3Ref, plotMaxY);
-                        }                    
+                        }
                     dashLength = 5*(plotMaxY - plotMinY)/plotSizeY;
-                    
+
                     numDashes = -10 + (preDmark2Ref - plotMinY)/dashLength;        //plot dMarker2
-                    for (int dashCount = 0; dashCount < numDashes; dashCount +=2)    
+                    for (int dashCount = 0; dashCount < numDashes; dashCount +=2)
                         {
                         plot.drawLine(dMarker2Value, preDmark2Ref-dashLength*dashCount, dMarker2Value, preDmark2Ref-dashLength*(dashCount+1));
                         }
-                    plot.setJustification(plot.CENTER);                    
+                    plot.setJustification(plot.CENTER);
                     plot.addLabel((dMarker2Value-plotMinX)/(plotMaxX-plotMinX), 1 - 16.0/plotSizeY, "Left");
                     plot.addLabel((dMarker2Value-plotMinX)/(plotMaxX-plotMinX), 1 + 4.0/plotSizeY, threePlaces.format(dMarker2Value));
 
                     numDashes = -10 + (postDMarker3Ref - plotMinY)/dashLength;     //plot dMarker3
-                    for (int dashCount = 0; dashCount < numDashes; dashCount +=2)     
+                    for (int dashCount = 0; dashCount < numDashes; dashCount +=2)
                         {
                         plot.drawLine(dMarker3Value, postDMarker3Ref-dashLength*dashCount, dMarker3Value, postDMarker3Ref-dashLength*(dashCount+1));
                         }
                     plot.addLabel((dMarker3Value-plotMinX)/(plotMaxX-plotMinX), 1 - 16.0/plotSizeY, "Right");
                     plot.addLabel((dMarker3Value-plotMinX)/(plotMaxX-plotMinX), 1 + 4.0/plotSizeY, threePlaces.format(dMarker3Value));
-                    
+
                     if (useDMarker1)   //plot dMarker1
                         {
                         if (nBefore1+nAfter1 > 0)
                             {
                             preDmark1Ref = invertYAxis?minOf(samples1,10):maxOf(samples1,10);
                             preDmark1Ref = invertYAxis?Math.max(preDmark1Ref, plotMaxY):Math.min(preDmark1Ref, plotMaxY);
-                            }                        
+                            }
                         numDashes = -10 + (preDmark1Ref - plotMinY)/dashLength;        //plot dMarker1
-                        for (int dashCount = 0; dashCount < numDashes; dashCount +=2)    
+                        for (int dashCount = 0; dashCount < numDashes; dashCount +=2)
                             {
                             plot.drawLine(dMarker1Value, preDmark1Ref-dashLength*dashCount, dMarker1Value, preDmark1Ref-dashLength*(dashCount+1));
-                            }     
+                            }
                         plot.addLabel((dMarker1Value-plotMinX)/(plotMaxX-plotMinX), 1 - 25.0/plotSizeY, "Left");
                         plot.addLabel((dMarker1Value-plotMinX)/(plotMaxX-plotMinX), 1 - 7.0/plotSizeY, "Trim");
                         plot.addLabel((dMarker1Value-plotMinX)/(plotMaxX-plotMinX), 1 + 33.0/plotSizeY, threePlaces.format(dMarker1Value));
@@ -4397,19 +4397,19 @@ static public void updateColumnLists()
                             {
                             postDMarker4Ref = invertYAxis?minOf(samples4,10):maxOf(samples4,10);
                             postDMarker4Ref = invertYAxis?Math.max(postDMarker4Ref, plotMaxY):Math.min(postDMarker4Ref, plotMaxY);
-                            }                         
+                            }
                         numDashes = -10 + (postDMarker4Ref - plotMinY)/dashLength;     //plot dMarker4
-                        for (int dashCount = 0; dashCount < numDashes; dashCount +=2)     
+                        for (int dashCount = 0; dashCount < numDashes; dashCount +=2)
                             {
                             plot.drawLine(dMarker4Value, postDMarker4Ref-dashLength*dashCount, dMarker4Value, postDMarker4Ref-dashLength*(dashCount+1));
-                            }       
+                            }
                         plot.addLabel((dMarker4Value-plotMinX)/(plotMaxX-plotMinX), 1 - 25.0/plotSizeY, "Right");
-                        plot.addLabel((dMarker4Value-plotMinX)/(plotMaxX-plotMinX), 1 - 7.0/plotSizeY, "Trim");    
+                        plot.addLabel((dMarker4Value-plotMinX)/(plotMaxX-plotMinX), 1 - 7.0/plotSizeY, "Trim");
                         plot.addLabel((dMarker4Value-plotMinX)/(plotMaxX-plotMinX), 1 + 33.0/plotSizeY, threePlaces.format(dMarker4Value));
-                        }                  
-                    }             
+                        }
+                    }
                 if (showMFMarkers) drawVMarker(mfMarker1Value, "Meridian", "Flip", new Color(84,201,245));
-                
+
                 if (showVMarker1) drawVMarker(vMarker1Value, vMarker1TopText, vMarker1BotText, Color.red);
 
                 if (showVMarker2) drawVMarker(vMarker2Value, vMarker2TopText, vMarker2BotText, Color.red);
@@ -4419,16 +4419,16 @@ static public void updateColumnLists()
                 if (useTitle)
                         {
                         plot.changeFont(new java.awt.Font("Dialog",java.awt.Font.PLAIN,18));
-                        plot.addTitle(titlePosX, titlePosY/plotSizeY>1?1:titlePosY/plotSizeY,title);
+                        // FIXME: plot.addTitle(titlePosX, titlePosY/plotSizeY>1?1:titlePosY/plotSizeY,title);
                         }
                 if (useSubtitle)
                         {
                         plot.changeFont(new java.awt.Font("Dialog",java.awt.Font.PLAIN,14));
-                        plot.addTitle(subtitlePosX, subtitlePosY/plotSizeY>1?1:subtitlePosY/plotSizeY, subtitle);
+                        // FIXME: plot.addTitle(subtitlePosX, subtitlePosY/plotSizeY>1?1:subtitlePosY/plotSizeY, subtitle);
                         }
 
                 plotImage = WindowManager.getImage("Plot of "+tableName);
-                
+
                 if (plotImage == null)
                     {
                     plotFrameLocationX=(int)Prefs.get("plot2.plotFrameLocationX", plotFrameLocationX);
@@ -4443,7 +4443,7 @@ static public void updateColumnLists()
                     plotWindow = plot.show();
                     plotWindow.setIconImage(plotIcon.getImage());
                     plotImage = plotWindow.getImagePlus();//WindowManager.getImage("Plot of "+tableName);
-                    
+
 //                    plotWindow = plotImage.getWindow();
 //                    plotWindow = new PlotWindow(plot);
 //                    plotImage = plotWindow.getImagePlus();
@@ -4464,7 +4464,7 @@ static public void updateColumnLists()
 //                    plotFrame = WindowManager.getFrame("Plot of "+tableName);
 //                    ImageProcessor ip = plot.getProcessor();
 //                    plotImage.setProcessor("Plot of "+tableName,ip);
-                    
+
                     plotImageCanvas = plotImage.getCanvas();
                     plotOverlayCanvas = new OverlayCanvas(plotImage);
                     list.clear();
@@ -4517,7 +4517,7 @@ static public void updateColumnLists()
 //                plotImage = WindowManager.getImage("Plot of "+tableName);
 //                ImageProcessor ip = plot.getProcessor();
 //                plotImage.setProcessor("Plot of "+tableName,ip);
-                
+
                 excludedHeadSamples = holdExcludedHeadSamples;
                 excludedTailSamples = holdExcludedTailSamples;
 //                for (int i=0; i<maxCurves; i++)
@@ -4525,10 +4525,10 @@ static public void updateColumnLists()
 //                    showErr[i] = showErrors[i];
 //                    showErrors[i] = errorcolumnbox[i].isSelected();
 //                    }
-                table.setLock(false);    
+                table.setLock(false);
                 updatePlotRunning = false;
                 }
-        
+
     static void drawVMarker (double vMarkerValue, String vMarkerTopText, String vMarkerBotText, Color color)
                     {
                     plot.setColor (color);
@@ -4551,7 +4551,7 @@ static public void updateColumnLists()
                                 }
                             else if (nAfter < 5)
                                 {
-                                samples[5+nAfter]=y[firstCurve][i]; 
+                                samples[5+nAfter]=y[firstCurve][i];
                                 nAfter++;
                                 }
                             else
@@ -4575,15 +4575,15 @@ static public void updateColumnLists()
                     plot.addLabel((vMarkerValue-plotMinX)/(plotMaxX-plotMinX), 1 - 25.0/plotSizeY, vMarkerTopText);
                     plot.addLabel((vMarkerValue-plotMinX)/(plotMaxX-plotMinX), 1 - 7.0/plotSizeY, vMarkerBotText);
                     plot.addLabel((vMarkerValue-plotMinX)/(plotMaxX-plotMinX), 1 + 33.0/plotSizeY, threePlaces.format(vMarkerValue));
-                    }        
-        
+                    }
+
     static void drawLegendSymbol(int marker, int width, Color color, double legPosY, String llab)
         {
         double xShift = 6.0;
         double yShift = 6.0;
         Font font = new Font("Dialog", Font.PLAIN, 12);
 		int h = 0;
-		int w = 0; 
+		int w = 0;
         if (mainpanel != null)
             {
             Graphics g = mainpanel.getGraphics();
@@ -4595,7 +4595,7 @@ static public void updateColumnLists()
         if (legendRight)
             xShift += w;
         else if (!legendLeft)
-            xShift += w/2;      
+            xShift += w/2;
         plot.setColor (color);
         if (marker == ij.gui.Plot.DOT)
             {
@@ -4605,17 +4605,17 @@ static public void updateColumnLists()
         else if (marker == ij.gui.Plot.LINE)
             {
             xShift += 7;
-            yShift += 2;            
+            yShift += 2;
             }
         else
             {
             xShift += 3;
-            yShift += 3;            
+            yShift += 3;
             }
         double x = plotMinX + (plotMaxX-plotMinX)*(legendPosX-xShift/(plotSizeX-Plot.LEFT_MARGIN-Plot.RIGHT_MARGIN));
         double y = plotMinY + (plotMaxY-plotMinY)*(1-legPosY+yShift/(plotSizeY-Plot.TOP_MARGIN-Plot.BOTTOM_MARGIN));
         double[] xx = {x};
-        double[] yy = {y};  
+        double[] yy = {y};
         if (marker != ij.gui.Plot.LINE)
             {
             plot.addPoints (xx,yy,marker);
@@ -4624,9 +4624,9 @@ static public void updateColumnLists()
             {
             plot.drawLine(x, y, x + (plotMaxX-plotMinX)*6.0/(plotSizeX-Plot.LEFT_MARGIN-Plot.RIGHT_MARGIN), y);
             }
-        plot.setLineWidth(1);  
+        plot.setLineWidth(1);
         }
-    
+
     public static boolean[] updateAllFits()
         {
         boolean[] updateFits = new boolean[maxCurves];
@@ -4636,13 +4636,13 @@ static public void updateColumnLists()
             }
         return updateFits;
         }
-    
+
     public static boolean[] updateNoFits()
         {
         boolean[] updateFits = new boolean[maxCurves];
         return updateFits;
-        }    
-    
+        }
+
     public static boolean[] updateOneFit(int curve)
         {
         boolean[] updateFits = new boolean[maxCurves];
@@ -4654,8 +4654,8 @@ static public void updateColumnLists()
                 }
             }
         return updateFits;
-        }    
-        
+        }
+
     public static class FitDetrendOnly implements MinimizationFunction {
         public double function(double[] param)
             {
@@ -4668,14 +4668,14 @@ static public void updateColumnLists()
                 residual = detrendYs[curve][j] - param[0];
                 for (int i=0; i<numVars; i++)
                     {
-                    residual -= detrendVars[i][j]*param[i+1]; 
+                    residual -= detrendVars[i][j]*param[i+1];
                     }
                 sd += residual * residual;
                 }
-            return Math.sqrt(sd/(double)numData);  
+            return Math.sqrt(sd/(double)numData);
             }
         }
-    
+
     public static class FitDetrendChi2 implements MinimizationFunction {
         public double function(double[] param)
             {
@@ -4690,14 +4690,14 @@ static public void updateColumnLists()
                 residual = detrendYs[curve][j];// - param[0];
                 for (int i=0; i<numVars; i++)
                     {
-                    residual -= detrendVars[i][j]*param[i]; 
+                    residual -= detrendVars[i][j]*param[i];
                     }
                 chi2 += ((residual * residual)/(detrendYEs[curve][j]*detrendYEs[curve][j]));
                 }
-            return chi2/(double)dof;  
+            return chi2/(double)dof;
             }
-        }    
-    
+        }
+
     public static class FitLightCurveChi2 implements MinimizationFunction {
         public double function(double[] param)
             {
@@ -4707,11 +4707,11 @@ static public void updateColumnLists()
             double[] dPars = new double[detrendVars.length];
 //            int dof = numData - param.length;// - 7;
             if (dof[curve] < 1) dof[curve] = 1;
-         
+
             chi2[curve] = 0;
             double residual = 0.0;
             int fp = 0;
-            
+
             double f0 = priorCenter[curve][0]; // baseline flux
             double p0 = priorCenter[curve][1]; // r_p/r_*
             double ar = priorCenter[curve][2]; // a/r_*
@@ -4733,7 +4733,7 @@ static public void updateColumnLists()
                 lcModel[curve] = IJU.transitModel(detrendXs[curve], f0, incl, p0, ar, tc, orbitalPeriod[curve],
                         e, ohm, u1, u2, useLonAscNode[curve], lonAscNode[curve]);
                 }
-            
+
             int dp=0;
             for (int p=7; p<maxFittedVars; p++)
                 {
@@ -4742,8 +4742,8 @@ static public void updateColumnLists()
                 else if (detrendIndex[curve][p-7] != 0 && detrendYDNotConstant[p-7] && lockToCenter[curve][p])
                     dPars[dp++] = priorCenter[curve][p];
                 }
-            
-            
+
+
             if (useTransitFit[curve])
                 {
                 if (!lockToCenter[curve][2] && (ar < (1.0+p0)))
@@ -4771,13 +4771,13 @@ static public void updateColumnLists()
                         residual = detrendYs[curve][j];// - param[0];
                         for (int i=0; i<numDetrendVars; i++)
                             {
-                            residual -= detrendVars[i][j]*dPars[i]; 
+                            residual -= detrendVars[i][j]*dPars[i];
                             }
                         residual -= (lcModel[curve][j]-detrendYAverage[curve]);
                         chi2[curve] += ((residual * residual)/(detrendYEs[curve][j]*detrendYEs[curve][j]));
                         }
                     }
-                return chi2[curve]/(double)dof[curve];                
+                return chi2[curve]/(double)dof[curve];
                 }
             else
                 {
@@ -4786,7 +4786,7 @@ static public void updateColumnLists()
                     residual = detrendYs[curve][j];// - param[0];
                     for (int i=0; i<numDetrendVars; i++)
                         {
-                        residual -= detrendVars[i][j]*dPars[i]; 
+                        residual -= detrendVars[i][j]*dPars[i];
                         }
                     chi2[curve] += ((residual * residual)/(detrendYEs[curve][j]*detrendYEs[curve][j]));
                     }
@@ -4835,16 +4835,16 @@ static public void updateColumnLists()
         if (ap < 1 || ap > isRefStar.length) ap = 1;
         return (isRefStar[ap -1]?"C":"T")+ap;
         }
-    
+
 	static int parseInteger(String s, int defaultValue) {
 		if (s==null) return defaultValue;
 		try {
 			defaultValue = Integer.parseInt(s);
-            } 
+            }
         catch (NumberFormatException e) {}
-		return defaultValue;			
-        }    
-    
+		return defaultValue;
+        }
+
     static void addNewAstroData()
         {
         astroConverterUpdating = false;
@@ -4854,7 +4854,7 @@ static public void updateColumnLists()
         acc.setEnableObjectEntry(true);
         acc.setEnableObservatoryEntry(true);
         acc.showPanel(true);
-        
+
         addAstroDataFrame = new JFrame ("Add astronomical data to table");
         addAstroDataFrame.setIconImage(plotIcon.getImage());
         JPanel addAstroDataPanel = new JPanel (new SpringLayout());
@@ -4868,15 +4868,15 @@ static public void updateColumnLists()
                     saveAstroPanelPrefs();
                     if (acc != null) acc.saveAndClose();
                     closeAddAstroDataFrame();
-                    }});        
-        
+                    }});
+
         useGJDButton = new JRadioButton("JD (UTC)");
         useGJDButton.setToolTipText("Use geocentric JD column as time base");
         useHJDButton = new JRadioButton("HJD (UTC)");
         useHJDButton.setToolTipText("Use heliocentric JD column as time base");
         useBJDButton = new JRadioButton("BJD (TDB)");
         useBJDButton.setToolTipText("Use barycentric JD column as time base");
-        
+
         if (useGJD)
             {
             useGJDButton.setSelected(true);
@@ -4898,7 +4898,7 @@ static public void updateColumnLists()
         useGJD = useGJDButton.isSelected();
         useHJD = useHJDButton.isSelected();
         useBJD = useBJDButton.isSelected();
-        
+
         JDRadioGroup = new ButtonGroup();
         JDRadioGroup.add(useGJDButton);
         JDRadioGroup.add(useHJDButton);
@@ -4917,23 +4917,23 @@ static public void updateColumnLists()
                 useHJD = true;
                 useBJD = false;
                 jdcolumnbox.setSelectedIndex(jdcolumnbox.getSelectedIndex());
-                }});    
+                }});
         useBJDButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae) {
                 useGJD = false;
                 useHJD = false;
                 useBJD = true;
                 jdcolumnbox.setSelectedIndex(jdcolumnbox.getSelectedIndex());
-                }});         
-       
+                }});
+
         JPanel jdselectionpanel = new JPanel(new SpringLayout());
         jdselectionpanel.setBorder(BorderFactory.createTitledBorder("Input Time Format"));
         jdselectionpanel.add(useGJDButton);
         jdselectionpanel.add(useHJDButton);
         jdselectionpanel.add(useBJDButton);
         SpringUtil.makeCompactGrid (jdselectionpanel, 1, jdselectionpanel.getComponentCount(), 2,0,2,0);
-        addAstroDataPanel.add (jdselectionpanel);         
-         
+        addAstroDataPanel.add (jdselectionpanel);
+
         JPanel jdcolumnpanel = new JPanel(new SpringLayout());
         jdcolumnpanel.setBorder(BorderFactory.createTitledBorder("Date/Time Column From Active Table"));
         String[] tabCols = columns;
@@ -4943,7 +4943,7 @@ static public void updateColumnLists()
         jdcolumnbox.setSelectedItem(JDColumn);
         jdcolumnbox.setPrototypeDisplayValue("123456789012345");
         jdcolumnbox.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent ae) 
+            public void actionPerformed(ActionEvent ae)
                 {
                 if (!astroConverterUpdating) updateMPCC(-1);
                 }});
@@ -4952,14 +4952,14 @@ static public void updateColumnLists()
         jdcolumnpanel.setPreferredSize(new Dimension(125, 25));
         SpringUtil.makeCompactGrid (jdcolumnpanel, 1, 1, 0,0,0,0);
         addAstroDataPanel.add (jdcolumnpanel);
-        
 
-        
+
+
         useManualRaDecButton = new JRadioButton("Manual");
         useManualRaDecButton.setToolTipText("Manually enter RA and Dec in 'MP Coordinate Converter' panel");
         useTableRaDecButton = new JRadioButton("Table");
         useTableRaDecButton.setToolTipText("Use J2000 RA and Dec values from specified table columns");
-        
+
         if (useTableRaDec)
             {
             useTableRaDecButton.setSelected(true);
@@ -4972,7 +4972,7 @@ static public void updateColumnLists()
             useManualRaDecButton.setSelected(true);
             acc.setEnableObjectEntry(true);
             }
-        
+
         RaDecRadioGroup = new ButtonGroup();
         RaDecRadioGroup.add(useManualRaDecButton);
         RaDecRadioGroup.add(useTableRaDecButton);
@@ -4992,17 +4992,17 @@ static public void updateColumnLists()
                 deccolumnbox.setEnabled(true);
                 acc.setEnableObjectEntry(false);
                 if (!astroConverterUpdating) updateMPCC(-1);
-                }});    
-      
+                }});
+
         JPanel radecselectionpanel = new JPanel(new SpringLayout());
         radecselectionpanel.setBorder(BorderFactory.createTitledBorder("RA/Dec Source (J2000)"));
         radecselectionpanel.add(useManualRaDecButton);
         radecselectionpanel.add(useTableRaDecButton);
         SpringUtil.makeCompactGrid (radecselectionpanel, 1, radecselectionpanel.getComponentCount(), 2,0,2,0);
-        addAstroDataPanel.add (radecselectionpanel);   
-        
+        addAstroDataPanel.add (radecselectionpanel);
+
         JPanel radeccolumnpanel = new JPanel(new SpringLayout());
-         
+
         JPanel racolumnpanel = new JPanel(new SpringLayout());
         racolumnpanel.setBorder(BorderFactory.createTitledBorder("RA Column (hrs)"));
         MutableComboBoxModel radefaultmodel = new DefaultComboBoxModel(columns);
@@ -5012,7 +5012,7 @@ static public void updateColumnLists()
         racolumnbox.setToolTipText("Table column containing target J2000 RA coordinate (in hours)");
         racolumnbox.setPrototypeDisplayValue("123456789012345");
         racolumnbox.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent ae) 
+            public void actionPerformed(ActionEvent ae)
                 {
                 if (!astroConverterUpdating) updateMPCC(-1);
                 }});
@@ -5021,9 +5021,9 @@ static public void updateColumnLists()
         racolumnpanel.setPreferredSize(new Dimension(125, 25));
         SpringUtil.makeCompactGrid (racolumnpanel, 1, 1, 0,0,0,0);
         radeccolumnpanel.add (racolumnpanel);
-        
-        
- 
+
+
+
         JPanel deccolumnpanel = new JPanel(new SpringLayout());
         deccolumnpanel.setBorder(BorderFactory.createTitledBorder("DEC Column (deg)"));
         MutableComboBoxModel decdefaultmodel = new DefaultComboBoxModel(columns);
@@ -5033,7 +5033,7 @@ static public void updateColumnLists()
         deccolumnbox.setToolTipText("Table column containing target J2000 DEC coordinate (in degrees)");
         deccolumnbox.setPrototypeDisplayValue("123456789012345");
         deccolumnbox.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent ae) 
+            public void actionPerformed(ActionEvent ae)
                 {
                 if (!astroConverterUpdating) updateMPCC(-1);
                 }});
@@ -5042,194 +5042,194 @@ static public void updateColumnLists()
         deccolumnpanel.setPreferredSize(new Dimension(125, 25));
         SpringUtil.makeCompactGrid (deccolumnpanel, 1, 1, 0,0,0,0);
         radeccolumnpanel.add (deccolumnpanel);
-        
+
         SpringUtil.makeCompactGrid (radeccolumnpanel, 1, radeccolumnpanel.getComponentCount(), 0,0,0,0);
-        addAstroDataPanel.add (radeccolumnpanel); 
-        
-        
-       
+        addAstroDataPanel.add (radeccolumnpanel);
+
+
+
         JLabel dataTitleLabel = new JLabel("Select data to add");
-        addAstroDataPanel.add (dataTitleLabel); 
-        
+        addAstroDataPanel.add (dataTitleLabel);
+
         JLabel nameTitleLabel = new JLabel("Enter table column name to add");
-        addAstroDataPanel.add (nameTitleLabel);        
-                
+        addAstroDataPanel.add (nameTitleLabel);
+
         airmassCB = new JCheckBox("Airmass", addAirmass);
         airmassCB.setToolTipText("Add Airmass column to active table");
-        addAstroDataPanel.add (airmassCB); 
-        
+        addAstroDataPanel.add (airmassCB);
+
         airmassField = new JTextField (airmassName);
         airmassField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         airmassField.setPreferredSize (new Dimension(250,20));
         airmassField.setHorizontalAlignment (JTextField.LEFT);
-        airmassField.setToolTipText("Airmass column name");        
-        addAstroDataPanel.add (airmassField); 
-        
+        airmassField.setToolTipText("Airmass column name");
+        addAstroDataPanel.add (airmassField);
+
         altitudeCB = new JCheckBox("Altitude", addAltitude);
         altitudeCB.setToolTipText("Add Altitude column to active table");
-        addAstroDataPanel.add (altitudeCB); 
-        
+        addAstroDataPanel.add (altitudeCB);
+
         altitudeField = new JTextField (altitudeName);
         altitudeField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         altitudeField.setPreferredSize (new Dimension(250,20));
         altitudeField.setHorizontalAlignment (JTextField.LEFT);
-        altitudeField.setToolTipText("Altitude/elevation column name");        
-        addAstroDataPanel.add (altitudeField); 
-                
+        altitudeField.setToolTipText("Altitude/elevation column name");
+        addAstroDataPanel.add (altitudeField);
+
         azimuthCB = new JCheckBox("Azimuth", addAzimuth);
         azimuthCB.setToolTipText("Add Azumuth column to active table");
-        addAstroDataPanel.add (azimuthCB); 
-        
+        addAstroDataPanel.add (azimuthCB);
+
         azimuthField = new JTextField (azimuthName);
         azimuthField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         azimuthField.setPreferredSize (new Dimension(250,20));
         azimuthField.setHorizontalAlignment (JTextField.LEFT);
-        azimuthField.setToolTipText("Azimuth column name");        
-        addAstroDataPanel.add (azimuthField); 
-        
+        azimuthField.setToolTipText("Azimuth column name");
+        addAstroDataPanel.add (azimuthField);
+
         hourAngleCB = new JCheckBox("Hour Angle", addHourAngle);
         hourAngleCB.setToolTipText("Add Hour Angle column to active table");
-        addAstroDataPanel.add (hourAngleCB); 
-        
+        addAstroDataPanel.add (hourAngleCB);
+
         hourAngleField = new JTextField (hourAngleName);
         hourAngleField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         hourAngleField.setPreferredSize (new Dimension(250,20));
         hourAngleField.setHorizontalAlignment (JTextField.LEFT);
-        hourAngleField.setToolTipText("Hour Angle column name");        
-        addAstroDataPanel.add (hourAngleField); 
-        
+        hourAngleField.setToolTipText("Hour Angle column name");
+        addAstroDataPanel.add (hourAngleField);
+
         zenithDistanceCB = new JCheckBox("Zenith Distance", addZenithDistance);
         zenithDistanceCB.setToolTipText("Add Zenith Distance column to active table");
-        addAstroDataPanel.add (zenithDistanceCB); 
-        
+        addAstroDataPanel.add (zenithDistanceCB);
+
         zenithDistanceField = new JTextField (zenithDistanceName);
         zenithDistanceField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         zenithDistanceField.setPreferredSize (new Dimension(250,20));
         zenithDistanceField.setHorizontalAlignment (JTextField.LEFT);
-        zenithDistanceField.setToolTipText("Zenith Distance column name");        
-        addAstroDataPanel.add (zenithDistanceField);  
-        
+        zenithDistanceField.setToolTipText("Zenith Distance column name");
+        addAstroDataPanel.add (zenithDistanceField);
+
         gjdCB = new JCheckBox("JD_UTC", addGJD);
-        gjdCB.setToolTipText("Add Geocentric Julian Date (UTC) column to active table"); 
-        addAstroDataPanel.add (gjdCB); 
-        
+        gjdCB.setToolTipText("Add Geocentric Julian Date (UTC) column to active table");
+        addAstroDataPanel.add (gjdCB);
+
         gjdField = new JTextField (gjdName);
         gjdField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         gjdField.setPreferredSize (new Dimension(250,20));
         gjdField.setHorizontalAlignment (JTextField.LEFT);
-        gjdField.setToolTipText("Geocentric Julian Date (UTC) column name");        
-        addAstroDataPanel.add (gjdField);        
-        
+        gjdField.setToolTipText("Geocentric Julian Date (UTC) column name");
+        addAstroDataPanel.add (gjdField);
+
         hjdCB = new JCheckBox("HJD_UTC", addHJD);
-        hjdCB.setToolTipText("Add Heliocentric Julian Date (UTC) column to active table"); 
-        addAstroDataPanel.add (hjdCB); 
-        
+        hjdCB.setToolTipText("Add Heliocentric Julian Date (UTC) column to active table");
+        addAstroDataPanel.add (hjdCB);
+
         hjdField = new JTextField (hjdName);
         hjdField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         hjdField.setPreferredSize (new Dimension(250,20));
         hjdField.setHorizontalAlignment (JTextField.LEFT);
-        hjdField.setToolTipText("Heliocentric Julian Date (UTC) column name");        
-        addAstroDataPanel.add (hjdField); 
-        
+        hjdField.setToolTipText("Heliocentric Julian Date (UTC) column name");
+        addAstroDataPanel.add (hjdField);
+
         hjdCorrCB = new JCheckBox("HJD Correction", addHJDCorr);
-        hjdCorrCB.setToolTipText("Add Geocentric (UTC) to Heliocentric (UTC) Julian Date Correction column to active table"); 
-        addAstroDataPanel.add (hjdCorrCB); 
-        
+        hjdCorrCB.setToolTipText("Add Geocentric (UTC) to Heliocentric (UTC) Julian Date Correction column to active table");
+        addAstroDataPanel.add (hjdCorrCB);
+
         hjdCorrField = new JTextField (hjdCorrName);
         hjdCorrField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         hjdCorrField.setPreferredSize (new Dimension(250,20));
         hjdCorrField.setHorizontalAlignment (JTextField.LEFT);
-        hjdCorrField.setToolTipText("JD to HJD correction column name");        
-        addAstroDataPanel.add (hjdCorrField);         
-        
+        hjdCorrField.setToolTipText("JD to HJD correction column name");
+        addAstroDataPanel.add (hjdCorrField);
+
         bjdCB = new JCheckBox("BJD_TDB", addBJD);
-        bjdCB.setToolTipText("Add Barycentric Julian Date (TDB) column to active table"); 
-        addAstroDataPanel.add (bjdCB); 
-        
+        bjdCB.setToolTipText("Add Barycentric Julian Date (TDB) column to active table");
+        addAstroDataPanel.add (bjdCB);
+
         bjdField = new JTextField (bjdName);
         bjdField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         bjdField.setPreferredSize (new Dimension(250,20));
         bjdField.setHorizontalAlignment (JTextField.LEFT);
-        bjdField.setToolTipText("Barycentric Julian Date (TDB) column name");        
-        addAstroDataPanel.add (bjdField); 
-        
+        bjdField.setToolTipText("Barycentric Julian Date (TDB) column name");
+        addAstroDataPanel.add (bjdField);
+
         bjdCorrCB = new JCheckBox("BJD Correction", addBJDCorr);
-        bjdCorrCB.setToolTipText("Add Geocentric (UTC) to Barycentric (TDB) Julian Date Correction column to active table"); 
-        addAstroDataPanel.add (bjdCorrCB); 
-        
+        bjdCorrCB.setToolTipText("Add Geocentric (UTC) to Barycentric (TDB) Julian Date Correction column to active table");
+        addAstroDataPanel.add (bjdCorrCB);
+
         bjdCorrField = new JTextField (bjdCorrName);
         bjdCorrField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         bjdCorrField.setPreferredSize (new Dimension(250,20));
         bjdCorrField.setHorizontalAlignment (JTextField.LEFT);
-        bjdCorrField.setToolTipText("JD to BJD correction column name");        
+        bjdCorrField.setToolTipText("JD to BJD correction column name");
         addAstroDataPanel.add (bjdCorrField);
-       
+
         raNowCB = new JCheckBox("RA Now", addRaNow);
-        raNowCB.setToolTipText("Add Right Ascension of target at epoch of observation column to active table"); 
-        addAstroDataPanel.add (raNowCB); 
-        
+        raNowCB.setToolTipText("Add Right Ascension of target at epoch of observation column to active table");
+        addAstroDataPanel.add (raNowCB);
+
         raNowField = new JTextField (raNowName);
         raNowField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         raNowField.setPreferredSize (new Dimension(250,20));
         raNowField.setHorizontalAlignment (JTextField.LEFT);
-        raNowField.setToolTipText("Right Ascension of target at epoch of observation column name");        
+        raNowField.setToolTipText("Right Ascension of target at epoch of observation column name");
         addAstroDataPanel.add (raNowField);
-        
+
         decNowCB = new JCheckBox("Declination Now", addDecNow);
-        decNowCB.setToolTipText("Add Declination of target at epoch of observation column to active table"); 
-        addAstroDataPanel.add (decNowCB); 
-        
+        decNowCB.setToolTipText("Add Declination of target at epoch of observation column to active table");
+        addAstroDataPanel.add (decNowCB);
+
         decNowField = new JTextField (decNowName);
         decNowField.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         decNowField.setPreferredSize (new Dimension(250,20));
         decNowField.setHorizontalAlignment (JTextField.LEFT);
-        decNowField.setToolTipText("Declination of target at epoch of observation column name");        
-        addAstroDataPanel.add (decNowField); 
-        
+        decNowField.setToolTipText("Declination of target at epoch of observation column name");
+        addAstroDataPanel.add (decNowField);
+
         ra2000CB = new JCheckBox("RA J2000", addRA2000);
-        ra2000CB.setToolTipText("Add Right Ascension of target at epoch J2000 column to active table"); 
-        addAstroDataPanel.add (ra2000CB); 
-        
+        ra2000CB.setToolTipText("Add Right Ascension of target at epoch J2000 column to active table");
+        addAstroDataPanel.add (ra2000CB);
+
         ra2000Field = new JTextField (ra2000Name);
         ra2000Field.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         ra2000Field.setPreferredSize (new Dimension(250,20));
         ra2000Field.setHorizontalAlignment (JTextField.LEFT);
-        ra2000Field.setToolTipText("Right Ascension of target at epoch J2000 column name");        
-        addAstroDataPanel.add (ra2000Field); 
-        
+        ra2000Field.setToolTipText("Right Ascension of target at epoch J2000 column name");
+        addAstroDataPanel.add (ra2000Field);
+
         dec2000CB = new JCheckBox("Declination J2000", addDec2000);
-        dec2000CB.setToolTipText("Add Declination of target at epoch J2000 column to active table"); 
-        addAstroDataPanel.add (dec2000CB); 
-        
+        dec2000CB.setToolTipText("Add Declination of target at epoch J2000 column to active table");
+        addAstroDataPanel.add (dec2000CB);
+
         dec2000Field = new JTextField (dec2000Name);
         dec2000Field.setBorder (BorderFactory.createEmptyBorder(0,4,0,4));
         dec2000Field.setPreferredSize (new Dimension(250,20));
         dec2000Field.setHorizontalAlignment (JTextField.LEFT);
-        dec2000Field.setToolTipText("Declination of target at epoch J2000 column name");        
+        dec2000Field.setToolTipText("Declination of target at epoch J2000 column name");
         addAstroDataPanel.add (dec2000Field);
-        
+
         JLabel lineFeedLabel1 = new JLabel("");
-        addAstroDataPanel.add (lineFeedLabel1); 
+        addAstroDataPanel.add (lineFeedLabel1);
         JLabel lineFeedLabel2 = new JLabel("");
-        addAstroDataPanel.add (lineFeedLabel2);         
+        addAstroDataPanel.add (lineFeedLabel2);
 
         JLabel instructionLabel1L = new JLabel("Setup target and/or observatory parameters");
-        addAstroDataPanel.add (instructionLabel1L); 
+        addAstroDataPanel.add (instructionLabel1L);
         JLabel instructionLabel1R = new JLabel("");
         addAstroDataPanel.add (instructionLabel1R);
-        
+
         JLabel instructionLabel2L = new JLabel("in 'MP Coordinate Converter' window,");
-        addAstroDataPanel.add (instructionLabel2L); 
+        addAstroDataPanel.add (instructionLabel2L);
         JLabel instructionLabel2R = new JLabel("");
-        addAstroDataPanel.add (instructionLabel2R);        
+        addAstroDataPanel.add (instructionLabel2R);
 
         JLabel buttonLabel = new JLabel("then press the 'Update Table' button.");
-        addAstroDataPanel.add (buttonLabel);         
-        
+        addAstroDataPanel.add (buttonLabel);
+
         JPanel OKCancelPanel = new JPanel (new SpringLayout());
         JLabel buttonIndentLabel = new JLabel("");
-        OKCancelPanel.add (buttonIndentLabel);        
-        
+        OKCancelPanel.add (buttonIndentLabel);
+
         OKbutton = new JButton("Update Table");
         OKbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
@@ -5246,7 +5246,7 @@ static public void updateColumnLists()
                     }
 
                 getAstroPanelValues();
-                
+
                 int airmassCol = MeasurementTable.COLUMN_NOT_FOUND;
                 int altitudeCol = MeasurementTable.COLUMN_NOT_FOUND;
                 int azimuthCol = MeasurementTable.COLUMN_NOT_FOUND;
@@ -5254,14 +5254,14 @@ static public void updateColumnLists()
                 int zenithDistanceCol = MeasurementTable.COLUMN_NOT_FOUND;
                 int gjdCol = MeasurementTable.COLUMN_NOT_FOUND;
                 int hjdCol = MeasurementTable.COLUMN_NOT_FOUND;
-                int hjdCorrCol = MeasurementTable.COLUMN_NOT_FOUND;                
+                int hjdCorrCol = MeasurementTable.COLUMN_NOT_FOUND;
                 int bjdCol = MeasurementTable.COLUMN_NOT_FOUND;
                 int bjdCorrCol = MeasurementTable.COLUMN_NOT_FOUND;
                 int raNowCol = MeasurementTable.COLUMN_NOT_FOUND;
                 int decNowCol = MeasurementTable.COLUMN_NOT_FOUND;
                 int ra2000Col = MeasurementTable.COLUMN_NOT_FOUND;
                 int dec2000Col = MeasurementTable.COLUMN_NOT_FOUND;
-                
+
                 if (addAirmass) airmassCol = table.getColumnIndex(airmassName);
                 if (addAltitude) altitudeCol = table.getColumnIndex(altitudeName);
                 if (addAzimuth) azimuthCol = table.getColumnIndex(azimuthName);
@@ -5284,7 +5284,7 @@ static public void updateColumnLists()
 //                    (addZenithDistance && zenithDistanceCol != MeasurementTable.COLUMN_NOT_FOUND) ||
 //                    (addGJD && gjdCol != MeasurementTable.COLUMN_NOT_FOUND) ||
 //                    (addHJD && hjdCol != MeasurementTable.COLUMN_NOT_FOUND) ||
-//                    (addHJDCorr && hjdCorrCol != MeasurementTable.COLUMN_NOT_FOUND) ||                        
+//                    (addHJDCorr && hjdCorrCol != MeasurementTable.COLUMN_NOT_FOUND) ||
 //                    (addBJD && bjdCol != MeasurementTable.COLUMN_NOT_FOUND) ||
 //                    (addBJDCorr && bjdCorrCol != MeasurementTable.COLUMN_NOT_FOUND) ||
 //                    (addRaNow && raNowCol != MeasurementTable.COLUMN_NOT_FOUND) ||
@@ -5300,7 +5300,7 @@ static public void updateColumnLists()
 //                                   (zenithDistanceCol != MeasurementTable.COLUMN_NOT_FOUND?"Zenith Distance column: "+zenithDistanceName+"\n":"")+
 //                                   (gjdCol != MeasurementTable.COLUMN_NOT_FOUND?"JD column: "+gjdName+"\n":"")+
 //                                   (hjdCol != MeasurementTable.COLUMN_NOT_FOUND?"HJD column: "+hjdName+"\n":"")+
-//                                   (hjdCorrCol != MeasurementTable.COLUMN_NOT_FOUND?"HJD Correction column: "+hjdCorrName+"\n":"")+                            
+//                                   (hjdCorrCol != MeasurementTable.COLUMN_NOT_FOUND?"HJD Correction column: "+hjdCorrName+"\n":"")+
 //                                   (bjdCol != MeasurementTable.COLUMN_NOT_FOUND?"BJD column: "+bjdName+"\n":"")+
 //                                   (bjdCorrCol != MeasurementTable.COLUMN_NOT_FOUND?"BJD Correction column: "+bjdCorrName+"\n":"")+
 //                                   (raNowCol != MeasurementTable.COLUMN_NOT_FOUND?"RA OBS column: "+raNowName+"\n":"")+
@@ -5310,7 +5310,7 @@ static public void updateColumnLists()
 //                                    "\n"+
 //                                    "table column name(s) are already in use.\nPress OK to over-write existing data.");
 //                    gd.showDialog();
-//                    if (gd.wasCanceled()) 
+//                    if (gd.wasCanceled())
 //                        {
 //                        astroConverterUpdating = false;
 //                        return;
@@ -5330,10 +5330,10 @@ static public void updateColumnLists()
                     };
 
                 t.start();
-                Thread.yield();                
+                Thread.yield();
 
                 Prefs.set("plot2.JDColumn", JDColumn);
-                
+
                 saveAstroPanelPrefs();
 
                 int tableLength = table.getCounter();
@@ -5348,7 +5348,7 @@ static public void updateColumnLists()
                         if (addZenithDistance) table.setValue(zenithDistanceName, i, acc.getZenithDistance());
                         if (addGJD) table.setValue(gjdName, i, acc.getJD());
                         if (addHJD) table.setValue(hjdName, i, acc.getHJD());
-                        if (addHJDCorr) table.setValue(hjdCorrName, i, acc.getHJDCorrection());  
+                        if (addHJDCorr) table.setValue(hjdCorrName, i, acc.getHJDCorrection());
                         if (addBJD) table.setValue(bjdName, i, acc.getBJD());
                         if (addBJDCorr) table.setValue(bjdCorrName, i, acc.getBJDCorrection());
                         if (addRaNow) table.setValue(raNowName, i, acc.getRAEOI());
@@ -5362,20 +5362,20 @@ static public void updateColumnLists()
                         if (addAltitude) table.setValue(altitudeName, i, Double.NaN);
                         if (addAzimuth) table.setValue(azimuthName, i, Double.NaN);
                         if (addHourAngle) table.setValue(hourAngleName, i, Double.NaN);
-                        if (addZenithDistance) table.setValue(zenithDistanceName, i, Double.NaN);   
+                        if (addZenithDistance) table.setValue(zenithDistanceName, i, Double.NaN);
                         if (addGJD) table.setValue(gjdName, i, Double.NaN);
                         if (addHJD) table.setValue(hjdName, i, Double.NaN);
-                        if (addHJDCorr) table.setValue(hjdCorrName, i, Double.NaN);  
+                        if (addHJDCorr) table.setValue(hjdCorrName, i, Double.NaN);
                         if (addBJD) table.setValue(bjdName, i, Double.NaN);
                         if (addBJDCorr) table.setValue(bjdCorrName, i, Double.NaN);
                         if (addRaNow) table.setValue(raNowName, i, Double.NaN);
                         if (addDecNow) table.setValue(decNowName, i, Double.NaN);
                         if (addRA2000) table.setValue(ra2000Name, i, Double.NaN);
-                        if (addDec2000) table.setValue(dec2000Name, i, Double.NaN);                            
+                        if (addDec2000) table.setValue(dec2000Name, i, Double.NaN);
                         }
                     }
-                
-                    
+
+
                 table.show();
                 updatePlot(updateAllFits());
                 Thread t2 = new Thread()
@@ -5392,13 +5392,13 @@ static public void updateColumnLists()
                     };
 
                 t2.start();
-                Thread.yield();                  
+                Thread.yield();
                 astroConverterUpdating = false;
-                Prefs.set("plot2.JDColumn", JDColumn);                
+                Prefs.set("plot2.JDColumn", JDColumn);
                 }});
-       
+
         OKCancelPanel.add(OKbutton);
-        
+
         JButton cancelbutton = new JButton("   Close    ");
         cancelbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
@@ -5409,11 +5409,11 @@ static public void updateColumnLists()
                 if (acc != null) acc.saveAndClose();
                 closeAddAstroDataFrame();
                 }});
-        OKCancelPanel.add(cancelbutton);        
-           
+        OKCancelPanel.add(cancelbutton);
+
         SpringUtil.makeCompactGrid (OKCancelPanel, 1, OKCancelPanel.getComponentCount(), 6,6,6,6);
 
-        addAstroDataPanel.add (OKCancelPanel);                           
+        addAstroDataPanel.add (OKCancelPanel);
 
         SpringUtil.makeCompactGrid (addAstroDataPanel, addAstroDataPanel.getComponentCount()/2, 2, 6,6,6,6);
 
@@ -5427,14 +5427,14 @@ static public void updateColumnLists()
             }
         addAstroDataFrame.setVisible (true);
         addAstroDataFrameWasShowing = true;
-         
+
         if (!astroConverterUpdating) updateMPCC(-1);
-     
-        } 
-    
-    static boolean updateMPCC(int row)  //set row negative to use first currently selected row 
+
+        }
+
+    static boolean updateMPCC(int row)  //set row negative to use first currently selected row
         {
-        if (table == null) 
+        if (table == null)
             {
             return false;
             }
@@ -5448,7 +5448,7 @@ static public void updateColumnLists()
                 IJ.showMessage("Error: could not find JD table column '"+JDColumn+"'");
                 }
             return false;
-            }              
+            }
         int tableLength = table.getCounter();
         if (tableLength < 1) return false;
         if (row < 0)
@@ -5464,17 +5464,17 @@ static public void updateColumnLists()
             if (!Double.isNaN(jd))
                 {
                 returnCode = 0;
-                if (useGJD) 
+                if (useGJD)
                     {
                     acc.setTime(jd);
                     if (!processCoordinates(row)) return false;
                     }
-                else if (useHJD) 
+                else if (useHJD)
                     {
                     returnCode = acc.setHJDTime(jd);
                     if (returnCode == 0 && !processCoordinates(row)) return false;
                     }
-                else 
+                else
                     {
                     returnCode = acc.setBJDTime(jd);
                     if (returnCode == 0 && !processCoordinates(row)) return false;
@@ -5485,12 +5485,12 @@ static public void updateColumnLists()
                     IJ.showMessage("ERROR: Ohio State access failed when attempting to retrieve BJD(TDB).");
                     return false;
                     }
-                } 
+                }
             }
         return true;
         }
-    
-    
+
+
     static boolean processCoordinates(int row)
         {
         if (useTableRaDec)
@@ -5507,16 +5507,16 @@ static public void updateColumnLists()
                     IJ.showMessage("Error: could not find RA table column '"+raColumn+"'");
                     }
                 return false;
-                }                                 
+                }
             if (decCol == MeasurementTable.COLUMN_NOT_FOUND)
                 {
                 if (row < 1)
-                    {                
+                    {
                     IJ.beep();
                     IJ.showMessage("Error: could not find DEC table column '"+decColumn+"'");
                     }
                 return false;
-                }  
+                }
             double ra = table.getValueAsDouble(raCol, row);
             double dec = table.getValueAsDouble(decCol, row);
             if (!Double.isNaN(ra) && !Double.isNaN(dec))
@@ -5537,11 +5537,11 @@ static public void updateColumnLists()
             IJ.beep();
             IJ.showMessage("ERROR: Ohio State access failed when attempting to retrieve BJD(TDB).");
             return false;
-            }      
+            }
         return true;
         }
-    
-    
+
+
     static void getAstroPanelValues()
         {
         addAirmass = airmassCB.isSelected();
@@ -5551,7 +5551,7 @@ static public void updateColumnLists()
         addZenithDistance = zenithDistanceCB.isSelected();
         addGJD = gjdCB.isSelected();
         addHJD = hjdCB.isSelected();
-        addHJDCorr = hjdCorrCB.isSelected();                
+        addHJDCorr = hjdCorrCB.isSelected();
         addBJD = bjdCB.isSelected();
         addBJDCorr = bjdCorrCB.isSelected();
         addRaNow = raNowCB.isSelected();
@@ -5587,7 +5587,7 @@ static public void updateColumnLists()
         dec2000Name = dec2000Field.getText().trim();
         dec2000Name = dec2000Name.replace(' ', '_');
         }
-    
+
     public static void updateMPAstroConverter()
         {
         if (acc != null && addAstroDataFrame != null)
@@ -5595,7 +5595,7 @@ static public void updateColumnLists()
             jdcolumnbox.setSelectedItem(jdcolumnbox.getSelectedItem());
             }
         }
-    
+
     static int selectCurve()
         {
         GenericDialog gd;
@@ -5615,17 +5615,17 @@ static public void updateColumnLists()
             gd.addMessage ("At least one curve must be enabled for plotting.");
             gd.hideCancelButton();
             gd.showDialog();
-            return -1;               
+            return -1;
             }
         curves = Arrays.copyOf(curves, num);
         gd = new GenericDialog ("Select plot curve");
         gd.addChoice("Add data to table from curve:", curves, curves[0]);
         gd.showDialog();
-        if (gd.wasCanceled()) return -1; 
+        if (gd.wasCanceled()) return -1;
         String selection = gd.getNextChoice();
         return parseInteger(selection, 0) - 1;
         }
-    
+
     static void addNewColumn(int c, boolean main)
         {
         GenericDialog gd;
@@ -5635,22 +5635,22 @@ static public void updateColumnLists()
             gd.addMessage ("A table must be open and selected to add new columns.");
             gd.hideCancelButton();
             gd.showDialog();
-            return;            
+            return;
             }
         String xHeading = xlabel2[c];
         if (showXAxisAsPhase)
                 {
-                xHeading = "Phase"; 
+                xHeading = "Phase";
                 }
         else if (showXAxisAsDaysSinceTc)
                 {
-                xHeading = "DaysSinceTc"; 
-                }         
+                xHeading = "DaysSinceTc";
+                }
         else if (showXAxisAsHoursSinceTc)
                 {
-                xHeading = "HoursSinceTc"; 
-                }         
-        
+                xHeading = "HoursSinceTc";
+                }
+
         String yHeading = "";
         String yErrHeading = "";
         String modelHeading = "";
@@ -5682,7 +5682,7 @@ static public void updateColumnLists()
                 }
             }
         String suffix = "_"+(atLeastOne?"d":"")+(detrendFitIndex[c] == 9 && useTransitFit[c]?"f":"")+(normIndex[c] != 0 && !mmag[c]?"n":"");
-        
+
         if (!suffix.equals("_"))
             {
             yHeading += suffix;
@@ -5691,7 +5691,7 @@ static public void updateColumnLists()
         modelHeading = yHeading+"_model";
         residualHeading = yHeading+"_residual";
         residualErrHeading = yErrHeading+"_residual";
-        
+
         if (operatorIndex[c] == 5)
             {
             yHeading += usePixelScale ? "(arcsecs)" : "(pixels)";
@@ -5699,7 +5699,7 @@ static public void updateColumnLists()
             residualHeading += usePixelScale ? "(arcsecs)" : "(pixels)";
             residualErrHeading += usePixelScale ? "(arcsecs)" : "(pixels)";
             }
-        
+
         String magsuffix = "";
         if (mmag[c]) magsuffix += (mmag[firstCurve] && totalScaleFactor[firstCurve] == 1000 || totalScaleFactor[c] == 1000 ? "(mmag)" : "(mag)");
 
@@ -5712,7 +5712,7 @@ static public void updateColumnLists()
         if ((binSize[c] != 1))
             {
             String binsuffix = "(binSize="+binSize[c]+")";
-            xHeading += binsuffix; 
+            xHeading += binsuffix;
             yHeading += binsuffix;
             yErrHeading += binsuffix;
             modelHeading += binsuffix;
@@ -5732,7 +5732,7 @@ static public void updateColumnLists()
         if (hasErrors[c] || hasOpErrors[c])
             {
             gd.addCheckbox("Add new column from Y-error", saveNewYErrColumn);
-            gd.addStringField("New column name (from Y-error): ", yErrHeading, 40);            
+            gd.addStringField("New column name (from Y-error): ", yErrHeading, 40);
             }
         if (yModel1[c] != null && detrendFitIndex[c] == 9 && useTransitFit[c])
             {
@@ -5754,17 +5754,17 @@ static public void updateColumnLists()
 
         gd.addMessage ("***New data column(s) will be added to the open table.***\n***Save table to save new column(s) to disk.***");
         gd.showDialog();
-        if (gd.wasCanceled()) return; 
-        
+        if (gd.wasCanceled()) return;
+
         saveNewXColumn = gd.getNextBoolean();
         xHeading = gd.getNextString();
         saveNewYColumn = gd.getNextBoolean();
-        yHeading = gd.getNextString();     
+        yHeading = gd.getNextString();
         if (hasErrors[c] || hasOpErrors[c])
             {
             saveNewYErrColumn = gd.getNextBoolean();
-            yErrHeading = gd.getNextString();                 
-            }        
+            yErrHeading = gd.getNextString();
+            }
         if (yModel1[c] != null && detrendFitIndex[c] == 9 && useTransitFit[c])
             {
             saveNewModelColumn = gd.getNextBoolean();
@@ -5784,8 +5784,8 @@ static public void updateColumnLists()
         unshift = gd.getNextBoolean();
         table.setPrecision(6);
         int xColumn = ResultsTable.COLUMN_IN_USE;
-        int yColumn = ResultsTable.COLUMN_IN_USE; 
-        int yErrColumn = ResultsTable.COLUMN_IN_USE; 
+        int yColumn = ResultsTable.COLUMN_IN_USE;
+        int yErrColumn = ResultsTable.COLUMN_IN_USE;
         int modelColumn = ResultsTable.COLUMN_IN_USE;
         int residualColumn = ResultsTable.COLUMN_IN_USE;
         int residualErrColumn = ResultsTable.COLUMN_IN_USE;
@@ -5796,32 +5796,32 @@ static public void updateColumnLists()
 
         boolean yErrUsed = false;
         if (hasErrors[c] || hasOpErrors[c])
-            {        
+            {
             if (saveNewYErrColumn) yErrColumn = table.getFreeColumn(yErrHeading);
             yErrUsed = saveNewYErrColumn && (yErrColumn == ResultsTable.COLUMN_IN_USE);
             }
-        
+
         boolean modelUsed = false;
         if (yModel1[c] != null && detrendFitIndex[c] == 9 && useTransitFit[c])
-            {        
+            {
             if (saveNewModelColumn) modelColumn = table.getFreeColumn(modelHeading);
             modelUsed = saveNewModelColumn && (modelColumn == ResultsTable.COLUMN_IN_USE);
             }
-        
+
         boolean residualUsed = false;
         if (residual[c] != null && detrendFitIndex[c] == 9 && useTransitFit[c])
-            {        
+            {
             if (saveNewResidualColumn) residualColumn = table.getFreeColumn(residualHeading);
             residualUsed = saveNewResidualColumn && (residualColumn == ResultsTable.COLUMN_IN_USE);
             }
-        
+
         boolean residualErrUsed = false;
         if (yModel1Err[c] != null && detrendFitIndex[c] == 9 && useTransitFit[c])
-            {        
+            {
             if (saveNewResidualErrColumn) residualErrColumn = table.getFreeColumn(residualErrHeading);
             residualErrUsed = saveNewResidualErrColumn && (residualErrColumn == ResultsTable.COLUMN_IN_USE);
             }
-        
+
 //        if (xUsed || yUsed || yErrUsed || modelUsed || residualUsed || residualErrUsed)
 //            {
 //            gd = new GenericDialog ("Over-write existing data?", (main?mainFrame.getX():subFrame.getX())+100, (main?mainFrame.getY():subFrame.getY())+100);
@@ -5842,14 +5842,14 @@ static public void updateColumnLists()
                 for (int i=0; i<skipNum; i++)
                     {
                     table.setValue(xColumn, i, Double.NaN);
-                    }         
-                }            
+                    }
+                }
             if (showXAxisNormal && xlabel2[c].trim().startsWith("J.D.-2400000"))
                 {
                 for (int i=0; i<nn[c]; i++)
                     {
                     table.setValue(xColumn, i+skipNum, x[c][i]+xOffset-2400000.0);
-                    }                    
+                    }
                 }
             else if (showXAxisNormal && xlabel2[c].contains("J.D.") || xlabel2[c].contains("JD"))
                 {
@@ -5863,14 +5863,14 @@ static public void updateColumnLists()
                 for (int i=0; i<nn[c]; i++)
                     {
                     table.setValue(xColumn, i+skipNum, x[c][i]);
-                    }                
+                    }
                 }
             if (nn[c] < table.getCounter()-skipNum)
                 {
                 for (int i=nn[c]; i<table.getCounter()-skipNum; i++)
                     {
                     table.setValue(xColumn, i+skipNum, Double.NaN);
-                    }         
+                    }
                 }
             }
         if (saveNewYColumn)
@@ -5882,17 +5882,17 @@ static public void updateColumnLists()
                 for (int i=0; i<skipNum; i++)
                     {
                     table.setValue(yColumn, i, Double.NaN);
-                    }         
-                }             
+                    }
+                }
             if (ylabel[c].trim().startsWith("J.D.-2400000"))
                 {
                 for (int i=0; i<nn[c]; i++)
                     {
                     table.setValue(yColumn, i+skipNum, y[c][i]+yOffset-2400000.0);
-                    }                    
-                }            
+                    }
+                }
             else if (ylabel[c].contains("J.D.") || ylabel[c].contains("JD"))
-                {            
+                {
                 for (int i=0; i<nn[c]; i++)
                     {
                     table.setValue(yColumn, i+skipNum, y[c][i]+yOffset);
@@ -5921,9 +5921,9 @@ static public void updateColumnLists()
                 for (int i=nn[c]; i<table.getCounter()-skipNum; i++)
                     {
                     table.setValue(yColumn, i+skipNum, Double.NaN);
-                    }         
+                    }
                 }
-            }  
+            }
         if ((hasErrors[c] || hasOpErrors[c]) && saveNewYErrColumn)
             {
             yErrColumn = table.getColumnIndex(yErrHeading);
@@ -5932,21 +5932,21 @@ static public void updateColumnLists()
                 for (int i=0; i<skipNum; i++)
                     {
                     table.setValue(yErrColumn, i, Double.NaN);
-                    }         
-                }             
+                    }
+                }
             for (int i=0; i<nn[c]; i++)
                 {
                 //table.setValue(yErrColumn, i+skipNum, yerr[c][i]);
                 table.setValue(yErrColumn, i+skipNum, (unscale?1.0/totalScaleFactor[c]:1.0)*yerr[c][i]);
-                }                
+                }
             if (nn[c] < table.getCounter()-skipNum)
                 {
                 for (int i=nn[c]; i<table.getCounter()-skipNum; i++)
                     {
                     table.setValue(yErrColumn, i+skipNum, Double.NaN);
-                    }         
+                    }
                 }
-            }  
+            }
         skipNum = (binSize[c] == 1?skipNum:0)+ nFitTrim[c];
         if (saveNewModelColumn)
             {
@@ -5956,21 +5956,21 @@ static public void updateColumnLists()
                 for (int i=0; i<skipNum; i++)
                     {
                     table.setValue(modelColumn, i, Double.NaN);
-                    }         
-                }             
+                    }
+                }
             for (int i=0; i<yModel1[c].length; i++)
                 {
                 table.setValue(modelColumn, i+skipNum, yModel1[c][i]);
-                }                
+                }
 
             if (yModel1[c].length+skipNum < table.getCounter())
                 {
                 for (int i=yModel1[c].length+skipNum; i<table.getCounter(); i++)
                     {
                     table.setValue(modelColumn, i, Double.NaN);
-                    }         
+                    }
                 }
-            }  
+            }
         if (saveNewResidualColumn)
             {
             residualColumn = table.getColumnIndex(residualHeading);
@@ -5979,19 +5979,19 @@ static public void updateColumnLists()
                 for (int i=0; i<skipNum; i++)
                     {
                     table.setValue(residualColumn, i, Double.NaN);
-                    }         
-                }             
+                    }
+                }
             for (int i=0; i<residual[c].length; i++)
                 {
                 table.setValue(residualColumn, i+skipNum, residual[c][i]);
-                }                
+                }
 
             if (residual[c].length+skipNum < table.getCounter())
                 {
                 for (int i=residual[c].length+skipNum; i<table.getCounter(); i++)
                     {
                     table.setValue(residualColumn, i, Double.NaN);
-                    }         
+                    }
                 }
             }
         if (saveNewResidualErrColumn)
@@ -6002,19 +6002,19 @@ static public void updateColumnLists()
                 for (int i=0; i<skipNum; i++)
                     {
                     table.setValue(residualErrColumn, i, Double.NaN);
-                    }         
-                }             
+                    }
+                }
             for (int i=0; i<yModel1Err[c].length; i++)
                 {
                 table.setValue(residualErrColumn, i+skipNum, yModel1Err[c][i]);
-                }                
+                }
 
             if (yModel1Err[c].length+skipNum < table.getCounter())
                 {
                 for (int i=yModel1Err[c].length+skipNum; i<table.getCounter(); i++)
                     {
                     table.setValue(residualErrColumn, i, Double.NaN);
-                    }         
+                    }
                 }
             }
         table.show();
@@ -6026,21 +6026,21 @@ static public void updateColumnLists()
 		roi.setLineWidth(lineWidth);
 		list.addElement(roi);
                 }
-    
+
     static MouseListener shiftSpinnerMouseListener = new MouseListener() {
-        public void mouseClicked(MouseEvent e) 
+        public void mouseClicked(MouseEvent e)
             {
             }
 
-        public void mousePressed(MouseEvent e) 
+        public void mousePressed(MouseEvent e)
             {
             }
 
-        public void mouseReleased(MouseEvent e) 
+        public void mouseReleased(MouseEvent e)
             {
             int first = 0;
             int last = maxCurves;
-            if (e.isShiftDown()) 
+            if (e.isShiftDown())
                 {
                 for (int c=0; c<maxCurves; c++)
                     {
@@ -6092,33 +6092,33 @@ static public void updateColumnLists()
                 }
             }
 
-        public void mouseEntered(MouseEvent e) 
+        public void mouseEntered(MouseEvent e)
             {
             }
 
-        public void mouseExited(MouseEvent e) 
+        public void mouseExited(MouseEvent e)
             {
-       
+
             }
-    };    
-    
+    };
+
     static MouseMotionListener panelMouseMotionListener = new MouseMotionListener() {
-        public void mouseDragged(MouseEvent e) 
+        public void mouseDragged(MouseEvent e)
             {
             panelShiftDown = e.isShiftDown();
             panelAltDown = e.isAltDown();
-            panelControlDown = e.isControlDown(); 
+            panelControlDown = e.isControlDown();
             }
- 
+
         public void mouseMoved(MouseEvent e)
             {
             panelShiftDown = e.isShiftDown();
             panelAltDown = e.isAltDown();
-            panelControlDown = e.isControlDown();            
+            panelControlDown = e.isControlDown();
             }
     };
-    
-    
+
+
 
     static MouseListener plotMouseListener = new MouseListener() {
         public void mouseClicked(MouseEvent e) {
@@ -6164,8 +6164,8 @@ static public void updateColumnLists()
                 if (Math.sqrt((screenX-startDragScreenX)*(screenX-startDragScreenX) +      //check mouse click/drag threshold
                         (screenY-startDragScreenY)*(screenY-startDragScreenY)) < 4.0)
                         {
-                        if(e.getButton() == MouseEvent.BUTTON1)       //left mouse click release 
-                            {                                                       
+                        if(e.getButton() == MouseEvent.BUTTON1)       //left mouse click release
+                            {
                             if (e.isShiftDown() && !e.isAltDown() && !e.isControlDown())  //shift+left-click (remove selected table row)
                                 {
                                 selectedRowStart=tpanel.getSelectionStart();
@@ -6243,7 +6243,7 @@ static public void updateColumnLists()
                                         }
                                     selectedRowStart+=binSize[firstCurve];
                                     selectedRowEnd+=binSize[firstCurve];
-                                    
+
                                     }
                                 else
                                     { //restore last row in table
@@ -6330,7 +6330,7 @@ static public void updateColumnLists()
                            else if (e.isControlDown()) // control right-drag (update vertical marker 3 or 4 position)
                                 {
                                 handleControlRightClickDrag(e, imageX, imageY);
-                                }                             
+                                }
                             }
                         else if ((e.getModifiers() & MouseEvent.BUTTON2_MASK) != 0)        // dragging with middle mouse button
                                 {                                                          // measure distance, show on plot and status bar
@@ -6384,15 +6384,15 @@ static public void updateColumnLists()
                                     }
                                 else if (e.isControlDown()) // control left-drag (update left detrend position)
                                     {
-                                    handleControlLeftClickDrag(e, imageX, imageY);   
-                                    }                                
+                                    handleControlLeftClickDrag(e, imageX, imageY);
+                                    }
                                 }
                         }
                 }
 
- 
+
         public void mouseMoved(MouseEvent e) {
-                
+
                 int imageX = plotImageCanvas.offScreenX(e.getX());
                 int imageY = plotImageCanvas.offScreenY(e.getY());
                 double xval = plotMinX + (double)(imageX - (Plot.LEFT_MARGIN)) * (plotMaxX - plotMinX)/(double)(plotSizeX - (Plot.LEFT_MARGIN+Plot.RIGHT_MARGIN));
@@ -6434,7 +6434,7 @@ static public void updateColumnLists()
                     }
                 }
     };
-        
+
         static public void handleControlLeftClickDrag(MouseEvent e, int imageX, int imageY)
             {
             double x = plotMinX + (double)(imageX - (Plot.LEFT_MARGIN)) * (plotMaxX - plotMinX)/(double)(plotSizeX - (Plot.LEFT_MARGIN+Plot.RIGHT_MARGIN));
@@ -6457,7 +6457,7 @@ static public void updateColumnLists()
                 {
                 dmarker1spinner.setValue(x);
                 alreadyMoved = true;
-                }               
+                }
             if (showDMarkers && x > dMarker4Value - delta && x < dMarker4Value + delta)
                 {
                 dmarker4spinner.setValue(x);
@@ -6480,11 +6480,11 @@ static public void updateColumnLists()
                     }
                 }
             plotcoordlabel.setText("x="+fourPlaces.format(x)+", y="+fourPlaces.format(y));
-            IJ.showStatus("plot coordinates: x="+fourPlaces.format(x)+", y="+fourPlaces.format(y));             
+            IJ.showStatus("plot coordinates: x="+fourPlaces.format(x)+", y="+fourPlaces.format(y));
             }
-        
+
         static public void handleControlRightClickDrag(MouseEvent e, int imageX, int imageY)
-            {        
+            {
             double x = plotMinX + (double)(imageX - (Plot.LEFT_MARGIN)) * (plotMaxX - plotMinX)/(double)(plotSizeX - (Plot.LEFT_MARGIN+Plot.RIGHT_MARGIN));
             double y = plotMaxY - (double)(imageY - (Plot.TOP_MARGIN)) * (plotMaxY - plotMinY)/(double)(plotSizeY - (Plot.TOP_MARGIN+Plot.BOTTOM_MARGIN));
             showDMarkersCB.setSelected(true);
@@ -6492,7 +6492,7 @@ static public void updateColumnLists()
             if (e.isShiftDown()) //update vertical marker 4 position
                 {
                 useDMarker4CB.setSelected(true);
-                useDMarker4 = true;                                    
+                useDMarker4 = true;
                 dmarker4spinner.setValue(x);
                 }
             else                 //update vertical marker 3 position
@@ -6502,18 +6502,18 @@ static public void updateColumnLists()
                 dmarker3spinner.setValue(x);
                 }
             plotcoordlabel.setText("x="+fourPlaces.format(x)+", y="+fourPlaces.format(y));
-            IJ.showStatus("plot coordinates: x="+fourPlaces.format(x)+", y="+fourPlaces.format(y));   
+            IJ.showStatus("plot coordinates: x="+fourPlaces.format(x)+", y="+fourPlaces.format(y));
             }
-        
+
     public static void updateStack()
         {
         ImageWindow iw = null;
         ImageStack imstack = null;
         iplus = IJ.getImage();
         sliceCol = table.getColumnIndex("slice");
-        
+
         int row1Slice = 0;
-        if (sliceCol != MeasurementTable.COLUMN_NOT_FOUND) 
+        if (sliceCol != MeasurementTable.COLUMN_NOT_FOUND)
             row1Slice = (int)table.getValueAsDouble(sliceCol, 0);
         if (iplus != null)
             {
@@ -6527,13 +6527,13 @@ static public void updateColumnLists()
                 return;
                 }
             }
-        if (WindowManager.getWindowCount()> 0) 
+        if (WindowManager.getWindowCount()> 0)
             {
             int[] ID = WindowManager.getIDList();
             for (int win = 0; win < ID.length; win++)
                 {
                 iplus = WindowManager.getImage(ID[win]);
-                if (iplus != null) 
+                if (iplus != null)
                     {
                     iw = iplus.getWindow();
                     imstack = iplus.getStack();
@@ -6551,7 +6551,7 @@ static public void updateColumnLists()
                 }
             }
         }
-    
+
     static void updateSlice()
         {
         Thread t = new Thread()
@@ -6573,8 +6573,8 @@ static public void updateColumnLists()
             };
         t.start();
         }
-    
-    
+
+
     static MouseWheelListener plotMouseWheelListener = new MouseWheelListener() {
         public void mouseWheelMoved( MouseWheelEvent e )
                 {
@@ -6660,7 +6660,7 @@ static void initializeVariables()
         addAltitude = true;
         addAzimuth = false;
         addBJD = true;
-        addBJDCorr = false; 
+        addBJDCorr = false;
         addDecNow = false;
         addRaNow = false;
         addDec2000 = false;
@@ -6669,7 +6669,7 @@ static void initializeVariables()
         addGJD = false;
         addHJDCorr = false;
         addHourAngle = false;
-        addZenithDistance = false;        
+        addZenithDistance = false;
         prioritizeColumns = true;
         updatePlotEnabled = true;
         disableUpdatePlotBox = false;
@@ -6704,12 +6704,12 @@ static void initializeVariables()
         saveFitPanelText = true;
         saveDataSubset = true;
         showDataSubsetPanel = true;
-        saveAllPNG = true;    
+        saveAllPNG = true;
         unscale = true;
         unshift = true;
         imageSuffix = "_field";
         aperSuffix = "_measurements";
-        logSuffix = "_calibration"; 
+        logSuffix = "_calibration";
         fitPanelSuffix = "_fitpanel";
         fitPanelTextSuffix = "_fitpanel";
         dataSubsetSuffix = "_datasubset";
@@ -6801,12 +6801,12 @@ static void initializeVariables()
         selectedRow = -1;
         panelShiftDown = false;
         panelControlDown = false;
-        panelAltDown = false;     
+        panelAltDown = false;
         keepFileNamesOnAppend = true;
         updatePlotRunning = false;
         boldedDatum=-1;
         pixelScale = 1.0;
-        
+
         orbitalPeriodStep = 0.1;
         eccentricityStep = 0.01;
         omegaStep = 1.0;
@@ -6834,15 +6834,15 @@ static void initializeVariables()
         subFrameLocationX = 40;
         subFrameLocationY = 40;
         refStarFrameLocationX = 40;
-        refStarFrameLocationY = 40;     
+        refStarFrameLocationY = 40;
         addAstroDataFrameLocationX = -100000;  //force offscreen
-        addAstroDataFrameLocationY = -100000;  //force offscreen      
+        addAstroDataFrameLocationY = -100000;  //force offscreen
         plotFrameLocationX = 40;
         plotFrameLocationY = 40;
         mainFrameWidth = 0;
         mainFrameHeight = 0;
         subFrameWidth = 0;
-        subFrameHeight = 0;        
+        subFrameHeight = 0;
 
         excludedHeadSamples = 0;
         excludedTailSamples = 0;
@@ -6870,13 +6870,13 @@ static void initializeVariables()
         tableName = "Results";
         list = new Vector<Roi>();
         path = new GeneralPath();
-        
+
 //        symbols = fourPlaces.getDecimalFormatSymbols();
-//        decSep = symbols.getDecimalSeparator();  
-//        thouSep = symbols.getGroupingSeparator();  
-        
+//        decSep = symbols.getDecimalSeparator();
+//        thouSep = symbols.getGroupingSeparator();
+
         delayedUpdateTask = null;
-        delayedUpdateTimer = null;        
+        delayedUpdateTimer = null;
 
         markers = new String[]
                 {
@@ -6919,7 +6919,7 @@ static void initializeVariables()
                 createImageIcon("astroj/images/norm_right2.png", "Normalize based on data right of vertical marker 1"),   // 6
                 createImageIcon("astroj/images/norm_all.png", "Normalize based on all data"),                             // 7
                 };
-        
+
         detrendiconlist = new ImageIcon[]
                 {
                 createImageIcon("astroj/images/norm_off.png", "Do not use detrending"),                                 // 0
@@ -6932,7 +6932,7 @@ static void initializeVariables()
                 createImageIcon("astroj/images/detrend_right2.png", "Detrend based on data right of vertical marker 1"),   // 7
                 createImageIcon("astroj/images/detrend_all.png", "Detrend based on all data"),                             // 8
                 createImageIcon("astroj/images/detrend_fit_transit.png", "Fit exoplanet transit to all data"),                 // 9
-                };        
+                };
 
         operators = new String[]
                 {
@@ -7014,11 +7014,11 @@ static void initializeVariables()
                 nn = new int[maxCurves];
                 nnr = new int[maxCurves];
                 nFitTrim =  new int[maxCurves];
-                
+
                 yAverage = new double[maxCurves];
                 yBaselineAverage = new double[maxCurves];
                 yDepthEstimate = new double[maxCurves];
-                detrendYAverage = new double[maxCurves];                
+                detrendYAverage = new double[maxCurves];
                 xlabel2 = new String[maxCurves];
                 detrendlabel = new String[maxCurves][maxDetrendVars];
                 detrendlabelhold = new String[maxCurves][maxDetrendVars];
@@ -7029,11 +7029,11 @@ static void initializeVariables()
                 yModel1 = new double[maxCurves][];
                 yModel1Err = new double[maxCurves][];
                 yModel2 = new double[maxCurves][];
-                
+
                 lcModel = new double[maxCurves][];
                 residual = new double[maxCurves][];
                 plottedResidual = new double[maxCurves][];
-                
+
                 start = new double[maxCurves][];
                 width = new double[maxCurves][];
                 step = new double[maxCurves][];
@@ -7055,12 +7055,12 @@ static void initializeVariables()
                 planetRadius = new double[maxCurves];
                 spectralType = new String[maxCurves];
                 bic = new double[maxCurves];
-                chi2 = new double[maxCurves]; 
+                chi2 = new double[maxCurves];
                 fitMin = new double[maxCurves];
                 fitMax = new double[maxCurves];
                 fitLeft = new double[maxCurves];
                 fitRight = new double[maxCurves];
-                                
+
                 orbitalPeriod = new double[maxCurves];
                 eccentricity = new double[maxCurves];
                 omega = new double[maxCurves];
@@ -7076,7 +7076,7 @@ static void initializeVariables()
                 mStarSpinner = new JSpinner[maxCurves];
                 rStarSpinner = new JSpinner[maxCurves];
                 rhoStarSpinner = new JSpinner[maxCurves];
-                tolerance = new double[maxCurves]; 
+                tolerance = new double[maxCurves];
                 toleranceSpinner = new JSpinner[maxCurves];
                 residualShiftSpinner = new JSpinner[maxCurves];
                 extractPriorsButton = new JButton[maxCurves];
@@ -7091,7 +7091,7 @@ static void initializeVariables()
                 useTransitFit = new boolean[maxCurves];
                 showLTranParams = new boolean[maxCurves];
                 showLResidual  = new boolean[maxCurves];
-                
+
                 autoUpdateFit = new boolean[maxCurves];
                 showModel = new boolean[maxCurves];
                 showResidual = new boolean[maxCurves];
@@ -7100,7 +7100,7 @@ static void initializeVariables()
                 useTransitFitCB = new JCheckBox[maxCurves];
                 showLTranParamsCB = new JCheckBox[maxCurves];
                 showLResidualCB = new JCheckBox[maxCurves];
-                
+
                 fitMenuBar = new JMenuBar[maxCurves];
                 fitFileMenu = new JMenu[maxCurves];
                 autoPriorsMenu = new JMenu[maxCurves];
@@ -7118,7 +7118,7 @@ static void initializeVariables()
                 showModelCB = new JCheckBox[maxCurves];
                 showResidualCB = new JCheckBox[maxCurves];
                 showResidualErrorCB = new JCheckBox[maxCurves];
-                
+
                 useCustomFitStep = new boolean[maxCurves][maxFittedVars];
                 useCustomFitStepCB = new JCheckBox[maxCurves][maxFittedVars];
                 isFitted = new boolean[maxCurves][maxFittedVars];
@@ -7130,7 +7130,7 @@ static void initializeVariables()
                 priorCenterStepSpinner = new JSpinner[maxFittedVars];
                 priorCenterStepPopup = new JPopupMenu[maxFittedVars];
                 priorCenterStepPanel = new JPanel[maxFittedVars];
-                
+
                 usePriorWidth = new boolean[maxCurves][maxFittedVars];
                 usePriorWidthCB = new JCheckBox[maxCurves][maxFittedVars];
                 priorWidth = new double[maxCurves][maxFittedVars];
@@ -7139,7 +7139,7 @@ static void initializeVariables()
                 priorWidthStepSpinner = new JSpinner[maxFittedVars];
                 priorWidthStepPopup = new JPopupMenu[maxFittedVars];
                 priorWidthStepPanel = new JPanel[maxFittedVars];
-                
+
                 fitStep = new double[maxCurves][maxFittedVars];
                 fitStepStep = new double[maxFittedVars];
                 fitStepSpinner = new JSpinner[maxCurves][maxFittedVars];
@@ -7148,7 +7148,7 @@ static void initializeVariables()
                 fitStepStepPanel = new JPanel[maxFittedVars];
                 defaultFitStep = new double[maxFittedVars];
 
-                
+
                 chi2dofLabel = new JTextField[maxCurves];
                 dofLabel = new JTextField[maxCurves];
                 chi2Label = new JTextField[maxCurves];
@@ -7165,15 +7165,15 @@ static void initializeVariables()
                 planetRadiusLabel = new JTextField[maxCurves];
                 spectralTypeLabel = new JTextField[maxCurves];
                 stepsTakenLabel = new JTextField[maxCurves];
-               
-                bestFit = new double[maxCurves][maxFittedVars]; 
+
+                bestFit = new double[maxCurves][maxFittedVars];
                 bestFitLabel = new JTextField[maxCurves][maxFittedVars];
-                
+
                 fitDetrendComboBox = new JComboBox[maxCurves][maxDetrendVars];
                 useFitDetrendCB = new JCheckBox[maxCurves][maxDetrendVars];
-                
+
                 fitNowButton = new JButton[maxCurves];
-                
+
                 fitFrame = new JFrame[maxCurves];
                 fitPanel = new JPanel[maxCurves];
                 minimization = new Minimization();
@@ -7181,7 +7181,7 @@ static void initializeVariables()
                 fitFrameLocationX = new int[maxCurves];
                 fitFrameLocationY = new int[maxCurves];
                 setupDataBuffers();
-                
+
                 detrendVarDisplayed = new int[maxCurves];
                 xlabel = new String[maxCurves];
                 ylabel = new String[maxCurves];
@@ -7230,7 +7230,7 @@ static void initializeVariables()
                 customShiftFactor = new double[maxCurves];
                 customShiftStep = new double[maxCurves];
                 detrendFactor = new double[maxCurves][maxDetrendVars];
-                detrendFactorStep = new double[maxCurves][maxDetrendVars];                
+                detrendFactorStep = new double[maxCurves][maxDetrendVars];
                 baseline = new double[maxCurves];
                 subtotalScaleFactor = new double[maxCurves];
                 subtotalShiftFactor = new double[maxCurves];
@@ -7316,7 +7316,7 @@ static void initializeVariables()
                 customscalemodel = new SpinnerModel[maxCurves];
                 customscalestepmodel = new SpinnerModel[maxCurves];
                 detrendfactormodel = new SpinnerModel[maxCurves];
-                detrendfactorstepmodel = new SpinnerModel[maxCurves];                
+                detrendfactorstepmodel = new SpinnerModel[maxCurves];
                 autoshiftspinner = new JSpinner[maxCurves];
                 autoshiftstepspinner = new JSpinner[maxCurves];
                 autoscalespinner  = new JSpinner[maxCurves];
@@ -7326,7 +7326,7 @@ static void initializeVariables()
                 customscalespinner = new JSpinner[maxCurves];
                 customscalestepspinner = new JSpinner[maxCurves];
                 detrendfactorspinner = new JSpinner[maxCurves];
-                detrendfactorstepspinner = new JSpinner[maxCurves];                
+                detrendfactorstepspinner = new JSpinner[maxCurves];
                 autoscalesteppopup = new JPopupMenu[maxCurves];
                 autoshiftsteppopup = new JPopupMenu[maxCurves];
                 customscalesteppopup = new JPopupMenu[maxCurves];
@@ -7353,8 +7353,8 @@ static void initializeVariables()
 //                customshifteditor = new JSpinner.NumberEditor[maxCurves];
 //                customshiftformat = new DecimalFormat[maxCurves];
 //                detrendfactoreditor = new JSpinner.NumberEditor[maxCurves];
-//                detrendfactorformat = new DecimalFormat[maxCurves];  
-              
+//                detrendfactorformat = new DecimalFormat[maxCurves];
+
 
                 //INITIALIZE CERTAIN ARRAYS
                 defaultFitStep[0] = 0.1;
@@ -7370,8 +7370,8 @@ static void initializeVariables()
                         {
                         defaultFitStep[j] = 0.1;
                         }
-                    }                
-                
+                    }
+
 //                residualShiftStep = 0.001;
                 for (int i=0; i<maxCurves; i++)
                         {
@@ -7384,7 +7384,7 @@ static void initializeVariables()
                         modelColorIndex[i] = (7+i)%colors.length;
                         residualModelColorIndex[i] = (7+i)%colors.length;
                         residualColorIndex[i] = (7+i)%colors.length;
-                        
+
                         markerIndex[i] = 3;   //default to dot
                         residualSymbolIndex[i] = 3;
 //                        detrendFit[i] = true;
@@ -7446,7 +7446,7 @@ static void initializeVariables()
                         useCustomFitStep[i][0] = false;
                         fitStep[i][0] = 0.1;
                         fitStepStep[0] = 0.1;
-                        
+
                         priorCenter[i][1] = 0.010;    // depth = (r_p/r_*)^2
                         priorCenterStep[1] = 0.001;
                         priorWidth[i][1] = 0.010;
@@ -7455,7 +7455,7 @@ static void initializeVariables()
                         useCustomFitStep[i][1] = false;
                         fitStep[i][1] = 0.1;
                         fitStepStep[1] = 0.1;
-                        
+
                         priorCenter[i][2] = 10.0;   // a/r_*
                         priorCenterStep[2] = 1.0;
                         priorWidth[i][2] = 7;
@@ -7464,7 +7464,7 @@ static void initializeVariables()
                         useCustomFitStep[i][2] = false;
                         fitStep[i][2] = 1.0;
                         fitStepStep[2] = 0.1;
-                        
+
                         priorCenter[i][3] = 2456500;  // tc = transit center time
                         priorCenterStep[3] = 0.001;
                         priorWidth[i][3] = 0.015;
@@ -7473,16 +7473,16 @@ static void initializeVariables()
                         useCustomFitStep[i][3] = false;
                         fitStep[i][3] = 0.01;
                         fitStepStep[3] = 0.01;
-                        
-                        priorCenter[i][4] = 88.0;  // inclination 
+
+                        priorCenter[i][4] = 88.0;  // inclination
                         priorCenterStep[4] = 1.0;
                         priorWidth[i][4] = 15;
                         priorWidthStep[4] = 1;
                         usePriorWidth[i][4] = false;
                         useCustomFitStep[i][4] = false;
-                        fitStep[i][4] = 1.0; 
+                        fitStep[i][4] = 1.0;
                         fitStepStep[4] = 1.0;
-                        
+
                         priorCenter[i][5] = 0.3;  // u1
                         priorCenterStep[5] = 0.1;
                         priorWidth[i][5] = 1.0;
@@ -7491,16 +7491,16 @@ static void initializeVariables()
                         useCustomFitStep[i][5] = false;
                         fitStep[i][5] = 1.0;
                         fitStepStep[5] = 0.1;
-                        
+
                         priorCenter[i][6] = 0.3;  // u2
                         priorCenterStep[6] = 0.1;
                         priorWidth[i][6] = 1.0;
                         priorWidthStep[6] = 0.1;
                         usePriorWidth[i][6] = false;
                         useCustomFitStep[i][6] = false;
-                        fitStep[i][6] = 1.0; 
+                        fitStep[i][6] = 1.0;
                         fitStepStep[6] = 0.1;
-                        
+
                         if (priorCenter[i].length > 7)
                             {
                             for (int j=7; j<priorCenter[i].length; j++)  //detrend1, detrend2, ...
@@ -7515,9 +7515,9 @@ static void initializeVariables()
                                 fitStepStep[j] = 0.1;
                                 }
                             }
-                        
 
-                        
+
+
                         autoScaleFactor[i] = 0.2;
                         autoScaleStep[i] = 1;
                         autoShiftFactor[i] = 0-i*10;
@@ -7534,10 +7534,10 @@ static void initializeVariables()
                         detrendFitIndex[i] = 0;
                         for (int v = 0; v <maxDetrendVars; v++)
                             {
-                            detrendlabel[i][v] = ""; 
-                            detrendlabelhold[i][v] = ""; 
-                            detrendFactor[i][v] = 0;  
-                            detrendFactorStep[i][v] = 0.01;    
+                            detrendlabel[i][v] = "";
+                            detrendlabelhold[i][v] = "";
+                            detrendFactor[i][v] = 0;
+                            detrendFactorStep[i][v] = 0.01;
                             detrendIndex[i][v] = 0;
                             }
                         }
@@ -7600,7 +7600,7 @@ static void initializeVariables()
 	static double minOf(double[] arr, double[] err, int n)
 		{
         double mn = Double.POSITIVE_INFINITY;
-        double value = 0; 
+        double value = 0;
 		for (int i=0; i < n; i++)
             {
             if (!Double.isNaN(arr[i]) && !Double.isNaN(err[i]))
@@ -7618,7 +7618,7 @@ static void initializeVariables()
 	static double maxOf(double[] arr, double[] err, int n)
 		{
 		double mx = Double.NEGATIVE_INFINITY;
-        double value = 0; 
+        double value = 0;
 		for (int i=0; i < n; i++)
             {
             if (!Double.isNaN(arr[i]) && !Double.isNaN(err[i]))
@@ -7628,15 +7628,15 @@ static void initializeVariables()
                 }
             }
 		return mx;
-		}   
-    
+		}
+
     /**
 	 * Returns minimum of double array.
 	 */
 	static double resMinOf(double[] arr, int n, double shift)
 		{
         double mn = Double.POSITIVE_INFINITY;
-        double value = 0; 
+        double value = 0;
 		for (int i=0; i < n; i++)
             {
             if (!Double.isNaN(arr[i]))
@@ -7654,7 +7654,7 @@ static void initializeVariables()
 	static double resMaxOf(double[] arr, int n, double shift)
 		{
 		double mx = Double.NEGATIVE_INFINITY;
-        double value = 0; 
+        double value = 0;
 		for (int i=0; i < n; i++)
             {
             if (!Double.isNaN(arr[i]))
@@ -7672,7 +7672,7 @@ static void initializeVariables()
 	static double resMinOf(double[] arr, double[] err, int n, double shift)
 		{
         double mn = Double.POSITIVE_INFINITY;
-        double value = 0; 
+        double value = 0;
 		for (int i=0; i < n; i++)
             {
             if (!Double.isNaN(arr[i]) && !Double.isNaN(err[i]))
@@ -7690,7 +7690,7 @@ static void initializeVariables()
 	static double resMaxOf(double[] arr, double[] err, int n, double shift)
 		{
 		double mx = Double.NEGATIVE_INFINITY;
-        double value = 0; 
+        double value = 0;
 		for (int i=0; i < n; i++)
             {
             if (!Double.isNaN(arr[i]) && !Double.isNaN(err[i]))
@@ -7700,9 +7700,9 @@ static void initializeVariables()
                 }
             }
 		return mx;
-		}     
-    
-    
+		}
+
+
     static Color colorOf(int ci)
             {
             Color cmkr;
@@ -7745,7 +7745,7 @@ static void initializeVariables()
 
 
         static String scaleShiftText(boolean relative, boolean showScale, boolean showShift, boolean usemmag, boolean showmmaginfo, double scale, double shift)
-                {  
+                {
                 String shiftText = "";
                 String scaleText = "";
                 DecimalFormat Eformatter = new DecimalFormat("0.###E0", IJU.dfs);
@@ -7792,11 +7792,11 @@ static void initializeVariables()
                 else if (relative && showScale && !showShift)
                     {
                     shiftText = " (arbitrarily shifted)";
-                    }                
+                    }
                 return scaleText + shiftText;
                 }
-        
-        
+
+
 
         static String convertToText(double increment)
                 {
@@ -7857,23 +7857,23 @@ static void initializeVariables()
                 JSpinner.NumberEditor ed = (JSpinner.NumberEditor)spinner.getEditor();
                 String text = ed.getTextField().getText();
 //                IJ.log("Original Text = "+text);
-                double dValue = Tools.parseDouble(text); 
+                double dValue = Tools.parseDouble(text);
                 if (Double.isNaN(dValue))
                     {
 //                    IJ.log("Not a number");
                     Double value = 0.5;
                     String[] pieces = text.replaceAll("[^0-9\\.]{1,}", " ").trim().split("[^0-9\\.]{1,}");
-                    if (pieces.length > 0 && !pieces[0].trim().equals("")) 
+                    if (pieces.length > 0 && !pieces[0].trim().equals(""))
                         {
 //                        IJ.log("pieces[0]="+pieces[0]);
                         value += Tools.parseDouble(pieces[0], 0)/24.0;
                         }
-                    if (pieces.length > 1 && !pieces[1].trim().equals("")) 
+                    if (pieces.length > 1 && !pieces[1].trim().equals(""))
                         {
 //                        IJ.log("pieces[1]="+pieces[1]);
                         value += Tools.parseDouble(pieces[1], 0)/1440.0;
                         }
-                    if (pieces.length > 2 && !pieces[2].trim().equals("")) 
+                    if (pieces.length > 2 && !pieces[2].trim().equals(""))
                         {
 //                        IJ.log("pieces[2]="+pieces[2]);
                         value += Tools.parseDouble(pieces[2], 0)/86400.0;
@@ -7892,10 +7892,10 @@ static void initializeVariables()
                         }
                     }
                 }
-       
 
-       
-       
+
+
+
        static void keepMarkersInOrder(int marker)
            {
            if (marker == 1)
@@ -7903,7 +7903,7 @@ static void initializeVariables()
                if (dMarker1Value > dMarker2Value)
                    {
                    dmarker2spinner.setValue(dMarker1Value);
-                   dMarker2Value = dMarker1Value;                   
+                   dMarker2Value = dMarker1Value;
                    }
                if (dMarker1Value > dMarker3Value)
                    {
@@ -7921,7 +7921,7 @@ static void initializeVariables()
                if (dMarker2Value < dMarker1Value)
                    {
                    dmarker1spinner.setValue(dMarker2Value);
-                   dMarker1Value = dMarker2Value;                   
+                   dMarker1Value = dMarker2Value;
                    }
                if (dMarker2Value > dMarker3Value)
                    {
@@ -7933,13 +7933,13 @@ static void initializeVariables()
                    dmarker4spinner.setValue(dMarker2Value);
                    dMarker4Value = dMarker2Value;
                    }
-               } 
+               }
            if (marker == 3)
                {
                if (dMarker3Value < dMarker1Value)
                    {
                    dmarker1spinner.setValue(dMarker3Value);
-                   dMarker1Value = dMarker3Value;                   
+                   dMarker1Value = dMarker3Value;
                    }
                if (dMarker3Value < dMarker2Value)
                    {
@@ -7951,13 +7951,13 @@ static void initializeVariables()
                    dmarker4spinner.setValue(dMarker3Value);
                    dMarker4Value = dMarker3Value;
                    }
-               }    
+               }
            if (marker == 4)
                {
                if (dMarker4Value < dMarker1Value)
                    {
                    dmarker1spinner.setValue(dMarker4Value);
-                   dMarker1Value = dMarker4Value;                   
+                   dMarker1Value = dMarker4Value;
                    }
                if (dMarker4Value < dMarker2Value)
                    {
@@ -7969,7 +7969,7 @@ static void initializeVariables()
                    dmarker3spinner.setValue(dMarker4Value);
                    dMarker3Value = dMarker4Value;
                    }
-               }           
+               }
            }
 
 
@@ -7985,7 +7985,7 @@ static void initializeVariables()
                     @Override
                     public void windowClosing(WindowEvent e){
                     saveAndClose();}});
-                
+
                 mainpanel = new JPanel (new SpringLayout());
 //                mainpanel.addMouseListener(panelMouseListener);
                 mainpanel.addMouseMotionListener(panelMouseMotionListener);
@@ -7995,16 +7995,16 @@ static void initializeVariables()
                         openDragAndDropFiles(files);
                         }
                     });
-               
-                
+
+
                 mainscrollpane = new JScrollPane(mainpanel);
-                
+
                 mainmenubar = new JMenuBar();
                 filemenu = new JMenu("  File      ");
                 preferencesmenu = new JMenu("Preferences    ");
-                
+
                 mainpanelgroupa = new JPanel (new SpringLayout());
-                
+
                 mainpanelgroupa.setBorder(dataSectionBorder);
                 JPanel mainpanelgroupb = new JPanel (new SpringLayout());
                 mainpanelgroupb.setBorder(BorderFactory.createTitledBorder("Data Options"));
@@ -8044,14 +8044,14 @@ static void initializeVariables()
                 appendtablerowsmenuitem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                             appendDataAsRows(false, null); }});
-                filemenu.add(appendtablerowsmenuitem);                
+                filemenu.add(appendtablerowsmenuitem);
 
                 JMenuItem appendtablecolumnssmenuitem = new JMenuItem("Append open table as new columns...");
                 appendtablecolumnssmenuitem.setToolTipText("<html>"+"select a table that is already open to append to current table"+"</html>");
                 appendtablecolumnssmenuitem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                             appendDataAsColumns(false, null); }});
-                filemenu.add(appendtablecolumnssmenuitem); 
+                filemenu.add(appendtablecolumnssmenuitem);
                 filemenu.addSeparator();
 
                 opendatamenuitem = new JMenuItem("Open table from file...");
@@ -8066,7 +8066,7 @@ static void initializeVariables()
                     public void actionPerformed(ActionEvent e) {
                             openData(); }});
                 filemenu.add(opendatamenuitem);
-                
+
                 JMenuItem appenddatarowsmenuitem = new JMenuItem("Append table from file as new rows...");
                 appenddatarowsmenuitem.setToolTipText("<html>"+"default input format = tab delimited, or use"+"<br>"+
                     "filename.csv = comma delimited"+"<br>"+
@@ -8079,7 +8079,7 @@ static void initializeVariables()
                     public void actionPerformed(ActionEvent e) {
                             appendDataAsRows(true, null); }});
                 filemenu.add(appenddatarowsmenuitem);
-                
+
                 JMenuItem appenddatacolumnsmenuitem = new JMenuItem("Append table from file as new columns...");
                 appenddatacolumnsmenuitem.setToolTipText("<html>"+"default input format = tab delimited, or use"+"<br>"+
                     "filename.csv = comma delimited"+"<br>"+
@@ -8092,7 +8092,7 @@ static void initializeVariables()
                     public void actionPerformed(ActionEvent e) {
                             appendDataAsColumns(true, null); }});
                 filemenu.add(appenddatacolumnsmenuitem);
-                
+
                 openplotconfigmenuitem = new JMenuItem("Open plot configuration from file...");
                 openplotconfigmenuitem.setToolTipText("<html>"+"opens a previously saved plot configuration<br>"+
                                                                "from a user selected file</html>");
@@ -8110,7 +8110,7 @@ static void initializeVariables()
                     public void actionPerformed(ActionEvent e) {
                             openDataAndConfig(null); }});
                 filemenu.add(opendataconfigmenuitem);
-               
+
                 filemenu.addSeparator();
 
                 savedatamenuitem = new JMenuItem("Save data to file...");
@@ -8126,8 +8126,8 @@ static void initializeVariables()
                     public void actionPerformed(ActionEvent e) {
                             saveDataSubsetDialog(null); }});
                 filemenu.add(savedatasubsetmenuitem);
-                
-               
+
+
                 JMenuItem saveimagepngmenuitem = new JMenuItem("Save plot image as PNG...");
                 saveimagepngmenuitem.setToolTipText("<html>"+"saves plot image as a .png file"+"</html>");
                 saveimagepngmenuitem.addActionListener(new ActionListener() {
@@ -8150,59 +8150,59 @@ static void initializeVariables()
                 filemenu.add(saveplotconfigmenuitem);
 
                 filemenu.addSeparator();
-                
+
                 JMenuItem createNEBReportMenuItem = new JMenuItem("Create NEB search reports and plots...");
                 createNEBReportMenuItem.setToolTipText("<html>"+"Create NEB search reports and plots.<br>");
                 createNEBReportMenuItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                             ij.plugin.Macro_Runner.runMacroFromJar("NEBSearchMacro.txt",""); }});
-                filemenu.add(createNEBReportMenuItem); 
-                
+                filemenu.add(createNEBReportMenuItem);
+
                 JMenuItem createAAVSOReportMenuItem = new JMenuItem("Create AAVSO Exoplanet Database formatted data...");
                 createAAVSOReportMenuItem.setToolTipText("<html>"+"Create AAVSO formatted data for submission to the AAVSO Exoplanet Database.</html>");
                 createAAVSOReportMenuItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                             ij.plugin.Macro_Runner.runMacroFromJar("AAVSO_Exoplanet_Format.txt",""); }});
-                filemenu.add(createAAVSOReportMenuItem); 
-                
+                filemenu.add(createAAVSOReportMenuItem);
+
 //                JMenuItem createDmagVsRMSPlotMenuItem = new JMenuItem("Create Delta-magnitude vs. RMS plot...");
 //                createDmagVsRMSPlotMenuItem.setToolTipText("<html>"+"Create a Delta-magnitude vs. RMS plot for all apertures.<br>");
 //                createDmagVsRMSPlotMenuItem.addActionListener(new ActionListener() {
 //                    public void actionPerformed(ActionEvent e) {
-//                            ij.plugin.Macro_Runner.runMacroFromJar("DmagVsRMSplotMacro.txt",""); }}); 
-//                filemenu.add(createDmagVsRMSPlotMenuItem); 
-//                
+//                            ij.plugin.Macro_Runner.runMacroFromJar("DmagVsRMSplotMacro.txt",""); }});
+//                filemenu.add(createDmagVsRMSPlotMenuItem);
+//
 //                JMenuItem createNEBLCPlotMenuItem = new JMenuItem("Create NEB light curve plots...");
 //                createNEBLCPlotMenuItem.setToolTipText("<html>"+"Create NEB light curve plots with the predicted depth overplotted....<br>");
 //                createNEBLCPlotMenuItem.addActionListener(new ActionListener() {
 //                    public void actionPerformed(ActionEvent e) {
-//                            ij.plugin.Macro_Runner.runMacroFromJar("NEBLightCurvePlotWithPredDepth.txt",""); }}); 
+//                            ij.plugin.Macro_Runner.runMacroFromJar("NEBLightCurvePlotWithPredDepth.txt",""); }});
 //                filemenu.add(createNEBLCPlotMenuItem);
-                
+
                 JMenuItem createMpcFormatMenuItem = new JMenuItem("Create Minor Planet Center (MPC) formatted data...");
                 createMpcFormatMenuItem.setToolTipText("<html>"+"Create MPC formatted data for submission to the Minor Planet Center.<br>"+
                                                                 "Open a table into Multi-plot before creating the MPC formatted data.</html>");
                 createMpcFormatMenuItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                             createMpcFormatDialog(); }});
-                filemenu.add(createMpcFormatMenuItem); 
-                
+                filemenu.add(createMpcFormatMenuItem);
+
                 filemenu.addSeparator();
-                
+
                 openplottemplatemenuitem = new JMenuItem("Open plot configuration template...");
                 openplottemplatemenuitem.setToolTipText("<html>"+"opens a plot configuration from a user selected template file path</html>");
                 openplottemplatemenuitem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                             openConfig(true); }});
-                filemenu.add(openplottemplatemenuitem);                
-                
+                filemenu.add(openplottemplatemenuitem);
+
                 saveplottemplatemenuitem = new JMenuItem("Save plot configuration template...");
                 saveplottemplatemenuitem.setToolTipText("<html>"+"saves plot configuration to user selected template file path</html>");
                 saveplottemplatemenuitem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                             saveConfig(true); }});
-                filemenu.add(saveplottemplatemenuitem);                
-                
+                filemenu.add(saveplottemplatemenuitem);
+
                 filemenu.addSeparator();
 
                 JMenuItem saveAllMenuItem = new JMenuItem("Save all...");
@@ -8221,26 +8221,26 @@ static void initializeVariables()
                 filemenu.add(saveAllWithOptionsMenuItem);
 
                 filemenu.addSeparator();
-                
+
                 backupAllAIJPrefsMenuItem = new JMenuItem("Save all AIJ preferences to backup file...");
                 backupAllAIJPrefsMenuItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         savePreferences();
                         IJU.backupAllAIJSettings(false); }});
-                filemenu.add(backupAllAIJPrefsMenuItem);                        
-                        
-                restoreAllAIJPrefsMenuItem = new JMenuItem("Restore all AIJ preferences from backup file...");                        
+                filemenu.add(backupAllAIJPrefsMenuItem);
+
+                restoreAllAIJPrefsMenuItem = new JMenuItem("Restore all AIJ preferences from backup file...");
                 restoreAllAIJPrefsMenuItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         IJU.restoreAllAIJSettings(); }});
                 filemenu.add(restoreAllAIJPrefsMenuItem);
-                
-                restoreDefaultAIJPrefsMenuItem = new JMenuItem("Restore all default AIJ preferences...");                        
+
+                restoreDefaultAIJPrefsMenuItem = new JMenuItem("Restore all default AIJ preferences...");
                 restoreDefaultAIJPrefsMenuItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         IJU.restoreDefaultAIJSettings(false); }});
-                filemenu.add(restoreDefaultAIJPrefsMenuItem);                
-                
+                filemenu.add(restoreDefaultAIJPrefsMenuItem);
+
                 filemenu.addSeparator();
 
                 JMenuItem exitmenuitem = new JMenuItem("Exit");
@@ -8248,7 +8248,7 @@ static void initializeVariables()
                     public void actionPerformed(ActionEvent e) {
                             saveAndClose(); }});
                 filemenu.add(exitmenuitem);
-                
+
                 mainmenubar.add(filemenu);
 
                 opendatasetCB = new JCheckBoxMenuItem("Open Y-data columns window at startup",openDataSetWindow);
@@ -8259,7 +8259,7 @@ static void initializeVariables()
                         else if (e.getStateChange() == ItemEvent.SELECTED)
                                 openDataSetWindow = true;
                         Prefs.set("plot2.openDataSetWindow",openDataSetWindow); }});
-                preferencesmenu.add(opendatasetCB); 
+                preferencesmenu.add(opendatasetCB);
 
                 usewidedataCB = new JCheckBoxMenuItem("Use --wide-- Y-data columns window",useWideDataPanel);
                 usewidedataCB.addItemListener(new ItemListener(){
@@ -8277,7 +8277,7 @@ static void initializeVariables()
                             subFrameLocationX = subFrame.getLocation().x;
                             subFrameLocationY = subFrame.getLocation().y;
                             subFrameWidth = 0;
-                            subFrameHeight = 0;                            
+                            subFrameHeight = 0;
                             Prefs.set("plot2.subFrameLocationX",subFrameLocationX);
                             Prefs.set("plot2.subFrameLocationY",subFrameLocationY);
                             subFrame.dispose();
@@ -8290,10 +8290,10 @@ static void initializeVariables()
                         updatePlot(updateAllFits());
                         }});
 
-                preferencesmenu.add(usewidedataCB);  
-                
+                preferencesmenu.add(usewidedataCB);
+
                 preferencesmenu.addSeparator();
-                    
+
                 openrefstarCB = new JCheckBoxMenuItem("Open reference star selection window at startup",openRefStarWindow);
                 openrefstarCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8302,15 +8302,15 @@ static void initializeVariables()
                         else if (e.getStateChange() == ItemEvent.SELECTED)
                                 openRefStarWindow = true;
                         Prefs.set("plot2.openRefStarWindow",openRefStarWindow); }});
-                preferencesmenu.add(openrefstarCB);   //openFitPanelsCB              
-                
+                preferencesmenu.add(openrefstarCB);   //openFitPanelsCB
+
                 setrefstarhorzsizemenuitem= new JMenuItem("Set horizontal width of reference star window...");
                 setrefstarhorzsizemenuitem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                             changeRefStarHorizontalWidth();
                             }});
                 preferencesmenu.add(setrefstarhorzsizemenuitem);
-                
+
                 openFitPanelsCB = new JCheckBoxMenuItem("Open light curve fit panels at startup",openFitPanels);
                 openFitPanelsCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8319,7 +8319,7 @@ static void initializeVariables()
                         else if (e.getStateChange() == ItemEvent.SELECTED)
                                 openFitPanels = true;
                         Prefs.set("plot2.openFitPanels",openFitPanels); }});
-                preferencesmenu.add(openFitPanelsCB);   //openFitPanelsCB                
+                preferencesmenu.add(openFitPanelsCB);   //openFitPanelsCB
 
                 preferencesmenu.addSeparator();
 
@@ -8332,7 +8332,7 @@ static void initializeVariables()
                                 rememberWindowLocations = true;
                         Prefs.set("plot2.rememberWindowLocations",rememberWindowLocations); }});
                 preferencesmenu.add(rememberwindowlocationsCB);
-                        
+
                 keepSeparateLocationsForFitWindowsCB = new JCheckBoxMenuItem("Keep separate locations for each light curve fitting window",keepSeparateLocationsForFitWindows);
                 keepSeparateLocationsForFitWindowsCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8341,9 +8341,9 @@ static void initializeVariables()
                         else if (e.getStateChange() == ItemEvent.SELECTED)
                                 keepSeparateLocationsForFitWindows = true;
                         Prefs.set("plot2.keepSeparateLocationsForFitWindows",keepSeparateLocationsForFitWindows); }});
-                preferencesmenu.add(keepSeparateLocationsForFitWindowsCB);                        
-                
-                preferencesmenu.addSeparator();                
+                preferencesmenu.add(keepSeparateLocationsForFitWindowsCB);
+
+                preferencesmenu.addSeparator();
 
                 divideNotSubtractCB = new JCheckBoxMenuItem("Detrend by division (deselect for faster subtraction)",divideNotSubtract);
                 divideNotSubtractCB.addItemListener(new ItemListener(){
@@ -8354,8 +8354,8 @@ static void initializeVariables()
                                 divideNotSubtract = true;
                         Prefs.set("plot.divideNotSubtract",divideNotSubtract);
                         updatePlot(updateAllFits());   }});
-                preferencesmenu.add(divideNotSubtractCB); 
-                        
+                preferencesmenu.add(divideNotSubtractCB);
+
                 useNelderMeadChi2ForDetrendCB = new JCheckBoxMenuItem("Detrend by NelderMead Chi^2 minimization (deselect for Regression)",useNelderMeadChi2ForDetrend);
                 useNelderMeadChi2ForDetrendCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8367,8 +8367,8 @@ static void initializeVariables()
                                 }
                         Prefs.set("plot.useNelderMeadChi2ForDetrend",useNelderMeadChi2ForDetrend);
                         updatePlot(updateAllFits());   }});
-                preferencesmenu.add(useNelderMeadChi2ForDetrendCB); 
-                
+                preferencesmenu.add(useNelderMeadChi2ForDetrendCB);
+
                 preferencesmenu.addSeparator();
 
                 showtooltipsCB = new JCheckBoxMenuItem("Show tooltips help",showToolTips);
@@ -8383,7 +8383,7 @@ static void initializeVariables()
                             showToolTips=true;
                             }
                         ToolTipManager.sharedInstance().setEnabled(showToolTips);
-                        Prefs.set ("astroIJ.showToolTips",showToolTips);                        
+                        Prefs.set ("astroIJ.showToolTips",showToolTips);
                         }});
                 preferencesmenu.add(showtooltipsCB);
 
@@ -8399,7 +8399,7 @@ static void initializeVariables()
                         Prefs.set("plot2.useBoldedDatum",useBoldedDatum);
                         updatePlot(updateNoFits());}});
                 preferencesmenu.add(useBoldedDatumCB);
-                
+
                 useUpdateStackCB = new JCheckBoxMenuItem("Display slice corresponding to point nearest mouse while holding shift",useUpdateStack);
                 useUpdateStackCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8409,8 +8409,8 @@ static void initializeVariables()
                                 useUpdateStack = true;
                         Prefs.set("plot2.useUpdateStack",useUpdateStack);
                         updatePlot(updateNoFits());}});
-                preferencesmenu.add(useUpdateStackCB);    
-                
+                preferencesmenu.add(useUpdateStackCB);
+
                 preferencesmenu.addSeparator();
 
 //                setverticalmarkertextmenuitem = new JMenuItem("Change vertical marker text...");
@@ -8419,7 +8419,7 @@ static void initializeVariables()
 //                            setVMarkerText();
 //                            updatePlot();}});
 //                preferencesmenu.add(setverticalmarkertextmenuitem);
-                
+
                 usePriorityColumnsCB = new JCheckBoxMenuItem("Show specified priority data names first in pulldown lists",prioritizeColumns);
                 usePriorityColumnsCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8440,7 +8440,7 @@ static void initializeVariables()
                 preferencesmenu.add(changePriorityColumnsmenuitem);
 
                 preferencesmenu.addSeparator();
-               
+
                 usepixelscaleCB = new JCheckBoxMenuItem("Use pixel scale when calculating distance",usePixelScale);
                 usepixelscaleCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8479,12 +8479,12 @@ static void initializeVariables()
                 preferencesmenu.add(usedefaultsettingsCB);
 
                 mainmenubar.add(preferencesmenu);
-                
-                
-                
-                
+
+
+
+
                 tablemenu = new JMenu("Table    ");
-                
+
                 addnewcolsfromplotmenuitem = new JMenuItem("Add new data columns to table from plot...");
                 addnewcolsfromplotmenuitem.setToolTipText("<html>"+"Add new data columns to the current active table from<br>"+
                                                                    "an enabled 'Multi-plot Y-data' plot row.</html>");
@@ -8495,8 +8495,8 @@ static void initializeVariables()
                         addNewColumn(c, true);
                         updatePlot(updateAllFits());
                         }});
-                tablemenu.add(addnewcolsfromplotmenuitem);   
-                
+                tablemenu.add(addnewcolsfromplotmenuitem);
+
                 addnewcolsfromastroCCmenuitem = new JMenuItem("Add new astronomical data columns to table...");
                 addnewcolsfromastroCCmenuitem.setToolTipText("<html>"+"Add new data columns to the current active table from AstroCC<br>"+
                                                                       "Cordinate Converter (airmass, alternate time formats, etc).</html>");
@@ -8510,26 +8510,26 @@ static void initializeVariables()
                             }
                         addNewAstroData();
                         }});
-                tablemenu.add(addnewcolsfromastroCCmenuitem);      
-                
+                tablemenu.add(addnewcolsfromastroCCmenuitem);
+
                 tablemenu.addSeparator();
-                
+
                 transposetablemenuitem = new JMenuItem("Transpose currently selected table");
                 transposetablemenuitem.setToolTipText("<html>"+"swap rows and columns in current active table"+"</html>");
                 transposetablemenuitem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         transposeTable();
                         }});
-                tablemenu.add(transposetablemenuitem);                
-                
+                tablemenu.add(transposetablemenuitem);
+
                 mainmenubar.add(tablemenu);
-                
-                
-                
-                
-                
+
+
+
+
+
                 xaxismenu = new JMenu("X-axis    ");
-                
+
                 xTicsCB = new JCheckBoxMenuItem ("Show X-axis tick marks",xTics);
                 xTicsCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8539,8 +8539,8 @@ static void initializeVariables()
                                 xTics = true;
                         Prefs.set("plot.xTics",xTics);
                         updatePlot(updateNoFits());}});
-                xaxismenu.add(xTicsCB); 
-                
+                xaxismenu.add(xTicsCB);
+
                 xGridCB = new JCheckBoxMenuItem ("Show X-axis grid lines",xGrid);
                 xGridCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8550,8 +8550,8 @@ static void initializeVariables()
                                 xGrid = true;
                         Prefs.set("plot.xGrid",xGrid);
                         updatePlot(updateNoFits());}});
-                xaxismenu.add(xGridCB);   
-                
+                xaxismenu.add(xGridCB);
+
                 xNumbersCB = new JCheckBoxMenuItem ("Show X-axis numbers",xNumbers);
                 xNumbersCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8561,34 +8561,34 @@ static void initializeVariables()
                                 xNumbers = true;
                         Prefs.set("plot.xNumbers",xNumbers);
                         updatePlot(updateNoFits());}});
-                xaxismenu.add(xNumbersCB);                
-                
+                xaxismenu.add(xNumbersCB);
+
 //                xaxismenu.addSeparator();
 //
 //                if (showXAxisNormal)
 //                    {
 //                    showXAxisAsPhase = false;
 //                    showXAxisAsDaysSinceTc = false;
-//                    showXAxisAsHoursSinceTc = false; 
+//                    showXAxisAsHoursSinceTc = false;
 //                    }
 //                else if (showXAxisAsPhase)
 //                    {
 //                    showXAxisAsDaysSinceTc = false;
-//                    showXAxisAsHoursSinceTc = false;                    
+//                    showXAxisAsHoursSinceTc = false;
 //                    }
 //                else if (showXAxisAsDaysSinceTc)
 //                    {
-//                    showXAxisAsHoursSinceTc = false;                    
+//                    showXAxisAsHoursSinceTc = false;
 //                    }
 //                else if (!showXAxisAsHoursSinceTc)
 //                    {
-//                    showXAxisNormal = true;                    
+//                    showXAxisNormal = true;
 //                    }
 //                Prefs.set("plot.showXAxisNormal",showXAxisNormal);
 //                Prefs.set("plot.showXAxisAsPhase",showXAxisAsPhase);
 //                Prefs.set("plot.showXAxisAsDaysSinceTc",showXAxisAsDaysSinceTc);
-//                Prefs.set("plot.showXAxisAsHoursSinceTc",showXAxisAsHoursSinceTc);                
-//                
+//                Prefs.set("plot.showXAxisAsHoursSinceTc",showXAxisAsHoursSinceTc);
+//
 //                showXAxisNormalCB = new JRadioButtonMenuItem("Show x-axis unphased", showXAxisNormal);
 //                showXAxisNormalCB.addActionListener(new ActionListener(){
 //                        public void actionPerformed(ActionEvent ae) {
@@ -8602,7 +8602,7 @@ static void initializeVariables()
 //                        Prefs.set("plot.showXAxisAsHoursSinceTc",showXAxisAsHoursSinceTc);
 //                        updatePlot(updateAllFits());}});
 //                xaxismenu.add(showXAxisNormalCB);
-//                
+//
 //                showXAxisAsPhaseCB = new JRadioButtonMenuItem("Show x-axis as orbital phase", showXAxisAsPhase);
 //                showXAxisAsPhaseCB.addActionListener(new ActionListener(){
 //                        public void actionPerformed(ActionEvent ae) {
@@ -8616,7 +8616,7 @@ static void initializeVariables()
 //                        Prefs.set("plot.showXAxisAsHoursSinceTc",showXAxisAsHoursSinceTc);
 //                        updatePlot(updateAllFits());}});
 //                xaxismenu.add(showXAxisAsPhaseCB);
-//                
+//
 //                showXAxisAsDaysSinceTcCB = new JRadioButtonMenuItem("Show x-axis as days since Tc", showXAxisAsDaysSinceTc);
 //                showXAxisAsDaysSinceTcCB.addActionListener(new ActionListener(){
 //                        public void actionPerformed(ActionEvent ae) {
@@ -8629,8 +8629,8 @@ static void initializeVariables()
 //                        Prefs.set("plot.showXAxisAsDaysSinceTc",showXAxisAsDaysSinceTc);
 //                        Prefs.set("plot.showXAxisAsHoursSinceTc",showXAxisAsHoursSinceTc);
 //                        updatePlot(updateAllFits());}});
-//                xaxismenu.add(showXAxisAsDaysSinceTcCB);                
-//                
+//                xaxismenu.add(showXAxisAsDaysSinceTcCB);
+//
 //                showXAxisAsHoursSinceTcCB = new JRadioButtonMenuItem("Show x-axis as hours since Tc", showXAxisAsHoursSinceTc);
 //                showXAxisAsHoursSinceTcCB.addActionListener(new ActionListener(){
 //                        public void actionPerformed(ActionEvent ae) {
@@ -8643,14 +8643,14 @@ static void initializeVariables()
 //                        Prefs.set("plot.showXAxisAsDaysSinceTc",showXAxisAsDaysSinceTc);
 //                        Prefs.set("plot.showXAxisAsHoursSinceTc",showXAxisAsHoursSinceTc);
 //                        updatePlot(updateAllFits());}});
-//                xaxismenu.add(showXAxisAsHoursSinceTcCB);     
-//                
+//                xaxismenu.add(showXAxisAsHoursSinceTcCB);
+//
 //                xPhaseGroup = new ButtonGroup();
 //                xPhaseGroup.add(showXAxisNormalCB);
 //                xPhaseGroup.add(showXAxisAsPhaseCB);
 //                xPhaseGroup.add(showXAxisAsDaysSinceTcCB);
 //                xPhaseGroup.add(showXAxisAsHoursSinceTcCB);
-//                
+//
 //                xaxismenu.addSeparator();
 //
 //                setephemerismenuitem = new JMenuItem("Set epoch and period for X-axis phase calculation...");
@@ -8662,14 +8662,14 @@ static void initializeVariables()
 //                xaxismenu.add(setephemerismenuitem);
 
 //                xaxismenu.addSeparator();
-                
+
                 mainmenubar.add(xaxismenu);
-                
-                
-                
-                
+
+
+
+
                 yaxismenu = new JMenu("Y-axis    ");
-                
+
                 yTicsCB = new JCheckBoxMenuItem ("Show Y-axis tick marks",yTics);
                 yTicsCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8679,8 +8679,8 @@ static void initializeVariables()
                                 yTics = true;
                         Prefs.set("plot.yTics",yTics);
                         updatePlot(updateNoFits());}});
-                yaxismenu.add(yTicsCB); 
-                
+                yaxismenu.add(yTicsCB);
+
                 yGridCB = new JCheckBoxMenuItem ("Show Y-axis grid lines",yGrid);
                 yGridCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8690,8 +8690,8 @@ static void initializeVariables()
                                 yGrid = true;
                         Prefs.set("plot.yGrid",yGrid);
                         updatePlot(updateNoFits());}});
-                yaxismenu.add(yGridCB);   
-                
+                yaxismenu.add(yGridCB);
+
                 yNumbersCB = new JCheckBoxMenuItem ("Show Y-axis numbers",yNumbers);
                 yNumbersCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8701,10 +8701,10 @@ static void initializeVariables()
                                 yNumbers = true;
                         Prefs.set("plot.yNumbers",yNumbers);
                         updatePlot(updateNoFits());}});
-                yaxismenu.add(yNumbersCB);                
-                
-                yaxismenu.addSeparator();                
-                
+                yaxismenu.add(yNumbersCB);
+
+                yaxismenu.addSeparator();
+
                 JCheckBoxMenuItem invertyaxisCB = new JCheckBoxMenuItem ("Invert Y-axis",invertYAxis);
                 invertyaxisCB.addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -8726,7 +8726,7 @@ static void initializeVariables()
                             ((JSpinner.DefaultEditor)customshiftspinner[c].getEditor()).getTextField().addMouseListener(shiftSpinnerMouseListener);
                             residualShiftSpinner[c].setModel(new SpinnerNumberModel(new Double(force[c]?autoResidualShift[c]*100:residualShift[c]), null, null,
                                                          new Double(force[c]?invertYAxisSign*autoShiftStep[c]:invertYAxisSign*customShiftStep[c])));
-                            residualShiftSpinner[c].setEditor(new JSpinner.NumberEditor(residualShiftSpinner[c], fitFormat));                            
+                            residualShiftSpinner[c].setEditor(new JSpinner.NumberEditor(residualShiftSpinner[c], fitFormat));
                             }
                         Prefs.set("plot.invertYAxis",invertYAxis);
                         updatePlot(updateNoFits());}});
@@ -8743,23 +8743,23 @@ static void initializeVariables()
                         updatePlot(updateNoFits());}});
                 yaxismenu.add(negateMagCB);
 
-//                preferencesmenu.addSeparator();                
+//                preferencesmenu.addSeparator();
                 mainmenubar.add(yaxismenu);
-                                
+
                 JMenu helpmenu = new JMenu("Help");
                 JMenuItem helpmenuitem = new JMenuItem("General help...");
                 helpmenuitem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                             openHelpPanel(); }});
                 helpmenu.add(helpmenuitem);
-                
+
                 JMenuItem helpdatamenuitem = new JMenuItem("Data naming convention...");
                 helpdatamenuitem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                             openDataHelpPanel(); }});
-                helpmenu.add(helpdatamenuitem);                 
+                helpmenu.add(helpdatamenuitem);
 
-                mainmenubar.add(helpmenu);                
+                mainmenubar.add(helpmenu);
 
 
 
@@ -8777,33 +8777,33 @@ static void initializeVariables()
                 dummy50label.setFont(p11);
                 dummy50label.setHorizontalAlignment(JLabel.CENTER);
                 mainpanelgroupa.add (dummy50label);
-                
+
                 JLabel dummy50Alabel = new JLabel ("Detrend Vars");
                 dummy50Alabel.setFont(p11);
                 dummy50Alabel.setHorizontalAlignment(JLabel.CENTER);
-                mainpanelgroupa.add (dummy50Alabel);                
+                mainpanelgroupa.add (dummy50Alabel);
 
                 JLabel mmagsampleslabel = new JLabel ("Rel. Mag. Reference");
                 mmagsampleslabel.setFont(p11);
                 mmagsampleslabel.setHorizontalAlignment(JLabel.CENTER);
                 mmagsampleslabel.setToolTipText("The number of starting samples averaged to calculate relative magnitude reference level");
                 mainpanelgroupa.add (mmagsampleslabel);
-                
-                
+
+
                 JPanel vmarker1titlepanel = new JPanel();
                 vmarker1titlepanel.setLayout(new BoxLayout(vmarker1titlepanel, BoxLayout.LINE_AXIS));
-                
+
                 vmarker1titlepanel.add(Box.createGlue());
                 vmarker1titlepanel.add(Box.createHorizontalStrut(5));
-                
+
                 JLabel vmarker1toplabel = new JLabel ("V. Marker 1");
                 vmarker1toplabel.setFont(p11);
                 vmarker1toplabel.setHorizontalAlignment(JLabel.CENTER);
                 vmarker1toplabel.setToolTipText("Enter vertical marker 1 x-axis location");
                 vmarker1titlepanel.add (vmarker1toplabel);
-                
+
                 vmarker1titlepanel.add(Box.createHorizontalStrut(5));
-                
+
                 editTextIcon = createImageIcon("astroj/images/edittext.png", "Edit vertical marker text");
                 vmarker1edittextButton = new JButton(editTextIcon);
                 vmarker1edittextButton.setToolTipText("Edit vertical marker text");
@@ -8812,33 +8812,33 @@ static void initializeVariables()
                 vmarker1edittextButton.addActionListener(new ActionListener(){
                             public void actionPerformed(ActionEvent ae) {
                                 setVMarkerText();
-                                updatePlot(updateNoFits());}});                
+                                updatePlot(updateNoFits());}});
                 vmarker1titlepanel.add (vmarker1edittextButton);
                 vmarker1titlepanel.add(Box.createGlue());
-                mainpanelgroupa.add (vmarker1titlepanel);   
-                
-                
+                mainpanelgroupa.add (vmarker1titlepanel);
+
+
                 JLabel copyDetrendLabel = new JLabel ("Copy");
                 copyDetrendLabel.setFont(p11);
                 copyDetrendLabel.setToolTipText("Copy values from 'Fit and Normalize Region Selection' Left and Right Markers to V. Markers 1 and 2");
                 copyDetrendLabel.setHorizontalAlignment(JLabel.CENTER);
-                mainpanelgroupa.add (copyDetrendLabel);               
+                mainpanelgroupa.add (copyDetrendLabel);
 
-                
+
                 JPanel vmarker2titlepanel = new JPanel();
                 vmarker2titlepanel.setLayout(new BoxLayout(vmarker2titlepanel, BoxLayout.LINE_AXIS));
-                
-                vmarker2titlepanel.add(Box.createGlue());                
+
+                vmarker2titlepanel.add(Box.createGlue());
                 vmarker2titlepanel.add(Box.createHorizontalStrut(5));
-                
+
                 JLabel vmarker2toplabel = new JLabel ("V. Marker 2");
                 vmarker2toplabel.setFont(p11);
                 vmarker2toplabel.setHorizontalAlignment(JLabel.CENTER);
                 vmarker2toplabel.setToolTipText("Enter vertical marker 2 x-axis location");
                 vmarker2titlepanel.add (vmarker2toplabel);
-                
+
                 vmarker2titlepanel.add(Box.createHorizontalStrut(5));
-                
+
                 vmarker2edittextButton = new JButton(editTextIcon);
                 vmarker2edittextButton.setToolTipText("Edit vertical marker text");
                 vmarker2edittextButton.setMargin(new Insets(0,0,0,0));
@@ -8846,10 +8846,10 @@ static void initializeVariables()
                 vmarker2edittextButton.addActionListener(new ActionListener(){
                             public void actionPerformed(ActionEvent ae) {
                                 setVMarkerText();
-                                updatePlot(updateNoFits());}});                
+                                updatePlot(updateNoFits());}});
                 vmarker2titlepanel.add (vmarker2edittextButton);
                 vmarker2titlepanel.add(Box.createGlue());
-                mainpanelgroupa.add (vmarker2titlepanel);                  
+                mainpanelgroupa.add (vmarker2titlepanel);
 
                 JPanel xdatacolumnpanel = new JPanel(new SpringLayout());
                 MutableComboBoxModel xdatadefaultmodel = new DefaultComboBoxModel(columns);
@@ -8862,7 +8862,7 @@ static void initializeVariables()
                         xlabeldefault = (String) xdatacolumndefault.getSelectedItem();
                         updatePlot(updateAllFits());
                     }});
-                        
+
                 xdatacolumnpanel.add (xdatacolumndefault);
                 xdatacolumnpanel.setPreferredSize(new Dimension(125, 25));
                 SpringUtil.makeCompactGrid (xdatacolumnpanel, 1, 1, 0,0,0,0);
@@ -8888,7 +8888,7 @@ static void initializeVariables()
                             subFrameLocationX = subFrame.getLocation().x;
                             subFrameLocationY = subFrame.getLocation().y;
                             subFrameWidth = 0;
-                            subFrameHeight = 0;                            
+                            subFrameHeight = 0;
                             Prefs.set("plot2.subFrameLocationX",subFrameLocationX);
                             Prefs.set("plot2.subFrameLocationY",subFrameLocationY);
                             subFrame.dispose();
@@ -8916,8 +8916,8 @@ static void initializeVariables()
                 maxcurveslabel2.setHorizontalAlignment(JLabel.LEFT);
                 maxcurvespanel.add (maxcurveslabel2);
                 SpringUtil.makeCompactGrid (maxcurvespanel, 1, 2, 0,0,0,0);
-                mainpanelgroupa.add(maxcurvespanel);   
-                
+                mainpanelgroupa.add(maxcurvespanel);
+
                 JPanel maxdetrendvarspanel = new JPanel(new SpringLayout());
 //                maxdetrendvarspanel.setBorder(BorderFactory.createLineBorder(Color.lightGray,1));
                 maxdetrendvarsmodel = new SpinnerNumberModel(new Integer(maxDetrendVars),new Integer(1), null, new Integer(1));
@@ -8946,7 +8946,7 @@ static void initializeVariables()
                             subFrameLocationX = subFrame.getLocation().x;
                             subFrameLocationY = subFrame.getLocation().y;
                             subFrameWidth = 0;
-                            subFrameHeight = subFrame.getHeight();                                
+                            subFrameHeight = subFrame.getHeight();
                             Prefs.set("plot2.subFrameLocationX",subFrameLocationX);
                             Prefs.set("plot2.subFrameLocationY",subFrameLocationY);
                             subFrame.dispose();
@@ -8971,7 +8971,7 @@ static void initializeVariables()
 
                 SpringUtil.makeCompactGrid (maxdetrendvarspanel, 1, maxdetrendvarspanel.getComponentCount(), 0,0,0,0);
                 mainpanelgroupa.add(maxdetrendvarspanel);
-                
+
 
                 JPanel mmagsubpanel = new JPanel (new SpringLayout());
                 mmagsubpanel.setBorder(BorderFactory.createLineBorder(Color.lightGray,1));
@@ -9009,8 +9009,8 @@ static void initializeVariables()
                 mmagsubpanel.add (mmagrefsspinnerlabel);
                 SpringUtil.makeCompactGrid (mmagsubpanel, 1, 2, 0,0,0,0);
                 mainpanelgroupa.add (mmagsubpanel);
-                
-                
+
+
                 //X-AXIS STEPSIZE POPUP
 
                 xsteppopup = new JPopupMenu();
@@ -9068,7 +9068,7 @@ static void initializeVariables()
                     public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
                             xsteppopup.setVisible(false);
                             }
-                    });                
+                    });
 
 
                 JPanel vmarker1panel = new JPanel(new SpringLayout());
@@ -9108,7 +9108,7 @@ static void initializeVariables()
                     public void stateChanged(ChangeEvent ev)
                         {
                         checkForUT(vmarker1spinner);
-                        vMarker1Value = ((Double)vmarker1spinner.getValue()).doubleValue(); //IJU.getSpinnerDoubleValue(vmarker1spinner);// 
+                        vMarker1Value = ((Double)vmarker1spinner.getValue()).doubleValue(); //IJU.getSpinnerDoubleValue(vmarker1spinner);//
                         updatePlot(updateNoFits());
                         }
                     });
@@ -9124,28 +9124,28 @@ static void initializeVariables()
 
                 SpringUtil.makeCompactGrid (vmarker1panel, 1, vmarker1panel.getComponentCount(), 2,2,0,0);
                 mainpanelgroupa.add (vmarker1panel);
-                
-                
+
+
                 JPanel detrendmarkercopypanel = new JPanel(new SpringLayout());
                 detrendmarkercopypanel.setBorder(BorderFactory.createLineBorder(Color.lightGray,1));
-                    
-                
+
+
                 copyVMarkersInvertedIcon = createImageIcon("astroj/images/copymarkersinverted.png", "Copy Detrend Markers Icon");
                 JButton copyDetrendButton = new JButton(copyVMarkersInvertedIcon);
                 copyDetrendButton.setMargin(new Insets(0,0,0,0));
                 copyDetrendButton.setToolTipText("Copy values from 'Fit and Normalize Region Selection' Left and Right Markers to V. Markers 1 and 2");
                 copyDetrendButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        
+
                         vmarker1spinner.setValue(dMarker2Value);
                         vmarker2spinner.setValue(dMarker3Value);
                         showVMarker1CB.setSelected(true);
                         showVMarker2CB.setSelected(true);
                         updatePlot(updateNoFits());
-                        }});                
+                        }});
                 detrendmarkercopypanel.add(copyDetrendButton);
                 SpringUtil.makeCompactGrid (detrendmarkercopypanel, 1, detrendmarkercopypanel.getComponentCount(), 2,0,2,0);
-                mainpanelgroupa.add (detrendmarkercopypanel);                
+                mainpanelgroupa.add (detrendmarkercopypanel);
 
 
 
@@ -9258,7 +9258,7 @@ static void initializeVariables()
                         titlegroup.add (titleField);
 
                                 //MAKE TITLE Y-POSITION SLIDER
-                                
+
                                 titlePosYSlider = new JSlider(JSlider.HORIZONTAL, 0,1000, (int)(titlePosY));
                                 titlePosYSlider.setBorder (BorderFactory.createEmptyBorder(10,0,0,0));
                                 titlePosYSlider.setFont(p11);
@@ -9290,7 +9290,7 @@ static void initializeVariables()
                                 JLabel middlelabel1 = new JLabel("Middle");
                                 middlelabel1.setFont(p11);
                                 JLabel bottomlabel1 = new JLabel("Bottom");
-                                bottomlabel1.setFont(p11);                                
+                                bottomlabel1.setFont(p11);
                                 titlePosYLabel.put(   0, toplabel1);
                                 titlePosYLabel.put( 500, middlelabel1);
                                 titlePosYLabel.put(1000, bottomlabel1);
@@ -9300,7 +9300,7 @@ static void initializeVariables()
                         titlegroup.add (titlePosYSlider);
 
                                 //MAKE TITLE X-POSITION SLIDER
-                                
+
                                 titlePosXSlider = new JSlider(0,500, (int) (titlePosX*500.0));
                                 titlePosXSlider.setBorder (BorderFactory.createEmptyBorder(10,5,0,5));
                                 titlePosXSlider.addChangeListener (new ChangeListener()
@@ -9400,7 +9400,7 @@ static void initializeVariables()
                         subtitlegroup.add (subtitleField);
 
                                 //SUBTITLE Y-POSITION SLIDER
-                                
+
                                 subtitlePosYSlider = new JSlider(JSlider.HORIZONTAL, 0,1000, (int)(subtitlePosY));
                                 subtitlePosYSlider.setFont(p11);
                                 subtitlePosYSlider.setBorder (BorderFactory.createEmptyBorder(10,0,0,0));
@@ -9432,7 +9432,7 @@ static void initializeVariables()
                                 JLabel middlelabel2 = new JLabel("Middle");
                                 middlelabel2.setFont(p11);
                                 JLabel bottomlabel2 = new JLabel("Bottom");
-                                bottomlabel2.setFont(p11);                                
+                                bottomlabel2.setFont(p11);
                                 subtitlePosYLabel.put(   0, toplabel2);
                                 subtitlePosYLabel.put( 500, middlelabel2);
                                 subtitlePosYLabel.put(1000, bottomlabel2);
@@ -9443,7 +9443,7 @@ static void initializeVariables()
                         subtitlegroup.add (subtitlePosYSlider);
 
                                 //SUBTITLE X-POSITION SLIDER
-                                
+
                                 subtitlePosXSlider = new JSlider(0,500, (int) (subtitlePosX*500.0));
                                 subtitlePosXSlider.setFont(p11);
                                 subtitlePosXSlider.setBorder (BorderFactory.createEmptyBorder(10,5,0,5));
@@ -9477,7 +9477,7 @@ static void initializeVariables()
                                 rightlabel2.setFont(p11);
                                 subtitlePosXLabel.put(   0, leftlabel2);
                                 subtitlePosXLabel.put( 250, centerlabel2);
-                                subtitlePosXLabel.put( 500, rightlabel2);                                
+                                subtitlePosXLabel.put( 500, rightlabel2);
                                 subtitlePosXSlider.setLabelTable(subtitlePosXLabel);
                                 subtitlePosXSlider.setPaintTrack(true);
                                 subtitlePosXSlider.setPaintLabels(true);
@@ -9510,7 +9510,7 @@ static void initializeVariables()
                                 else if (e.getStateChange() == ItemEvent.SELECTED)
                                         showLRelScaleInfo = true;
                                 updatePlot(updateNoFits());}});
-                        legendpopup.add(legendshowrelscalingCB);                        
+                        legendpopup.add(legendshowrelscalingCB);
                         JMenuItem legendshowshiftCB = new JCheckBoxMenuItem("Append shift factor to legend for absolute curves",showLShiftInfo);
                         legendshowshiftCB.addItemListener(new ItemListener(){
                             public void itemStateChanged(ItemEvent e) {
@@ -9528,7 +9528,7 @@ static void initializeVariables()
                                 else if (e.getStateChange() == ItemEvent.SELECTED)
                                         showLRelShiftInfo = true;
                                 updatePlot(updateNoFits());}});
-                        legendpopup.add(legendshowrelshiftCB);  
+                        legendpopup.add(legendshowrelshiftCB);
                         JMenuItem legendshowdetrendCB = new JCheckBoxMenuItem("Append detrend usage to legend",showLdetrendInfo);
                         legendshowdetrendCB.addItemListener(new ItemListener(){
                             public void itemStateChanged(ItemEvent e) {
@@ -9537,7 +9537,7 @@ static void initializeVariables()
                                 else if (e.getStateChange() == ItemEvent.SELECTED)
                                         showLdetrendInfo = true;
                                 updatePlot(updateNoFits());}});
-                        legendpopup.add(legendshowdetrendCB);  
+                        legendpopup.add(legendshowdetrendCB);
                         JMenuItem legendshownormCB = new JCheckBoxMenuItem("Append normalize usage to legend",showLnormInfo);
                         legendshownormCB.addItemListener(new ItemListener(){
                             public void itemStateChanged(ItemEvent e) {
@@ -9546,7 +9546,7 @@ static void initializeVariables()
                                 else if (e.getStateChange() == ItemEvent.SELECTED)
                                         showLnormInfo = true;
                                 updatePlot(updateNoFits());}});
-                        legendpopup.add(legendshownormCB);                         
+                        legendpopup.add(legendshownormCB);
                         JMenuItem legendshowmmagCB = new JCheckBoxMenuItem("Append magnitude usage to legend",showLmmagInfo);
                         legendshowmmagCB.addItemListener(new ItemListener(){
                             public void itemStateChanged(ItemEvent e) {
@@ -9555,8 +9555,8 @@ static void initializeVariables()
                                 else if (e.getStateChange() == ItemEvent.SELECTED)
                                         showLmmagInfo = true;
                                 updatePlot(updateNoFits());}});
-                        legendpopup.add(legendshowmmagCB);   
-                        
+                        legendpopup.add(legendshowmmagCB);
+
                         JMenuItem legendshowsigmadetrendCB = new JCheckBoxMenuItem("Append Std. Dev. to legend for detrended absolute curves",showSigmaForDetrendedCurves);
                         legendshowsigmadetrendCB.addItemListener(new ItemListener(){
                             public void itemStateChanged(ItemEvent e) {
@@ -9565,8 +9565,8 @@ static void initializeVariables()
                                 else if (e.getStateChange() == ItemEvent.SELECTED)
                                         showSigmaForDetrendedCurves = true;
                                 updatePlot(updateNoFits());}});
-                        legendpopup.add(legendshowsigmadetrendCB); 
-                        
+                        legendpopup.add(legendshowsigmadetrendCB);
+
                         JMenuItem legendshowsigmaallCB = new JCheckBoxMenuItem("Append Std. Dev. to legend for all absolute curves",showSigmaForAllCurves);
                         legendshowsigmaallCB.addItemListener(new ItemListener(){
                             public void itemStateChanged(ItemEvent e) {
@@ -9575,8 +9575,8 @@ static void initializeVariables()
                                 else if (e.getStateChange() == ItemEvent.SELECTED)
                                         showSigmaForAllCurves = true;
                                 updatePlot(updateNoFits());}});
-                        legendpopup.add(legendshowsigmaallCB);                         
-                        
+                        legendpopup.add(legendshowsigmaallCB);
+
                         JMenuItem legendshowbinCB = new JCheckBoxMenuItem("Append bin size to legend",showLBinInfo);
                         legendshowbinCB.addItemListener(new ItemListener(){
                             public void itemStateChanged(ItemEvent e) {
@@ -9666,11 +9666,11 @@ static void initializeVariables()
                                                 legendRight = true;
                                                 updatePlot(updateNoFits());}});
                                 configureIcon = createImageIcon("astroj/images/configure.png", "Configure legend options");
-                                
+
                                 legendconfigureButton = new JButton(configureIcon);
                                 legendconfigureButton.setToolTipText("Configure legend options");
                                 legendconfigureButton.setMargin(new Insets(0,0,0,0));
-                                
+
                                 legendconfigureButton.addActionListener(new ActionListener(){
                                             public void actionPerformed(ActionEvent ae) {
                                                 legendpopup.show(legendconfigureButton, mainpanel.getX() , mainpanel.getY()+25);}});
@@ -9696,7 +9696,7 @@ static void initializeVariables()
                         legendgroup.add (legendsliderlabel);
 
                                 //LEGEND Y-POSITION SLIDER
-                                
+
                                 legendPosYSlider = new JSlider(JSlider.HORIZONTAL, 0,500, (int) (legendPosY*500.0));
                                 legendPosYSlider.setFont(p11);
                                 legendPosYSlider.setBorder (BorderFactory.createEmptyBorder(10,0,0,0));
@@ -9728,17 +9728,17 @@ static void initializeVariables()
                                 JLabel middlelabel3 = new JLabel("Middle");
                                 middlelabel3.setFont(p11);
                                 JLabel bottomlabel3 = new JLabel("Bottom");
-                                bottomlabel3.setFont(p11);                                
+                                bottomlabel3.setFont(p11);
                                 legendPosYLabel.put(  0, toplabel3);
                                 legendPosYLabel.put(250, middlelabel3);
-                                legendPosYLabel.put(500, bottomlabel3);                                
+                                legendPosYLabel.put(500, bottomlabel3);
                                 legendPosYSlider.setLabelTable(legendPosYLabel);
                                 legendPosYSlider.setPaintTrack(true);
                                 legendPosYSlider.setPaintLabels(true);
                         legendgroup.add (legendPosYSlider);
 
                                 //LEGEND X-POSITION SLIDER
-                                
+
                                 legendPosXSlider = new JSlider(0,500, (int) (legendPosX*500.0));
                                 legendPosXSlider.setFont(p11);
                                 legendPosXSlider.setBorder (BorderFactory.createEmptyBorder(10,5,0,5));
@@ -9763,7 +9763,7 @@ static void initializeVariables()
                                 legendPosXSlider.setMajorTickSpacing(250);
                                 legendPosXSlider.setMinorTickSpacing(25);
                                 legendPosXSlider.setPaintTicks(true);
-                                Hashtable<Integer, JLabel> legendPosXLabel = new Hashtable<Integer, JLabel>();    
+                                Hashtable<Integer, JLabel> legendPosXLabel = new Hashtable<Integer, JLabel>();
                                 JLabel leftlabel3 = new JLabel("Left");
                                 leftlabel3.setFont(p11);
                                 JLabel centerlabel3 = new JLabel("Center");
@@ -9772,7 +9772,7 @@ static void initializeVariables()
                                 rightlabel3.setFont(p11);
                                 legendPosXLabel.put(   0, leftlabel3);
                                 legendPosXLabel.put( 250, centerlabel3);
-                                legendPosXLabel.put( 500, rightlabel3);                                 
+                                legendPosXLabel.put( 500, rightlabel3);
                                 legendPosXSlider.setLabelTable(legendPosXLabel);
                                 legendPosXSlider.setPaintTrack(true);
                                 legendPosXSlider.setPaintLabels(true);
@@ -9939,8 +9939,8 @@ static void initializeVariables()
                                 else if (e.getStateChange() == ItemEvent.SELECTED)
                                         showYNormInfo = true;
                                 updatePlot(updateNoFits());}});
-                        yaxispopup.add(showynormCB);                         
-                        
+                        yaxispopup.add(showynormCB);
+
                         JMenuItem showymmagCB = new JCheckBoxMenuItem("Append magnitude usage to Y-axis label",showYmmagInfo);
                         showymmagCB.addItemListener(new ItemListener(){
                             public void itemStateChanged(ItemEvent e) {
@@ -9950,7 +9950,7 @@ static void initializeVariables()
                                         showYmmagInfo = true;
                                 updatePlot(updateNoFits());}});
                         yaxispopup.add(showymmagCB);
-                       
+
                         JMenuItem showybinCB = new JCheckBoxMenuItem("Append bin size to Y-axis label",showYBinInfo);
                         showybinCB.addItemListener(new ItemListener(){
                             public void itemStateChanged(ItemEvent e) {
@@ -9960,7 +9960,7 @@ static void initializeVariables()
                                         showYBinInfo = true;
                                 updatePlot(updateNoFits());}});
                         yaxispopup.add(showybinCB);
-                        
+
                         JMenuItem showysymbolCB = new JCheckBoxMenuItem("Append symbol description to Y-axis label",showYSymbolInfo);
                         showysymbolCB.addItemListener(new ItemListener(){
                             public void itemStateChanged(ItemEvent e) {
@@ -10444,7 +10444,7 @@ static void initializeVariables()
                 });
                 grabfirstxpanel.add (grabfirstxbutton);
 
-                SpringUtil.makeCompactGrid (grabfirstxpanel,1,1, 72,2,22,0);                
+                SpringUtil.makeCompactGrid (grabfirstxpanel,1,1, 72,2,22,0);
                 xscalingpanel.add (grabfirstxpanel);
 
 
@@ -10902,9 +10902,9 @@ static void initializeVariables()
 
                 SpringUtil.makeCompactGrid (mainpanelgroupe, 1, 3, 0,0,0,0);
                 mainpanel.add(mainpanelgroupe);
-                
+
        // MAIN PANEL PHASE FOLDING PANEL START
-                
+
                 T0steppopup = new JPopupMenu();
                 JPanel T0steppanel = new JPanel();
                 T0stepspinnermodel = new SpinnerListModel(spinnerscalelist);
@@ -10942,9 +10942,9 @@ static void initializeVariables()
                             T0steppopup.setVisible(false);
                             }
                     });
-                
-                
-                
+
+
+
                 periodsteppopup = new JPopupMenu();
                 JPanel periodsteppanel = new JPanel();
                 periodstepspinnermodel = new SpinnerListModel(spinnerscalelist);
@@ -10982,7 +10982,7 @@ static void initializeVariables()
                             periodsteppopup.setVisible(false);
                             }
                     });
-                
+
                 durationsteppopup = new JPopupMenu();
                 JPanel durationsteppanel = new JPanel();
                 durationstepspinnermodel = new SpinnerListModel(spinnerscalelist);
@@ -11020,7 +11020,7 @@ static void initializeVariables()
                             durationsteppopup.setVisible(false);
                             }
                     });
-       
+
                 JPanel phasefoldpanel = new JPanel (new SpringLayout());
                 TitledBorder phasefoldborder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Phase Folding", TitledBorder.CENTER, TitledBorder.TOP, b12, Color.DARK_GRAY);
                 phasefoldpanel.setBorder(phasefoldborder);
@@ -11156,7 +11156,7 @@ static void initializeVariables()
                         Prefs.set("plot.showXAxisAsPhase", showXAxisAsPhase);
                         Prefs.set("plot.showXAxisAsHoursSinceTc", showXAxisAsHoursSinceTc);
                         Prefs.set("plot.showXAxisAsDaysSinceTc", showXAxisAsDaysSinceTc);
-                        updatePlot(updateAllFits());}});                
+                        updatePlot(updateAllFits());}});
                 orbitalphaseButton.addActionListener(new ActionListener(){
                     public void actionPerformed(ActionEvent ae) {
                         showXAxisNormal = false;
@@ -11187,13 +11187,13 @@ static void initializeVariables()
                         Prefs.set("plot.showXAxisAsHoursSinceTc", showXAxisAsHoursSinceTc);
                         Prefs.set("plot.showXAxisAsDaysSinceTc", showXAxisAsDaysSinceTc);
                         updatePlot(updateAllFits());}});
-                
 
-                
+
+
                 t0panel = new JPanel(new SpringLayout());
                 TitledBorder t0border = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"T0 (Days)", TitledBorder.CENTER, TitledBorder.TOP, p11);
-                t0panel.setBorder(t0border);    
-                
+                t0panel.setBorder(t0border);
+
                 T0spinnermodel = new SpinnerNumberModel(new Double(T0),  0.0, null, new Double(T0Step));
 
                 T0spinner = new JSpinner(T0spinnermodel);
@@ -11225,11 +11225,11 @@ static void initializeVariables()
                 t0panel.add (T0spinner);
                 SpringUtil.makeCompactGrid (t0panel, 1, t0panel.getComponentCount(), 0,0,0,0);
                 phasefoldpanel.add(t0panel);
-                
+
                 periodpanel = new JPanel(new SpringLayout());
                 TitledBorder periodborder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Period (Days)", TitledBorder.CENTER, TitledBorder.TOP, p11);
-                periodpanel.setBorder(periodborder);    
-                
+                periodpanel.setBorder(periodborder);
+
                 periodspinnermodel = new SpinnerNumberModel(new Double(period),  0.0001, null, new Double(periodStep));
 
                 periodspinner = new JSpinner(periodspinnermodel);
@@ -11260,11 +11260,11 @@ static void initializeVariables()
                 periodpanel.add (periodspinner);
                 SpringUtil.makeCompactGrid (periodpanel, 1, periodpanel.getComponentCount(), 0,0,0,0);
                 phasefoldpanel.add(periodpanel);
-                
+
                 durationpanel = new JPanel(new SpringLayout());
                 TitledBorder durationborder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Duration (Hours)", TitledBorder.CENTER, TitledBorder.TOP, p11);
-                durationpanel.setBorder(durationborder);    
-                
+                durationpanel.setBorder(durationborder);
+
                 durationspinnermodel = new SpinnerNumberModel(new Double(duration),  0.0, null, new Double(durationStep));
 
                 durationspinner = new JSpinner(durationspinnermodel);
@@ -11301,10 +11301,10 @@ static void initializeVariables()
                         }
                     });
                 durationpanel.add (durationspinner);
-                
+
                 SpringUtil.makeCompactGrid (durationpanel, 1, durationpanel.getComponentCount(), 0,0,0,0);
                 phasefoldpanel.add(durationpanel);
-                
+
                 twoxPeriodCB = new JCheckBox ("2xP", twoxPeriod);
                 twoxPeriodCB.setToolTipText("Show at 2 x Period to check odd/even.");
                 twoxPeriodCB.addItemListener(new ItemListener(){
@@ -11317,7 +11317,7 @@ static void initializeVariables()
                         Prefs.set("plot.twoxPeriod", twoxPeriod);
                         updatePlot(updateAllFits());}});
                 phasefoldpanel.add (twoxPeriodCB);
-                
+
                 oddNotEvenCB = new JCheckBox ("odd/even", oddNotEven);
                 oddNotEvenCB.setToolTipText("Select to show odd transits. Deselect to show even transits.");
                 oddNotEvenCB.addItemListener(new ItemListener(){
@@ -11329,7 +11329,7 @@ static void initializeVariables()
                         Prefs.set("plot.oddNotEven", oddNotEven);
                         updatePlot(updateAllFits());}});
                 phasefoldpanel.add (oddNotEvenCB);
-                
+
                 if (showXAxisNormal)
                     {
                     T0spinner.setEnabled(false);
@@ -11345,25 +11345,25 @@ static void initializeVariables()
                     {
                     oddNotEvenCB.setEnabled(false);
                     }
-                
+
                 SpringUtil.makeCompactGrid (phasefoldpanel, 1, phasefoldpanel.getComponentCount(), 2,2,0,0);
                 mainpanel.add(phasefoldpanel);
-                
+
         // MAIN PANEL GROUP F START
 
-                
+
                 JPanel mfmarkerpanel = new JPanel (new SpringLayout());
                 TitledBorder mfmarkerborder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Meridian Flip", TitledBorder.CENTER, TitledBorder.TOP, b12, Color.DARK_GRAY);
                 mfmarkerpanel.setBorder(mfmarkerborder);
-                
+
                 JPanel showmfmarkerpanel = new JPanel(new SpringLayout());
                 TitledBorder showmfmarkerborder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Show", TitledBorder.CENTER, TitledBorder.TOP, p11);
-                showmfmarkerpanel.setBorder(showmfmarkerborder);  
-                
+                showmfmarkerpanel.setBorder(showmfmarkerborder);
+
                 JLabel showmfmarkerlabel1 = new JLabel("  ");
                 showmfmarkerlabel1.setFont(p11);
                 showmfmarkerpanel.add(showmfmarkerlabel1);
-                
+
                 showMFMarkersCB = new JCheckBox ("", showMFMarkers);
                 showMFMarkersCB.setToolTipText("Show meridian flip marker on plot");
                 showMFMarkersCB.addItemListener(new ItemListener(){
@@ -11375,18 +11375,18 @@ static void initializeVariables()
                         updatePlot(updateNoFits());}});
                 showMFMarkersCB.setHorizontalAlignment(JLabel.CENTER);
                 showmfmarkerpanel.add(showMFMarkersCB);
-                
+
                 JLabel showmfmarkerlabel2 = new JLabel("  ");
                 showmfmarkerlabel2.setFont(p11);
-                showmfmarkerpanel.add(showmfmarkerlabel2);                
-                
+                showmfmarkerpanel.add(showmfmarkerlabel2);
+
                 SpringUtil.makeCompactGrid (showmfmarkerpanel, 1, showmfmarkerpanel.getComponentCount(), 2,2,0,0);
-                mfmarkerpanel.add(showmfmarkerpanel);                
+                mfmarkerpanel.add(showmfmarkerpanel);
 
                 JPanel mfmarker1panel = new JPanel(new SpringLayout());
                 TitledBorder mfmarker1border = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Flip Time", TitledBorder.CENTER, TitledBorder.TOP, p11);
-                mfmarker1panel.setBorder(mfmarker1border);    
-                
+                mfmarker1panel.setBorder(mfmarker1border);
+
                 mfmarker1spinnermodel = new SpinnerNumberModel(new Double(mfMarker1Value),  null, null, new Double(xStep));
 
                 mfmarker1spinner = new JSpinner(mfmarker1spinnermodel);
@@ -11420,35 +11420,35 @@ static void initializeVariables()
                         }
                     });
                 mfmarker1panel.add (mfmarker1spinner);
-                
+
                 SpringUtil.makeCompactGrid (mfmarker1panel, 1, mfmarker1panel.getComponentCount(), 2,2,0,0);
-                mfmarkerpanel.add (mfmarker1panel); 
-                
+                mfmarkerpanel.add (mfmarker1panel);
+
                 SpringUtil.makeCompactGrid (mfmarkerpanel, 1, mfmarkerpanel.getComponentCount(), 2,2,6,2);
-                mainpanelgroupf.add (mfmarkerpanel);                 
-                
-                
-                
-                
-                
-                
-                
+                mainpanelgroupf.add (mfmarkerpanel);
+
+
+
+
+
+
+
 
                 JPanel detrendrangepanel = new JPanel (new SpringLayout());
                 TitledBorder detrendrangetitle = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Fit and Normalize Region Selection", TitledBorder.CENTER, TitledBorder.TOP, b12, Color.DARK_GRAY);
                 detrendrangepanel.setBorder(detrendrangetitle);
-                
+
                 //DETREND/NORMALIZE STEPSIZE POPUP
 
-                
+
                 JPanel showdmarkerspanel = new JPanel(new SpringLayout());
                 TitledBorder showdmarkerstitle = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Show", TitledBorder.CENTER, TitledBorder.TOP, p11);
-                showdmarkerspanel.setBorder(showdmarkerstitle);  
-                
+                showdmarkerspanel.setBorder(showdmarkerstitle);
+
                 JLabel showdmarkerslabel1 = new JLabel("  ");
                 showdmarkerslabel1.setFont(p11);
                 showdmarkerspanel.add(showdmarkerslabel1);
-                
+
                 showDMarkersCB = new JCheckBox ("", showDMarkers);
                 showDMarkersCB.setToolTipText("Show region markers on plot");
                 showDMarkersCB.addItemListener(new ItemListener(){
@@ -11460,19 +11460,19 @@ static void initializeVariables()
                         updatePlot(updateNoFits());}});
                 showDMarkersCB.setHorizontalAlignment(JLabel.CENTER);
                 showdmarkerspanel.add(showDMarkersCB);
-                
+
                 JLabel showdmarkerslabel2 = new JLabel("  ");
                 showdmarkerslabel2.setFont(p11);
-                showdmarkerspanel.add(showdmarkerslabel2);                
-                
+                showdmarkerspanel.add(showdmarkerslabel2);
+
                 SpringUtil.makeCompactGrid (showdmarkerspanel, 1, showdmarkerspanel.getComponentCount(), 2,2,0,0);
-                detrendrangepanel.add(showdmarkerspanel);                
+                detrendrangepanel.add(showdmarkerspanel);
 
                 JPanel dmarker1panel = new JPanel(new SpringLayout());
                 TitledBorder dmarker1title = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Left Trim", TitledBorder.CENTER, TitledBorder.TOP, p11);
                 dmarker1title.setTitleJustification(TitledBorder.CENTER);
-                dmarker1panel.setBorder(dmarker1title);    
-                
+                dmarker1panel.setBorder(dmarker1title);
+
                 useDMarker1CB = new JCheckBox ("", useDMarker1);
                 useDMarker1CB.setToolTipText("Enable left trim");
                 useDMarker1CB.addItemListener(new ItemListener(){
@@ -11524,15 +11524,15 @@ static void initializeVariables()
                         }
                     });
                 dmarker1panel.add (dmarker1spinner);
-                
+
                 SpringUtil.makeCompactGrid (dmarker1panel, 1, dmarker1panel.getComponentCount(), 2,2,0,0);
-                detrendrangepanel.add (dmarker1panel);                
-                
+                detrendrangepanel.add (dmarker1panel);
+
                 JPanel dmarker2panel = new JPanel(new SpringLayout());
 //                dmarker2panel.setBorder(BorderFactory.createLineBorder(Color.lightGray,1));
                 TitledBorder dmarker2title = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Left", TitledBorder.CENTER, TitledBorder.TOP, p11);
 //                dmarker2title.setTitlePosition(TitledBorder.BOTTOM);
-                dmarker2panel.setBorder(dmarker2title);                
+                dmarker2panel.setBorder(dmarker2title);
 
                 dmarker2spinnermodel = new SpinnerNumberModel(new Double(dMarker2Value),  null, null, new Double(xStep));
 
@@ -11555,7 +11555,7 @@ static void initializeVariables()
                         {
                         checkForUT(dmarker2spinner);
                         dMarker2Value = ((Double)dmarker2spinner.getValue()).doubleValue();
-                        
+
 //                        if (shiftIsDown && !ignoreUpdate)
 //                            {
 //                            ignoreUpdate = true;
@@ -11583,19 +11583,19 @@ static void initializeVariables()
                         }
                     });
                 dmarker2panel.add (dmarker2spinner);
-                
+
                 SpringUtil.makeCompactGrid (dmarker2panel, 1, dmarker2panel.getComponentCount(), 2,2,0,0);
                 detrendrangepanel.add (dmarker2panel);
-                
-                
-                
-                
+
+
+
+
 
                 JPanel dmarkercopypanel = new JPanel(new SpringLayout());
                 TitledBorder dmarkercopytitle = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Copy", TitledBorder.CENTER, TitledBorder.TOP, p11);
                 dmarkercopytitle.setTitleJustification(TitledBorder.CENTER);
-                dmarkercopypanel.setBorder(dmarkercopytitle);    
-                
+                dmarkercopypanel.setBorder(dmarkercopytitle);
+
                 copyVMarkersIcon = createImageIcon("astroj/images/copymarkers.png", "Copy V. Markers Icon");
                 JButton copyButton = new JButton(copyVMarkersIcon);
                 copyButton.setMargin(new Insets(0,0,0,0));
@@ -11605,17 +11605,17 @@ static void initializeVariables()
                         dmarker2spinner.setValue(vMarker1Value);
                         dmarker3spinner.setValue(vMarker2Value);
                         updatePlot(updateNoFits());
-                        }});                
+                        }});
                 dmarkercopypanel.add(copyButton);
                 SpringUtil.makeCompactGrid (dmarkercopypanel, 1, dmarkercopypanel.getComponentCount(), 2,0,2,0);
-                detrendrangepanel.add (dmarkercopypanel);                
-                
+                detrendrangepanel.add (dmarkercopypanel);
+
                 JPanel dmarker3panel = new JPanel(new SpringLayout());
 //                dmarker3panel.setBorder(BorderFactory.createLineBorder(Color.lightGray,1));
                 TitledBorder dmarker3title = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Right", TitledBorder.CENTER, TitledBorder.TOP, p11);
                 dmarker3title.setTitleJustification(TitledBorder.CENTER);
 //                dmarker3title.setTitlePosition(TitledBorder.BOTTOM);
-                dmarker3panel.setBorder(dmarker3title);                
+                dmarker3panel.setBorder(dmarker3title);
 
                 dmarker3spinnermodel = new SpinnerNumberModel(new Double(dMarker3Value),  null, null, new Double(xStep));
 
@@ -11639,12 +11639,12 @@ static void initializeVariables()
                     public void mousePressed(MouseEvent e) {
                         if (e.isAltDown()) shiftIsDown = true;
                         //else shiftIsDown = false;
-                            
+
                     }
                     public void mouseReleased(MouseEvent e) {
                         if (e.isAltDown()) shiftIsDown = true;
                         //else shiftIsDown = false;
-                                
+
                     }
                     public void mouseExited(MouseEvent e) {
                     }
@@ -11687,16 +11687,16 @@ static void initializeVariables()
                         }
                     });
                 dmarker3panel.add (dmarker3spinner);
-                
+
                 SpringUtil.makeCompactGrid (dmarker3panel, 1, dmarker3panel.getComponentCount(), 2,2,0,0);
-                detrendrangepanel.add (dmarker3panel);                
-                
+                detrendrangepanel.add (dmarker3panel);
+
                 JPanel dmarker4panel = new JPanel(new SpringLayout());
 //                dmarker4panel.setBorder(BorderFactory.createLineBorder(Color.lightGray,1));
                 TitledBorder dmarker4title = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Right Trim", TitledBorder.CENTER, TitledBorder.TOP, p11);
                 dmarker4title.setTitleJustification(TitledBorder.CENTER);
 //                dmarker4title.setTitlePosition(TitledBorder.BOTTOM);
-                dmarker4panel.setBorder(dmarker4title);                  
+                dmarker4panel.setBorder(dmarker4title);
 
                 dmarker4spinnermodel = new SpinnerNumberModel(new Double(dMarker4Value),  null, null, new Double(xStep));
 
@@ -11734,7 +11734,7 @@ static void initializeVariables()
                         }
                     });
                 dmarker4panel.add (dmarker4spinner);
-                
+
                 useDMarker4CB = new JCheckBox ("", useDMarker4);
                 useDMarker4CB.setToolTipText("Enable right trim");
                 useDMarker4CB.addItemListener(new ItemListener(){
@@ -11746,11 +11746,11 @@ static void initializeVariables()
                         dmarker4spinner.setEnabled(useDMarker4);
                         updatePlot(updateAllFits());}});
                 useDMarker4CB.setHorizontalAlignment(JLabel.CENTER);
-                dmarker4panel.add (useDMarker4CB);                
-                
+                dmarker4panel.add (useDMarker4CB);
+
                 SpringUtil.makeCompactGrid (dmarker4panel, 1, dmarker4panel.getComponentCount(), 2,2,0,0);
-                detrendrangepanel.add (dmarker4panel);                
-                
+                detrendrangepanel.add (dmarker4panel);
+
 
                 SpringUtil.makeCompactGrid (detrendrangepanel, 1,detrendrangepanel.getComponentCount(), 2,2,6,2);
                 mainpanelgroupf.add (detrendrangepanel);
@@ -11764,15 +11764,15 @@ static void initializeVariables()
 //                closebuttonpanel.add (closebutton);
 //                SpringUtil.makeCompactGrid (closebuttonpanel, 1, 1, 6,15,0,0);
 //                mainpanelgroupf.add (closebuttonpanel);
-                
-                
+
+
                 JPanel morepanelspanel = new JPanel(new SpringLayout());
                 TitledBorder morepanelstitle = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Other Panels", TitledBorder.CENTER, TitledBorder.TOP, b12, Color.DARK_GRAY);
-                morepanelspanel.setBorder(morepanelstitle); 
+                morepanelspanel.setBorder(morepanelstitle);
 //                morepanelspanel.setPreferredSize(new Dimension(125, 25));
-                
+
                 JPanel line1morepanelspanel = new JPanel(new SpringLayout());
-                
+
                 updateplotbutton = new JButton("Redraw Plot");
                 updateplotbutton.setToolTipText("redraws the plot and brings the panel to the front");
                 updateplotbutton.setFont(p11);
@@ -11788,9 +11788,9 @@ static void initializeVariables()
                         updatePlot(updateAllFits());
                         plotWindow.toFront();
                     }
-                });         
+                });
                 line1morepanelspanel.add (updateplotbutton);
-                
+
                 addastrodatabutton = new JButton(" Add Data ");
                 addastrodatabutton.setToolTipText("Add new astronomical data columns to table.");
                 addastrodatabutton.setFont(p11);
@@ -11807,14 +11807,14 @@ static void initializeVariables()
                         addAstroDataFrameWasShowing = true;
                         Prefs.set("plot2.addAstroDataFrameWasShowing", addAstroDataFrameWasShowing);
                     }
-                });         
+                });
                 line1morepanelspanel.add (addastrodatabutton);
-                
+
                 SpringUtil.makeCompactGrid (line1morepanelspanel, 1, line1morepanelspanel.getComponentCount(), 0,0,0,0);
                 morepanelspanel.add (line1morepanelspanel);
-                
-                JPanel line2morepanelspanel = new JPanel(new SpringLayout());                
-                                
+
+                JPanel line2morepanelspanel = new JPanel(new SpringLayout());
+
                 moreybutton = new JButton("Y-data ");
                 moreybutton.setToolTipText("opens the Y-data panel");
                 moreybutton.setFont(p11);
@@ -11831,7 +11831,7 @@ static void initializeVariables()
                     }
                 });
                 line2morepanelspanel.add (moreybutton);
-          
+
                 refStarButton = new JButton("Ref. Stars");
                 refStarButton.setFont(p11);
                 refStarButton.setToolTipText("opens the reference star panel");
@@ -11857,10 +11857,10 @@ static void initializeVariables()
                 });
 
                 line2morepanelspanel.add (refStarButton);
-                
+
                 SpringUtil.makeCompactGrid (line2morepanelspanel, 1, line2morepanelspanel.getComponentCount(), 0,0,0,0);
                 morepanelspanel.add (line2morepanelspanel);
-                
+
                 SpringUtil.makeCompactGrid (morepanelspanel, morepanelspanel.getComponentCount(), 1, 2,0,2,2);
                 mainpanelgroupf.add (morepanelspanel);
 
@@ -11892,7 +11892,7 @@ static void initializeVariables()
                     {
                     addNewAstroData();
                     addAstroDataFrameWasShowing = true;
-                    }                
+                    }
                 }
 
 
@@ -11901,18 +11901,18 @@ static void initializeVariables()
 
         static void showMoreCurvesJPanel()
                 {
-                
+
                 subFrame = new JFrame ("Multi-plot Y-data");
                 subFrame.setIconImage(plotIcon.getImage());
                 mainsubpanel = new JPanel (new SpringLayout());
-                mainsubpanel.addMouseMotionListener(panelMouseMotionListener);                
+                mainsubpanel.addMouseMotionListener(panelMouseMotionListener);
                 FileDrop fileDrop = new FileDrop(mainsubpanel, BorderFactory.createEmptyBorder(),new FileDrop.Listener()
                     {   public void filesDropped( java.io.File[] files )
                         {
                         openDragAndDropFiles(files);
                         }
                     });
-                
+
                 subscrollpane = new JScrollPane(mainsubpanel);
                 subFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
                 subFrame.addWindowListener(new WindowAdapter(){
@@ -11921,7 +11921,7 @@ static void initializeVariables()
                             subFrameLocationX = subFrame.getLocation().x;
                             subFrameLocationY = subFrame.getLocation().y;
                             subFrameWidth = subFrame.getWidth();
-                            subFrameHeight = subFrame.getHeight();                                
+                            subFrameHeight = subFrame.getHeight();
                             setSubpanelVisible = false;
                             Prefs.set("plot2.subFrameLocationX",subFrameLocationX);
                             Prefs.set("plot2.subFrameLocationY",subFrameLocationY);
@@ -11933,11 +11933,11 @@ static void initializeVariables()
                 JPanel mainsubpanelgroupb = new JPanel (new SpringLayout());
                 mainsubpanelgroupb.setBorder(BorderFactory.createTitledBorder(""));
 
-                
-                
-                
+
+
+
        // SUBPANEL START
-                
+
                 if (useWideDataPanel)
                         {
 //                        constructTopGroupTopLabels(mainsubpanelgroupa);
@@ -11977,7 +11977,7 @@ static void initializeVariables()
                         SpringUtil.makeCompactGrid (mainsubpanel, mainsubpanel.getComponentCount(), 1, 5,5,5,5);
                         }
 
-                
+
                 if (refStarFrame != null && isRefStar != null && isRefStar.length > 0)
                     {
                     for (int r = 0; r < isRefStar.length; r++)
@@ -11988,10 +11988,10 @@ static void initializeVariables()
                     waitForPlotUpdateToFinish();
                     updateGUI();
                     if (delayedUpdateTimer != null) delayedUpdateTimer.cancel();
-                    if (delayedUpdateTask != null) delayedUpdateTask.cancel();                    
+                    if (delayedUpdateTask != null) delayedUpdateTask.cancel();
                     updatePlotEnabled = true;
                     }
-               
+
                 subFrame.add (subscrollpane);
                 subFrame.pack();
                 subFrame.setResizable (true);
@@ -12006,7 +12006,7 @@ static void initializeVariables()
                         subFrame.setVisible (true);
                         }
     //CREATE FIT PANEL
-                
+
                 createFitPanelCommonItems();
                 for (int c=0; c<maxCurves; c++)
                     {
@@ -12020,7 +12020,7 @@ static void initializeVariables()
 //                    xdatacolumndefault.addItem("rel_flux_T2");
 //                    }
                 panelsUpdating = false;
-                }                
+                }
 
 
         static void constructTopGroupBottomLabels(JPanel mainsubpanelgroup)
@@ -12031,7 +12031,7 @@ static void initializeVariables()
                 dummylabel20.setHorizontalAlignment(JLabel.CENTER);
                 dummylabel20.setMaximumSize(new Dimension(35,25));
                 mainsubpanelgroup.add (dummylabel20);
-                
+
                 JLabel savenewlabel = new JLabel ("<HTML><CENTER>New<BR><CENTER>Col</HTML>");
                 savenewlabel.setToolTipText("Save curve as new table column");
                 savenewlabel.setFont(b11);
@@ -12039,7 +12039,7 @@ static void initializeVariables()
                 savenewlabel.setMaximumSize(new Dimension(45,25));
                 savenewlabel.setHorizontalAlignment(JLabel.CENTER);
                 mainsubpanelgroup.add (savenewlabel);
-                
+
                 JLabel dummylabel21 = new JLabel ("Plot");
                 dummylabel21.setFont(b11);
                 dummylabel21.setForeground(Color.DARK_GRAY);
@@ -12047,7 +12047,7 @@ static void initializeVariables()
                 dummylabel21.setHorizontalAlignment(JLabel.CENTER);
                 dummylabel21.setMaximumSize(new Dimension(45,25));
                 mainsubpanelgroup.add (dummylabel21);
-                
+
                 JLabel autoscaleincludelabel = new JLabel ("<HTML><CENTER>Auto<BR><CENTER>Scale</HTML>");
                 autoscaleincludelabel.setFont(b11);
                 autoscaleincludelabel.setForeground(Color.DARK_GRAY);
@@ -12055,7 +12055,7 @@ static void initializeVariables()
                 autoscaleincludelabel.setHorizontalAlignment(JLabel.CENTER);
                 autoscaleincludelabel.setMaximumSize(new Dimension(45,25));
                 mainsubpanelgroup.add (autoscaleincludelabel);
-                
+
                 xcolumnlabelsub = new JLabel ("X-data");
                 xcolumnlabelsub.setFont(b11);
                 xcolumnlabelsub.setForeground(Color.DARK_GRAY);
@@ -12064,7 +12064,7 @@ static void initializeVariables()
 //                ycolumnlabelsub = new JLabel ("Y-data");
 //                ycolumnlabelsub.setHorizontalAlignment(JLabel.CENTER);
 //                mainsubpanelgroup.add (ycolumnlabelsub);
-                
+
                 JLabel magToFluxlabel = new JLabel ("<HTML><CENTER>Input<BR><CENTER>in Mag</HTML>");
                 magToFluxlabel.setFont(b11);
                 magToFluxlabel.setForeground(Color.DARK_GRAY);
@@ -12072,9 +12072,9 @@ static void initializeVariables()
                                              "This option should generally be deselected to plot data generated by Multi-Aperture.</HTML>");
                 magToFluxlabel.setHorizontalAlignment(JLabel.CENTER);
                 magToFluxlabel.setMaximumSize(new Dimension(45,25));
-                mainsubpanelgroup.add (magToFluxlabel);                
-                                
-                
+                mainsubpanelgroup.add (magToFluxlabel);
+
+
                 JPanel ycolumnlabelgroup = new JPanel();
                 ycolumnlabelgroup.setLayout(new BoxLayout(ycolumnlabelgroup,BoxLayout.X_AXIS));
 //                legendslabelgroup.add(Box.createGlue());
@@ -12087,7 +12087,7 @@ static void initializeVariables()
                 ycolumnlabelgroup.add (ycolumnlabelsub);
                 ycolumnlabelgroup.add(Box.createHorizontalStrut(5));
 //                legendslabelgroup.add(Box.createGlue());
-                
+
                 helpIcon = createImageIcon("astroj/images/help.png", "Multi-plot Help");
                 JButton ycolumnlabelconfigureButton = new JButton(helpIcon);
                 ycolumnlabelconfigureButton.setFont(b11);
@@ -12100,8 +12100,8 @@ static void initializeVariables()
                 ycolumnlabelgroup.add(ycolumnlabelconfigureButton);
                 ycolumnlabelgroup.add(Box.createHorizontalGlue());
 //                legendslabelgroup.add(Box.createGlue());
-                mainsubpanelgroup.add(ycolumnlabelgroup);                
-                
+                mainsubpanelgroup.add(ycolumnlabelgroup);
+
                 JLabel useerrorlabel = new JLabel ("<HTML><CENTER>Auto<BR><CENTER>Error</HTML>");
                 useerrorlabel.setFont(b11);
                 useerrorlabel.setForeground(Color.DARK_GRAY);
@@ -12120,13 +12120,13 @@ static void initializeVariables()
                 operatorlabelsub.setHorizontalAlignment(JLabel.CENTER);
                 operatorlabelsub.setToolTipText("Performs the selected operation on Y-data Column and Y-operator Column and propagates error if enabled");
                 mainsubpanelgroup.add (operatorlabelsub);
-                
+
                 opcolumnlabelsub = new JLabel ("Y-operand");
                 opcolumnlabelsub.setFont(b11);
                 opcolumnlabelsub.setForeground(Color.DARK_GRAY);
                 opcolumnlabelsub.setHorizontalAlignment(JLabel.CENTER);
                 mainsubpanelgroup.add (opcolumnlabelsub);
-                
+
 //                JLabel useoperrorlabel = new JLabel ("Use");
 //                useoperrorlabel.setToolTipText("Use Operator Error as error associated with Y-operator Column");
 //                useoperrorlabel.setHorizontalAlignment(JLabel.CENTER);
@@ -12134,19 +12134,19 @@ static void initializeVariables()
 //                JLabel operrorlabel = new JLabel ("Y-op Error");
 //                operrorlabel.setHorizontalAlignment(JLabel.CENTER);
 //                mainsubpanelgroup.add (operrorlabel);
-                
+
                 markerlabelsub = new JLabel ("Color");
                 markerlabelsub.setFont(b11);
                 markerlabelsub.setForeground(Color.DARK_GRAY);
                 markerlabelsub.setHorizontalAlignment(JLabel.CENTER);
                 mainsubpanelgroup.add (markerlabelsub);
-                
+
                 markercolorlabelsub = new JLabel ("Symbol");
                 markercolorlabelsub.setFont(b11);
                 markercolorlabelsub.setForeground(Color.DARK_GRAY);
                 markercolorlabelsub.setHorizontalAlignment(JLabel.CENTER);
                 mainsubpanelgroup.add (markercolorlabelsub);
-                
+
                 JLabel lineslabel = new JLabel ("Lines");
                 lineslabel.setFont(b11);
                 lineslabel.setForeground(Color.DARK_GRAY);
@@ -12154,7 +12154,7 @@ static void initializeVariables()
                 lineslabel.setHorizontalAlignment(JLabel.CENTER);
                 lineslabel.setMaximumSize(new Dimension(45,25));
                 mainsubpanelgroup.add (lineslabel);
-                
+
                 JLabel binslabel = new JLabel ("Bin Size");
                 binslabel.setFont(b11);
                 binslabel.setForeground(Color.DARK_GRAY);
@@ -12162,7 +12162,7 @@ static void initializeVariables()
                 binslabel.setPreferredSize(new Dimension(50, 25));
                 binslabel.setHorizontalAlignment(JLabel.CENTER);
                 binslabel.setToolTipText("Plot binned data using the number of samples/bin indicated");
-                mainsubpanelgroup.add (binslabel);                
+                mainsubpanelgroup.add (binslabel);
                 forceIcon = createImageIcon("astroj/images/grab.png", "Transfer 'Page Rel' settings to absolute settings");
                 insertColumnIcon = createImageIcon("astroj/images/insertcolumn.png", "Save curve as new table column");
                 }
@@ -12178,7 +12178,7 @@ static void initializeVariables()
                 seconddatasetlabel.setMaximumSize(new Dimension(35,25));
                 if (!useWideDataPanel)
                         mainsubpanelgroup.add (seconddatasetlabel);
-                
+
                 JLabel smoothlabel = new JLabel ("<HTML><CENTER>Smo-<BR><CENTER>oth</HTML>");
                 smoothlabel.setFont(b11);
                 smoothlabel.setForeground(Color.DARK_GRAY);
@@ -12186,7 +12186,7 @@ static void initializeVariables()
                 smoothlabel.setHorizontalAlignment(JLabel.CENTER);
                 smoothlabel.setMaximumSize(new Dimension(35,25));
                 mainsubpanelgroup.add (smoothlabel);
-                
+
                 JLabel smoothlenlabel = new JLabel ("<HTML><CENTER>Len-<BR><CENTER>gth</HTML>");
                 smoothlenlabel.setFont(b11);
                 smoothlenlabel.setForeground(Color.DARK_GRAY);
@@ -12194,11 +12194,11 @@ static void initializeVariables()
                 smoothlenlabel.setHorizontalAlignment(JLabel.CENTER);
                 smoothlenlabel.setMaximumSize(new Dimension(35,25));
                 mainsubpanelgroup.add (smoothlenlabel);
-                
+
                 JPanel detrendlabelgroup = new JPanel (new SpringLayout());
                 detrendlabelgroup.setMaximumSize(new Dimension(195,20));
-                detrendlabelgroup.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));   
-                
+                detrendlabelgroup.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+
                 JLabel detrendlabelA = new JLabel ("<HTML><CENTER>Fit<BR><CENTER>Mode</HTML>");
                 detrendlabelA.setFont(b11);
                 detrendlabelA.setForeground(Color.DARK_GRAY);
@@ -12219,7 +12219,7 @@ static void initializeVariables()
                         int firstFittedCurve = 0;
                         for (int c=0; c<maxCurves; c++)
                             {
-                            if (detrendtypecombobox[c].getSelectedIndex() == 9) 
+                            if (detrendtypecombobox[c].getSelectedIndex() == 9)
                                 {
                                 firstFittedCurve = c;
                                 break;
@@ -12242,7 +12242,7 @@ static void initializeVariables()
                                         }
                                     else
                                         {
-                                        IJU.setFrameSizeAndLocation(fitFrame[c], 
+                                        IJU.setFrameSizeAndLocation(fitFrame[c],
                                                 (fitFrame[firstFittedCurve].isVisible()?fitFrame[firstFittedCurve].getLocation().x:fitFrameLocationX[firstFittedCurve])+(c-firstFittedCurve)*25,
                                                 (fitFrame[firstFittedCurve].isVisible()?fitFrame[firstFittedCurve].getLocation().y:fitFrameLocationY[firstFittedCurve])+(c-firstFittedCurve)*25, 0, 0);
                                         }
@@ -12250,19 +12250,19 @@ static void initializeVariables()
                                 else
                                     {
                                     IJU.setFrameSizeAndLocation(fitFrame[c], 40+c*25, 40+c*25, 0, 0);
-                                    }                                
-                                
-                                
+                                    }
+
+
                                 fitFrame[c].setVisible(true);
-                                }                            
+                                }
                             }
                         }
                     public void mouseEntered(MouseEvent e) {}
                     public void mouseExited(MouseEvent e) {}
                     });
-                
+
                 detrendlabelgroup.add (detrendlabelA);
-                
+
                 if (maxDetrendVars>1)
                     {
                     JLabel detrendlabelB = new JLabel ("<HTML><CENTER>Trend<BR><CENTER>Select</HTML>");
@@ -12289,9 +12289,9 @@ static void initializeVariables()
                                                  "&lt;ALT&gt;Click - alternately enables/disables the corresponding trend dataset</html>");
                     detrendlabelB.setPreferredSize(new Dimension(maxDetrendVars*20,25));
                     detrendlabelB.setHorizontalAlignment(JLabel.CENTER);
-                    detrendlabelgroup.add (detrendlabelB);       
+                    detrendlabelgroup.add (detrendlabelB);
                     }
-                
+
                 JLabel detrendlabelC = new JLabel ("<HTML><CENTER>Trend<BR><CENTER>Coefficient</HTML>");
                 detrendlabelC.setFont(b11);
                 detrendlabelC.setForeground(Color.DARK_GRAY);
@@ -12299,8 +12299,8 @@ static void initializeVariables()
                                                    "Set the Fit and Normalize region markers at the bottom of the Multi-plot Main panel.</html>");
                 detrendlabelC.setPreferredSize(new Dimension(75,25));
                 detrendlabelC.setHorizontalAlignment(JLabel.CENTER);
-                detrendlabelgroup.add (detrendlabelC); 
-                
+                detrendlabelgroup.add (detrendlabelC);
+
                 JLabel detrendlabelD = new JLabel ("<HTML><CENTER>Trend<BR><CENTER>Dataset</HTML>");
                 detrendlabelD.setFont(b11);
                 detrendlabelD.setForeground(Color.DARK_GRAY);
@@ -12313,11 +12313,11 @@ static void initializeVariables()
                 detrendlabelD.setHorizontalAlignment(JLabel.CENTER);
                 detrendlabelD.setPreferredSize(new Dimension(132,25));
                 detrendlabelgroup.add (detrendlabelD);
-                
+
                 SpringUtil.makeCompactGrid (detrendlabelgroup, 1, detrendlabelgroup.getComponentCount(), 0,0,0,0);
                 mainsubpanelgroup.add (detrendlabelgroup);
-                
-                
+
+
 
 //                JLabel customscalelabel4 = new JLabel ("<HTML><CENTER><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detrend Y-data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><BR>"+
 //                                                       "&nbsp;&nbsp;&nbsp;&nbsp;Fit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
@@ -12334,7 +12334,7 @@ static void initializeVariables()
                 normlabel.setHorizontalAlignment(JLabel.CENTER);
                 normlabel.setMaximumSize(new Dimension(50,25));
                 mainsubpanelgroup.add (normlabel);
-                
+
                 JLabel mmaglabel = new JLabel ("<HTML><CENTER>Out<BR><CENTER>Mag</HTML>");
                 mmaglabel.setFont(b11);
                 mmaglabel.setForeground(Color.DARK_GRAY);
@@ -12344,17 +12344,17 @@ static void initializeVariables()
                                          "level when converting the plotted data to relative magnitude.</html>");
                 mmaglabel.setHorizontalAlignment(JLabel.CENTER);
                 mmaglabel.setMaximumSize(new Dimension(30,25));
-                mainsubpanelgroup.add (mmaglabel);                
+                mainsubpanelgroup.add (mmaglabel);
 
                 JPanel customscalelabelgroup = new JPanel();
-                customscalelabelgroup.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY)); 
+                customscalelabelgroup.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
                 customscalelabelgroup.setLayout(new BoxLayout(customscalelabelgroup,BoxLayout.X_AXIS));
                 customscalelabelgroup.setMaximumSize(new Dimension(195,20));
 //                JLabel dummylabel39 = new JLabel ("");
 //                customscalelabelgroup.add (dummylabel39);
                 customscalelabelgroup.add(Box.createHorizontalStrut(18));
 //                customscalelabelgroup.add(Box.createHorizontalGlue());
-                
+
                 JLabel customscalelabel1 = new JLabel ("<HTML><CENTER>Page<BR><CENTER>Rel</HTML>");
                 customscalelabel1.setFont(b11);
                 customscalelabel1.setForeground(Color.DARK_GRAY);
@@ -12362,7 +12362,7 @@ static void initializeVariables()
 //                customscalelabel1.setHorizontalAlignment(JLabel.LEFT);
                 customscalelabelgroup.add(customscalelabel1);
                 customscalelabelgroup.add(Box.createHorizontalGlue());
-                
+
                 JLabel customscalelabel2 = new JLabel ("Scale");
                 customscalelabel2.setFont(b11);
                 customscalelabel2.setForeground(Color.DARK_GRAY);
@@ -12370,7 +12370,7 @@ static void initializeVariables()
 //                customscalelabel2.setHorizontalAlignment(JLabel.CENTER);
                 customscalelabelgroup.add(customscalelabel2);
                 customscalelabelgroup.add(Box.createHorizontalStrut(25));
-                
+
                 JLabel customscalelabel3 = new JLabel ("then Shift");
                 customscalelabel3.setFont(b11);
                 customscalelabel3.setForeground(Color.DARK_GRAY);
@@ -12381,9 +12381,9 @@ static void initializeVariables()
                 mainsubpanelgroup.add (customscalelabelgroup);
 
                 JPanel legendslabelgroup = new JPanel();
-                legendslabelgroup.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY)); 
+                legendslabelgroup.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
                 legendslabelgroup.setLayout(new BoxLayout(legendslabelgroup,BoxLayout.X_AXIS));
-                                
+
                 if (useWideDataPanel)
                         legendslabelgroup.setPreferredSize (new Dimension(225,20));
                 else
@@ -12412,7 +12412,7 @@ static void initializeVariables()
                 if (useWideDataPanel)
                         morelegendsnamelabel.setPreferredSize (new Dimension(125,20));
                 else
-                        morelegendsnamelabel.setPreferredSize (new Dimension(225,20));                
+                        morelegendsnamelabel.setPreferredSize (new Dimension(225,20));
                 morelegendsnamelabel.setComponentPopupMenu(legendpopup);
                 morelegendsnamelabel.setToolTipText("Right click to set legend preferences");
                 legendslabelgroup.add (morelegendsnamelabel);
@@ -12426,9 +12426,9 @@ static void initializeVariables()
                             public void actionPerformed(ActionEvent ae) {
                                 legendpopup.show(legendslabelconfigureButton, mainsubpanel.getX() , mainsubpanel.getY()+25);}});
                 legendslabelgroup.add(legendslabelconfigureButton);
-                
+
                 mainsubpanelgroup.add(legendslabelgroup);
-                
+
 
                 if (useWideDataPanel)
                         mainsubpanelgroup.add (seconddatasetlabel);
@@ -12441,10 +12441,10 @@ static void initializeVariables()
                 curvelabel[c].setBorder(BorderFactory.createLineBorder(color[c], 2));
                 curvelabel[c].setHorizontalAlignment(JLabel.CENTER);
                 mainsubpanelgroup.add (curvelabel[c]);
-                
+
 //                savecolumnpanelgroup[c] = new JPanel (new SpringLayout());
 //                savecolumnpanelgroup[c].setMaximumSize(new Dimension(25,20));
-//                savecolumnpanelgroup[c].setBorder(BorderFactory.createEmptyBorder());                 
+//                savecolumnpanelgroup[c].setBorder(BorderFactory.createEmptyBorder());
 
                 savecolumnbutton[c] = new JButton(insertColumnIcon);
                 savecolumnbutton[c].setEnabled(plotY[c]);
@@ -12456,11 +12456,11 @@ static void initializeVariables()
                         updatePlot(updateAllFits());
                     }
                 });
-                
-//                savecolumnpanelgroup[c].add(savecolumnbutton[c]);
-//                SpringUtil.makeCompactGrid (savecolumnpanelgroup[c], 1, savecolumnpanelgroup[c].getComponentCount(), 0,0,0,0);                        
 
-                mainsubpanelgroup.add (savecolumnbutton[c]);                        
+//                savecolumnpanelgroup[c].add(savecolumnbutton[c]);
+//                SpringUtil.makeCompactGrid (savecolumnpanelgroup[c], 1, savecolumnpanelgroup[c].getComponentCount(), 0,0,0,0);
+
+                mainsubpanelgroup.add (savecolumnbutton[c]);
 
                 usecurvebox[c] = new JCheckBox ("", plotY[c]);
                 usecurvebox[c].addItemListener(new ItemListener(){
@@ -12484,7 +12484,7 @@ static void initializeVariables()
                         updatePlot(updateNoFits());}});
                 autoscaleincludebox[c].setHorizontalAlignment(JLabel.CENTER);
                 mainsubpanelgroup.add (autoscaleincludebox[c]);
-                
+
                 xdatacolumn[c] = new JComboBox(columnswd);
                 xdatacolumn[c].setFont(p11);
                 xdatacolumn[c].setSelectedItem(xlabel[c]);
@@ -12507,7 +12507,7 @@ static void initializeVariables()
                                 fromMag[c] = true;
                         updatePlot(updateOneFit(c));}});
                 fromMagBox[c].setHorizontalAlignment(JLabel.CENTER);
-                mainsubpanelgroup.add (fromMagBox[c]);                   
+                mainsubpanelgroup.add (fromMagBox[c]);
 
                 ydatacolumn[c] = new JComboBox(columns);
                 ydatacolumn[c].setFont(p11);
@@ -12536,7 +12536,7 @@ static void initializeVariables()
                 errorcolumnbox[c].setToolTipText("<HTML>Show automatic Y-error bars when data has predefined error available.<BR>"+
                                                     "Compatible data columns are: Source-Sky_XX, rel_flux_XX, tot_C_cnts, tot_C_cnts-XX.<BR>"+
                                                     "To display custom user defined error, select the column containing the desired error<BR>"+
-                                                    "under 'Y-operand' and then select 'custom error' under 'Function'.</HTML>");                        
+                                                    "under 'Y-operand' and then select 'custom error' under 'Function'.</HTML>");
                 errorcolumnbox[c].addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
                         if (e.getStateChange() == ItemEvent.DESELECTED)
@@ -12605,7 +12605,7 @@ static void initializeVariables()
                             }
                         updatePlot(updateNoFits());}});
                 mainsubpanelgroup.add (markercolorselection[c]);
-                
+
 
                 markersymbolselection[c] = new JComboBox(markers);
                 markersymbolselection[c].setFont(p11);
@@ -12618,7 +12618,7 @@ static void initializeVariables()
                     public void actionPerformed(ActionEvent ae) {
                         markerIndex[c] = markersymbolselection[c].getSelectedIndex();
                         updatePlot(updateNoFits());}});
-                mainsubpanelgroup.add (markersymbolselection[c]);                
+                mainsubpanelgroup.add (markersymbolselection[c]);
 
                 uselinesbox[c] = new JCheckBox ("", lines[c]);
                 uselinesbox[c].addItemListener(new ItemListener(){
@@ -12630,7 +12630,7 @@ static void initializeVariables()
                         updatePlot(updateNoFits());}});
                 uselinesbox[c].setHorizontalAlignment(JLabel.CENTER);
                 mainsubpanelgroup.add (uselinesbox[c]);
-                
+
                 binsizespinnermodel[c] = new SpinnerNumberModel(new Integer(binSize[c]),new Integer(1), null, new Integer(1));
                 binsizespinner[c] = new JSpinner(binsizespinnermodel[c]);
                 binsizespinner[c].setFont(p11);
@@ -12653,8 +12653,8 @@ static void initializeVariables()
                         if (newValue > 0) binsizespinner[c].setValue(newValue);
                         }
                     });
-                mainsubpanelgroup.add (binsizespinner[c]);  
-                
+                mainsubpanelgroup.add (binsizespinner[c]);
+
                 }
 
         static void constructOtherGroup(JPanel mainsubpanelgroup, final int c)
@@ -12667,7 +12667,7 @@ static void initializeVariables()
                         othercurvelabel[c].setHorizontalAlignment(JLabel.CENTER);
                         mainsubpanelgroup.add (othercurvelabel[c]);
                         }
-                
+
                 usesmoothbox[c] = new JCheckBox ("", smooth[c]);
                 usesmoothbox[c].addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -12678,7 +12678,7 @@ static void initializeVariables()
                         updatePlot(updateOneFit(c));}});
                 usesmoothbox[c].setHorizontalAlignment(JLabel.CENTER);
                 mainsubpanelgroup.add (usesmoothbox[c]);
-                
+
                 smoothlenspinnermodel[c] = new SpinnerNumberModel(new Integer(smoothLen[c]),new Integer(1), null, new Integer(1));
                 smoothlenspinner[c] = new JSpinner(smoothlenspinnermodel[c]);
                 smoothlenspinner[c].setFont(p11);
@@ -12701,12 +12701,12 @@ static void initializeVariables()
                         if (newValue > 0) smoothlenspinner[c].setValue(newValue);
                         }
                     });
-                mainsubpanelgroup.add (smoothlenspinner[c]);             
-                
-                
-                
+                mainsubpanelgroup.add (smoothlenspinner[c]);
+
+
+
         //DETREND PANEL GROUP
-                
+
                 detrendpanelgroup[c] = new JPanel (new SpringLayout());
                 detrendpanelgroup[c].setMaximumSize(new Dimension(350,20));
                 detrendpanelgroup[c].setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
@@ -12736,7 +12736,7 @@ static void initializeVariables()
                             int firstFittedCurve = 0;
                             for (int cc=0; cc<maxCurves; cc++)
                                 {
-                                if (detrendtypecombobox[cc].getSelectedIndex() == 9) 
+                                if (detrendtypecombobox[cc].getSelectedIndex() == 9)
                                     {
                                     firstFittedCurve = cc;
                                     break;
@@ -12754,7 +12754,7 @@ static void initializeVariables()
                                     }
                                 else
                                     {
-                                    IJU.setFrameSizeAndLocation(fitFrame[c], 
+                                    IJU.setFrameSizeAndLocation(fitFrame[c],
                                             (fitFrame[firstFittedCurve]!=null && fitFrame[firstFittedCurve].isVisible()?fitFrame[firstFittedCurve].getLocation().x:fitFrameLocationX[firstFittedCurve])+(c-firstFittedCurve)*25,
                                             (fitFrame[firstFittedCurve]!=null && fitFrame[firstFittedCurve].isVisible()?fitFrame[firstFittedCurve].getLocation().y:fitFrameLocationY[firstFittedCurve])+(c-firstFittedCurve)*25, 0, 0);
                                     }
@@ -12762,14 +12762,14 @@ static void initializeVariables()
                             else
                                 {
                                 IJU.setFrameSizeAndLocation(fitFrame[c], 40+c*25, 40+c*25, 0, 0);
-                                }                            
+                                }
                             fitFrame[c].setVisible(true);
                             }
                         else
                             {
                             fitFrame[c].setVisible(false);
                             }
-                        detrendfactorspinner[c].setEnabled(detrendFitIndex[c]==1); 
+                        detrendfactorspinner[c].setEnabled(detrendFitIndex[c]==1);
                         Prefs.set("plot.detrendFitIndex"+c,detrendFitIndex[c]);
                         for (int v = 0; v < maxDetrendVars; v++)
                             {
@@ -12786,36 +12786,36 @@ static void initializeVariables()
 //                    if (detrendtypecombobox[c].getSelectedIndex() == 9)
 //                            {
 //                            fitFrame[c].setVisible(true);
-//                            }      
+//                            }
                         }
                     public void mouseReleased(MouseEvent e) {
                         if (detrendtypecombobox[c].getSelectedIndex() == 9 && ((e.getModifiers() & MouseEvent.BUTTON3_MASK) != 0 ||
                               e.isShiftDown() || e.isControlDown() || e.isAltDown() || e.isMetaDown()))
-                            { 
+                            {
                             if (detrendtypecombobox[c].getSelectedIndex() == 9)
                                 {
                                 fitFrame[c].setVisible(true);
-                                }                            
+                                }
                             }
 
                         }
 
                     public void mouseEntered(MouseEvent e) {}
                     public void mouseExited(MouseEvent e) {}
-                    });                    
-                detrendpanelgroup[c].add (detrendtypecombobox[c]);    
-                
-              
-                
+                    });
+                detrendpanelgroup[c].add (detrendtypecombobox[c]);
+
+
+
         //DETREND VARIABLE SELECTORS
-                
+
                 detrendVarRadioGroup[c] = new ButtonGroup();
                 for (int v = 0; v < maxDetrendVars; v++)
                     {
                     constructDetrendVarRadioGroup(c, v);
                     }
                 if (c == 1) defaultBackground = detrendVarButton[c][0].getBackground();
-              
+
 
         //DETREND SPINNER
 
@@ -12827,7 +12827,7 @@ static void initializeVariables()
                                                      "Right click to set spinner stepsize.</HTML>");
                 detrendfactorspinner[c].setPreferredSize(new Dimension(75,25));
                 detrendfactorspinner[c].setEnabled(detrendFitIndex[c]==1);
-                detrendfactorspinner[c].setEditor(new JSpinner.NumberEditor(detrendfactorspinner[c], "0.#########")); 
+                detrendfactorspinner[c].setEditor(new JSpinner.NumberEditor(detrendfactorspinner[c], "0.#########"));
                 detrendfactorspinner[c].addChangeListener (new ChangeListener(){
                     public void stateChanged(ChangeEvent ev)
                         {
@@ -12842,7 +12842,7 @@ static void initializeVariables()
                     {
                     public void mouseWheelMoved( MouseWheelEvent e ) {
                         if (detrendFitIndex[c]==1)
-                            {                        
+                            {
                             detrendfactorspinner[c].setValue(((Double)detrendfactorspinner[c].getValue()).doubleValue()-e.getWheelRotation()*detrendFactorStep[c][detrendVarDisplayed[c]]);
                             }
                         }});
@@ -12876,16 +12876,16 @@ static void initializeVariables()
                     public void popupMenuWillBecomeInvisible(PopupMenuEvent popupMenuEvent) { }
                     public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) { } });
                 detrendfactorspinner[c].setComponentPopupMenu(detrendfactorsteppopup[c]);
-                
+
         //DETREND COLUMN
-                
+
                 detrendbox[c] = new JComboBox(columnsDetrend);
                 detrendbox[c].setFont(p11);
                 detrendbox[c].setMaximumRowCount(16);
                 for (int v = 0; v < maxDetrendVars; v++)
                     {
                     if (!detrendlabel[c][v].equals("Meridian_Flip") &&
-                       ( detrendlabel[c][v].trim().equals("") || 
+                       ( detrendlabel[c][v].trim().equals("") ||
                        ( table != null && table.getColumnIndex(detrendlabel[c][v]) == MeasurementTable.COLUMN_NOT_FOUND)))
                         {
                         detrendbox[c].setSelectedIndex(0);
@@ -12902,22 +12902,22 @@ static void initializeVariables()
                     else
                         detrendVarButton[c][v].setBackground(defaultBackground);
                     }
-                if (!detrendlabel[c][detrendVarDisplayed[c]].equals("Meridian_Flip") && 
-                   ( detrendlabel[c][detrendVarDisplayed[c]].trim().equals("") || 
+                if (!detrendlabel[c][detrendVarDisplayed[c]].equals("Meridian_Flip") &&
+                   ( detrendlabel[c][detrendVarDisplayed[c]].trim().equals("") ||
                    ( table != null && table.getColumnIndex(detrendlabel[c][detrendVarDisplayed[c]]) == MeasurementTable.COLUMN_NOT_FOUND)))
                     {
                     detrendbox[c].setSelectedIndex(0);
                     detrendIndex[c][detrendVarDisplayed[c]] = 0;
-                    detrendlabel[c][detrendVarDisplayed[c]] = "";                    
+                    detrendlabel[c][detrendVarDisplayed[c]] = "";
                     }
                 else
-                    {                
+                    {
                     detrendbox[c].setSelectedItem(detrendlabel[c][detrendVarDisplayed[c]]);
                     detrendIndex[c][detrendVarDisplayed[c]] = detrendbox[c].getSelectedIndex();
                     }
-                
+
                 detrendbox[c].setPrototypeDisplayValue("123456789012345678");
-                
+
                 detrendbox[c].addActionListener(new ActionListener(){
                     public void actionPerformed(ActionEvent ae) {
                         int oldIndex = detrendIndex[c][detrendVarDisplayed[c]];
@@ -12931,7 +12931,7 @@ static void initializeVariables()
                                 (detrendlabelhold[c][detrendVarDisplayed[c]].trim().equals("")?"unused":
                                 "["+detrendlabelhold[c][detrendVarDisplayed[c]]+"]"):
                                 detrendlabel[c][detrendVarDisplayed[c]]);
-                        
+
 
                         if (detrendFitIndex[c] != 0 && detrendIndex[c][detrendVarDisplayed[c]] != 0)
                             {
@@ -12942,24 +12942,24 @@ static void initializeVariables()
                             detrendVarButton[c][detrendVarDisplayed[c]].setBackground(defaultBackground);
                             }
                         newState = !oldColor.equals(detrendVarButton[c][detrendVarDisplayed[c]].getBackground());
-                        
+
                         if (fitDetrendComboBox[c][detrendVarDisplayed[c]] != null && fitDetrendComboBox[c][detrendVarDisplayed[c]].isEnabled())
                             {
                             if (detrendIndex[c][detrendVarDisplayed[c]] != 0 || (!detrendVarButton[c][detrendVarDisplayed[c]].getBackground().equals(defaultBackground)))
                                 {
                                 fitDetrendComboBox[c][detrendVarDisplayed[c]].setSelectedIndex(detrendIndex[c][detrendVarDisplayed[c]]);
                                 }
-                            }                        
-                        
+                            }
+
                         if (useFitDetrendCB[c][detrendVarDisplayed[c]] != null && useFitDetrendCB[c][detrendVarDisplayed[c]].isEnabled())
                             {
                             useFitDetrendCB[c][detrendVarDisplayed[c]].setSelected(!detrendVarButton[c][detrendVarDisplayed[c]].getBackground().equals(defaultBackground));
                             }
-                        
+
                         if (newIndex || newState) updatePlot(updateOneFit(c));
-                        
+
                         }});
-                detrendpanelgroup[c].add (detrendbox[c]);                
+                detrendpanelgroup[c].add (detrendbox[c]);
 
                 SpringUtil.makeCompactGrid (detrendpanelgroup[c], 1, detrendpanelgroup[c].getComponentCount(), 0,0,0,0);
                 mainsubpanelgroup.add (detrendpanelgroup[c]);
@@ -12967,8 +12967,8 @@ static void initializeVariables()
 
                 normpanelgroup[c] = new JPanel (new SpringLayout());
                 normpanelgroup[c].setMaximumSize(new Dimension(50,25));
-                normpanelgroup[c].setBorder(BorderFactory.createEmptyBorder());              
-                
+                normpanelgroup[c].setBorder(BorderFactory.createEmptyBorder());
+
                 normtypecombobox[c] = new JComboBox(normiconlist);
                 normtypecombobox[c].setFont(p11);
                 normtypecombobox[c].setToolTipText("<html>Select a 'Norm/Mag Ref' region mode that shows green color over the region(s) of data to include in the calculation.<br>"+
@@ -12981,9 +12981,9 @@ static void initializeVariables()
                     public void actionPerformed(ActionEvent ae) {
                         normIndex[c] = normtypecombobox[c].getSelectedIndex();
                         updatePlot(updateNoFits());}});
-                normpanelgroup[c].add (normtypecombobox[c]);  
+                normpanelgroup[c].add (normtypecombobox[c]);
                 SpringUtil.makeCompactGrid (normpanelgroup[c], 1, normpanelgroup[c].getComponentCount(), 0,0,0,0);
-                mainsubpanelgroup.add (normpanelgroup[c]);                
+                mainsubpanelgroup.add (normpanelgroup[c]);
 
                 usemmagbox[c] = new JCheckBox ("", mmag[c]);
                 usemmagbox[c].setToolTipText("<html>Plot data in relative magnitude referenced to the average of the first n data samples,<br>"+
@@ -12998,7 +12998,7 @@ static void initializeVariables()
                                 mmag[c] = true;
                         updatePlot(updateNoFits());}});
                 usemmagbox[c].setHorizontalAlignment(JLabel.CENTER);
-                mainsubpanelgroup.add (usemmagbox[c]);                
+                mainsubpanelgroup.add (usemmagbox[c]);
 
                 Insets buttonMargin = new Insets(0,0,0,0);
 
@@ -13060,7 +13060,7 @@ static void initializeVariables()
                         customshiftspinner[c].setEditor(new JSpinner.NumberEditor(customshiftspinner[c], "########0.#########"));
                         ((JSpinner.DefaultEditor)customshiftspinner[c].getEditor()).getTextField().addMouseListener(shiftSpinnerMouseListener);
                         residualShiftSpinner[c].setModel(new SpinnerNumberModel(new Double(force[c]?autoResidualShift[c]*100:residualShift[c]), null, null, new Double(force[c]?autoShiftStep[c]:customShiftStep[c])));
-                        residualShiftSpinner[c].setEditor(new JSpinner.NumberEditor(residualShiftSpinner[c], fitFormat));                        
+                        residualShiftSpinner[c].setEditor(new JSpinner.NumberEditor(residualShiftSpinner[c], fitFormat));
                         customshiftstepspinner[c].setValue(convertToText(force[c]?autoShiftStep[c]:customShiftStep[c]));
                         Prefs.set("plot.force"+c,force[c]);
                         updatePlot(updateNoFits());}});
@@ -13135,7 +13135,7 @@ static void initializeVariables()
                             {
                             double value = IJU.getTextSpinnerDoubleValue(customscalestepspinner[c]);
                             if (Double.isNaN(value)) return;
-                            customScaleStep[c] = value;                            
+                            customScaleStep[c] = value;
                             Prefs.set("plot.customScaleStep"+c,customScaleStep[c]);
                             }
                         customscalespinner[c].setModel(new SpinnerNumberModel(new Double(force[c]?autoScaleFactor[c]*100:customScaleFactor[c]), null, null, new Double(force[c]?autoScaleStep[c]:customScaleStep[c])));
@@ -13179,7 +13179,7 @@ static void initializeVariables()
                         {
                         if (customshiftspinner[c].isEnabled())
                             {
-                            if (force[c]) //work around java bug that sometimes causes two click detections rather than one 
+                            if (force[c]) //work around java bug that sometimes causes two click detections rather than one
                                 {
                                 double a = Double.parseDouble(uptoNinePlaces.format(autoShiftFactor[c]));
                                 double b = Double.parseDouble(uptoNinePlaces.format(((Double)customshiftspinner[c].getValue()).doubleValue()/100.0));
@@ -13189,7 +13189,7 @@ static void initializeVariables()
                                 {
                                 double a = Double.parseDouble(uptoNinePlaces.format(customShiftFactor[c]));
                                 double b = Double.parseDouble(uptoNinePlaces.format(((Double)customshiftspinner[c].getValue()).doubleValue()));
-                                if (a == b) return;  
+                                if (a == b) return;
                                 }
                             if (!customshiftspinner[c].getBorder().equals(greenBorder))
                                 {
@@ -13204,7 +13204,7 @@ static void initializeVariables()
                                 autoShiftFactor[c]=((Double)customshiftspinner[c].getValue()).doubleValue()/100.0;
                             else
                                 customShiftFactor[c]=((Double)customshiftspinner[c].getValue()).doubleValue();
-                           
+
                             for (int curve=0; curve<maxCurves; curve++)
                                 {
                                 if (curve != c && customshiftspinner[curve].getBorder().equals(greenBorder) && force[curve]==force[c])
@@ -13257,7 +13257,7 @@ static void initializeVariables()
                 customshiftstepmodel[c] = new SpinnerListModel(spinnerscalelist);
                 customshiftstepspinner[c] = new JSpinner(customshiftstepmodel[c]);
                 customshiftstepspinner[c].setValue(convertToText(force[c]?autoShiftStep[c]:customShiftStep[c]));
-                
+
                 customshiftstepspinner[c].addChangeListener (new ChangeListener()
                     {
                     public void stateChanged(ChangeEvent ev)
@@ -13278,14 +13278,14 @@ static void initializeVariables()
                                 {
                                 double value = IJU.getTextSpinnerDoubleValue(customshiftstepspinner[c]);
                                 if (Double.isNaN(value)) return;
-                                autoShiftStep[curve] = value;                           
+                                autoShiftStep[curve] = value;
                                 Prefs.set("plot.autoShiftStep"+curve,autoShiftStep[curve]);
                                 }
                             else
                                 {
                                 double value = IJU.getTextSpinnerDoubleValue(customshiftstepspinner[c]);
                                 if (Double.isNaN(value)) return;
-                                customShiftStep[curve] = value;                            
+                                customShiftStep[curve] = value;
                                 Prefs.set("plot.customShiftStep"+curve,customShiftStep[curve]);
                                 }
                             customshiftspinner[curve].setModel(new SpinnerNumberModel(new Double(force[curve]?autoShiftFactor[curve]*100:customShiftFactor[curve]), null, null,
@@ -13302,7 +13302,7 @@ static void initializeVariables()
                 line1.add(customshiftstepspinner[c]);
                 SpringUtil.makeCompactGrid (line1, 1, line1.getComponentCount(), 0,0,0,0);
                 customshiftsteppanel[c].add(line1);
-                
+
                 JPanel line2 = new JPanel(new SpringLayout());
                 JLabel line2Label = new JLabel ("Also Modify Curves: ");
                 shiftAboveBox[c] = new JCheckBox("Above",modifyCurvesAbove);
@@ -13321,7 +13321,7 @@ static void initializeVariables()
                             shiftAboveBox[curve].setSelected(modifyCurvesAbove);
                             }
                         }});
-                
+
                 shiftBelowBox[c] = new JCheckBox("Below",modifyCurvesBelow);
                 shiftBelowBox[c].addItemListener(new ItemListener(){
                     public void itemStateChanged(ItemEvent e) {
@@ -13336,22 +13336,22 @@ static void initializeVariables()
                         for (int curve = 0; curve< maxCurves; curve++)
                             {
                             shiftBelowBox[curve].setSelected(modifyCurvesBelow);
-                            }                        
+                            }
                         }});
                 line2.add(line2Label);
                 line2.add(shiftAboveBox[c]);
                 line2.add(shiftBelowBox[c]);
                 SpringUtil.makeCompactGrid (line2, 1, line2.getComponentCount(), 0,0,0,0);
                 customshiftsteppanel[c].add(line2);
-                
+
                 SpringUtil.makeCompactGrid (customshiftsteppanel[c], customshiftsteppanel[c].getComponentCount(),1, 0,0,0,0);
                 customshiftsteppopup[c].add(customshiftsteppanel[c]);
 
-                
+
                 customshiftsteppopup[c].addPopupMenuListener (new PopupMenuListener() {
                     public void popupMenuCanceled(PopupMenuEvent popupMenuEvent) { }
                     public void popupMenuWillBecomeInvisible(PopupMenuEvent popupMenuEvent) { }
-                    public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) { }  
+                    public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) { }
                     });
                 customshiftspinner[c].setComponentPopupMenu(customshiftsteppopup[c]);
 //                SpringUtil.makeCompactGrid (autoscalepanelgroup[c], 1, 3, 0,0,0,0);
@@ -13359,15 +13359,15 @@ static void initializeVariables()
 //                mainsubpanelgroup.add (autoscalepanelgroup[c]);
                 mainsubpanelgroup.add (customscalepanelgroup[c]);
 
-//                
-               
-                
-                
+//
+
+
+
         //LEGEND RADIO GROUP AND TEXT FIELD
-                
+
                 morelegendradiopanelgroup[c] = new JPanel ();
                 morelegendradiopanelgroup[c].setLayout(new BoxLayout(morelegendradiopanelgroup[c],BoxLayout.X_AXIS));
-                                
+
                 if (useWideDataPanel)
                         morelegendradiopanelgroup[c].setPreferredSize (new Dimension(225,20));
                 else
@@ -13445,7 +13445,7 @@ static void initializeVariables()
                         legendnoneButton[c].setBackground(useLegend[c]||useColumnName[c]?Color.WHITE:Color.LIGHT_GRAY);
                         legendcolumnNameButton[c].setBackground(useColumnName[c]?Color.LIGHT_GRAY:Color.WHITE);
                         updatePlot(updateNoFits());}});
-                
+
                 legendnoneButton[c].setComponentPopupMenu(legendpopup);
                 legendnoneButton[c].setToolTipText("Disable Legend -- Right click to set legend preferences");
                 legendcustomNameButton[c].setComponentPopupMenu(legendpopup);
@@ -13484,9 +13484,9 @@ static void initializeVariables()
                 morelegendField[c].setComponentPopupMenu(legendpopup);
                 morelegendField[c].setToolTipText("Right click to set legend preferences");
                 morelegendradiopanelgroup[c].add(morelegendField[c]);
-                
+
 //                SpringUtil.makeCompactGrid (morelegendradiopanelgroup[c], 1, morelegendradiopanelgroup[c].getComponentCount(), 0,0,0,0);
-                mainsubpanelgroup.add (morelegendradiopanelgroup[c]);                
+                mainsubpanelgroup.add (morelegendradiopanelgroup[c]);
 
                 if (useWideDataPanel)
                         {
@@ -13497,7 +13497,7 @@ static void initializeVariables()
                         mainsubpanelgroup.add (othercurvelabel[c]);
                         }
                 }
-        
+
         static void constructDetrendVarRadioGroup(final int c, final int v)
             {
             detrendVarButton[c][v] = new JRadioButton("");
@@ -13517,23 +13517,23 @@ static void initializeVariables()
                             detrendlabel[cc][detrendVarDisplayed[cc]]=detrendlabel[c][detrendVarDisplayed[c]];
                             detrendFactorStep[cc][detrendVarDisplayed[cc]]=detrendFactorStep[c][detrendVarDisplayed[c]];
                             detrendfactorstepspinner[cc].setValue(convertToText(detrendFactorStep[cc][detrendVarDisplayed[cc]]));
-                            if (!detrendlabel[cc][detrendVarDisplayed[cc]].equals("Meridian_Flip") && 
-                               ( detrendlabel[cc][detrendVarDisplayed[cc]].trim().equals("") || 
+                            if (!detrendlabel[cc][detrendVarDisplayed[cc]].equals("Meridian_Flip") &&
+                               ( detrendlabel[cc][detrendVarDisplayed[cc]].trim().equals("") ||
                                ( table != null && table.getColumnIndex(detrendlabel[cc][detrendVarDisplayed[cc]]) == MeasurementTable.COLUMN_NOT_FOUND)))
                                 {
                                 detrendbox[cc].setSelectedIndex(0);
 //                                fitDetrendComboBox[cc][v].setSelectedIndex(0);
 //                                useFitDetrendCB[cc][v].setSelected(false);
                                 detrendIndex[cc][detrendVarDisplayed[cc]] = 0;
-                                detrendlabel[cc][detrendVarDisplayed[cc]] = "";                    
+                                detrendlabel[cc][detrendVarDisplayed[cc]] = "";
                                 }
                             else
-                                {                
+                                {
                                 detrendbox[cc].setSelectedItem(detrendlabel[cc][detrendVarDisplayed[cc]]);
 //                                fitDetrendComboBox[cc][v].setSelectedItem(detrendlabel[cc][v]);
 //                                useFitDetrendCB[cc][v].setSelected(true);
                                 detrendIndex[cc][detrendVarDisplayed[cc]] = detrendbox[cc].getSelectedIndex();
-                                }  
+                                }
                             detrendfactorspinner[cc].setValue(detrendFactor[cc][detrendVarDisplayed[cc]]);
                             }
                         }
@@ -13544,22 +13544,22 @@ static void initializeVariables()
                             detrendVarDisplayed[cc] = v;
                             detrendVarButton[cc][v].setSelected(true);
                             detrendfactorstepspinner[cc].setValue(convertToText(detrendFactorStep[cc][detrendVarDisplayed[cc]]));
-                            if (!detrendlabel[cc][detrendVarDisplayed[cc]].equals("Meridian_Flip") && 
+                            if (!detrendlabel[cc][detrendVarDisplayed[cc]].equals("Meridian_Flip") &&
                                ( detrendlabel[cc][detrendVarDisplayed[cc]].trim().equals("") ||
                                ( table != null && table.getColumnIndex(detrendlabel[cc][detrendVarDisplayed[cc]]) == MeasurementTable.COLUMN_NOT_FOUND)))
                                 {
                                 detrendbox[cc].setSelectedIndex(0);
                                 detrendIndex[cc][detrendVarDisplayed[cc]] = 0;
-                                detrendlabel[cc][detrendVarDisplayed[cc]] = "";                    
+                                detrendlabel[cc][detrendVarDisplayed[cc]] = "";
                                 }
                             else
-                                {                
+                                {
                                 detrendbox[cc].setSelectedItem(detrendlabel[cc][detrendVarDisplayed[cc]]);
                                 detrendIndex[cc][detrendVarDisplayed[cc]] = detrendbox[cc].getSelectedIndex();
                                 }
                             detrendfactorspinner[cc].setValue(detrendFactor[cc][detrendVarDisplayed[cc]]);
                             }
-                        }                    
+                        }
                     else
                         {
                         if (detrendVarDisplayed[c] == v || (mods & ActionEvent.ALT_MASK) != 0)
@@ -13576,54 +13576,54 @@ static void initializeVariables()
                                 detrendlabel[c][v] = detrendlabelhold[c][v];
                                 detrendVarDisplayed[c] = v;
                                 detrendfactorstepspinner[c].setValue(convertToText(detrendFactorStep[c][detrendVarDisplayed[c]]));
-                                if (!detrendlabel[c][v].equals("Meridian_Flip") && 
-                                   ( detrendlabel[c][v].trim().equals("") || 
+                                if (!detrendlabel[c][v].equals("Meridian_Flip") &&
+                                   ( detrendlabel[c][v].trim().equals("") ||
                                    ( table != null && table.getColumnIndex(detrendlabel[c][v]) == MeasurementTable.COLUMN_NOT_FOUND)))
                                     {
                                     detrendbox[c].setSelectedIndex(0);
                                     detrendIndex[c][v] = 0;
-                                    detrendlabel[c][v] = "";                    
+                                    detrendlabel[c][v] = "";
                                     }
                                 else
-                                    {   
-                                    
+                                    {
+
                                     detrendbox[c].setSelectedItem(detrendlabel[c][v]);
                                     detrendIndex[c][v] = detrendbox[c].getSelectedIndex();
-                                    }  
-                                } 
+                                    }
+                                }
                             }
                         else
                             {
                             detrendVarDisplayed[c] = v;
                             detrendfactorstepspinner[c].setValue(convertToText(detrendFactorStep[c][detrendVarDisplayed[c]]));
-                            if (!detrendlabel[c][v].equals("Meridian_Flip") && 
-                               ( detrendlabel[c][v].trim().equals("") || 
+                            if (!detrendlabel[c][v].equals("Meridian_Flip") &&
+                               ( detrendlabel[c][v].trim().equals("") ||
                                ( table != null && table.getColumnIndex(detrendlabel[c][v]) == MeasurementTable.COLUMN_NOT_FOUND)))
                                 {
                                 detrendbox[c].setSelectedIndex(0);
                                 detrendIndex[c][v] = 0;
-                                detrendlabel[c][v] = "";                    
+                                detrendlabel[c][v] = "";
                                 }
                             else
-                                {                
+                                {
                                 detrendbox[c].setSelectedItem(detrendlabel[c][v]);
 //                                fitDetrendComboBox[c][v].setSelectedItem(detrendlabel[c][v]);
 //                                useFitDetrendCB[c][v].setSelected(true);
                                 detrendIndex[c][v] = detrendbox[c].getSelectedIndex();
-                                }                              
+                                }
                             }
                         detrendfactorspinner[c].setValue(detrendFactor[c][detrendVarDisplayed[c]]);
                         }
                     enableTransitComponents(c);
-                    }});                    
+                    }});
             if (maxDetrendVars > 1)
                 {
                 detrendpanelgroup[c].add (detrendVarButton[c][v]);
                 detrendpanelgroup[c].add(Box.createHorizontalStrut(1));
-                }   
+                }
 
             }
-        
+
         static void createFitPanelCommonItems()
             {
             spinnerSize = new Dimension(125, 25);
@@ -13640,7 +13640,7 @@ static void initializeVariables()
             checkBoxSize = new Dimension(28, 25);
             choiceBoxSize = new Dimension(125, 25);
             labelSize = new Dimension(checkBoxSize.width+choiceBoxSize.width, 25);
-            
+
     //ORBITAL PERIOD STEPSIZE POPUP
 
             orbitalPeriodStepPopup = new JPopupMenu();
@@ -13681,7 +13681,7 @@ static void initializeVariables()
                 public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
                         orbitalPeriodStepPopup.setVisible(false);
                         }
-                });                            
+                });
 
 //ECCENTRICITY STEPSIZE POPUP
 
@@ -13766,8 +13766,8 @@ static void initializeVariables()
                         omegaStepPopup.setVisible(false);
                         }
                 });
-            
-            
+
+
     //TEFF STEPSIZE POPUP
 
             teffStepPopup = new JPopupMenu();
@@ -13809,7 +13809,7 @@ static void initializeVariables()
                         teffStepPopup.setVisible(false);
                         }
                 });
-            
+
     //JMINUSK STEPSIZE POPUP
 
             jminuskStepPopup = new JPopupMenu();
@@ -13821,7 +13821,7 @@ static void initializeVariables()
                 public void stateChanged(ChangeEvent ev)
                     {
                     double value = IJU.getTextSpinnerDoubleValue(jminuskStepSpinner);
-                    if (Double.isNaN(value)) return; 
+                    if (Double.isNaN(value)) return;
                     jminuskStep = value;
                     for (int c=0; c < maxCurves; c++)
                         {
@@ -13850,8 +13850,8 @@ static void initializeVariables()
                 public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
                         jminuskStepPopup.setVisible(false);
                         }
-                });  
-            
+                });
+
     //MSTAR STEPSIZE POPUP
 
             mStarStepPopup = new JPopupMenu();
@@ -13863,7 +13863,7 @@ static void initializeVariables()
                 public void stateChanged(ChangeEvent ev)
                     {
                     double value = IJU.getTextSpinnerDoubleValue(mStarStepSpinner);
-                    if (Double.isNaN(value)) return; 
+                    if (Double.isNaN(value)) return;
                     mStarStep = value;
                     for (int c=0; c < maxCurves; c++)
                         {
@@ -13892,8 +13892,8 @@ static void initializeVariables()
                 public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
                         mStarStepPopup.setVisible(false);
                         }
-                });   
-            
+                });
+
     //RSTAR STEPSIZE POPUP
 
             rStarStepPopup = new JPopupMenu();
@@ -13905,7 +13905,7 @@ static void initializeVariables()
                 public void stateChanged(ChangeEvent ev)
                     {
                     double value = IJU.getTextSpinnerDoubleValue(rStarStepSpinner);
-                    if (Double.isNaN(value)) return; 
+                    if (Double.isNaN(value)) return;
                     rStarStep = value;
                     for (int c=0; c < maxCurves; c++)
                         {
@@ -13934,8 +13934,8 @@ static void initializeVariables()
                 public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
                         rStarStepPopup.setVisible(false);
                         }
-                });    
-            
+                });
+
     //RHOSTAR STEPSIZE POPUP
 
             rhoStarStepPopup = new JPopupMenu();
@@ -13947,7 +13947,7 @@ static void initializeVariables()
                 public void stateChanged(ChangeEvent ev)
                     {
                     double value = IJU.getTextSpinnerDoubleValue(rhoStarStepSpinner);
-                    if (Double.isNaN(value)) return; 
+                    if (Double.isNaN(value)) return;
                     rhoStarStep = value;
                     for (int c=0; c < maxCurves; c++)
                         {
@@ -13976,7 +13976,7 @@ static void initializeVariables()
                 public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
                         rhoStarStepPopup.setVisible(false);
                         }
-                });             
+                });
 
     //FIT AND DETREND STEPSIZE POPUPS
 
@@ -13985,9 +13985,9 @@ static void initializeVariables()
                 buildFitAndDetrendPopups(p);
                 }
 
-                
+
             }
-        
+
         static void buildFitAndDetrendPopups(final int p)
             {
             priorCenterStepPopup[p] = new JPopupMenu();
@@ -14036,7 +14036,7 @@ static void initializeVariables()
                         priorCenterStepPopup[p].setVisible(false);
                         }
                 });
-            
+
             priorWidthStepPopup[p] = new JPopupMenu();
             priorWidthStepPanel[p] = new JPanel();
             priorWidthStepSpinner[p] = new JSpinner(new SpinnerListModel(spinnerscalelist));
@@ -14076,7 +14076,7 @@ static void initializeVariables()
                         priorWidthStepPopup[p].setVisible(false);
                         }
                 });
-            
+
             fitStepStepPopup[p] = new JPopupMenu();
             fitStepStepPanel[p] = new JPanel();
             fitStepStepSpinner[p] = new JSpinner(new SpinnerListModel(spinnerscalelist));
@@ -14116,11 +14116,11 @@ static void initializeVariables()
                         fitStepStepPopup[p].setVisible(false);
                         }
                 });
-            
+
             }
 
-        
-        
+
+
         static void createFitPanel(final int c)
             {
             int nlines = 1;
@@ -14135,7 +14135,7 @@ static void initializeVariables()
                     Prefs.set("plot2.fitFrameLocationX"+c,fitFrameLocationX[c]);
                     Prefs.set("plot2.fitFrameLocationY"+c,fitFrameLocationY[c]);
                     }});
-            
+
             fitPanel[c] = new JPanel(new SpringLayout());
 //            fitPanel[c].setBorder(BorderFactory.createLineBorder(color[c], 2));
             fitPanel[c].setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(color[c], 2), table==null?"No Table Selected":ylabel[c].trim().equals("")?"No Data Column Selected":ylabel[c], TitledBorder.CENTER, TitledBorder.TOP, b12, Color.darkGray));
@@ -14143,12 +14143,12 @@ static void initializeVariables()
                 {   public void filesDropped( java.io.File[] files )
                     {
                     openDragAndDropFiles(files);
-                    }   
-                });            
-            
+                    }
+                });
+
             fitMenuBar[c] = new JMenuBar();
             fitFileMenu[c] = new JMenu("File    ");
-            
+
             saveFitPanelPngMenuItem[c] = new JMenuItem("Save image of fit panel as PNG file");
             saveFitPanelPngMenuItem[c].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -14162,15 +14162,15 @@ static void initializeVariables()
                     String outPath = sf.getDirectory() + sf.getFileName();
                     location = outPath.lastIndexOf('.');
                     if (location >= 0) outPath = outPath.substring(0, location);
-                    
-                    BufferedImage bi = new BufferedImage(fitPanel[c].getSize().width, fitPanel[c].getSize().height, BufferedImage.TYPE_INT_RGB); 
+
+                    BufferedImage bi = new BufferedImage(fitPanel[c].getSize().width, fitPanel[c].getSize().height, BufferedImage.TYPE_INT_RGB);
                     Graphics gg = bi.createGraphics();
-                    fitPanel[c].paint(gg);  
+                    fitPanel[c].paint(gg);
                     gg.dispose();
                     IJU.saveAsPngOrJpg(bi, new File(outPath+".png"), "png");
                 }});
             fitFileMenu[c].add(saveFitPanelPngMenuItem[c]);
-            
+
             saveFitPanelJpgMenuItem[c] = new JMenuItem("Save image of fit panel as JPG file");
             saveFitPanelJpgMenuItem[c].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -14184,25 +14184,25 @@ static void initializeVariables()
                     String outPath = sf.getDirectory() + sf.getFileName();
                     location = outPath.lastIndexOf('.');
                     if (location >= 0) outPath = outPath.substring(0, location);
-                    
-                    BufferedImage bi = new BufferedImage(fitPanel[c].getSize().width, fitPanel[c].getSize().height, BufferedImage.TYPE_INT_RGB); 
+
+                    BufferedImage bi = new BufferedImage(fitPanel[c].getSize().width, fitPanel[c].getSize().height, BufferedImage.TYPE_INT_RGB);
                     Graphics gg = bi.createGraphics();
-                    fitPanel[c].paint(gg);  
+                    fitPanel[c].paint(gg);
                     gg.dispose();
                     IJU.saveAsPngOrJpg(bi, new File(outPath+".jpg"), "jpg");
                 }});
             fitFileMenu[c].add(saveFitPanelJpgMenuItem[c]);
-            
+
             fitFileMenu[c].addSeparator();
-            
+
             saveFitTextMenuItem[c] = new JMenuItem("Save fit results as text file");
             saveFitTextMenuItem[c].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     saveFitPanelToTextFileDialog(null, c);
                 }});
-            fitFileMenu[c].add(saveFitTextMenuItem[c]);            
-            
-            
+            fitFileMenu[c].add(saveFitTextMenuItem[c]);
+
+
             autoPriorsMenu[c] = new JMenu("Auto Priors    ");
 
 
@@ -14214,7 +14214,7 @@ static void initializeVariables()
                     if (autoUpdatePriors[c]&&autoUpdatePrior[c][0]) updatePlot(updateOneFit(c));
                     Prefs.set("plot.autoUpdatePrior["+c+"][0]",autoUpdatePrior[c][0]); }});
             autoPriorsMenu[c].add(baselinePriorCB[c]);
-            
+
             depthPriorCB[c] = new JCheckBoxMenuItem("Include transit depth in auto prior update",autoUpdatePrior[c][1]);
             depthPriorCB[c].addItemListener(new ItemListener(){
                 public void itemStateChanged(ItemEvent e) {
@@ -14223,7 +14223,7 @@ static void initializeVariables()
                     if (autoUpdatePriors[c]&&autoUpdatePrior[c][1]) updatePlot(updateOneFit(c));
                     Prefs.set("plot.autoUpdatePrior["+c+"][1]",autoUpdatePrior[c][1]); }});
             autoPriorsMenu[c].add(depthPriorCB[c]);
-            
+
             arPriorCB[c] = new JCheckBoxMenuItem("Include a/R* in auto prior update",autoUpdatePrior[c][2]);
             arPriorCB[c].addItemListener(new ItemListener(){
                 public void itemStateChanged(ItemEvent e) {
@@ -14232,7 +14232,7 @@ static void initializeVariables()
                     if (autoUpdatePriors[c]&&autoUpdatePrior[c][2]) updatePlot(updateOneFit(c));
                     Prefs.set("plot.autoUpdatePrior["+c+"][2]",autoUpdatePrior[c][2]); }});
             autoPriorsMenu[c].add(arPriorCB[c]);
-            
+
             tcPriorCB[c] = new JCheckBoxMenuItem("Include transit center time in auto prior update",autoUpdatePrior[c][3]);
             tcPriorCB[c].addItemListener(new ItemListener(){
                 public void itemStateChanged(ItemEvent e) {
@@ -14241,7 +14241,7 @@ static void initializeVariables()
                     if (autoUpdatePriors[c]&&autoUpdatePrior[c][3]) updatePlot(updateOneFit(c));
                     Prefs.set("plot.autoUpdatePrior["+c+"][3]",autoUpdatePrior[c][3]); }});
             autoPriorsMenu[c].add(tcPriorCB[c]);
-            
+
             inclPriorCB[c] = new JCheckBoxMenuItem("Include transit inclination in auto prior update",autoUpdatePrior[c][3]);
             inclPriorCB[c].addItemListener(new ItemListener(){
                 public void itemStateChanged(ItemEvent e) {
@@ -14250,28 +14250,28 @@ static void initializeVariables()
                     if (autoUpdatePriors[c]&&autoUpdatePrior[c][4]) updatePlot(updateOneFit(c));
                     Prefs.set("plot.autoUpdatePrior["+c+"][4]",autoUpdatePrior[c][4]); }});
             autoPriorsMenu[c].add(inclPriorCB[c]);
-            
+
             fitMenuBar[c].add(fitFileMenu[c]);
             fitMenuBar[c].add(autoPriorsMenu[c]);
-            
+
             JPanel specifiedParmetersPanel = new JPanel(new SpringLayout());
-            specifiedParmetersPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"User Specified Parameters (not fitted)", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));  
+            specifiedParmetersPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"User Specified Parameters (not fitted)", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));
 
             JPanel orbitalParmetersPanel = new JPanel(new SpringLayout());
-            orbitalParmetersPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Orbital Parameters", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));  
+            orbitalParmetersPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Orbital Parameters", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));
 
 //            JLabel periodLabel = new JLabel("Orbital Parameters");
 //            periodLabel.setFont(p12);
 //            periodLabel.setPreferredSize(labelSize);
 //            periodLabel.setMaximumSize(labelSize);
 //            specifiedParmetersPanel.add(periodLabel);
-            
+
 //            JLabel periodDummyLabel1 = new JLabel("");
 //            specifiedParmetersPanel.add(periodDummyLabel1);
-            
+
             JPanel orbitalPeriodPanel = new JPanel(new SpringLayout());
-            orbitalPeriodPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Period (days)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            orbitalPeriodPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Period (days)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             orbitalPeriodSpinner[c] = new JSpinner(new SpinnerNumberModel(new Double(orbitalPeriod[c]),  new Double(0.001), null, new Double(orbitalPeriodStep)));
             orbitalPeriodSpinner[c].setFont(p11);
             orbitalPeriodSpinner[c].setEditor(new JSpinner.NumberEditor(orbitalPeriodSpinner[c], fitFormat));
@@ -14291,9 +14291,9 @@ static void initializeVariables()
                     if (autoUpdatePriors[c]) updatePriorCenters(c);
                     if (autoUpdateFit[c]) updatePlot(updateOneFit(c));
                     }
-                }); 
+                });
             orbitalPeriodSpinner[c].addChangeListener(acc);
-                    
+
             orbitalPeriodSpinner[c].addMouseWheelListener( new MouseWheelListener()
                 {
                 public void mouseWheelMoved( MouseWheelEvent e )
@@ -14307,14 +14307,14 @@ static void initializeVariables()
             orbitalPeriodPanel.add(orbitalPeriodSpinner[c]);
             SpringUtil.makeCompactGrid (orbitalPeriodPanel, 1, orbitalPeriodPanel.getComponentCount(), 2,0,0,0);
             orbitalParmetersPanel.add(orbitalPeriodPanel);
-            
+
             JLabel periodDummyLabel2 = new JLabel("");
             periodDummyLabel2.setPreferredSize(new Dimension(10, 25));
             periodDummyLabel2.setMaximumSize(new Dimension(10, 25));
-            orbitalParmetersPanel.add(periodDummyLabel2);  
-//            
+            orbitalParmetersPanel.add(periodDummyLabel2);
+//
 //            nlines++;
-            
+
 //            JLabel eccentricityLabel = new JLabel("Eccentricity");
 //            eccentricityLabel.setFont(b12);
 //            eccentricityLabel.setToolTipText("<html>Enter eccentricity of eclipsing object's orbit.<br>"+
@@ -14323,9 +14323,9 @@ static void initializeVariables()
 //                "---------------------------------------------<br>"+
 //                "Right click to set spinner stepsize</html>");
 //            specifiedParmetersPanel.add(eccentricityLabel);
-            
+
             JPanel forceCircularOrbitPanel = new JPanel(new SpringLayout());
-            forceCircularOrbitPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Cir", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            forceCircularOrbitPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Cir", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             forceCircularOrbitCB[c] = new JCheckBox ("", forceCircularOrbit[c]);
             forceCircularOrbitCB[c].setToolTipText("Enable to force a circular orbit");
             forceCircularOrbitCB[c].addItemListener(new ItemListener(){
@@ -14347,9 +14347,9 @@ static void initializeVariables()
             forceCircularOrbitPanel.add(forceCircularOrbitCB[c]);
             SpringUtil.makeCompactGrid (forceCircularOrbitPanel, 1, forceCircularOrbitPanel.getComponentCount(), 2,0,0,0);
             orbitalParmetersPanel.add(forceCircularOrbitPanel);
-          
+
             JPanel eccentricitySpinnerPanel = new JPanel(new SpringLayout());
-            eccentricitySpinnerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Ecc", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));          
+            eccentricitySpinnerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Ecc", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             eccentricitySpinner[c] = new JSpinner(new SpinnerNumberModel(new Double(eccentricity[c]),  new Double(0.0), new Double(1.0), new Double(eccentricityStep)));
             eccentricitySpinner[c].setEnabled(!forceCircularOrbit[c]);
             eccentricitySpinner[c].setFont(p11);
@@ -14385,8 +14385,8 @@ static void initializeVariables()
                 });
             eccentricitySpinnerPanel.add(eccentricitySpinner[c]);
             SpringUtil.makeCompactGrid (eccentricitySpinnerPanel, 1, eccentricitySpinnerPanel.getComponentCount(), 2,0,0,0);
-            orbitalParmetersPanel.add(eccentricitySpinnerPanel);            
-            
+            orbitalParmetersPanel.add(eccentricitySpinnerPanel);
+
             JPanel omegaSpinnerPanel = new JPanel(new SpringLayout());
             omegaSpinnerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"\u03C9 (deg)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             omegaSpinner[c] = new JSpinner(new SpinnerNumberModel(new Double(omega[c]),  new Double(-360), new Double(360), new Double(omegaStep)));
@@ -14423,15 +14423,15 @@ static void initializeVariables()
                     }
                 });
             omegaSpinnerPanel.add(omegaSpinner[c]);
-            
+
             SpringUtil.makeCompactGrid (omegaSpinnerPanel, 1, omegaSpinnerPanel.getComponentCount(), 2,0,0,0);
             orbitalParmetersPanel.add(omegaSpinnerPanel);
-            
+
             SpringUtil.makeCompactGrid (orbitalParmetersPanel, 1, orbitalParmetersPanel.getComponentCount(), 2,0,0,0);
-            specifiedParmetersPanel.add(orbitalParmetersPanel);   
-            
+            specifiedParmetersPanel.add(orbitalParmetersPanel);
+
             JPanel stellarParmetersPanel = new JPanel(new SpringLayout());
-            stellarParmetersPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.pink, 1),"Host Star Parameters (enter one)", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));  
+            stellarParmetersPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.pink, 1),"Host Star Parameters (enter one)", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));
             stellarParmetersPanel.setToolTipText("<html>Enter any host star parameter to calculate the others and the planet radius.<br>"+
                                                 "This setting is required only if a planetary radius estimation<br>"+
                                                 "is to be calculated from the light curve fit.</html>");
@@ -14461,12 +14461,12 @@ static void initializeVariables()
                         else teffSpinner[c].setValue(newValue);
                         }
                     }});
-            spectralTypeSelectionPanel.add (spectralTypeSelection[c]); 
-            
+            spectralTypeSelectionPanel.add (spectralTypeSelection[c]);
+
             SpringUtil.makeCompactGrid (spectralTypeSelectionPanel, 1, spectralTypeSelectionPanel.getComponentCount(), 2,0,0,0);
-            stellarParmetersPanel.add(spectralTypeSelectionPanel);            
-            
-            
+            stellarParmetersPanel.add(spectralTypeSelectionPanel);
+
+
             JPanel teffSpinnerPanel = new JPanel(new SpringLayout());
             if (teff[c]<IJU.tStar[IJU.tStar.length-1]) teff[c]=IJU.tStar[IJU.tStar.length-1];
             if (teff[c]>IJU.tStar[0]) teff[c]=IJU.tStar[0];
@@ -14488,27 +14488,27 @@ static void initializeVariables()
                 public void stateChanged(ChangeEvent ev)
                     {
                     teff[c] = ((Double)teffSpinner[c].getValue()).doubleValue();
-                     
+
                     spectralTypeSelection[c].setEditable(true);
                     spectralTypeSelection[c].setSelectedItem(IJU.getSpTFromTeff(teff[c]));
                     spectralTypeSelection[c].setEditable(false);
-                    
+
                     jminuskSpinner[c].setEnabled(false);
                     jminuskSpinner[c].setValue(IJU.getJminusKFromTeff(teff[c]));
                     jminuskSpinner[c].setEnabled(true);
-                    
+
                     mStarSpinner[c].setEnabled(false);
                     mStarSpinner[c].setValue(IJU.getMStarFromTeff(teff[c]));
-                    mStarSpinner[c].setEnabled(true);                    
- 
+                    mStarSpinner[c].setEnabled(true);
+
                     rStarSpinner[c].setEnabled(false);
                     rStarSpinner[c].setValue(IJU.getRStarFromTeff(teff[c]));
                     rStarSpinner[c].setEnabled(true);
-                    
+
                     rhoStarSpinner[c].setEnabled(false);
                     rhoStarSpinner[c].setValue(IJU.getRhoStarFromTeff(teff[c]));
                     rhoStarSpinner[c].setEnabled(true);
-                    
+
                     if (useTransitFit[c] && table!=null) planetRadiusLabel[c].setText(IJU.planetRadiusFromTeff(teff[c], bestFit[c][1]));
                     }
                 });
@@ -14526,11 +14526,11 @@ static void initializeVariables()
                     }
                 });
             teffSpinnerPanel.add(teffSpinner[c]);
-            
+
             SpringUtil.makeCompactGrid (teffSpinnerPanel, 1, teffSpinnerPanel.getComponentCount(), 2,0,0,0);
             stellarParmetersPanel.add(teffSpinnerPanel);
-            
-            
+
+
             JPanel jminuskSpinnerPanel = new JPanel(new SpringLayout());
             jminuskSpinnerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"J-K", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             jminuskSpinner[c] = new JSpinner(new SpinnerNumberModel(new Double(IJU.getJminusKFromTeff(teff[c])),  new Double(IJU.JminusK[0]), new Double(IJU.JminusK[IJU.JminusK.length-1]), new Double(jminuskStep)));
@@ -14569,11 +14569,11 @@ static void initializeVariables()
                     }
                 });
             jminuskSpinnerPanel.add(jminuskSpinner[c]);
-            
+
             SpringUtil.makeCompactGrid (jminuskSpinnerPanel, 1, jminuskSpinnerPanel.getComponentCount(), 2,0,0,0);
-            stellarParmetersPanel.add(jminuskSpinnerPanel);  
-            
-            
+            stellarParmetersPanel.add(jminuskSpinnerPanel);
+
+
             JPanel rStarSpinnerPanel = new JPanel(new SpringLayout());
             rStarSpinnerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"R* (Rsun)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             rStarSpinner[c] = new JSpinner(new SpinnerNumberModel(new Double(IJU.getRStarFromTeff(teff[c])),  new Double(IJU.rStar[IJU.rStar.length-1]), new Double(IJU.rStar[0]), new Double(rStarStep)));
@@ -14612,10 +14612,10 @@ static void initializeVariables()
                     }
                 });
             rStarSpinnerPanel.add(rStarSpinner[c]);
-            
+
             SpringUtil.makeCompactGrid (rStarSpinnerPanel, 1, rStarSpinnerPanel.getComponentCount(), 2,0,0,0);
-            stellarParmetersPanel.add(rStarSpinnerPanel);            
-            
+            stellarParmetersPanel.add(rStarSpinnerPanel);
+
             JPanel mStarSpinnerPanel = new JPanel(new SpringLayout());
             mStarSpinnerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"M* (Msun)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             mStarSpinner[c] = new JSpinner(new SpinnerNumberModel(new Double(IJU.getMStarFromTeff(teff[c])),  new Double(IJU.mStar[IJU.mStar.length-1]), new Double(IJU.mStar[0]), new Double(mStarStep)));
@@ -14654,10 +14654,10 @@ static void initializeVariables()
                     }
                 });
             mStarSpinnerPanel.add(mStarSpinner[c]);
-            
+
             SpringUtil.makeCompactGrid (mStarSpinnerPanel, 1, mStarSpinnerPanel.getComponentCount(), 2,0,0,0);
             stellarParmetersPanel.add(mStarSpinnerPanel);
-           
+
             JPanel rhoStarSpinnerPanel = new JPanel(new SpringLayout());
             rhoStarSpinnerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"\u03C1* (cgs)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             rhoStarSpinner[c] = new JSpinner(new SpinnerNumberModel(new Double(IJU.getRhoStarFromTeff(teff[c])),  new Double(IJU.rhoStar[0]), new Double(IJU.rhoStar[IJU.rhoStar.length-1]), new Double(rhoStarStep)));
@@ -14696,30 +14696,30 @@ static void initializeVariables()
                     }
                 });
             rhoStarSpinnerPanel.add(rhoStarSpinner[c]);
-            
+
             SpringUtil.makeCompactGrid (rhoStarSpinnerPanel, 1, rhoStarSpinnerPanel.getComponentCount(), 2,0,0,0);
-            stellarParmetersPanel.add(rhoStarSpinnerPanel);             
-            
-            
+            stellarParmetersPanel.add(rhoStarSpinnerPanel);
+
+
             SpringUtil.makeCompactGrid (stellarParmetersPanel, 1, stellarParmetersPanel.getComponentCount(), 2,0,0,0);
-            specifiedParmetersPanel.add(stellarParmetersPanel);   
-            
-            
+            specifiedParmetersPanel.add(stellarParmetersPanel);
+
+
             JLabel periodDummyLabel3 = new JLabel("");
             specifiedParmetersPanel.add(periodDummyLabel3);
-            
-            
+
+
             SpringUtil.makeCompactGrid (specifiedParmetersPanel, nlines, specifiedParmetersPanel.getComponentCount()/nlines, 2,2,0,0);
             fitPanel[c].add(specifiedParmetersPanel);
 
-            
+
             JPanel fittedParametersPanel = new JPanel(new SpringLayout());
-            fittedParametersPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Transit Parameters", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));              
-            
-            JPanel fittedParametersPanel1 = new JPanel(new SpringLayout()); 
-            JPanel useTransitFitCBPanel = new JPanel(new SpringLayout()); 
+            fittedParametersPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Transit Parameters", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));
+
+            JPanel fittedParametersPanel1 = new JPanel(new SpringLayout());
+            JPanel useTransitFitCBPanel = new JPanel(new SpringLayout());
             useTransitFitCBPanel.setPreferredSize(labelSize);
-            useTransitFitCB[c] = new JCheckBox("Enable Transit Fit", useTransitFit[c]); 
+            useTransitFitCB[c] = new JCheckBox("Enable Transit Fit", useTransitFit[c]);
             useTransitFitCB[c].setPreferredSize(labelSize);
             useTransitFitCB[c].setMaximumSize(labelSize);
             useTransitFitCB[c].setFont(p11);
@@ -14739,16 +14739,16 @@ static void initializeVariables()
             useTransitFitCBPanel.add(useTransitFitCB[c]);
             SpringUtil.makeCompactGrid (useTransitFitCBPanel, 1, useTransitFitCBPanel.getComponentCount(), 0,0,0,0);
             fittedParametersPanel1.add(useTransitFitCBPanel);
-            
+
 //            JLabel fittedParametersPanel1Label0 = new JLabel("");
 //            fittedParametersPanel1Label0.setPreferredSize(new Dimension(25, 25));
 //            fittedParametersPanel1Label0.setMaximumSize(new Dimension(25, 25));
 //            fittedParametersPanel1.add(fittedParametersPanel1Label0);
-            
+
             JPanel extractPriorsPanel = new JPanel(new SpringLayout());
-            extractPriorsPanel.setBorder(BorderFactory.createLineBorder(subBorderColor, 1));  
-            
-            autoUpdatePriorsCB[c] = new JCheckBox("Auto Update Priors", autoUpdatePriors[c]); 
+            extractPriorsPanel.setBorder(BorderFactory.createLineBorder(subBorderColor, 1));
+
+            autoUpdatePriorsCB[c] = new JCheckBox("Auto Update Priors", autoUpdatePriors[c]);
             autoUpdatePriorsCB[c].setPreferredSize(labelSize);
             autoUpdatePriorsCB[c].setMaximumSize(labelSize);
             autoUpdatePriorsCB[c].setEnabled(useTransitFit[c]);
@@ -14767,11 +14767,11 @@ static void initializeVariables()
                     enableTransitComponents(c);
                     if (autoUpdatePriors[c]&&(autoUpdatePrior[c][0]||autoUpdatePrior[c][1]||autoUpdatePrior[c][2]||autoUpdatePrior[c][3]||autoUpdatePrior[c][4])) updatePlot(updateOneFit(c));
                     }});
-            extractPriorsPanel.add(autoUpdatePriorsCB[c]);              
-            
+            extractPriorsPanel.add(autoUpdatePriorsCB[c]);
+
             extractPriorsButton[c] = new JButton("Extract Prior Center Values From Light Curve, Orbit, and Fit Markers");
             extractPriorsButton[c].setToolTipText("<html> Click to estimate baseline flux, transit depth, a/R<sub>*</sub> and T<sub>C</sub><br>"+
-                                                       "from the light curve, orbit parameters, and the mid-point of the left and right fit markers.</html>"); 
+                                                       "from the light curve, orbit parameters, and the mid-point of the left and right fit markers.</html>");
             extractPriorsButton[c].setFont(p11);
             extractPriorsButton[c].setPreferredSize(new Dimension(400, 25));
             extractPriorsButton[c].setMaximumSize(new Dimension(400, 25));
@@ -14790,49 +14790,49 @@ static void initializeVariables()
                     }
                 }});
             extractPriorsPanel.add(extractPriorsButton[c]);
-            
-            SpringUtil.makeCompactGrid (extractPriorsPanel, 1, extractPriorsPanel.getComponentCount(), 2,2,2,2);            
+
+            SpringUtil.makeCompactGrid (extractPriorsPanel, 1, extractPriorsPanel.getComponentCount(), 2,2,2,2);
             fittedParametersPanel1.add(extractPriorsPanel);
-            
+
             JLabel fittedParametersPanel1Label1 = new JLabel("");
             fittedParametersPanel1.add(fittedParametersPanel1Label1);
-            
+
             SpringUtil.makeCompactGrid (fittedParametersPanel1, 1, fittedParametersPanel1.getComponentCount(), 2,2,2,2);
-            fittedParametersPanel.add(fittedParametersPanel1);            
-            
+            fittedParametersPanel.add(fittedParametersPanel1);
+
             nlines = 1;
-            
-            JPanel fittedParametersPanel2 = new JPanel(new SpringLayout()); 
-            
+
+            JPanel fittedParametersPanel2 = new JPanel(new SpringLayout());
+
             JLabel fittedColumnNameLabel1 = new JLabel("Parameter");
             fittedColumnNameLabel1.setFont(b11);
             fittedColumnNameLabel1.setHorizontalAlignment(JLabel.LEFT);
             fittedColumnNameLabel1.setPreferredSize(spinnerSize);
             fittedColumnNameLabel1.setMaximumSize(spinnerSize);
             fittedParametersPanel2.add(fittedColumnNameLabel1);
-            
+
             JLabel fittedColumnNameLabel5a = new JLabel("Best Fit");
             fittedColumnNameLabel5a.setFont(b11);
             fittedColumnNameLabel5a.setHorizontalAlignment(JLabel.CENTER);
             fittedColumnNameLabel5a.setPreferredSize(bestFitSize);
             fittedColumnNameLabel5a.setMaximumSize(bestFitSize);
-            fittedParametersPanel2.add(fittedColumnNameLabel5a);        
-            
+            fittedParametersPanel2.add(fittedColumnNameLabel5a);
+
             JLabel fittedColumnNameLabel5 = new JLabel("");
             fittedColumnNameLabel5.setFont(b11);
             fittedColumnNameLabel5.setHorizontalAlignment(JLabel.CENTER);
             fittedColumnNameLabel5.setPreferredSize(spacerSize);
             fittedColumnNameLabel5.setMaximumSize(spacerSize);
-            fittedParametersPanel2.add(fittedColumnNameLabel5);            
-            
+            fittedParametersPanel2.add(fittedColumnNameLabel5);
+
             JLabel fittedColumnNameLabel2a = new JLabel("Lock");
             fittedColumnNameLabel2a.setFont(b11);
             fittedColumnNameLabel2a.setHorizontalAlignment(JLabel.CENTER);
             fittedColumnNameLabel2a.setToolTipText("Lock transit model parameter to prior center value.");
             fittedColumnNameLabel2a.setPreferredSize(checkBoxSize);
             fittedColumnNameLabel2a.setMaximumSize(checkBoxSize);
-            fittedParametersPanel2.add(fittedColumnNameLabel2a);            
-            
+            fittedParametersPanel2.add(fittedColumnNameLabel2a);
+
             JLabel fittedColumnNameLabel2b = new JLabel("Prior Center");
             fittedColumnNameLabel2b.setFont(b11);
             fittedColumnNameLabel2b.setHorizontalAlignment(JLabel.CENTER);
@@ -14840,35 +14840,35 @@ static void initializeVariables()
             fittedColumnNameLabel2b.setMaximumSize(spinnerSize);
             fittedColumnNameLabel2b.setToolTipText("Enter the parameter's starting value for the fit (if enabled).");
             fittedParametersPanel2.add(fittedColumnNameLabel2b);
-            
+
             JLabel fittedColumnNameLabel2c = new JLabel("");
             fittedColumnNameLabel2c.setFont(b11);
             fittedColumnNameLabel2c.setHorizontalAlignment(JLabel.CENTER);
             fittedColumnNameLabel2c.setPreferredSize(spacerSize);
             fittedColumnNameLabel2c.setMaximumSize(spacerSize);
-            fittedParametersPanel2.add(fittedColumnNameLabel2c);  
-            
+            fittedParametersPanel2.add(fittedColumnNameLabel2c);
+
             JLabel fittedColumnNameLabel3a = new JLabel("Use");
             fittedColumnNameLabel3a.setFont(b11);
             fittedColumnNameLabel3a.setHorizontalAlignment(JLabel.CENTER);
             fittedColumnNameLabel3a.setToolTipText("The fitting range allowed from the prior center start value (if enabled).");
             fittedColumnNameLabel3a.setPreferredSize(checkBoxSize);
             fittedColumnNameLabel3a.setMaximumSize(checkBoxSize);
-            fittedParametersPanel2.add(fittedColumnNameLabel3a);              
-            
+            fittedParametersPanel2.add(fittedColumnNameLabel3a);
+
             JLabel fittedColumnNameLabel3b = new JLabel("Prior Width");
             fittedColumnNameLabel3b.setFont(b11);
             fittedColumnNameLabel3b.setHorizontalAlignment(JLabel.CENTER);
             fittedColumnNameLabel3b.setPreferredSize(spinnerSize);
-            fittedParametersPanel2.add(fittedColumnNameLabel3b); 
-            
+            fittedParametersPanel2.add(fittedColumnNameLabel3b);
+
             JLabel fittedColumnNameLabel4 = new JLabel("");
             fittedColumnNameLabel4.setFont(b11);
             fittedColumnNameLabel4.setHorizontalAlignment(JLabel.CENTER);
             fittedColumnNameLabel4.setPreferredSize(spacerSize);
             fittedColumnNameLabel4.setMaximumSize(spacerSize);
-            fittedParametersPanel2.add(fittedColumnNameLabel4);            
-            
+            fittedParametersPanel2.add(fittedColumnNameLabel4);
+
             JLabel fittedColumnNameLabel4a = new JLabel("Cust");
             fittedColumnNameLabel4a.setFont(b11);
             fittedColumnNameLabel4a.setHorizontalAlignment(JLabel.CENTER);
@@ -14877,8 +14877,8 @@ static void initializeVariables()
                                                          "The minimizer is used to find the best light curve fit.</html>");
             fittedColumnNameLabel4a.setPreferredSize(checkBoxSize);
             fittedColumnNameLabel4a.setMaximumSize(checkBoxSize);
-            fittedParametersPanel2.add(fittedColumnNameLabel4a);            
-            
+            fittedParametersPanel2.add(fittedColumnNameLabel4a);
+
             JLabel fittedColumnNameLabel4b = new JLabel("StepSize");
             fittedColumnNameLabel4b.setFont(b11);
             fittedColumnNameLabel4b.setHorizontalAlignment(JLabel.CENTER);
@@ -14887,35 +14887,35 @@ static void initializeVariables()
                                                          "The minimizer is used to find the best light curve fit.</html>");
             fittedColumnNameLabel4b.setPreferredSize(spinnerSize);
             fittedColumnNameLabel4b.setMaximumSize(spinnerSize);
-            fittedParametersPanel2.add(fittedColumnNameLabel4b);  
-            
-            JLabel fittedColumnNameLabel6 = new JLabel("");
-            fittedParametersPanel2.add(fittedColumnNameLabel6);             
+            fittedParametersPanel2.add(fittedColumnNameLabel4b);
 
-            
+            JLabel fittedColumnNameLabel6 = new JLabel("");
+            fittedParametersPanel2.add(fittedColumnNameLabel6);
+
+
             String rowName = "<html>Baseline Flux (Raw)</html>";
             String rowNameToolTipText = "<html>Baseline flux before detrending, normalization, scaling, shifting,<br>"+
                                               "or magnitude conversion (see rel_flux_T"+c+" table column)</html>";
             createFittedParametersRow(fittedParametersPanel2, c, 0, rowName, rowNameToolTipText, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
             nlines++;
-            
+
             rowName = "<html>(R<sub>p</sub> / R<sub>*</sub>)<sup>2</sup></html>";
             rowNameToolTipText = "<html>Transit depth</html>";
             createFittedParametersRow(fittedParametersPanel2, c, 1, rowName, rowNameToolTipText, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
             nlines++;
 
             rowName = "<html>a / R<sub>*</sub></html>";
-            rowNameToolTipText = "<html>Semi-major axis of the planet's orbit in units of stellar radii</html>";            
+            rowNameToolTipText = "<html>Semi-major axis of the planet's orbit in units of stellar radii</html>";
             createFittedParametersRow(fittedParametersPanel2, c, 2, rowName, rowNameToolTipText, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
             nlines++;
 
             rowName = "<html>T<sub>C</sub></html>";
-            rowNameToolTipText = "<html>Transit center time</html>";            
+            rowNameToolTipText = "<html>Transit center time</html>";
             createFittedParametersRow(fittedParametersPanel2, c, 3, rowName, rowNameToolTipText, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
             nlines++;
 
             rowName = "<html>Inclination (deg)</html>";
-            rowNameToolTipText = "<html>Inclination of planet's orbit relative to observer's line of site</html>";            
+            rowNameToolTipText = "<html>Inclination of planet's orbit relative to observer's line of site</html>";
             createFittedParametersRow(fittedParametersPanel2, c, 4, rowName, rowNameToolTipText, 0, 90);
             nlines++;
 
@@ -14923,7 +14923,7 @@ static void initializeVariables()
             rowNameToolTipText = "<html>Linear limb darkening coefficient (range 0.0 to 1.0).<br>"+
                                        "For ground-based observations, it maybe necessary to lock<br>"+
                                        "one or both of the coefficients to theoretical values.<br>"+
-                                       "With no prior info, try u1=0.3 (unlock), and u2=0.3 (lock).</html>";            
+                                       "With no prior info, try u1=0.3 (unlock), and u2=0.3 (lock).</html>";
             createFittedParametersRow(fittedParametersPanel2, c, 5, rowName, rowNameToolTipText, 0, 1);
             nlines++;
 
@@ -14931,24 +14931,24 @@ static void initializeVariables()
             rowNameToolTipText = "<html>Quadratic limb darkening coefficient (range -1.0 to 1.0).<br>"+
                                        "For ground-based observations, it maybe necessary to lock<br>"+
                                        "one or both of the coefficients to theoretical values.<br>"+
-                                       "With no prior info, try u1=0.3 (unlock), and u2=0.3 (lock).</html>";             
+                                       "With no prior info, try u1=0.3 (unlock), and u2=0.3 (lock).</html>";
             createFittedParametersRow(fittedParametersPanel2, c, 6, rowName, rowNameToolTipText, -1, 1);
-            nlines++;   
-            
+            nlines++;
+
             SpringUtil.makeCompactGrid (fittedParametersPanel2, nlines, fittedParametersPanel2.getComponentCount()/nlines, 2,2,2,2);
-            fittedParametersPanel.add(fittedParametersPanel2);   
-           
-            JPanel fittedParametersPanel3 = new JPanel(new SpringLayout()); 
-            
+            fittedParametersPanel.add(fittedParametersPanel2);
+
+            JPanel fittedParametersPanel3 = new JPanel(new SpringLayout());
+
             JLabel calcParmsLabel = new JLabel("Calculated from model");
             calcParmsLabel.setFont(p12);
             calcParmsLabel.setPreferredSize(labelSize);
             calcParmsLabel.setMaximumSize(labelSize);
-            fittedParametersPanel3.add(calcParmsLabel);            
-            
+            fittedParametersPanel3.add(calcParmsLabel);
+
             JPanel bpPanel = new JPanel(new SpringLayout());
-            bpPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"b", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            bpPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"b", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             bpLabel[c] = new JTextField("");
             bpLabel[c].setToolTipText("<html>Impact angle of the transit.<br>"+
                                             "For circular orbits, b = (a/R*)cos(inclination)<br>"+
@@ -14964,12 +14964,12 @@ static void initializeVariables()
             bpLabel[c].setEditable(false);
             bpPanel.add(bpLabel[c]);
             SpringUtil.makeCompactGrid (bpPanel, 1, bpPanel.getComponentCount(), 0,0,0,0);
-            fittedParametersPanel3.add(bpPanel);            
+            fittedParametersPanel3.add(bpPanel);
 
-            
+
             JPanel t14Panel = new JPanel(new SpringLayout());
-            t14Panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"t14 (d)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            t14Panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"t14 (d)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             t14Label[c] = new JTextField("");
             t14Label[c].setToolTipText("<html>The duration of the transit (days).<br>"+
                                             "This is the full duration of the transit from time<br>"+
@@ -14986,10 +14986,10 @@ static void initializeVariables()
             t14Label[c].setEditable(false);
             t14Panel.add(t14Label[c]);
             SpringUtil.makeCompactGrid (t14Panel, 1, t14Panel.getComponentCount(), 0,0,0,0);
-            fittedParametersPanel3.add(t14Panel);            
-            
+            fittedParametersPanel3.add(t14Panel);
+
             JPanel t14HoursPanel = new JPanel(new SpringLayout());
-            t14HoursPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"t14 (hms)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            t14HoursPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"t14 (hms)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
 
             t14HoursLabel[c] = new JTextField("");
             t14HoursLabel[c].setToolTipText("<html>The duration of the transit (hours:minutes:seconds).<br>"+
@@ -15007,10 +15007,10 @@ static void initializeVariables()
             t14HoursLabel[c].setEditable(false);
             t14HoursPanel.add(t14HoursLabel[c]);
             SpringUtil.makeCompactGrid (t14HoursPanel, 1, t14HoursPanel.getComponentCount(), 0,0,0,0);
-            fittedParametersPanel3.add(t14HoursPanel);           
-            
+            fittedParametersPanel3.add(t14HoursPanel);
+
             JPanel t23Panel = new JPanel(new SpringLayout());
-            t23Panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"t23 (d)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            t23Panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"t23 (d)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
 
             t23Label[c] = new JTextField("");
             t23Label[c].setToolTipText("<html>The in-transit duration of the transit (days).<br>"+
@@ -15028,10 +15028,10 @@ static void initializeVariables()
             t23Label[c].setEditable(false);
             t23Panel.add(t23Label[c]);
             SpringUtil.makeCompactGrid (t23Panel, 1, t23Panel.getComponentCount(), 0,0,0,0);
-            fittedParametersPanel3.add(t23Panel);           
-            
+            fittedParametersPanel3.add(t23Panel);
+
             JPanel tauPanel = new JPanel(new SpringLayout());
-            tauPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"tau (d)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            tauPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"tau (d)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
 
             tauLabel[c] = new JTextField("");
             tauLabel[c].setToolTipText("<html>The transit ingress (and egress) duration (days).<br>"+
@@ -15050,10 +15050,10 @@ static void initializeVariables()
             tauLabel[c].setEditable(false);
             tauPanel.add(tauLabel[c]);
             SpringUtil.makeCompactGrid (tauPanel, 1, tauPanel.getComponentCount(), 0,0,0,0);
-            fittedParametersPanel3.add(tauPanel);    
-            
+            fittedParametersPanel3.add(tauPanel);
+
             JPanel densityPanel = new JPanel(new SpringLayout());
-            densityPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"\u03C1* (cgs)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            densityPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"\u03C1* (cgs)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
 
             stellarDensityLabel[c] = new JTextField("");
             stellarDensityLabel[c].setToolTipText("<html>Host star density as derived from the light curve shape (g/cm^3).<br>"+
@@ -15070,10 +15070,10 @@ static void initializeVariables()
             stellarDensityLabel[c].setEditable(false);
             densityPanel.add(stellarDensityLabel[c]);
             SpringUtil.makeCompactGrid (densityPanel, 1, densityPanel.getComponentCount(), 0,0,0,0);
-            fittedParametersPanel3.add(densityPanel); 
-            
+            fittedParametersPanel3.add(densityPanel);
+
             JPanel spectralTypePanel = new JPanel(new SpringLayout());
-            spectralTypePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"(e)SpT", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            spectralTypePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"(e)SpT", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
 
             spectralTypeLabel[c] = new JTextField("");
             spectralTypeLabel[c].setToolTipText("<html>Host star spectral type estimated from light curved derived density.<br>"+
@@ -15091,9 +15091,9 @@ static void initializeVariables()
             spectralTypePanel.add(spectralTypeLabel[c]);
             SpringUtil.makeCompactGrid (spectralTypePanel, 1, spectralTypePanel.getComponentCount(), 0,0,0,0);
             fittedParametersPanel3.add(spectralTypePanel);
-            
+
             JPanel planetRadiusPanel = new JPanel(new SpringLayout());
-            planetRadiusPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.pink, 1),"Rp (Rjup)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            planetRadiusPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.pink, 1),"Rp (Rjup)", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
 
             planetRadiusLabel[c] = new JTextField("");
             planetRadiusLabel[c].setToolTipText("<html>Planet radius in Jupiter Radii estimated from transit depth and host star radius as entered or calculated above. <br>"+
@@ -15111,58 +15111,58 @@ static void initializeVariables()
             planetRadiusLabel[c].setEditable(false);
             planetRadiusPanel.add(planetRadiusLabel[c]);
             SpringUtil.makeCompactGrid (planetRadiusPanel, 1, planetRadiusPanel.getComponentCount(), 0,0,0,0);
-            fittedParametersPanel3.add(planetRadiusPanel);            
-            
+            fittedParametersPanel3.add(planetRadiusPanel);
+
             JLabel calcParmsDummyLabel1 = new JLabel("");
             fittedParametersPanel3.add(calcParmsDummyLabel1);
-            
+
             SpringUtil.makeCompactGrid (fittedParametersPanel3, 1, fittedParametersPanel3.getComponentCount(), 0,0,0,0);
-            fittedParametersPanel.add(fittedParametersPanel3);            
-            
+            fittedParametersPanel.add(fittedParametersPanel3);
+
             SpringUtil.makeCompactGrid (fittedParametersPanel, fittedParametersPanel.getComponentCount(), 1, 2,2,0,0);
             fitPanel[c].add(fittedParametersPanel);
-            
-            
+
+
             JPanel detrendParametersPanel = new JPanel(new SpringLayout());
             detrendParametersPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Detrend Parameters", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));
-            
+
             nlines = 1;
-            
+
 //            JPanel detrendVariableNamePanel = new JPanel(new SpringLayout());
 //            detrendVariableNamePanel.setPreferredSize(labelSize);
 //            detrendVariableNamePanel.setMaximumSize(labelSize);
-            
+
             JLabel detrendEnableLabel = new JLabel("Use");
             detrendEnableLabel.setFont(b11);
             detrendEnableLabel.setHorizontalAlignment(JLabel.LEFT);
             detrendEnableLabel.setPreferredSize(checkBoxSize);
             detrendEnableLabel.setMaximumSize(checkBoxSize);
             detrendParametersPanel.add(detrendEnableLabel);
-            
+
             JLabel detrendVariableNameLabel = new JLabel("Parameter");
             detrendVariableNameLabel.setFont(b11);
             detrendVariableNameLabel.setHorizontalAlignment(JLabel.CENTER);
             detrendVariableNameLabel.setPreferredSize(choiceBoxSize);
             detrendVariableNameLabel.setMaximumSize(choiceBoxSize);
             detrendParametersPanel.add(detrendVariableNameLabel);
-            
+
 //            SpringUtil.makeCompactGrid (detrendVariableNamePanel, 1, detrendVariableNamePanel.getComponentCount(), 0,0,0,0);
 //            detrendParametersPanel.add(detrendVariableNamePanel);
-            
+
             JLabel bestFitLabel = new JLabel("Best Fit");
             bestFitLabel.setFont(b11);
             bestFitLabel.setHorizontalAlignment(JLabel.CENTER);
             bestFitLabel.setPreferredSize(bestFitSize);
             bestFitLabel.setMaximumSize(bestFitSize);
-            detrendParametersPanel.add(bestFitLabel);        
-            
+            detrendParametersPanel.add(bestFitLabel);
+
             JLabel detrendDummyLabel1 = new JLabel("");
             detrendDummyLabel1.setFont(b11);
             detrendDummyLabel1.setHorizontalAlignment(JLabel.CENTER);
             detrendDummyLabel1.setPreferredSize(spacerSize);
             detrendDummyLabel1.setMaximumSize(spacerSize);
-            detrendParametersPanel.add(detrendDummyLabel1);            
-            
+            detrendParametersPanel.add(detrendDummyLabel1);
+
             JLabel detrendLockLabel = new JLabel("Lock");
             detrendLockLabel.setFont(b11);
             detrendLockLabel.setPreferredSize(checkBoxSize);
@@ -15170,8 +15170,8 @@ static void initializeVariables()
             detrendLockLabel.setHorizontalAlignment(JLabel.CENTER);
             detrendLockLabel.setToolTipText("Lock detrend parameter to prior center value.");
 //            fittedColumnNameLabel2a.setPreferredSize(spinnerSize);
-            detrendParametersPanel.add(detrendLockLabel);            
-            
+            detrendParametersPanel.add(detrendLockLabel);
+
             JLabel detrendCenterLabel = new JLabel("Prior Center");
             detrendCenterLabel.setFont(b11);
             detrendCenterLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -15179,36 +15179,36 @@ static void initializeVariables()
             detrendCenterLabel.setMaximumSize(spinnerSize);
             detrendCenterLabel.setToolTipText("Enter the detrend parameter's starting value for the fit.");
             detrendParametersPanel.add(detrendCenterLabel);
-            
+
             JLabel detrendDummyLabel2 = new JLabel("");
             detrendDummyLabel2.setFont(b11);
             detrendDummyLabel2.setHorizontalAlignment(JLabel.CENTER);
             detrendDummyLabel2.setPreferredSize(spacerSize);
             detrendDummyLabel2.setMaximumSize(spacerSize);
-            detrendParametersPanel.add(detrendDummyLabel2);  
-            
+            detrendParametersPanel.add(detrendDummyLabel2);
+
             JLabel detrendUseWidthLabel = new JLabel("Use");
             detrendUseWidthLabel.setFont(b11);
             detrendUseWidthLabel.setPreferredSize(checkBoxSize);
-            detrendUseWidthLabel.setMaximumSize(checkBoxSize);            
+            detrendUseWidthLabel.setMaximumSize(checkBoxSize);
             detrendUseWidthLabel.setHorizontalAlignment(JLabel.CENTER);
             detrendUseWidthLabel.setToolTipText("Enable to restrict the fitting range allowed from the prior center start value).");
 //            fittedColumnNameLabel3a.setPreferredSize(spinnerSize);
-            detrendParametersPanel.add(detrendUseWidthLabel);              
-            
+            detrendParametersPanel.add(detrendUseWidthLabel);
+
             JLabel detrendWidthLabel = new JLabel("Prior Width");
             detrendWidthLabel.setFont(b11);
             detrendWidthLabel.setHorizontalAlignment(JLabel.CENTER);
             detrendWidthLabel.setPreferredSize(spinnerSize);
-            detrendParametersPanel.add(detrendWidthLabel); 
-            
+            detrendParametersPanel.add(detrendWidthLabel);
+
             JLabel detrendDummyLabel3 = new JLabel("");
             detrendDummyLabel3.setFont(b11);
             detrendDummyLabel3.setHorizontalAlignment(JLabel.CENTER);
             detrendDummyLabel3.setPreferredSize(spacerSize);
             detrendDummyLabel3.setMaximumSize(spacerSize);
-            detrendParametersPanel.add(detrendDummyLabel3);            
-            
+            detrendParametersPanel.add(detrendDummyLabel3);
+
             JLabel detrendUseCustomStepLabel = new JLabel("Cust");
             detrendUseCustomStepLabel.setFont(b11);
             detrendUseCustomStepLabel.setPreferredSize(checkBoxSize);
@@ -15218,8 +15218,8 @@ static void initializeVariables()
                                                          "Disable for automatic determination of minimizer stepsize.<br>"+
                                                          "The minimizer is used to find the best light curve fit.</html>");
 //            fittedColumnNameLabel3a.setPreferredSize(spinnerSize);
-            detrendParametersPanel.add(detrendUseCustomStepLabel);            
-            
+            detrendParametersPanel.add(detrendUseCustomStepLabel);
+
             JLabel detrendStepSizeLabel = new JLabel("StepSize");
             detrendStepSizeLabel.setFont(b11);
             detrendStepSizeLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -15228,39 +15228,39 @@ static void initializeVariables()
                                                          "The minimizer is used to find the best light curve fit.</html>");
             detrendStepSizeLabel.setPreferredSize(spinnerSize);
             detrendStepSizeLabel.setMaximumSize(spinnerSize);
-            detrendParametersPanel.add(detrendStepSizeLabel);  
-            
+            detrendParametersPanel.add(detrendStepSizeLabel);
+
             JLabel detrendDummyLabel4 = new JLabel("");
-            detrendParametersPanel.add(detrendDummyLabel4);            
-            
+            detrendParametersPanel.add(detrendDummyLabel4);
+
             for (int d=7; d<maxDetrendVars+7; d++)
                 {
                 rowName = null;
                 rowNameToolTipText = "<html>Detrend variable "+(d-6)+"</html>";
                 createFittedParametersRow(detrendParametersPanel, c, d, rowName, rowNameToolTipText, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
                 nlines++;
-                }    
-            
+                }
+
             SpringUtil.makeCompactGrid (detrendParametersPanel, nlines, detrendParametersPanel.getComponentCount()/nlines, 2,2,2,2);
-            fitPanel[c].add(detrendParametersPanel);            
-            
-            
-            
-            
-            
+            fitPanel[c].add(detrendParametersPanel);
+
+
+
+
+
             JPanel fitStatisticsPanel = new JPanel(new SpringLayout());
-            fitStatisticsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Fit Statistics", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));  
-          
+            fitStatisticsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Fit Statistics", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));
+
             JLabel statisticsLabel = new JLabel("Fit Statistics");
             statisticsLabel.setFont(p12);
             statisticsLabel.setPreferredSize(labelSize);
             statisticsLabel.setMaximumSize(labelSize);
-            fitStatisticsPanel.add(statisticsLabel);            
-            
-            
+            fitStatisticsPanel.add(statisticsLabel);
+
+
             sigmaPanel[c] = new JPanel(new SpringLayout());
-            sigmaPanel[c].setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"RMS", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            sigmaPanel[c].setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"RMS", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             sigmaLabel[c] = new JTextField("");
             sigmaLabel[c].setToolTipText("<html>Standard deviation of model residuals.<br>"+
                                                  "Green Border: fit converged<br>"+
@@ -15274,11 +15274,11 @@ static void initializeVariables()
             sigmaLabel[c].setEditable(false);
             sigmaPanel[c].add(sigmaLabel[c]);
             SpringUtil.makeCompactGrid (sigmaPanel[c], 1, sigmaPanel[c].getComponentCount(), 0,0,0,0);
-            fitStatisticsPanel.add(sigmaPanel[c]);            
-            
+            fitStatisticsPanel.add(sigmaPanel[c]);
+
             JPanel chi2dofPanel = new JPanel(new SpringLayout());
-            chi2dofPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"chi\u00B2/dof", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            chi2dofPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"chi\u00B2/dof", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             chi2dofLabel[c] = new JTextField("");
             chi2dofLabel[c].setToolTipText("<html>&chi;<sup>2</sup> per degree of freedom for the fit.<br>"+
                                                  "Green Border: fit converged<br>"+
@@ -15293,10 +15293,10 @@ static void initializeVariables()
             chi2dofPanel.add(chi2dofLabel[c]);
             SpringUtil.makeCompactGrid (chi2dofPanel, 1, chi2dofPanel.getComponentCount(), 0,0,0,0);
             fitStatisticsPanel.add(chi2dofPanel);
-            
+
             JPanel bicPanel = new JPanel(new SpringLayout());
-            bicPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"BIC", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            bicPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"BIC", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             bicLabel[c] = new JTextField("");
             bicLabel[c].setToolTipText("<html>Bayesian Information Criterion (BIC).<br>"+
                                         "BIC = chi^2 + (number of fitted parameters)*ln(number of data points)<br>"+
@@ -15316,11 +15316,11 @@ static void initializeVariables()
             bicPanel.add(bicLabel[c]);
             SpringUtil.makeCompactGrid (bicPanel, 1, bicPanel.getComponentCount(), 0,0,0,0);
             fitStatisticsPanel.add(bicPanel);
-            
-            
+
+
             JPanel dofPanel = new JPanel(new SpringLayout());
-            dofPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"dof", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            dofPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"dof", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             dofLabel[c] = new JTextField("");
             dofLabel[c].setToolTipText("<html>Degrees of freedom (dof) for the fit.<br>"+
                                             "dof = number of datapoints - number of fitted parameters.</html>");
@@ -15332,11 +15332,11 @@ static void initializeVariables()
             dofLabel[c].setEditable(false);
             dofPanel.add(dofLabel[c]);
             SpringUtil.makeCompactGrid (dofPanel, 1, dofPanel.getComponentCount(), 0,0,0,0);
-            fitStatisticsPanel.add(dofPanel); 
-            
+            fitStatisticsPanel.add(dofPanel);
+
             JPanel chi2Panel = new JPanel(new SpringLayout());
-            chi2Panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"chi\u00B2", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-                        
+            chi2Panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"chi\u00B2", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             chi2Label[c] = new JTextField("");
             chi2Label[c].setToolTipText("<html>Total &chi;<sup>2</sup> of the fit.</html>");
             chi2Label[c].setFont(p11);
@@ -15347,20 +15347,20 @@ static void initializeVariables()
             chi2Label[c].setEditable(false);
             chi2Panel.add(chi2Label[c]);
             SpringUtil.makeCompactGrid (chi2Panel, 1, chi2Panel.getComponentCount(), 0,0,0,0);
-            fitStatisticsPanel.add(chi2Panel);            
-            
+            fitStatisticsPanel.add(chi2Panel);
+
             JLabel statisticsDummyLabel1 = new JLabel("");
             fitStatisticsPanel.add(statisticsDummyLabel1);
-            
+
             SpringUtil.makeCompactGrid (fitStatisticsPanel, 1, fitStatisticsPanel.getComponentCount(), 0,0,0,0);
             fitPanel[c].add(fitStatisticsPanel);
-            
+
             JPanel plotPanel = new JPanel(new SpringLayout());
-            plotPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Plot Settings", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));  
-            
+            plotPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Plot Settings", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));
+
             JPanel modelPanel = new JPanel(new SpringLayout());
-            
-            showModelCB[c] = new JCheckBox("Show Model", showModel[c]); 
+
+            showModelCB[c] = new JCheckBox("Show Model", showModel[c]);
             showModelCB[c].setPreferredSize(labelSize);
             showModelCB[c].setMaximumSize(labelSize);
             showModelCB[c].setFont(p12);
@@ -15372,12 +15372,12 @@ static void initializeVariables()
                     modelLineWidthSpinner[c].setEnabled(showModel[c]);
                     showLTranParamsCB[c].setEnabled(useTransitFit[c] && showModel[c]);
                     residualModelColorSelection[c].setEnabled(useTransitFit[c] && showResidual[c] && showModel[c]);
-                    residualLineWidthSpinner[c].setEnabled(useTransitFit[c] && showResidual[c] && showModel[c]);                    
+                    residualLineWidthSpinner[c].setEnabled(useTransitFit[c] && showResidual[c] && showModel[c]);
                     updatePlot(updateNoFits());
                     }});
-            modelPanel.add(showModelCB[c]);  
-            
-            showLTranParamsCB[c] = new JCheckBox("Show in legend", showLTranParams[c]); 
+            modelPanel.add(showModelCB[c]);
+
+            showLTranParamsCB[c] = new JCheckBox("Show in legend", showLTranParams[c]);
             showLTranParamsCB[c].setEnabled(useTransitFit[c] && showModel[c]);
             showLTranParamsCB[c].setPreferredSize(legendLabelSize);
             showLTranParamsCB[c].setMaximumSize(legendLabelSize);
@@ -15388,13 +15388,13 @@ static void initializeVariables()
                     showLTranParams[c] = (e.getStateChange() == ItemEvent.SELECTED);
                     updatePlot(updateNoFits());
                     }});
-            modelPanel.add(showLTranParamsCB[c]); 
-            
+            modelPanel.add(showLTranParamsCB[c]);
+
             JPanel modelColorPanel = new JPanel(new SpringLayout());
-            modelColorPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Line Color", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            modelColorPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Line Color", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             modelColorPanel.setPreferredSize(colorSelectorSize);
             modelColorPanel.setMaximumSize(colorSelectorSize);
-            
+
             modelColorSelection[c] = new JComboBox(colors);
             modelColorSelection[c].setEnabled(showModel[c]);
             modelColorSelection[c].setFont(p11);
@@ -15411,14 +15411,14 @@ static void initializeVariables()
                     modelColor[c] = colorOf(modelColorIndex[c]);
                     modelColorSelection[c].setForeground(modelColor[c]);
                     updatePlot(updateNoFits());}});
-            modelColorPanel.add (modelColorSelection[c]);            
-            
+            modelColorPanel.add (modelColorSelection[c]);
+
             SpringUtil.makeCompactGrid (modelColorPanel, 1, modelColorPanel.getComponentCount(), 0,0,0,0);
-            modelPanel.add(modelColorPanel);              
-            
+            modelPanel.add(modelColorPanel);
+
             JPanel modelLineWidthPanel = new JPanel(new SpringLayout());
-            modelLineWidthPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Line Width", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            modelLineWidthPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Line Width", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             modelLineWidthSpinner[c] = new JSpinner(new SpinnerNumberModel(modelLineWidth[c]>=1?modelLineWidth[c]:1,  1, Integer.MAX_VALUE, 1));
             modelLineWidthSpinner[c].setEnabled(showModel[c]);
             modelLineWidthSpinner[c].setFont(p11);
@@ -15444,26 +15444,26 @@ static void initializeVariables()
                         }
                     }
                 });
-            modelLineWidthPanel.add(modelLineWidthSpinner[c]);   
-           
+            modelLineWidthPanel.add(modelLineWidthSpinner[c]);
+
             SpringUtil.makeCompactGrid (modelLineWidthPanel, 1, modelLineWidthPanel.getComponentCount(), 0,0,0,0);
-            modelPanel.add(modelLineWidthPanel); 
-            
-           
-            
+            modelPanel.add(modelLineWidthPanel);
+
+
+
             JLabel modelDummyLabel = new JLabel("");
-            modelPanel.add(modelDummyLabel);     
-            
+            modelPanel.add(modelDummyLabel);
+
             SpringUtil.makeCompactGrid (modelPanel, 1, modelPanel.getComponentCount(), 0,0,0,0);
-            plotPanel.add(modelPanel);  
-            
-            
-            
-            
-           
+            plotPanel.add(modelPanel);
+
+
+
+
+
             JPanel residualPanel = new JPanel(new SpringLayout());
-            
-            showResidualCB[c] = new JCheckBox("Show Residuals", showResidual[c]); 
+
+            showResidualCB[c] = new JCheckBox("Show Residuals", showResidual[c]);
             showResidualCB[c].setEnabled(useTransitFit[c]);
             showResidualCB[c].setPreferredSize(labelSize);
             showResidualCB[c].setMaximumSize(labelSize);
@@ -15477,16 +15477,16 @@ static void initializeVariables()
                     residualColorSelection[c].setEnabled(useTransitFit[c] && showResidual[c]);
                     residualSymbolSelection[c].setEnabled(useTransitFit[c] && showResidual[c]);
                     residualShiftSpinner[c].setEnabled(useTransitFit[c] && showResidual[c]);
-                    showLResidualCB[c].setEnabled(useTransitFit[c] && showResidual[c]); 
+                    showLResidualCB[c].setEnabled(useTransitFit[c] && showResidual[c]);
                     showResidualErrorCB[c].setEnabled(useTransitFit[c] && showResidual[c]);
                     updatePlot(updateNoFits());
                     }});
-            residualPanel.add(showResidualCB[c]);  
-            
+            residualPanel.add(showResidualCB[c]);
+
             Dimension showCBSize = new Dimension(120, 15);
             JPanel residualOptionsPanel = new JPanel(new SpringLayout());
-            
-            showLResidualCB[c] = new JCheckBox("Show in legend", showLResidual[c]); 
+
+            showLResidualCB[c] = new JCheckBox("Show in legend", showLResidual[c]);
             showLResidualCB[c].setEnabled(showResidual[c] && useTransitFit[c]);
             showLResidualCB[c].setPreferredSize(legendLabelSize);
             showLResidualCB[c].setMaximumSize(legendLabelSize);
@@ -15497,9 +15497,9 @@ static void initializeVariables()
                     showLResidual[c] = (e.getStateChange() == ItemEvent.SELECTED);
                     updatePlot(updateNoFits());
                     }});
-            residualOptionsPanel.add(showLResidualCB[c]);   
-            
-            showResidualErrorCB[c] = new JCheckBox("Show Error", showResidualError[c]); 
+            residualOptionsPanel.add(showLResidualCB[c]);
+
+            showResidualErrorCB[c] = new JCheckBox("Show Error", showResidualError[c]);
             showResidualErrorCB[c].setEnabled(showResidual[c] && useTransitFit[c]);
             showResidualErrorCB[c].setPreferredSize(showCBSize);
             showResidualErrorCB[c].setMaximumSize(showCBSize);
@@ -15512,13 +15512,13 @@ static void initializeVariables()
                     }});
             residualOptionsPanel.add(showResidualErrorCB[c]);
             SpringUtil.makeCompactGrid (residualOptionsPanel, residualOptionsPanel.getComponentCount(), 1, 0,0,0,0);
-            residualPanel.add(residualOptionsPanel);                    
-                    
+            residualPanel.add(residualOptionsPanel);
+
             JPanel residualModelColorPanel = new JPanel(new SpringLayout());
-            residualModelColorPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Line Color", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            residualModelColorPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Line Color", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             residualModelColorPanel.setPreferredSize(colorSelectorSize);
             residualModelColorPanel.setMaximumSize(colorSelectorSize);
-            
+
             residualModelColorSelection[c] = new JComboBox(colors);
             residualModelColorSelection[c].setEnabled(showResidual[c] && useTransitFit[c] && showModel[c]);
             residualModelColorSelection[c].setFont(p11);
@@ -15535,14 +15535,14 @@ static void initializeVariables()
                     residualModelColor[c] = colorOf(residualModelColorIndex[c]);
                     residualModelColorSelection[c].setForeground(residualModelColor[c]);
                     updatePlot(updateNoFits());}});
-            residualModelColorPanel.add (residualModelColorSelection[c]);            
-            
+            residualModelColorPanel.add (residualModelColorSelection[c]);
+
             SpringUtil.makeCompactGrid (residualModelColorPanel, 1, residualModelColorPanel.getComponentCount(), 0,0,0,0);
-            residualPanel.add(residualModelColorPanel);              
-            
+            residualPanel.add(residualModelColorPanel);
+
             JPanel residualLineWidthPanel = new JPanel(new SpringLayout());
-            residualLineWidthPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Line Width", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            residualLineWidthPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Line Width", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             residualLineWidthSpinner[c] = new JSpinner(new SpinnerNumberModel(residualLineWidth[c]>=1?residualLineWidth[c]:1,  1, Integer.MAX_VALUE, 1));
             residualLineWidthSpinner[c].setEnabled(showResidual[c] && useTransitFit[c] && showModel[c]);
             residualLineWidthSpinner[c].setFont(p11);
@@ -15568,17 +15568,17 @@ static void initializeVariables()
                         }
                     }
                 });
-            residualLineWidthPanel.add(residualLineWidthSpinner[c]);   
-           
+            residualLineWidthPanel.add(residualLineWidthSpinner[c]);
+
             SpringUtil.makeCompactGrid (residualLineWidthPanel, 1, residualLineWidthPanel.getComponentCount(), 0,0,0,0);
-            residualPanel.add(residualLineWidthPanel); 
-            
-            
+            residualPanel.add(residualLineWidthPanel);
+
+
             JPanel residualSymbolPanel = new JPanel(new SpringLayout());
-            residualSymbolPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Symbol", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            residualSymbolPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Symbol", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             residualSymbolPanel.setPreferredSize(colorSelectorSize);
             residualSymbolPanel.setMaximumSize(colorSelectorSize);
-            
+
             residualSymbolSelection[c] = new JComboBox(markers);
             residualSymbolSelection[c].setEnabled(useTransitFit[c] && showResidual[c]);
             residualSymbolSelection[c].setFont(p11);
@@ -15592,17 +15592,17 @@ static void initializeVariables()
                 public void actionPerformed(ActionEvent ae) {
                     residualSymbolIndex[c] = residualSymbolSelection[c].getSelectedIndex();
                     updatePlot(updateNoFits());}});
-            residualSymbolPanel.add (residualSymbolSelection[c]);   
-            
+            residualSymbolPanel.add (residualSymbolSelection[c]);
+
             SpringUtil.makeCompactGrid (residualSymbolPanel, 1, residualSymbolPanel.getComponentCount(), 0,0,0,0);
-            residualPanel.add(residualSymbolPanel);              
-            
-            
+            residualPanel.add(residualSymbolPanel);
+
+
             JPanel residualColorPanel = new JPanel(new SpringLayout());
-            residualColorPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Symbol Color", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
+            residualColorPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Symbol Color", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             residualColorPanel.setPreferredSize(colorSelectorSize);
             residualColorPanel.setMaximumSize(colorSelectorSize);
-            
+
             residualColorSelection[c] = new JComboBox(colors);
             residualColorSelection[c].setEnabled(useTransitFit[c] && showResidual[c]);
             residualColorSelection[c].setFont(p11);
@@ -15621,14 +15621,14 @@ static void initializeVariables()
                     residualColorSelection[c].setForeground(residualColor[c]);
                     residualSymbolSelection[c].setForeground(residualColor[c]);
                     updatePlot(updateNoFits());}});
-            residualColorPanel.add (residualColorSelection[c]);            
-            
-            SpringUtil.makeCompactGrid (residualColorPanel, 1, residualColorPanel.getComponentCount(), 0,0,0,0);
-            residualPanel.add(residualColorPanel);              
+            residualColorPanel.add (residualColorSelection[c]);
 
-            
+            SpringUtil.makeCompactGrid (residualColorPanel, 1, residualColorPanel.getComponentCount(), 0,0,0,0);
+            residualPanel.add(residualColorPanel);
+
+
             JPanel residualShiftSpinnerPanel = new JPanel(new SpringLayout());
-            residualShiftSpinnerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Shift", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));          
+            residualShiftSpinnerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Shift", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
             residualShiftSpinner[c] = new JSpinner(new SpinnerNumberModel(new Double(force[c]?autoResidualShift[c]*100:residualShift[c]),  null, null, new Double(force[c]?autoShiftStep[c]:customShiftStep[c])));
             residualShiftSpinner[c].setEnabled(showResidual[c] && useTransitFit[c]);
             residualShiftSpinner[c].setFont(p11);
@@ -15660,37 +15660,37 @@ static void initializeVariables()
                         if (force[c])
                             residualShiftSpinner[c].setValue(((Double)residualShiftSpinner[c].getValue()).doubleValue() - invertYAxisSign*e.getWheelRotation()*autoShiftStep[c]);
                         else
-                            residualShiftSpinner[c].setValue(((Double)residualShiftSpinner[c].getValue()).doubleValue() - invertYAxisSign*e.getWheelRotation()*customShiftStep[c]);                    
+                            residualShiftSpinner[c].setValue(((Double)residualShiftSpinner[c].getValue()).doubleValue() - invertYAxisSign*e.getWheelRotation()*customShiftStep[c]);
                         }
                     }
                 });
             residualShiftSpinnerPanel.add(residualShiftSpinner[c]);
             SpringUtil.makeCompactGrid (residualShiftSpinnerPanel, 1, residualShiftSpinnerPanel.getComponentCount(), 2,0,0,0);
-            residualPanel.add(residualShiftSpinnerPanel);            
-    
-            
+            residualPanel.add(residualShiftSpinnerPanel);
+
+
             JLabel residualDummyLabel = new JLabel("");
-            residualPanel.add(residualDummyLabel);     
-            
+            residualPanel.add(residualDummyLabel);
+
             SpringUtil.makeCompactGrid (residualPanel, 1, residualPanel.getComponentCount(), 0,0,0,0);
-            plotPanel.add(residualPanel);            
-            
+            plotPanel.add(residualPanel);
+
             SpringUtil.makeCompactGrid (plotPanel, plotPanel.getComponentCount(), 1, 0,0,0,0);
-            fitPanel[c].add(plotPanel);             
-            
+            fitPanel[c].add(plotPanel);
+
             JPanel controlPanel = new JPanel(new SpringLayout());
-            controlPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Fit Control", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));  
-          
+            controlPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(mainBorderColor, 1),"Fit Control", TitledBorder.LEFT, TitledBorder.TOP, b12, Color.darkGray));
+
             JLabel controlLabel = new JLabel("Fit Control");
             controlLabel.setFont(p12);
             controlLabel.setPreferredSize(labelSize);
             controlLabel.setMaximumSize(labelSize);
-            controlPanel.add(controlLabel);            
-            
+            controlPanel.add(controlLabel);
+
             JPanel fitControlPanel = new JPanel(new SpringLayout());
-            fitControlPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Fit Update Options", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
-            autoUpdateFitCB[c] = new JCheckBox("Auto Update Fit", autoUpdateFit[c]); 
+            fitControlPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Fit Update Options", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
+            autoUpdateFitCB[c] = new JCheckBox("Auto Update Fit", autoUpdateFit[c]);
             autoUpdateFitCB[c].setPreferredSize(bestFitSize);
             autoUpdateFitCB[c].setMaximumSize(bestFitSize);
             autoUpdateFitCB[c].setFont(p11);
@@ -15707,10 +15707,10 @@ static void initializeVariables()
                         }
                     if (autoUpdateFit[c]) updatePlot(updateOneFit(c));
                     }});
-            fitControlPanel.add(autoUpdateFitCB[c]);            
-            
+            fitControlPanel.add(autoUpdateFitCB[c]);
+
             JButton fitNowButton = new JButton("Update Fit Now");
-            fitNowButton.setToolTipText("<html>Update the fit and redraw the plot using the above settings.</html>"); 
+            fitNowButton.setToolTipText("<html>Update the fit and redraw the plot using the above settings.</html>");
             fitNowButton.setFont(p11);
             fitNowButton.setPreferredSize(bestFitSize);
             fitNowButton.setMaximumSize(bestFitSize);
@@ -15726,14 +15726,14 @@ static void initializeVariables()
                     IJ.showMessage("The 'Plot' option for this curve must be enabled before fitting the data.");
                     }
                 }});
-            fitControlPanel.add(fitNowButton);            
-            
+            fitControlPanel.add(fitNowButton);
+
             SpringUtil.makeCompactGrid (fitControlPanel, 1, fitControlPanel.getComponentCount(), 2,2,4,2);
-            controlPanel.add(fitControlPanel);   
-            
+            controlPanel.add(fitControlPanel);
+
             JPanel minimizationTolerancePanel = new JPanel(new SpringLayout());
-            minimizationTolerancePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Fit Tolerance", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            minimizationTolerancePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Fit Tolerance", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             toleranceSpinner[c] = new JSpinner(new SpinnerNumberModel(tolerance[c],  Double.MIN_NORMAL, Double.MAX_VALUE, tolerance[c]*0.0010));
             toleranceSpinner[c].setFont(p11);
             toleranceSpinner[c].setEditor(new JSpinner.NumberEditor(toleranceSpinner[c], "0.0E0"));
@@ -15748,7 +15748,7 @@ static void initializeVariables()
                 public void stateChanged(ChangeEvent ev)
                     {
                     double newValue = new Double((Double)toleranceSpinner[c].getValue()).doubleValue();
-                    if (newValue < tolerance[c]-tolerance[c]*0.0009 && newValue > tolerance[c]-tolerance[c]*0.0011) 
+                    if (newValue < tolerance[c]-tolerance[c]*0.0009 && newValue > tolerance[c]-tolerance[c]*0.0011)
                         {
                         tolerance[c]/=10.0;
 //                        toleranceSpinner[c].setValue(tolerance[c]);
@@ -15766,7 +15766,7 @@ static void initializeVariables()
                         {
                         tolerance[c] = newValue;
                         toleranceSpinner[c].setModel(new SpinnerNumberModel(tolerance[c],  Double.MIN_NORMAL, Double.MAX_VALUE, tolerance[c]*0.0010));
-                        if (autoUpdateFit[c]) updatePlot(updateOneFit(c));                        
+                        if (autoUpdateFit[c]) updatePlot(updateOneFit(c));
                         }
                     }
                 });
@@ -15778,14 +15778,14 @@ static void initializeVariables()
                     if (newValue >= Double.MIN_NORMAL && newValue <= Double.MAX_VALUE) toleranceSpinner[c].setValue(newValue);
                     }
                 });
-            minimizationTolerancePanel.add(toleranceSpinner[c]);   
-            
+            minimizationTolerancePanel.add(toleranceSpinner[c]);
+
             SpringUtil.makeCompactGrid (minimizationTolerancePanel, 1, minimizationTolerancePanel.getComponentCount(), 2,2,4,2);
-            controlPanel.add(minimizationTolerancePanel);      
-            
+            controlPanel.add(minimizationTolerancePanel);
+
             JPanel maxFitStepsPanel = new JPanel(new SpringLayout());
-            maxFitStepsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Max Allowed Steps", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            maxFitStepsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Max Allowed Steps", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             maxFitStepsSpinner[c] = new JSpinner(new SpinnerNumberModel(maxFitSteps[c]>=1000?maxFitSteps[c]:1000,  1000, Integer.MAX_VALUE, 1000));
             maxFitStepsSpinner[c].setFont(p11);
 //            toleranceSpinner[c].setEditor(new JSpinner.NumberEditor(toleranceSpinner[c], "0.0E0"));
@@ -15810,15 +15810,15 @@ static void initializeVariables()
                     if (newValue >= 1000 && newValue <= Integer.MAX_VALUE) maxFitStepsSpinner[c].setValue(newValue);
                     }
                 });
-            maxFitStepsPanel.add(maxFitStepsSpinner[c]);   
-            
+            maxFitStepsPanel.add(maxFitStepsSpinner[c]);
+
             SpringUtil.makeCompactGrid (maxFitStepsPanel, 1, maxFitStepsPanel.getComponentCount(), 2,2,4,2);
-            controlPanel.add(maxFitStepsPanel);              
-            
-            
+            controlPanel.add(maxFitStepsPanel);
+
+
             JPanel stepsTakenPanel = new JPanel(new SpringLayout());
-            stepsTakenPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Steps Taken", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));  
-            
+            stepsTakenPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(subBorderColor, 1),"Steps Taken", TitledBorder.CENTER, TitledBorder.TOP, p11, Color.darkGray));
+
             stepsTakenLabel[c] = new JTextField("");
             stepsTakenLabel[c].setToolTipText("<html>The number of minimization steps taken to reach the specified fit tolerance.<br>"+
                                                  "Green Border: fit converged<br>"+
@@ -15832,17 +15832,17 @@ static void initializeVariables()
             stepsTakenLabel[c].setEditable(false);
             stepsTakenPanel.add(stepsTakenLabel[c]);
             SpringUtil.makeCompactGrid (stepsTakenPanel, 1, stepsTakenPanel.getComponentCount(), 0,0,0,0);
-            controlPanel.add(stepsTakenPanel);             
-            
+            controlPanel.add(stepsTakenPanel);
+
             JLabel controlDummyLabel2 = new JLabel("");
 //            controlDummyLabel2.setPreferredSize(labelSize);
             controlPanel.add(controlDummyLabel2);
-            
+
             SpringUtil.makeCompactGrid (controlPanel, 1, controlPanel.getComponentCount(), 0,0,0,0);
-            fitPanel[c].add(controlPanel);          
-            
+            fitPanel[c].add(controlPanel);
+
             SpringUtil.makeCompactGrid (fitPanel[c], fitPanel[c].getComponentCount(), 1, 2,2,2,2);
-            enableTransitComponents(c);          
+            enableTransitComponents(c);
             fitScrollPane[c] = new JScrollPane(fitPanel[c]);
             fitFrame[c].add(fitScrollPane[c]);
             fitFrame[c].setJMenuBar(fitMenuBar[c]);
@@ -15852,7 +15852,7 @@ static void initializeVariables()
             int firstFittedCurve = 0;
             for (int cc=0; cc<maxCurves; cc++)
                 {
-                if (detrendtypecombobox[cc].getSelectedIndex() == 9) 
+                if (detrendtypecombobox[cc].getSelectedIndex() == 9)
                     {
                     firstFittedCurve = cc;
                     break;
@@ -15870,7 +15870,7 @@ static void initializeVariables()
                     }
                 else
                     {
-                    IJU.setFrameSizeAndLocation(fitFrame[c], 
+                    IJU.setFrameSizeAndLocation(fitFrame[c],
                             (fitFrame[firstFittedCurve]!=null && fitFrame[firstFittedCurve].isVisible()?fitFrame[firstFittedCurve].getLocation().x:fitFrameLocationX[firstFittedCurve])+(c-firstFittedCurve)*25,
                             (fitFrame[firstFittedCurve]!=null && fitFrame[firstFittedCurve].isVisible()?fitFrame[firstFittedCurve].getLocation().y:fitFrameLocationY[firstFittedCurve])+(c-firstFittedCurve)*25, 0, 0);
                     }
@@ -15881,7 +15881,7 @@ static void initializeVariables()
                 }
            if (openFitPanels && detrendFitIndex[c]==9) fitFrame[c].setVisible(true);
             }
-        
+
         static void updatePriorCenters(int c)
             {
             if (!lockToCenter[c][0] && autoUpdatePrior[c][0])
@@ -15894,7 +15894,7 @@ static void initializeVariables()
 //                IJ.log("yBaselineAverage["+c+"]="+yBaselineAverage[c]);
 //                IJ.log("yCenterAverage["+c+"]="+yDepthEstimate[c]);
             if (!lockToCenter[c][1] && autoUpdatePrior[c][1])
-                {            
+                {
                 priorCenterSpinner[c][1].setValue(rpOrstarEst);          // depth = (r_p/r_*)^2
                 priorWidthSpinner[c][1].setValue(Math.abs(rpOrstarEst/2.0));
                 }
@@ -15908,19 +15908,19 @@ static void initializeVariables()
                 {
                 if (showXAxisNormal)
                     {
-                    priorCenterSpinner[c][3].setValue((int)xPlotMinRaw + (dMarker2Value + dMarker3Value)/2.0);   // tc = transit center time  
+                    priorCenterSpinner[c][3].setValue((int)xPlotMinRaw + (dMarker2Value + dMarker3Value)/2.0);   // tc = transit center time
                     }
                 else
                     {
-                    priorCenterSpinner[c][3].setValue((dMarker2Value + dMarker3Value)/2.0);   // tc = transit center time 
+                    priorCenterSpinner[c][3].setValue((dMarker2Value + dMarker3Value)/2.0);   // tc = transit center time
                     }
                 }
             if (!lockToCenter[c][4] && autoUpdatePrior[c][4])
                 {
-                priorCenterSpinner[c][4].setValue(Math.round(10.0*Math.acos((0.5+Math.sqrt(rpOrstarEst))/(priorCenter[c][2]))*180.0/Math.PI)/10.0); // inclination           
+                priorCenterSpinner[c][4].setValue(Math.round(10.0*Math.acos((0.5+Math.sqrt(rpOrstarEst))/(priorCenter[c][2]))*180.0/Math.PI)/10.0); // inclination
                 }
             }
-        
+
         static void createFittedParametersRow(JPanel parentPanel, final int c, final int row, final String rowName, final String rowNameToolTipText, final double min, final double max)
             {
             final boolean isDetrend = (rowName==null);
@@ -15948,9 +15948,9 @@ static void initializeVariables()
                             useFitDetrendCB[c][row-7].setEnabled(true);
                             }
                         enableTransitComponents(c);
-                        if (autoUpdateFit[c]) updatePlot(updateOneFit(c));}});                
-                parentPanel.add(useFitDetrendCB[c][row-7]); 
-                
+                        if (autoUpdateFit[c]) updatePlot(updateOneFit(c));}});
+                parentPanel.add(useFitDetrendCB[c][row-7]);
+
                 fitDetrendComboBox[c][row-7] = new JComboBox(columnsDetrend);
                 fitDetrendComboBox[c][row-7].setFont(p11);
                 fitDetrendComboBox[c][row-7].setToolTipText(rowNameToolTipText);
@@ -15964,7 +15964,7 @@ static void initializeVariables()
                         if (fitDetrendComboBox[c][row-7].isEnabled())
                             {
                             useFitDetrendCB[c][row-7].setSelected(true);
-                            detrendVarButton[c][row-7].setSelected(true); 
+                            detrendVarButton[c][row-7].setSelected(true);
                             detrendVarDisplayed[c] = row-7;
                             fitDetrendComboBox[c][row-7].setEnabled(false);
                             detrendbox[c].setSelectedIndex(fitDetrendComboBox[c][row-7].getSelectedIndex());
@@ -15982,7 +15982,7 @@ static void initializeVariables()
                 rowNameLabel.setMaximumSize(labelSize);
                 parentPanel.add(rowNameLabel);
                 }
-            
+
             bestFitLabel[c][row] = new JTextField("");
             bestFitLabel[c][row].setToolTipText("<html>Green Border: best fit parameter value from converged fit<br>"+
                                                       "Red Border: last parameter value from fit that did not converge<br>"+
@@ -15994,16 +15994,16 @@ static void initializeVariables()
             bestFitLabel[c][row].setEditable(false);
             bestFitLabel[c][row].setPreferredSize(bestFitSize);
             bestFitLabel[c][row].setMaximumSize(bestFitSize);
-            parentPanel.add(bestFitLabel[c][row]);            
-                        
+            parentPanel.add(bestFitLabel[c][row]);
+
             JLabel dummyLabel3 = new JLabel();
             dummyLabel3.setFont(p12);
 //            rowNameLabel.setToolTipText(rowNameToolTipText);
             dummyLabel3.setPreferredSize(spacerSize);
             dummyLabel3.setMaximumSize(spacerSize);
             parentPanel.add(dummyLabel3);
-            
-            lockToCenterCB[c][row] = new JCheckBox("", lockToCenter[c][row]); 
+
+            lockToCenterCB[c][row] = new JCheckBox("", lockToCenter[c][row]);
             lockToCenterCB[c][row].setEnabled(isDetrend?useFitDetrendCB[c][row-7].isSelected():useTransitFit[c]);
             lockToCenterCB[c][row].setHorizontalAlignment(JLabel.CENTER);
             lockToCenterCB[c][row].setPreferredSize(checkBoxSize);
@@ -16024,7 +16024,7 @@ static void initializeVariables()
                         }
                     enableTransitComponents(c);
                     if (autoUpdateFit[c]) updatePlot(updateOneFit(c));}});
-            parentPanel.add(lockToCenterCB[c][row]);            
+            parentPanel.add(lockToCenterCB[c][row]);
             if (Double.isNaN(priorCenter[c][row]) || Double.isInfinite(priorCenter[c][row])) priorCenter[c][row] = 0.0;
             if (priorCenter[c][row] < min) priorCenter[c][row] = min;
             if (priorCenter[c][row] > max) priorCenter[c][row] = max;
@@ -16053,13 +16053,13 @@ static void initializeVariables()
                 {
                 priorCenterSpinner[c][row].setToolTipText("<html>The parameter's starting value for the fit.<br>"+
                                                             "---------------------------------------------<br>"+
-                                                            "Right click to set spinner stepsize</html>");                
+                                                            "Right click to set spinner stepsize</html>");
                 }
             priorCenterSpinner[c][row].addChangeListener (new ChangeListener()
                 {
                 public void stateChanged(ChangeEvent ev)
                     {
-                    
+
                     priorCenter[c][row] = ((Double)priorCenterSpinner[c][row].getValue()).doubleValue();
                     fitStepSpinner[c][row].setValue(getFitStep(c, row));
                     if (autoUpdateFit[c]) updatePlot(updateOneFit(c));
@@ -16074,15 +16074,15 @@ static void initializeVariables()
                     }
                 });
             parentPanel.add(priorCenterSpinner[c][row]);
-            
+
             JLabel dummyLabel = new JLabel();
             dummyLabel.setFont(p12);
 //            rowNameLabel.setToolTipText(rowNameToolTipText);
             dummyLabel.setPreferredSize(spacerSize);
             dummyLabel.setMaximumSize(spacerSize);
-            parentPanel.add(dummyLabel);  
-            
-            usePriorWidthCB[c][row] = new JCheckBox("", usePriorWidth[c][row]); 
+            parentPanel.add(dummyLabel);
+
+            usePriorWidthCB[c][row] = new JCheckBox("", usePriorWidth[c][row]);
             usePriorWidthCB[c][row].setEnabled(isDetrend?useFitDetrendCB[c][row-7].isSelected():useTransitFit[c]);
             usePriorWidthCB[c][row].setHorizontalAlignment(JLabel.CENTER);
             usePriorWidthCB[c][row].setPreferredSize(checkBoxSize);
@@ -16099,7 +16099,7 @@ static void initializeVariables()
             else
                 {
                 usePriorWidthCB[c][row].setToolTipText("<html>If enabled, the 'Prior Width' value constrains the parameter to be in<br>"+
-                                                        "the range of the 'Prior Center' value plus/minus the 'Prior Width' value.</html>");                
+                                                        "the range of the 'Prior Center' value plus/minus the 'Prior Width' value.</html>");
                 }
             usePriorWidthCB[c][row].addItemListener(new ItemListener(){
                 public void itemStateChanged(ItemEvent e) {
@@ -16110,15 +16110,15 @@ static void initializeVariables()
                     else if (e.getStateChange() == ItemEvent.SELECTED)
                         {
                         usePriorWidth[c][row] = true;
-                       
+
                         }
                     enableTransitComponents(c);
                     fitStepSpinner[c][row].setValue(getFitStep(c, row));
                     if (autoUpdateFit[c]) updatePlot(updateOneFit(c));
                     }});
-                    
-            parentPanel.add(usePriorWidthCB[c][row]);             
-            
+
+            parentPanel.add(usePriorWidthCB[c][row]);
+
             priorWidthSpinner[c][row] = new JSpinner(new SpinnerNumberModel(new Double(priorWidth[c][row]<0?0.1:priorWidth[c][row]),  new Double(0.0), null, new Double(priorWidthStep[row])));
             priorWidthSpinner[c][row].setEnabled((isDetrend?useFitDetrendCB[c][row-7].isSelected():useTransitFit[c]) && usePriorWidth[c][row]);
             priorWidthSpinner[c][row].setFont(p11);
@@ -16142,8 +16142,8 @@ static void initializeVariables()
                 priorWidthSpinner[c][row].setToolTipText("<html>If 'Use' is enabled, the 'Prior Width' value constrains the parameter to be in<br>"+
                                                         "the range of the 'Prior Center' value plus/minus the 'Prior Width' value.<br>"+
                                                         "---------------------------------------------------<br>"+
-                                                        "Right click to set spinner stepsize</html>");                
-                } 
+                                                        "Right click to set spinner stepsize</html>");
+                }
             priorWidthSpinner[c][row].addChangeListener (new ChangeListener()
                 {
                 public void stateChanged(ChangeEvent ev)
@@ -16161,16 +16161,16 @@ static void initializeVariables()
                     if (priorWidthSpinner[c][row].isEnabled() && newValue >= 0.0) priorWidthSpinner[c][row].setValue(newValue);
                     }
                 });
-            parentPanel.add(priorWidthSpinner[c][row]); 
-            
+            parentPanel.add(priorWidthSpinner[c][row]);
+
             JLabel dummyLabel2 = new JLabel();
             dummyLabel2.setFont(p12);
 //            rowNameLabel.setToolTipText(rowNameToolTipText);
             dummyLabel2.setPreferredSize(spacerSize);
             dummyLabel2.setMaximumSize(spacerSize);
-            parentPanel.add(dummyLabel2);            
-            
-            useCustomFitStepCB[c][row] = new JCheckBox("", useCustomFitStep[c][row]); 
+            parentPanel.add(dummyLabel2);
+
+            useCustomFitStepCB[c][row] = new JCheckBox("", useCustomFitStep[c][row]);
             useCustomFitStepCB[c][row].setEnabled(isDetrend?useFitDetrendCB[c][row-7].isSelected():useTransitFit[c]);
             useCustomFitStepCB[c][row].setHorizontalAlignment(JLabel.CENTER);
             useCustomFitStepCB[c][row].setPreferredSize(checkBoxSize);
@@ -16192,8 +16192,8 @@ static void initializeVariables()
                     fitStepSpinner[c][row].setEnabled((isDetrend?useFitDetrendCB[c][row-7].isSelected():useTransitFit[c]) && useCustomFitStep[c][row]);
                     fitStepSpinner[c][row].setValue(getFitStep(c, row));
                     if (autoUpdateFit[c]) updatePlot(updateOneFit(c));}});
-            parentPanel.add(useCustomFitStepCB[c][row]);             
-            
+            parentPanel.add(useCustomFitStepCB[c][row]);
+
             fitStepSpinner[c][row] = new JSpinner(new SpinnerNumberModel(new Double(getFitStep(c, row)),  new Double(0.0), null, new Double(fitStepStep[row])));
             fitStepSpinner[c][row].setEnabled((isDetrend?useFitDetrendCB[c][row-7].isSelected():useTransitFit[c]) && useCustomFitStep[c][row]);
             fitStepSpinner[c][row].setFont(p11);
@@ -16221,27 +16221,27 @@ static void initializeVariables()
                     if (useCustomFitStep[c][row] && fitStepSpinner[c][row].isEnabled() && newValue > 0) fitStepSpinner[c][row].setValue(newValue);
                     }
                 });
-            parentPanel.add(fitStepSpinner[c][row]);  
-            
+            parentPanel.add(fitStepSpinner[c][row]);
+
             JLabel dummyLabel4 = new JLabel("");
-            parentPanel.add(dummyLabel4);            
+            parentPanel.add(dummyLabel4);
             }
-        
+
         static void setFittedParametersBorderColor(final int c, final Border border)
             {
             if (bestFitLabel[c][0] != null)
                 {
                 for (int p=0; p<bestFitLabel[c].length; p++)
                     {
-                    if (lockToCenter[c][p] || bestFitLabel[c][p].getText().equals("")) 
+                    if (lockToCenter[c][p] || bestFitLabel[c][p].getText().equals(""))
                         bestFitLabel[c][p].setBorder(grayBorder);
                     else if (bestFitLabel[c][p].getText().equals("constant var"))
                         bestFitLabel[c][p].setBorder(failedBorder);
                     else
                         bestFitLabel[c][p].setBorder(border);
 //                    bestFitLabel[c][p].paint(bestFitLabel[c][p].getGraphics());
-                    } 
-                
+                    }
+
                 t14Label[c].setBorder(useTransitFit[c]?border:grayBorder);
 //                t14Label[c].paint(t14Label[c].getGraphics());
                 t14HoursLabel[c].setBorder(useTransitFit[c]?border:grayBorder);
@@ -16266,8 +16266,8 @@ static void initializeVariables()
 //                chi2Label[c].paint(chi2Label[c].getGraphics());
                 stepsTakenLabel[c].setBorder(border);
                 }
-            }        
-        
+            }
+
         static void setFittedParametersBorderColorNewThread(final int c, final Border border)
             {
             Thread t = new Thread()
@@ -16279,8 +16279,8 @@ static void initializeVariables()
                 };
             t.start();
             Thread.yield();
-            }        
-        
+            }
+
         static double getFitStep(int c, int row)
             {
             return useCustomFitStep[c][row]?fitStep[c][row]>0.0?fitStep[c][row]:defaultFitStep[row]:
@@ -16288,7 +16288,7 @@ static void initializeVariables()
                   (priorWidth[c][row]*0.9<priorCenter[c][row]?priorWidth[c][row]*0.9:priorCenter[c][row]>0.0?priorCenter[c][row]:defaultFitStep[row]):
                   (priorCenter[c][row]<defaultFitStep[row] && priorCenter[c][row]>0.0?priorCenter[c][row]:defaultFitStep[row]));
             }
-        
+
         static void enableTransitComponents( int c)
             {
             extractPriorsButton[c].setEnabled(useTransitFit[c]);
@@ -16296,11 +16296,11 @@ static void initializeVariables()
             t14Label[c].setEnabled(useTransitFit[c]);
             t14HoursLabel[c].setEnabled(useTransitFit[c]);
             t23Label[c].setEnabled(useTransitFit[c]);
-            tauLabel[c].setEnabled(useTransitFit[c]); 
+            tauLabel[c].setEnabled(useTransitFit[c]);
             stellarDensityLabel[c].setEnabled(useTransitFit[c]);
             bpLabel[c].setEnabled(useTransitFit[c]);
-            spectralTypeLabel[c].setEnabled(useTransitFit[c]); 
-            planetRadiusLabel[c].setEnabled(useTransitFit[c]); 
+            spectralTypeLabel[c].setEnabled(useTransitFit[c]);
+            planetRadiusLabel[c].setEnabled(useTransitFit[c]);
             showResidualCB[c].setEnabled(useTransitFit[c]);
             residualModelColorSelection[c].setEnabled(useTransitFit[c] && showResidual[c] && showModel[c]);
             residualLineWidthSpinner[c].setEnabled(useTransitFit[c] && showResidual[c] && showModel[c]);
@@ -16331,20 +16331,20 @@ static void initializeVariables()
                     priorWidthSpinner[c][row].setEnabled(useFitDetrendCB[c][row-7].isSelected() && usePriorWidth[c][row]);
                     useCustomFitStepCB[c][row].setEnabled(useFitDetrendCB[c][row-7].isSelected());
                     fitStepSpinner[c][row].setEnabled(useFitDetrendCB[c][row-7].isSelected() && useCustomFitStep[c][row]);
-                    }                
+                    }
                 }
             }
-        
-        static void updateSaturatedStars()   
+
+        static void updateSaturatedStars()
             {
             if (table == null) return;
             if (isStarSaturated == null || isStarSaturated.length < 1 || isStarSaturated.length != numAps) return;
             int numRows = table.getCounter();
-            if (numRows < 1) return;   
+            if (numRows < 1) return;
             showSaturationWarning  = Prefs.get (Aperture_.AP_PREFS_SHOWSATWARNING, true);
-            saturationWarningLevel = Prefs.get (Aperture_.AP_PREFS_SATWARNLEVEL, 55000); 
+            saturationWarningLevel = Prefs.get (Aperture_.AP_PREFS_SATWARNLEVEL, 55000);
             showLinearityWarning  = Prefs.get (Aperture_.AP_PREFS_SHOWLINWARNING, true);
-            linearityWarningLevel = Prefs.get (Aperture_.AP_PREFS_LINWARNLEVEL, 30000);            
+            linearityWarningLevel = Prefs.get (Aperture_.AP_PREFS_LINWARNLEVEL, 30000);
             int peakcol = ResultsTable.COLUMN_NOT_FOUND;
             double value;
             for (int ap = 0; ap < numAps; ap++)
@@ -16355,7 +16355,7 @@ static void initializeVariables()
                     {
                     peakcol = table.getColumnIndex ("Peak_"+(isRefStar[ap]?"C":"T")+(ap+1));
                     if (peakcol != ResultsTable.COLUMN_NOT_FOUND)
-                        {  
+                        {
                         for (int row = 0; row < numRows; row++)
                             {
                             value = table.getValueAsDouble(peakcol, row);
@@ -16376,7 +16376,7 @@ static void initializeVariables()
                     }
                 }
             }
-        
+
         static void rebuildRefStarJPanel()
             {
             allNonePanel.validate();
@@ -16397,14 +16397,14 @@ static void initializeVariables()
             refStarFrame.pack();
             refStarFrame.setVisible(true);
             }
-        
+
         static void showRefStarJPanel()
                 {
                 refStarFrame = new JFrame ("Multi-plot Reference Star Settings");
                 refStarFrame.setIconImage(plotIcon.getImage());
                 refStarMainPanel = new JPanel (new SpringLayout());
 //                mainsubpanel.addMouseListener(panelMouseListener);
-//                refStarMainPanel.addMouseMotionListener(panelMouseMotionListener);                
+//                refStarMainPanel.addMouseMotionListener(panelMouseMotionListener);
 //                FileDrop fileDrop = new FileDrop(refStarMainPanel, BorderFactory.createEmptyBorder(),new FileDrop.Listener()
 //                    {   public void filesDropped( java.io.File[] files )
 //                        {
@@ -16428,10 +16428,10 @@ static void initializeVariables()
                     });
                 multiUpdate = false;
                 showSaturationWarning  = Prefs.get (Aperture_.AP_PREFS_SHOWSATWARNING, showSaturationWarning);
-                saturationWarningLevel = Prefs.get (Aperture_.AP_PREFS_SATWARNLEVEL, saturationWarningLevel); 
+                saturationWarningLevel = Prefs.get (Aperture_.AP_PREFS_SATWARNLEVEL, saturationWarningLevel);
                 showLinearityWarning  = Prefs.get (Aperture_.AP_PREFS_SHOWLINWARNING, showLinearityWarning);
-                linearityWarningLevel = Prefs.get (Aperture_.AP_PREFS_LINWARNLEVEL, linearityWarningLevel);  
-                
+                linearityWarningLevel = Prefs.get (Aperture_.AP_PREFS_LINWARNLEVEL, linearityWarningLevel);
+
                 JPanel refStarAPanel = new JPanel (new SpringLayout());
                 refStarAPanel.setBorder(BorderFactory.createTitledBorder(""));
                 JLabel refstarlabel1 = new JLabel("No table has been selected in 'Multi-plot Main'.");
@@ -16444,7 +16444,7 @@ static void initializeVariables()
                 refStarAPanel.add(refstarlabel1);
                 JPanel forceMagDisplayPanel = new JPanel (new SpringLayout());
                 JButton forceMagDisplayButton = new JButton("Show Magnitudes");
-                forceMagDisplayButton.setToolTipText("Forces the display of reference star apparent magnitudes"); 
+                forceMagDisplayButton.setToolTipText("Forces the display of reference star apparent magnitudes");
                 forceMagDisplayButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     boolean needsPanelUpdate = false;
@@ -16459,10 +16459,10 @@ static void initializeVariables()
                             }
                         }
                     if (needsPanelUpdate) rebuildRefStarJPanel();
-                    }});                
+                    }});
                 forceMagDisplayPanel.add(forceMagDisplayButton);
                 JButton forceNoMagDisplayButton = new JButton("Hide Magnitudes");
-                forceNoMagDisplayButton.setToolTipText("Removes the display of reference star apparent magnitudes"); 
+                forceNoMagDisplayButton.setToolTipText("Removes the display of reference star apparent magnitudes");
                 forceNoMagDisplayButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     boolean needsPanelUpdate = false;
@@ -16477,24 +16477,24 @@ static void initializeVariables()
                             }
                         }
                     if (needsPanelUpdate) rebuildRefStarJPanel();
-                    }});                
-                forceMagDisplayPanel.add(forceNoMagDisplayButton);  
-                
+                    }});
+                forceMagDisplayPanel.add(forceNoMagDisplayButton);
+
                 SpringUtil.makeCompactGrid (forceMagDisplayPanel, 1, forceMagDisplayPanel.getComponentCount(), 6,6,6,6);
-                refStarAPanel.add (forceMagDisplayPanel);                 
-                
+                refStarAPanel.add (forceMagDisplayPanel);
+
                 SpringUtil.makeCompactGrid (refStarAPanel, refStarAPanel.getComponentCount(), 1, 6,6,6,6);
-                refStarMainPanel.add (refStarAPanel);                
+                refStarMainPanel.add (refStarAPanel);
 
                 refStarBPanel = new JPanel (new SpringLayout());
                 refStarBPanel.setBorder(BorderFactory.createTitledBorder("Reference Star Selection"));
 
                 checkAndLockTable();
-              
+
                 numAps = 0;
                 while(true)
                     {
-                    if (table.getColumnIndex("Source-Sky_C"+(numAps+1)) != MeasurementTable.COLUMN_NOT_FOUND || 
+                    if (table.getColumnIndex("Source-Sky_C"+(numAps+1)) != MeasurementTable.COLUMN_NOT_FOUND ||
                         table.getColumnIndex("Source-Sky_T"+(numAps+1)) != MeasurementTable.COLUMN_NOT_FOUND)
                         {
                         numAps++;
@@ -16519,7 +16519,7 @@ static void initializeVariables()
                     isStarOverLinear = new boolean[numAps];
                     allNonePanel = new JPanel(new SpringLayout());
                     JButton noneButton = new JButton("None");
-                    noneButton.setToolTipText("Removes all stars from the reference star set"); 
+                    noneButton.setToolTipText("Removes all stars from the reference star set");
                     noneButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         multiUpdate = true;
@@ -16531,17 +16531,17 @@ static void initializeVariables()
                         cycleEnabledStarsLess1PressedConsecutive = false;
                         updatePlotEnabled = false;
                         waitForPlotUpdateToFinish();
-                        checkAndLockTable();                         
+                        checkAndLockTable();
                         updateTotals();
                         updateGUI();
                         updatePlotEnabled = true;
-                        if (table != null) table.setLock(false);                        
+                        if (table != null) table.setLock(false);
                         table.show();
-                        updatePlot(updateAllFits());  
+                        updatePlot(updateAllFits());
                         }});
-                    allNonePanel.add(noneButton);                        
+                    allNonePanel.add(noneButton);
                     JButton allButton = new JButton("All");
-                    allButton.setToolTipText("Adds all stars to the reference star set"); 
+                    allButton.setToolTipText("Adds all stars to the reference star set");
                     allButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         if (numAps < 2) return;
@@ -16554,35 +16554,35 @@ static void initializeVariables()
                         cycleEnabledStarsLess1PressedConsecutive = false;
                         updatePlotEnabled = false;
                         waitForPlotUpdateToFinish();
-                        checkAndLockTable();                         
+                        checkAndLockTable();
                         updateTotals();
                         updateGUI();
                         updatePlotEnabled = true;
-                        if (table != null) table.setLock(false);                        
+                        if (table != null) table.setLock(false);
                         table.show();
-                        updatePlot(updateAllFits()); 
+                        updatePlot(updateAllFits());
                         }});
                     allNonePanel.add(allButton);
-                    
+
                     JButton setButton = new JButton("Set");
-                    setButton.setToolTipText("Sets the current enabled stars as the 'cycle' set"); 
+                    setButton.setToolTipText("Sets the current enabled stars as the 'cycle' set");
                     setButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         cycleEnabledStarsLess1PressedConsecutive = false;
                         }});
-                    allNonePanel.add(setButton);                    
-                    
+                    allNonePanel.add(setButton);
+
                     JButton cycleEnabledStarsLess1Button = new JButton("Cycle Enabled Stars Less One");
-                    cycleEnabledStarsLess1Button.setToolTipText("Removes one star at a time from the current selected set"); 
+                    cycleEnabledStarsLess1Button.setToolTipText("Removes one star at a time from the current selected set");
                     cycleEnabledStarsLess1Button.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        
+
                         if (numAps > 2)
                             {
                             int numEnabled = 0;
                             for (int i = 1; i < numAps; i++)
                                 {
-                                if (isRefStar[i]) 
+                                if (isRefStar[i])
                                     {
                                     numEnabled++;
                                     }
@@ -16594,17 +16594,17 @@ static void initializeVariables()
 
                             multiUpdate = true;
                             boolean foundOne = false;
-                            int startingRefStar = lastRefStar;    
+                            int startingRefStar = lastRefStar;
                             if (cycleEnabledStarsLess1PressedConsecutive)
                                 {
                                 lastRefStar = (lastRefStar + 1)%(numAps);
-                                if (lastRefStar < 1) lastRefStar = 1; 
+                                if (lastRefStar < 1) lastRefStar = 1;
                                 }
                             if (!isRefStar[lastRefStar])
                                 {
                                 for (int i = lastRefStar; i < numAps; i++)
                                     {
-                                    if (isRefStar[i]) 
+                                    if (isRefStar[i])
                                         {
                                         lastRefStar = i;
                                         foundOne = true;
@@ -16615,23 +16615,23 @@ static void initializeVariables()
                                     {
                                     for (int i = 1; i < lastRefStar; i++)
                                         {
-                                        if (isRefStar[i]) 
+                                        if (isRefStar[i])
                                             {
                                             lastRefStar = i;
                                             foundOne = true;
                                             break;
                                             }
-                                        }                                        
+                                        }
                                     }
-                                } 
+                                }
                             else
                                 {
                                 foundOne = true;
                                 }
-                            
+
                             if (foundOne)
                                 {
-                                if (cycleEnabledStarsLess1PressedConsecutive) 
+                                if (cycleEnabledStarsLess1PressedConsecutive)
                                     {
                                     refStarCB[startingRefStar].setSelected(true);
                                     }
@@ -16640,18 +16640,18 @@ static void initializeVariables()
                                 cycleEnabledStarsLess1PressedConsecutive = true;
                                 updatePlotEnabled = false;
                                 waitForPlotUpdateToFinish();
-                                checkAndLockTable();                                 
+                                checkAndLockTable();
                                 updateTotals();
                                 updateGUI();
                                 updatePlotEnabled = true;
-                                if (table != null) table.setLock(false);                        
+                                if (table != null) table.setLock(false);
                                 table.show();
-                                updatePlot(updateAllFits());   
+                                updatePlot(updateAllFits());
                                 }
                             }
                         }});
                     allNonePanel.add(cycleEnabledStarsLess1Button);
-                    
+
                     JButton cycleIndividualStarButton = new JButton("Cycle Individual Stars");
                     cycleIndividualStarButton.setToolTipText("Cycles through all stars considering each as an individual reference star");
                     cycleIndividualStarButton.addActionListener(new ActionListener() {
@@ -16666,28 +16666,28 @@ static void initializeVariables()
                                 refStarCB[r].setSelected(false);
                             }
                         lastRefStar = (lastRefStar + 1)%(numAps);
-                        if (lastRefStar < 1) lastRefStar = 1;                        
+                        if (lastRefStar < 1) lastRefStar = 1;
                         multiUpdate = false;
                         cycleEnabledStarsLess1PressedConsecutive = false;
                         updatePlotEnabled = false;
                         waitForPlotUpdateToFinish();
-                        checkAndLockTable();                         
+                        checkAndLockTable();
                         updateTotals();
                         updateGUI();
                         updatePlotEnabled = true;
-                        if (table != null) table.setLock(false);                                
+                        if (table != null) table.setLock(false);
                         table.show();
-                        updatePlot(updateAllFits());    
+                        updatePlot(updateAllFits());
                         }});
-                    allNonePanel.add(cycleIndividualStarButton);                    
-                    
+                    allNonePanel.add(cycleIndividualStarButton);
+
                     JLabel dummy1Label = new JLabel("");
-                    allNonePanel.add(dummy1Label);                        
+                    allNonePanel.add(dummy1Label);
                     SpringUtil.makeCompactGrid (allNonePanel, 1, allNonePanel.getComponentCount(), 2,2,2,2);
-                    refStarBPanel.add(allNonePanel); 
-                    
+                    refStarBPanel.add(allNonePanel);
+
                     starsPlusSpacerPanel = new JPanel(new SpringLayout());
-                    
+
                     starsPanel = new JPanel(new SpringLayout());
                     int absMagCol = -1;
                     numAbsMagRefAps = 0;
@@ -16715,7 +16715,7 @@ static void initializeVariables()
                             refStarLabel[r] = new JLabel("T"+(r+1));
                             isRefStar[r] = false;
                             refStarLabel[r].setForeground(darkGreen);
-                            }                               
+                            }
                         else
                             {
                             IJ.beep();
@@ -16726,7 +16726,7 @@ static void initializeVariables()
                             }
                         }
                     for (int r = 0; r < numAps; r++)
-                        {                        
+                        {
                         refStarPanel[r] = new JPanel(new SpringLayout());
                         refStarLabel[r].setHorizontalAlignment(JLabel.CENTER);
                         refStarLabel[r].setFont(b11);
@@ -16750,8 +16750,8 @@ static void initializeVariables()
                         absMagTF[r].setEditable(isRefStar[r]);
                         setUpAbsMagTFListener(r);
                         setupRefStarCBListener(r);
-                        refStarPanel[r].add(refStarCB[r]); 
-                        if (hasAbsMag || forceAbsMagDisplay) 
+                        refStarPanel[r].add(refStarCB[r]);
+                        if (hasAbsMag || forceAbsMagDisplay)
                             {
                             refStarPanel[r].add(absMagTF[r]);
                             }
@@ -16759,7 +16759,7 @@ static void initializeVariables()
                         starsPanel.add(refStarPanel[r]);
                         }
                     defaultCBColor = refStarCB[0].getBackground();
-                    
+
                     if (numAps/refStarHorzWidth > 0)
                         {
                         int fill = refStarHorzWidth - numAps%refStarHorzWidth;
@@ -16779,83 +16779,83 @@ static void initializeVariables()
                     else
                         {
                         SpringUtil.makeCompactGrid (starsPanel, 1, starsPanel.getComponentCount(), 4,10,4,10);
-                        starsPlusSpacerPanel.add(starsPanel);                        
+                        starsPlusSpacerPanel.add(starsPanel);
                         }
-                    
+
                     spacerPanel = new JPanel(new SpringLayout());
                     JLabel spacerDummyLabel = new JLabel("");
                     spacerPanel.add(spacerDummyLabel);
 
                     SpringUtil.makeCompactGrid (spacerPanel, spacerPanel.getComponentCount(), 1, 0,0,0,0);
                     starsPlusSpacerPanel.add(spacerPanel);
-                    
+
                     SpringUtil.makeCompactGrid (starsPlusSpacerPanel, 1, starsPlusSpacerPanel.getComponentCount(), 0,0,0,0);
                     refStarBPanel.add(starsPlusSpacerPanel);
-                    
+
                     JPanel legendPanel = new JPanel(new SpringLayout());
-                    
+
                     JLabel unsaturatedCBLabel = new JLabel("Green checkbox border - aperture peak count under "+(showLinearityWarning ? "linearity limit" : "saturation limit"));
                     JLabel overLinearityCBLabel = new JLabel("Yellow checkbox border - aperture peak count over linearity limit");
                     JLabel overSaturationCBLabel = new JLabel("Red checkbox border - aperture peak count over saturation limit");
                     if (showSaturationWarning || showLinearityWarning) legendPanel.add(unsaturatedCBLabel);
                     if (showLinearityWarning) legendPanel.add(overLinearityCBLabel);
-                    if (showSaturationWarning ) legendPanel.add(overSaturationCBLabel);   
+                    if (showSaturationWarning ) legendPanel.add(overSaturationCBLabel);
                     SpringUtil.makeCompactGrid (legendPanel, legendPanel.getComponentCount(), 1, 6,6,6,6);
-                    refStarBPanel.add(legendPanel);                    
-                    
+                    refStarBPanel.add(legendPanel);
+
                     SpringUtil.makeCompactGrid (refStarBPanel, refStarBPanel.getComponentCount(), 1, 6,6,6,6);
-                    refStarMainPanel.add (refStarBPanel); 
-                    
+                    refStarMainPanel.add (refStarBPanel);
+
                     JPanel reminderPanel = new JPanel();
                     reminderPanel.setBorder(BorderFactory.createTitledBorder("Save/Show Current Configuration"));
                     reminderPanel.setLayout(new BoxLayout(reminderPanel, BoxLayout.LINE_AXIS));
-                    
+
                     JButton saveTableButton = new JButton("Save Table");
                     saveTableButton.setForeground(Color.RED);
-                    saveTableButton.setToolTipText("Save the measurement table with current reference star configuration"); 
+                    saveTableButton.setToolTipText("Save the measurement table with current reference star configuration");
                     saveTableButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             saveData();
                             }});
-                    reminderPanel.add(saveTableButton); 
-                    
+                    reminderPanel.add(saveTableButton);
+
                     reminderPanel.add(Box.createHorizontalStrut(10));
-                    
+
                     JButton saveApsButton = new JButton("Save Apertures");
 //                    sendApsButton.setForeground(Color.RED);
-                    saveApsButton.setToolTipText("Save new aperture configuration to file"); 
+                    saveApsButton.setToolTipText("Save new aperture configuration to file");
                     saveApsButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             saveApertures();
                             }});
-                    reminderPanel.add(saveApsButton);                    
-                    
-                    reminderPanel.add(Box.createHorizontalStrut(10));                     
-                    
+                    reminderPanel.add(saveApsButton);
+
+                    reminderPanel.add(Box.createHorizontalStrut(10));
+
                     JButton sendApsButton = new JButton("Send to Multi-aperture");
 //                    sendApsButton.setForeground(Color.RED);
-                    sendApsButton.setToolTipText("Send new aperture configuration to Multi-aperture"); 
+                    sendApsButton.setToolTipText("Send new aperture configuration to Multi-aperture");
                     sendApsButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             storeApertures();
                             }});
-                    reminderPanel.add(sendApsButton);                     
-                    
-                    reminderPanel.add(Box.createHorizontalStrut(10));                     
-                    
+                    reminderPanel.add(sendApsButton);
+
+                    reminderPanel.add(Box.createHorizontalStrut(10));
+
                     JButton showApsButton = new JButton("Show Apertures");
 //                    sendApsButton.setForeground(Color.RED);
-                    showApsButton.setToolTipText("Show apertures in active image"); 
+                    showApsButton.setToolTipText("Show apertures in active image");
                     showApsButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             showApertures();
                             }});
-                    reminderPanel.add(showApsButton);                     
+                    reminderPanel.add(showApsButton);
 //                    JLabel reminderlabel= new JLabel("   ***** Save table to retain reference star configuration *****");
 //                    reminderlabel.setForeground(Color.RED);
-//                    reminderPanel.add (reminderlabel);  
-                    
-                    reminderPanel.add(Box.createGlue()); 
+//                    reminderPanel.add (reminderlabel);
+
+                    reminderPanel.add(Box.createGlue());
                     updateSaturatedStars();
                     refStarMainPanel.add (reminderPanel);
                     if (table != null) table.setLock(false);
@@ -16864,34 +16864,34 @@ static void initializeVariables()
                 else
                     {
                     JLabel refstarlabel2= new JLabel("No 'Source-Sky' columns found in table.");
-                    refStarBPanel.add(refstarlabel2); 
+                    refStarBPanel.add(refstarlabel2);
 
                     JLabel refstarlabel3= new JLabel("Enable 'Integrated Counts (Source-Sky)' in aperture settings.");
-                    refStarBPanel.add(refstarlabel3); 
+                    refStarBPanel.add(refstarlabel3);
                     SpringUtil.makeCompactGrid (refStarBPanel, refStarBPanel.getComponentCount(), 1, 6,6,6,6);
-                    refStarMainPanel.add (refStarBPanel); 
+                    refStarMainPanel.add (refStarBPanel);
                     if (table != null) table.setLock(false);
                     }
 
 
-                   
+
 
                 SpringUtil.makeCompactGrid (refStarMainPanel, refStarMainPanel.getComponentCount(), 1, 6,6,6,6);
 
                 refStarFrame.add (refStarScrollPane);
                 refStarFrame.pack();
                 refStarFrame.setResizable (true);
-                
+
                 if (rememberWindowLocations)
                     {
                     IJU.setFrameSizeAndLocation(refStarFrame, refStarFrameLocationX, refStarFrameLocationY, 0, 0);
                     }
                 refStarFrame.setVisible (true);
                 refStarPanelWasShowing = true;
-              
+
                 }
-        
-        
+
+
         /** Returns an ImageIcon, or null if the path was invalid. */
         static protected ImageIcon createImageIcon(String path, String description) {
             MultiPlot_ m = new MultiPlot_();
@@ -16903,7 +16903,7 @@ static void initializeVariables()
                 return null;
             }
         }
-        
+
         static void setupRefStarCBListener(final int r)
             {
             refStarCB[r].addItemListener(new ItemListener(){
@@ -16914,7 +16914,7 @@ static void initializeVariables()
                     absMagTF[r].setEditable(isRefStar[r]);
                     return;
                     }
-                
+
                 boolean foundApertureInImage = false;
                 ImagePlus imp = WindowManager.getCurrentImage();
                 ImageWindow iw = null;
@@ -16926,13 +16926,13 @@ static void initializeVariables()
                         foundApertureInImage = updateImageOverlay(imp, e.getStateChange() == ItemEvent.SELECTED, r, true);
                         }
                     }
-                if (!foundApertureInImage && WindowManager.getWindowCount()> 1) 
+                if (!foundApertureInImage && WindowManager.getWindowCount()> 1)
                     {
                     int[] ID = WindowManager.getIDList();
                     for (int win = 0; win < ID.length; win++)
                         {
                         imp = WindowManager.getImage(ID[win]);
-                        if (imp != null) 
+                        if (imp != null)
                             iw = imp.getWindow();
                         else
                             iw = null;
@@ -16946,7 +16946,7 @@ static void initializeVariables()
                             }
                         }
                     }
-            
+
                 if (e.getStateChange() == ItemEvent.DESELECTED)
                     {
                     isRefStar[r] = false;
@@ -16962,8 +16962,8 @@ static void initializeVariables()
                 absMagTF[r].setEditable(isRefStar[r]);
                 updatePlotEnabled = false;
                 waitForPlotUpdateToFinish();
-                checkAndLockTable(); 
-                
+                checkAndLockTable();
+
                 updateTable(isRefStar[r], r);
                 if (!multiUpdate)
                     {
@@ -16976,14 +16976,14 @@ static void initializeVariables()
                     updatePlot(updateAllFits());
                     }
                 updatePlotEnabled = true;
-                if (table != null) table.setLock(false);                
-                }});            
+                if (table != null) table.setLock(false);
+                }});
             }
-        
+
         static void setUpAbsMagTFListener(final int a)
             {
             if (table == null || table.getCounter() < 1) return;
-            
+
             absMagTF[a].addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e)
                     {
@@ -16997,11 +16997,11 @@ static void initializeVariables()
                     updatePlot(updateAllFits());
                     }
                 });
-            
+
             absMagTF[a].addMouseListener(new MouseListener(){
                 public void mouseClicked(MouseEvent e) {}
                 public void mousePressed(MouseEvent e) {}
-                public void mouseReleased(MouseEvent e) 
+                public void mouseReleased(MouseEvent e)
                     {
                     if (table == null || table.getCounter() < 1) return;
                     if ((e.getModifiers() & MouseEvent.BUTTON3_MASK) != 0)
@@ -17020,7 +17020,7 @@ static void initializeVariables()
                                     double searchRadius = 10; //default to 10 arcsec
                                     if (asw!=null)
                                         searchRadius = asw.getSIMBADSearchRadius();
-                                        
+
                                     IJU.showInSIMBAD(ra*15.0, dec, searchRadius);
                                     }
                                 }
@@ -17038,17 +17038,17 @@ static void initializeVariables()
                             IJ.showMessage("Error Accessing SIMBAD","<html>Table column "+"RA_"+(isRefStar[a]?"C":"T")+(a+1)+" not found.<br>"+
                                            "Original images must have WCS headers (i.e. be plate solved) and <br>"+
                                            "'World coordinates (RA, Dec)' must be enabled in 'Set Aperture' 'More Settings'.</html>");
-                            
+
                             }
-                        
-                        
+
+
                         }
                     }
                 public void mouseEntered(MouseEvent e) {}
                 public void mouseExited(MouseEvent e) {}
                 });
             }
-        
+
     static void updateAbsMags(int aper)
             {
             int numRows = table.getCounter();
@@ -17071,7 +17071,7 @@ static void initializeVariables()
                     absMagTF[ap].setText(isRefStar[ap] && absMag[ap]<99.0?onetoThreePlaces.format(absMag[ap]):"");
                     }
                 }
-                
+
             hasAbsMag = false;
             double totAbsMag = 0.0;
             numAbsMagRefAps = 0;
@@ -17103,7 +17103,7 @@ static void initializeVariables()
                     if (srcVarCol[ap] == ResultsTable.COLUMN_NOT_FOUND)
                         {
                         hasErr = false;
-                        } 
+                        }
                     }
                 double totAbsRefVar = 0.0;
                 double totAbsRefCnts = 0.0;
@@ -17119,7 +17119,7 @@ static void initializeVariables()
                         if (!isRefStar[ap] || (isRefStar[ap] && absMag[ap] < 99.0))
                             {
                             src[ap] = table.getValueAsDouble(srcCol[ap], row);
-                            if (hasErr) 
+                            if (hasErr)
                                 {
                                 sourceErr = table.getValueAsDouble(srcVarCol[ap], row);
                                 srcVar[ap] = sourceErr * sourceErr;
@@ -17137,7 +17137,7 @@ static void initializeVariables()
                             {
                             absRatio = src[ap]/totAbsRefCnts;
                             table.setValue ("Source_AMag_T"+(ap+1), row, totAbsMag - 2.5*Math.log10(absRatio));
-                            if (hasErr) 
+                            if (hasErr)
                                 {
                                 srcAbsErr = absRatio*Math.sqrt(srcVar[ap]/(src[ap]*src[ap])+ totAbsRefVar/(totAbsRefCnts*totAbsRefCnts));
                                 table.setValue ("Source_AMag_Err_T"+(ap+1), row, 2.5*Math.log10(1.0+srcAbsErr/absRatio));
@@ -17146,7 +17146,7 @@ static void initializeVariables()
                         else
                             {
                             table.setValue ("Source_AMag_C"+(ap+1), row, absMag[ap]);
-                            if (hasErr) 
+                            if (hasErr)
                                 {
                                 table.setValue ("Source_AMag_Err_C"+(ap+1), row, 2.5*Math.log10(1.0+Math.sqrt(srcVar[ap])/src[ap]));
                                 }
@@ -17159,14 +17159,14 @@ static void initializeVariables()
             if (imp != null)
                 {
                 for (int ap=0;  ap < numAps; ap++)
-                    {       
+                    {
                     updateImageOverlay(imp, isRefStar[ap], ap, ap==numAps-1?true:false);
                     }
                 }
             }
-       
-        
-        
+
+
+
         static boolean updateImageOverlay(ImagePlus imp, boolean selected, int r, boolean repaint)
             {
             OverlayCanvas ocanvas = OverlayCanvas.getOverlayCanvas(imp);
@@ -17188,9 +17188,9 @@ static void initializeVariables()
                         else
                             {
                             aRoi.setAMag(99.999);
-                            }        
+                            }
                         }
-                    else 
+                    else
                         {
                         aRoi.setName("C"+(r+1));
                         aRoi.setApColor(Color.RED);
@@ -17202,7 +17202,7 @@ static void initializeVariables()
                 }
             return false;
             }
-        
+
         static void updateTable(boolean comp, int r)
             {
             if (table != null && table.getCounter() < 1) return;
@@ -17238,12 +17238,12 @@ static void initializeVariables()
                     if (detrendlabelhold[c][v].endsWith(oldSuffix)) detrendlabelhold[c][v] = detrendlabelhold[c][v].substring(0, detrendlabelhold[c][v].length() - suflen) + newSuffix;
                     }
                 }
-            }   
-        
-        
+            }
+
+
         static void updateTotals()
             {
-            
+
             if (table == null) return;
             int numRows = table.getCounter();
             if (numRows < 1) return;
@@ -17262,13 +17262,13 @@ static void initializeVariables()
                     }
                 }
             for (int ap = 0; ap < numAps; ap++)
-                {   
+                {
                 for (int row = 0; row < numRows; row++)
                     {
                     source[ap][row] = 0.0;
                     total[ap][row] = 0.0;
                     srcvar[ap][row] = 0.0;
-                    totvar[ap][row] = 0.0;                    
+                    totvar[ap][row] = 0.0;
                     }
                 }
             double value = 0;
@@ -17280,12 +17280,12 @@ static void initializeVariables()
             int errcol = ResultsTable.COLUMN_NOT_FOUND;
             int snrcol = ResultsTable.COLUMN_NOT_FOUND;
             int peakcol = ResultsTable.COLUMN_NOT_FOUND;
-            
+
             for (int ap = 0; ap < numAps; ap++)
                 {
                 col = table.getColumnIndex ("Source-Sky_"+(isRefStar[ap]?"C":"T")+(ap+1));
                 if (col == ResultsTable.COLUMN_NOT_FOUND)
-                    {  
+                    {
                     IJ.beep();
                     IJ.showMessage("Error: could not find data column 'Source-Sky_"+(isRefStar[ap]?"C":"T")+(ap+1)+"'");
                     return;
@@ -17294,9 +17294,9 @@ static void initializeVariables()
                     {
                     errcol = table.getColumnIndex ("Source_Error_"+(isRefStar[ap]?"C":"T")+(ap+1));
                     if (errcol == ResultsTable.COLUMN_NOT_FOUND)
-                        {  
+                        {
                         goodErrData = false;
-                        }                    
+                        }
                     for (int row = 0; row < numRows; row++)
                         {
                         value = table.getValueAsDouble(col, row);
@@ -17309,7 +17309,7 @@ static void initializeVariables()
                         if (isRefStar[ap])
                             {
                             for (int i = 0; i < numAps; i++)
-                                { 
+                                {
                                 if (i != ap)
                                     {
                                     total[i][row] += value;
@@ -17326,10 +17326,10 @@ static void initializeVariables()
                     {
                     col = table.getColumnIndex ("rel_flux_"+(isRefStar[ap]?"C":"T")+(ap+1));
                     if (col == ResultsTable.COLUMN_NOT_FOUND)
-                        {  
+                        {
                         col = table.getFreeColumn("rel_flux_"+(isRefStar[ap]?"C":"T")+(ap+1));
                         if (col == ResultsTable.COLUMN_NOT_FOUND)
-                            { 
+                            {
                             IJ.beep();
                             IJ.showMessage("Error: could not create data column 'rel_flux_"+(isRefStar[ap]?"C":"T")+(ap+1)+"'");
                             return;
@@ -17339,26 +17339,26 @@ static void initializeVariables()
                         {
                         errcol = table.getColumnIndex ("rel_flux_err_"+(isRefStar[ap]?"C":"T")+(ap+1));
                         if (col == ResultsTable.COLUMN_NOT_FOUND)
-                            {  
+                            {
                             col = table.getFreeColumn("rel_flux_err_"+(isRefStar[ap]?"C":"T")+(ap+1));
                             if (col == ResultsTable.COLUMN_NOT_FOUND)
-                                { 
+                                {
                                 IJ.beep();
                                 IJ.showMessage("Error: could not create data column 'rel_flux_err_"+(isRefStar[ap]?"C":"T")+(ap+1)+"'");
                                 return;
                                 }
-                            } 
+                            }
                         snrcol = table.getColumnIndex ("rel_flux_SNR_"+(isRefStar[ap]?"C":"T")+(ap+1));
                         if (snrcol == ResultsTable.COLUMN_NOT_FOUND)
-                            {  
+                            {
                             snrcol = table.getFreeColumn("rel_flux_SNR_"+(isRefStar[ap]?"C":"T")+(ap+1));
                             if (snrcol == ResultsTable.COLUMN_NOT_FOUND)
-                                { 
+                                {
                                 IJ.beep();
                                 IJ.showMessage("Error: could not create data column 'rel_flux_SNR_"+(isRefStar[ap]?"C":"T")+(ap+1)+"'");
                                 return;
                                 }
-                            }                     
+                            }
                         }
 
                     for (int row = 0; row < numRows; row++)
@@ -17382,7 +17382,7 @@ static void initializeVariables()
                             table.setValue(snrcol, row, oneOverFactor);
                             }
                         }
-                    } 
+                    }
 
                 for (int row = 0; row < numRows; row++)
                     {
@@ -17390,9 +17390,9 @@ static void initializeVariables()
                     table.setValue("tot_C_err", row, totCcntAP < 0 ? 0.0 : Math.sqrt(totvar[totCcntAP][row]));
                     }
                 }
-            
+
             updateAbsMags(-1);
-          
+
             String isRefString = "";   //update prefs to reflect new ref/target star designations
             for (int ap = 0; ap < numAps; ap++)
                 {
@@ -17405,9 +17405,9 @@ static void initializeVariables()
                     isRefString += ","+isRefStar[ap];
                     }
                 }
-            Prefs.set (MultiAperture_.PREFS_ISREFSTAR, isRefString);   
-            }        
-        
+            Prefs.set (MultiAperture_.PREFS_ISREFSTAR, isRefString);
+            }
+
         static void updateGUI()
             {
             if (table == null || table.getCounter() < 1) return;
@@ -17437,10 +17437,10 @@ static void initializeVariables()
                     operatorcolumn[c].setSelectedItem(oplabel[c]);
                     detrendbox[c].setModel(new DefaultComboBoxModel(columnsDetrend));
                     detrendbox[c].setSelectedItem(detrendlabel[c][detrendVarDisplayed[c]]);
-                    
+
                     for (int d = 0; d < maxDetrendVars; d++)
                         {
-                        if (fitDetrendComboBox[c][d] != null) 
+                        if (fitDetrendComboBox[c][d] != null)
                             {
                             fitDetrendComboBox[c][d].setModel(new DefaultComboBoxModel(columnsDetrend));
                             if (detrendIndex[c][d]==0 && !detrendlabelhold[c][d].trim().equals(""))
@@ -17449,7 +17449,7 @@ static void initializeVariables()
                                 fitDetrendComboBox[c][d].setSelectedItem(detrendlabelhold[c][d].trim());
                                 fitDetrendComboBox[c][d].setEnabled(true);
                                 }
-                            else 
+                            else
                                 {
                                 fitDetrendComboBox[c][d].setEnabled(false);
                                 fitDetrendComboBox[c][d].setSelectedItem(detrendlabel[c][d]);
@@ -17460,7 +17460,7 @@ static void initializeVariables()
                     }
                 }
             }
-        
+
 
         static void saveApertures()
             {
@@ -17470,7 +17470,7 @@ static void initializeVariables()
                 return;
             String apsPath = sf.getDirectory() + sf.getFileName();
             int location = apsPath.lastIndexOf('.');
-            if (location >= 0) apsPath = apsPath.substring(0, location); 
+            if (location >= 0) apsPath = apsPath.substring(0, location);
             IJU.saveApertures(apsPath+".apertures");
             }
 
@@ -17478,9 +17478,9 @@ static void initializeVariables()
             {
             int numRows = table.getCounter();
             if (numRows < 1) return;
-            
+
             checkAndLockTable();
-            
+
             double[] X = new double[numAps];
             double[] Y = new double[numAps];
             double[] aMag = new double[numAps];
@@ -17488,20 +17488,20 @@ static void initializeVariables()
             String yColMiddle = "(IJ)_";
             boolean isXFITS = false;
             boolean isYFITS = false;
-            int col;    
-            
+            int col;
+
             for (int ap = 0; ap < numAps; ap++)
-                {  
+                {
                 X[ap] = 0.0;
                 Y[ap] = 0.0;
-                }          
-            
+                }
+
             col = table.getColumnIndex("X(IJ)_"+(isRefStar[0]?"C1":"T1"));
             if (col == ResultsTable.COLUMN_NOT_FOUND)
-                { 
+                {
                 col = table.getColumnIndex("X_"+(isRefStar[0]?"C1":"T1"));
                 if (col == ResultsTable.COLUMN_NOT_FOUND)
-                    {                  
+                    {
                     col = table.getColumnIndex("X(FITS)_"+(isRefStar[0]?"C1":"T1"));
                     if (col != ResultsTable.COLUMN_NOT_FOUND)
                         {
@@ -17511,15 +17511,15 @@ static void initializeVariables()
                     }
                 else
                     {
-                    xColMiddle = "_"; 
+                    xColMiddle = "_";
                     }
                 }
             col = table.getColumnIndex("Y(IJ)_"+(isRefStar[0]?"C1":"T1"));
             if (col == ResultsTable.COLUMN_NOT_FOUND)
-                { 
+                {
                 col = table.getColumnIndex("Y_"+(isRefStar[0]?"C1":"T1"));
                 if (col == ResultsTable.COLUMN_NOT_FOUND)
-                    {                  
+                    {
                     col = table.getColumnIndex("Y(FITS)_"+(isRefStar[0]?"C1":"T1"));
                     if (col != ResultsTable.COLUMN_NOT_FOUND)
                         {
@@ -17528,23 +17528,23 @@ static void initializeVariables()
                     }
                 else
                     {
-                    yColMiddle = "_"; 
+                    yColMiddle = "_";
                     }
                 }
-            
-            
-            
+
+
+
             for (int ap = 0; ap < numAps; ap++)
                 {
                 col = table.getColumnIndex("X"+xColMiddle+(isRefStar[ap]?"C":"T")+(ap+1));
                 if (col != ResultsTable.COLUMN_NOT_FOUND)
                     {
-                    X[ap] = table.getValueAsDouble(col, 0); 
+                    X[ap] = table.getValueAsDouble(col, 0);
                     }
                 col = table.getColumnIndex("Y"+yColMiddle+(isRefStar[ap]?"C":"T")+(ap+1));
                 if (col != ResultsTable.COLUMN_NOT_FOUND)
                     {
-                    Y[ap] = table.getValueAsDouble(col, 0); 
+                    Y[ap] = table.getValueAsDouble(col, 0);
                     }
                 aMag[ap] = 99.999;
                 if (isRefStar[ap])
@@ -17552,16 +17552,16 @@ static void initializeVariables()
                     col = table.getColumnIndex("Source_AMag_C"+(ap+1));
                     if (col != ResultsTable.COLUMN_NOT_FOUND)
                         {
-                        aMag[ap] = table.getValueAsDouble(col, 0); 
-                        } 
+                        aMag[ap] = table.getValueAsDouble(col, 0);
+                        }
                     }
                 }
-            
+
             String xString = "";
             String yString = "";
             String absMagString = "";
             String isRefString = "";
-             
+
             for (int ap = 0; ap < numAps; ap++)
                 {
                 if (ap == 0)
@@ -17579,38 +17579,38 @@ static void initializeVariables()
                     isRefString += ","+isRefStar[ap];
                     }
                 }
-            
+
 
             Prefs.set (MultiAperture_.PREFS_PREVIOUS, true);
             Prefs.set (MultiAperture_.PREFS_XAPERTURES, xString);
             Prefs.set (MultiAperture_.PREFS_YAPERTURES, yString);
             Prefs.set (MultiAperture_.PREFS_ABSMAGAPERTURES, absMagString);
             Prefs.set (MultiAperture_.PREFS_ISREFSTAR, isRefString);
-            
+
             col = table.getColumnIndex(Aperture_.AP_FWHMMULT);
             if (col != ResultsTable.COLUMN_NOT_FOUND)
-                { 
+                {
                 Prefs.set (MultiAperture_.PREFS_USEVARSIZEAP, true);
                 Prefs.set (MultiAperture_.PREFS_APFWHMFACTOR, table.getValueAsDouble(col, 0));
                 col = table.getColumnIndex(Aperture_.AP_BRSOURCE);
                 if (col != ResultsTable.COLUMN_NOT_FOUND)
-                    { 
+                    {
                     Prefs.set (Aperture_.AP_PREFS_RADIUS, table.getValueAsDouble(col, 0));
-                    }                
-                } 
+                    }
+                }
             else
                 {
                 col = table.getColumnIndex(Aperture_.AP_RSOURCE);
                 if (col != ResultsTable.COLUMN_NOT_FOUND)
-                    { 
+                    {
                     Prefs.set (MultiAperture_.PREFS_USEVARSIZEAP, false);
                     Prefs.set (Aperture_.AP_PREFS_RADIUS, table.getValueAsDouble(col, 0));
                     }
                 }
-            
+
             col = table.getColumnIndex(Aperture_.AP_RBACK1);
             if (col == ResultsTable.COLUMN_NOT_FOUND)
-                { 
+                {
                 col = table.getColumnIndex("Sky_Radius(min)");
                 if (col != ResultsTable.COLUMN_NOT_FOUND)
                     {
@@ -17621,10 +17621,10 @@ static void initializeVariables()
                 {
                 Prefs.set (Aperture_.AP_PREFS_RBACK1, table.getValueAsDouble(col, 0));
                 }
-                
+
             col = table.getColumnIndex(Aperture_.AP_RBACK2);
             if (col == ResultsTable.COLUMN_NOT_FOUND)
-                { 
+                {
                 col = table.getColumnIndex("Sky_Radius(max)");
                 if (col != ResultsTable.COLUMN_NOT_FOUND)
                     {
@@ -17637,7 +17637,7 @@ static void initializeVariables()
                 }
             if (table != null) table.setLock(false);
             }
-        
+
 
         static void showApertures()
             {
@@ -17654,13 +17654,13 @@ static void initializeVariables()
                     WindowManager.toFront(iw);
                     asw.openApertures("");
                     }
-                else if (WindowManager.getWindowCount()> 0) 
+                else if (WindowManager.getWindowCount()> 0)
                     {
                     int[] ID = WindowManager.getIDList();
                     for (int win = 0; win < ID.length; win++)
                         {
                         iplus = WindowManager.getImage(ID[win]);
-                        if (iplus != null) 
+                        if (iplus != null)
                             iw = iplus.getWindow();
                         else
                             iw = null;
@@ -17674,10 +17674,10 @@ static void initializeVariables()
                             }
                         }
                     }
-                }            
-            
-            }   
-        
+                }
+
+            }
+
         static void waitForPlotUpdateToFinish()
             {
             int cnt = 0;  //timeout after 1 second
@@ -17690,9 +17690,9 @@ static void initializeVariables()
 //                    IJ.log("NOTICE: timed out waiting on plot to finish update");
 //                    }
                 }
-            updatePlotRunning = false;            
+            updatePlotRunning = false;
             }
-        
+
         static void checkAndLockTable()
             {
             if (table == null) return;
@@ -17704,11 +17704,11 @@ static void initializeVariables()
 //                if (cnt == 10)
 //                    {
 //                    IJ.log("NOTICE: timed out waiting on table to unlock");
-//                    }                
+//                    }
                 }
-            if (table != null) table.setLock(true); 
+            if (table != null) table.setLock(true);
             }
-        
+
         static void closeRefStarFrame()
             {
 //            updatePlotEnabled = true;
@@ -17721,11 +17721,11 @@ static void initializeVariables()
                 Prefs.set("plot2.refStarFrameLocationY",refStarFrameLocationY);
                 }
 //            if (table != null) table.setLock(false);
-            
+
             refStarFrame.dispose();
             refStarFrame = null;
             }
-        
+
         static void closeFitFrames()
             {
             int waitCnt = 3;
@@ -17733,7 +17733,7 @@ static void initializeVariables()
                 {
                 IJ.wait(1000);
                 waitCnt--;
-                }            
+                }
 //            IJ.log("Start Close Fit Frames");
             if (fitFrame != null)
                 {
@@ -17760,7 +17760,7 @@ static void initializeVariables()
                     }
                 }
             }
-        
+
         static void closeAddAstroDataFrame()
             {
             astroConverterUpdating = false;
@@ -17840,10 +17840,10 @@ static void initializeVariables()
             Prefs.set("plot.T0", T0);
             Prefs.set("plot.period", period);
             Prefs.set("plot.duration", duration);
-            }        
-        
-    
-        
+            }
+
+
+
         static void changeMaxDataLength()
             {
             GenericDialog gd = new GenericDialog ("Change minimum data column length");
@@ -17887,9 +17887,9 @@ static void initializeVariables()
                 {
                 oldUnfilteredColumns = null;
                 updatePlot(updateAllFits());
-                }            
+                }
             }
-        
+
         static void changeRefStarHorizontalWidth()
             {
             GenericDialog gd = new GenericDialog ("Change reference star window width");
@@ -17906,7 +17906,7 @@ static void initializeVariables()
             Prefs.set("plot.refStarHorzWidth", refStarHorzWidth);
             closeRefStarFrame();
             if (refStarPanelWasShowing) showRefStarJPanel();
-            }        
+            }
 
         static void saveAndClose()
                 {
@@ -17914,7 +17914,7 @@ static void initializeVariables()
                 panelsUpdating = false;
                 if (table != null) table.setLock(false);
                 closeFitFrames();
-                if (mainFrame != null) 
+                if (mainFrame != null)
                     {
                     mainFrameLocationX = mainFrame.getLocation().x;
                     mainFrameLocationY = mainFrame.getLocation().y;
@@ -17934,8 +17934,8 @@ static void initializeVariables()
                             refStarPanelWasShowing = true;
                         else
                             refStarPanelWasShowing = false;
-                        closeRefStarFrame();            
-                        } 
+                        closeRefStarFrame();
+                        }
                 if (acc != null)
                     {
                     acc.saveAndClose();
@@ -17945,11 +17945,11 @@ static void initializeVariables()
                     if (addAstroDataFrame.isShowing())
                         addAstroDataFrameWasShowing = true;
                     else
-                        addAstroDataFrameWasShowing = false;                    
-                    closeAddAstroDataFrame();   
+                        addAstroDataFrameWasShowing = false;
+                    closeAddAstroDataFrame();
                     }
-                
-                if (plotImage!=null) 
+
+                if (plotImage!=null)
                     {
                     plotWindow = plotImage.getWindow();
                     if (plotWindow != null)
@@ -17964,10 +17964,10 @@ static void initializeVariables()
 //                plotImageCanvas.removeMouseMotionListener(plotMouseMotionListener);
 //                plotImageCanvas.removeMouseWheelListener(plotMouseWheelListener);
 //                plotImageCanvas.removeMouseListener(plotMouseListener);
-                
+
                 savePreferences();
                 if (delayedUpdateTimer != null) delayedUpdateTimer.cancel();
-                if (delayedUpdateTask != null) delayedUpdateTask.cancel();  
+                if (delayedUpdateTask != null) delayedUpdateTask.cancel();
                 if (table != null) table.setLock(false);
                 if (mainFrame != null) mainFrame.dispose();
                 if (subFrame != null) subFrame.dispose();
@@ -18017,8 +18017,8 @@ static void initializeVariables()
                         catch (Exception e) {
                             IJ.beep();
                             IJ.showMessage("DragAndDrop: Error reading aperture file");
-                            }            
-                        } 
+                            }
+                        }
                 else if (files.length > 0 && files[0].isFile() && files[0].getName().endsWith(".radec"))
                         {
                         OpenDialog.setDefaultDirectory(files[0].getParent());
@@ -18028,12 +18028,12 @@ static void initializeVariables()
                         catch (Exception e) {
                             IJ.beep();
                             IJ.showMessage("DragAndDrop: Error reading RA/Dec file");
-                            }            
-                        }                 
-                else if (files.length > 0 && files[0].isFile() && 
+                            }
+                        }
+                else if (files.length > 0 && files[0].isFile() &&
                         (files[0].getName().endsWith(Prefs.get("options.ext", ".xls")) ||
                          files[0].getName().endsWith(".txt") || files[0].getName().endsWith(".csv") ||
-                         files[0].getName().endsWith(".prn") || files[0].getName().endsWith(".spc") || 
+                         files[0].getName().endsWith(".prn") || files[0].getName().endsWith(".spc") ||
                          files[0].getName().endsWith(".xls") || files[0].getName().endsWith(".dat") ||
                          files[0].getName().endsWith(".tbl") ))
                     {
@@ -18045,19 +18045,19 @@ static void initializeVariables()
                             IJ.wait(100);
                             String fileName = null;
                             try {fileName = dragAndDropFiles[0].getCanonicalPath();}
-                                catch (Exception e) 
+                                catch (Exception e)
                                     {
                                     IJ.beep();
                                     IJ.showMessage("DragAndDrop: Error creating file name to read plot configuration file.");
-                                    }                            
+                                    }
                             if (panelShiftDown && fileName != null)
                                 {
                                 appendDataAsRows(true, fileName);
-                                } 
+                                }
                             else if (panelControlDown  && fileName != null)
                                 {
                                 appendDataAsColumns(true, fileName);
-                                }                         
+                                }
                             else if (fileName != null)
                                 {
                                 MeasurementTable newTable = MeasurementTable.getTableFromFile (fileName);
@@ -18081,26 +18081,26 @@ static void initializeVariables()
                                         {
                                         InputStream is = null;
                                         try {is = new BufferedInputStream(new FileInputStream(cfgPath));}
-                                        catch (Exception e) 
+                                        catch (Exception e)
                                             {
                                             IJ.beep();
                                             IJ.showMessage("DragAndDrop: Error operning input stream to read plot configuration file.");
                                             }
                                         try {Prefs.getControlPanelProperties().load(is);}
-                                        catch(Exception e) 
+                                        catch(Exception e)
                                             {
                                             IJ.beep();
                                             IJ.showMessage("DragAndDrop: Error loading plot configuration file.");
                                             }
                                         try {is.close();}
-                                        catch(Exception e) 
+                                        catch(Exception e)
                                             {
                                             IJ.beep();
                                             IJ.showMessage("DragAndDrop: Error closing plot configuration file.");
                                             }
                                         }
                                     setupArrays();
-                                    getPreferences();                                    
+                                    getPreferences();
                                     setTable(newTable, true);
                                     if (plotWindow != null) plotWindow.setVisible(true);
                                     }
@@ -18110,7 +18110,7 @@ static void initializeVariables()
                     OpenDialog.setDefaultDirectory(files[0].getParent());
                     t.start();
                     Thread.yield();
-                    
+
                     }
                 }
 
@@ -18152,16 +18152,16 @@ static void initializeVariables()
                 {
                 if (table.getLabel(row).equals("") || table.getLabel(row)==null)
                     {
-                    if (newTable.getFreeColumn("Col_"+(row+1)) == MeasurementTable.COLUMN_IN_USE) 
+                    if (newTable.getFreeColumn("Col_"+(row+1)) == MeasurementTable.COLUMN_IN_USE)
                         {
                         IJ.error("Could not make unique column labels from row labels");
                         IJ.beep();
                         return;
-                        }                    
+                        }
                     }
-                else if (newTable.getFreeColumn(table.getLabel(row)) == MeasurementTable.COLUMN_IN_USE) 
+                else if (newTable.getFreeColumn(table.getLabel(row)) == MeasurementTable.COLUMN_IN_USE)
                     {
-                    if (newTable.getFreeColumn(table.getLabel(row)+"_Col_"+(row+1)) == MeasurementTable.COLUMN_IN_USE) 
+                    if (newTable.getFreeColumn(table.getLabel(row)+"_Col_"+(row+1)) == MeasurementTable.COLUMN_IN_USE)
                         {
                         IJ.error("Could not make unique column labels from row labels");
                         IJ.beep();
@@ -18173,27 +18173,27 @@ static void initializeVariables()
                 {
                 newTable.incrementCounter();
                 newTable.setLabel(table.getColumnHeading(col), col);
-                }                
+                }
             for (int row=0; row<table.getCounter(); row++)
                 {
                 for (int col=0; col<=table.getLastColumn();col++)
                     {
                     newTable.setValue(row, col, table.getValueAsDouble(col, row));
-                    }                 
+                    }
                 }
             if (newTable != null)
                 {
                 newTable.show();
                 setTable(newTable, true);
                 plotWindow.setVisible(true);
-                }            
+                }
             }
-        
+
 
         static void appendDataAsRows(boolean fromFile, String inPath)
             {
             String filePath = inPath;
-            
+
             if (fromFile && inPath == null)
                 {
                 OpenDialog of = new OpenDialog("Select measurement table to append as new rows", "");
@@ -18227,16 +18227,16 @@ static void initializeVariables()
                 else
                     {
                     newTable.show();
-                    
+
                     combinedTableName = MeasurementTable.shorterName(tableName);
                     if (combinedTableName.endsWith(Prefs.get("options.ext", ".xls")))
                         {
                         int position = combinedTableName.lastIndexOf(Prefs.get("options.ext", ".xls"));
-                        if (position >= 0) combinedTableName = combinedTableName.substring(0, position);  
+                        if (position >= 0) combinedTableName = combinedTableName.substring(0, position);
                         }
                     combinedTableName += "_" + MeasurementTable.shorterName(newTable.shortTitle());
 
-                    MeasurementTable combinedTable = MeasurementTable.getTable(combinedTableName, tableName);                    
+                    MeasurementTable combinedTable = MeasurementTable.getTable(combinedTableName, tableName);
                     String[] oldColumns = table.getColumnHeadings().split("\t");
                     String[] newColumns = newTable.getColumnHeadings().split("\t");
                     int oldRows = combinedTable.getCounter();
@@ -18251,7 +18251,7 @@ static void initializeVariables()
                             combinedTable.incrementCounter();
                             combinedTable.addLabel(newTable.getLabel(i));
                             }
-                        
+
                         for (int i=2;i<oldColumns.length;i++)  //copy all new columns common with old table
                             {
                             columnIndex = newTable.getColumnIndex(oldColumns[i]);
@@ -18269,10 +18269,10 @@ static void initializeVariables()
                                 for (int j=0; j<combinedRows;j++)
                                     {
                                     combinedTable.setValue(newColumns[i], j, j < oldRows? Double.NaN : newTable.getValue(newColumns[i], j-oldRows));
-                                    }                                
-                                }             
+                                    }
+                                }
                             }
-                        
+
                         table.show();
                         combinedTable.show();
                         setTable(combinedTable, true);
@@ -18287,19 +18287,19 @@ static void initializeVariables()
                         {
                         IJ.beep();
                         IJ.showMessage("No new rows to append");
-                        } 
+                        }
                     else
                         {
                         IJ.beep();
                         IJ.showMessage("Table append error");
-                        } 
+                        }
                     }
                 }
             catch (Exception e) {
                 IJ.beep();
                 IJ.showMessage("Append Rows: Error reading measurement table");
                 }
-            }      
+            }
 
         static void appendDataAsColumns(boolean fromFile, String inPath)
             {
@@ -18341,17 +18341,17 @@ static void initializeVariables()
                     {
                     errorCode = 3;
                     newTable.show();
-                    
+
                     combinedTableName = MeasurementTable.shorterName(tableName);
                     if (combinedTableName.endsWith(Prefs.get("options.ext", ".xls")))
                         {
                         int position = combinedTableName.lastIndexOf(Prefs.get("options.ext", ".xls"));
-                        if (position >= 0) combinedTableName = combinedTableName.substring(0, position);  
+                        if (position >= 0) combinedTableName = combinedTableName.substring(0, position);
                         }
                     combinedTableName += "_" + MeasurementTable.shorterName(newTable.shortTitle());
 
                     if (!appendTableDialog()) return;
-                    MeasurementTable combinedTable = MeasurementTable.getTable(combinedTableName, tableName);    
+                    MeasurementTable combinedTable = MeasurementTable.getTable(combinedTableName, tableName);
                     String[] oldColumns = table.getColumnHeadings().split("\t");
                     String[] newColumns = newTable.getColumnHeadings().split("\t");
                     int oldRows = combinedTable.getCounter();
@@ -18361,7 +18361,7 @@ static void initializeVariables()
                     for (int r = 0; r < oldRows; r++)
                         {
                         if (keepFileNamesOnAppend)
-                            {                        
+                            {
                             combinedTable.setLabel(combinedTable.getLabel(r)+(appendDestinationSuffix.equals("") ? " " : "("+appendDestinationSuffix+")") +
                                                 (r < newRows ? " "+newTable.getLabel(r)+ "("+appendSourceSuffix+")": ""), r);
                             }
@@ -18383,7 +18383,7 @@ static void initializeVariables()
                             for (int i=0;i<oldColumns.length;i++)
                                 {
                                 combinedTable.setValue(i, r, Double.NaN);
-                                }                            
+                                }
                             }
                         }
                     errorCode = 6;
@@ -18393,8 +18393,8 @@ static void initializeVariables()
                             {
                             combinedTable.setHeading(col, combinedTable.getColumnHeading(col)+appendDestinationSuffix);
                             }
-                        
-                        if (!xlabeldefault.equals("")) xlabeldefault += appendDestinationSuffix;                        
+
+                        if (!xlabeldefault.equals("")) xlabeldefault += appendDestinationSuffix;
                         for (int curve=0; curve < maxCurves; curve++)
                             {
                             if (!xlabel[curve].equals("") && !xlabel[curve].equals("default")) xlabel[curve] += appendDestinationSuffix;
@@ -18408,7 +18408,7 @@ static void initializeVariables()
                             }
                         }
                     errorCode = 7;
-                    
+
                     for (int i=0;i<newColumns.length;i++)
                         {
                         if (combinedTable.getColumnIndex(newColumns[i]+appendSourceSuffix)!=ResultsTable.COLUMN_NOT_FOUND)
@@ -18448,7 +18448,7 @@ static void initializeVariables()
                         errorCode = 16;
                         IJ.beep();
                         IJ.showMessage("Heading names are not unique");
-                        } 
+                        }
                     else if (newColumns.length < 3)
                         {
                         errorCode = 17;
@@ -18460,13 +18460,13 @@ static void initializeVariables()
                         errorCode = 18;
                         IJ.beep();
                         IJ.showMessage("No new rows to append");
-                        } 
+                        }
                     else
                         {
                         errorCode = 19;
                         IJ.beep();
                         IJ.showMessage("Table append error");
-                        } 
+                        }
                     }
                 }
             catch (Exception e) {
@@ -18474,13 +18474,13 @@ static void initializeVariables()
                 IJ.showMessage("Append Columns: Error code "+errorCode+" reading measurement table");
                 }
             }
-        
+
         static boolean appendTableDialog()
             {
             GenericDialog gd = new GenericDialog ("Append settings");
 
             gd.addStringField("Enter name for combined table:", combinedTableName, 80);
-            
+
             gd.addMessage ("The combined dataset column headings must all be unique.\n"+
                            "Enter suffixes to be appended to existing headings to make them unique.\n"+
                            "Either or both of the suffix fields can left blank if the headings are already unique.\n"+
@@ -18497,10 +18497,10 @@ static void initializeVariables()
             appendDestinationSuffix = gd.getNextString().trim();
             appendSourceSuffix = gd.getNextString().trim();
             keepFileNamesOnAppend = gd.getNextBoolean();
-            
+
             return true;
-            } 
-        
+            }
+
    static MeasurementTable selectAnotherTable(String firstTableName)
         {
         MeasurementTable secondTable;
@@ -18526,7 +18526,7 @@ static void initializeVariables()
                     filteredTables[j] = tables[i];
                     j++;
                     }
-            
+
             if (filteredTables.length == 0)
                 {
                 return null;
@@ -18547,8 +18547,8 @@ static void initializeVariables()
             secondTable = MeasurementTable.getTable(MeasurementTable.longerName(secondTableName));
             return secondTable;
             }
-        }           
-        
+        }
+
         static void openConfig(boolean template)
             {
             String startingDir = OpenDialog.getDefaultDirectory();
@@ -18604,13 +18604,13 @@ static void initializeVariables()
                     {
                     newTable.show();
                     int lastDot = inPath.lastIndexOf('.');
-                    String cfgPath = lastDot > 0 ? inPath.substring(0, lastDot) + ".plotcfg": inPath + ".plotcfg"; 
+                    String cfgPath = lastDot > 0 ? inPath.substring(0, lastDot) + ".plotcfg": inPath + ".plotcfg";
                     File cfgFile = null;
                     try {cfgFile = new File(cfgPath);}
                     catch (Exception e) {
                         IJ.beep();
                         IJ.showMessage("Open Data and Config: No plot configuration file found named: "+cfgPath);
-                        }                  
+                        }
                     if (cfgFile != null && cfgFile.isFile())
                         {
                         try {
@@ -18626,22 +18626,22 @@ static void initializeVariables()
                     else
                         {
                         IJ.beep();
-                        IJ.showMessage("Open Data and Config: No plot configuration file found named: "+cfgPath);                        
+                        IJ.showMessage("Open Data and Config: No plot configuration file found named: "+cfgPath);
                         }
                     setupArrays();
-                    getPreferences();                    
+                    getPreferences();
                     setTable(newTable, true);
                     plotWindow.setVisible(true);
                     }
                 }
-        
+
         static public void loadDataOpenConfig(MeasurementTable newTable, String filePath)
             {
             String inPath = filePath;
             String cfgPath = "";
-            
+
             int lastDot = inPath.lastIndexOf('.');
-            cfgPath = lastDot > 0 ? inPath.substring(0, lastDot) + ".plotcfg": inPath + ".plotcfg"; 
+            cfgPath = lastDot > 0 ? inPath.substring(0, lastDot) + ".plotcfg": inPath + ".plotcfg";
             File cfgFile = null;
             try {cfgFile = new File(cfgPath);}
             catch (Exception e) {};
@@ -18655,17 +18655,17 @@ static void initializeVariables()
                 catch (Exception e) {
                     IJ.beep();
                     IJ.showMessage("Load Data and Open Config: Error loading plot config file: "+cfgPath);
-                    }                     
+                    }
 
                 }
             setupArrays();
-            getPreferences();                
+            getPreferences();
             Frame ntf = WindowManager.getFrame(newTable.shortTitle());
-            if (ntf != null) ntf.setVisible(true);                
+            if (ntf != null) ntf.setVisible(true);
             setTable(newTable, true);
             if (plotWindow != null) plotWindow.setVisible(true);
             }
-      
+
 
 
         static void saveData()
@@ -18688,12 +18688,12 @@ static void initializeVariables()
                 IJ.showMessage("Error writing measurement table file");
                 }
             }
-        
-        
+
+
         static void saveDataSubsetDialog(String savePath)
             {
             boolean saveColumnHeadings = true;
-            boolean saveHeadersAsComment = true; 
+            boolean saveHeadersAsComment = true;
             boolean saveRowNumbers = true;
             boolean saveRowLabels = true;
             maxSubsetColumns=(int)Prefs.get("plot2.maxSubsetColumns", maxSubsetColumns);
@@ -18703,13 +18703,13 @@ static void initializeVariables()
             saveHeadersAsComment = Prefs.get("plot2.saveHeadersAsComment", saveHeadersAsComment);
             saveRowNumbers = Prefs.get("plot2.saveRowNumbers", saveRowNumbers);
             saveRowLabels = Prefs.get("plot2.saveRowLabels", saveRowLabels);
-            
+
             for (int i=0; i<maxSubsetColumns; i++)
                 {
                 subsetColumnEnable[i] = true;
                 subsetColumn[i] = "";
-                }            
-            
+                }
+
             GenericDialog gd = new GenericDialog ("Save data subset");
 
             for (int i=0; i<maxSubsetColumns; i++)
@@ -18717,14 +18717,14 @@ static void initializeVariables()
                 subsetColumnEnable[i] = Prefs.get("plot2.subsetColumnEnable"+i, subsetColumnEnable[i]);
                 subsetColumn[i] = Prefs.get("plot2.subsetColumn"+i, subsetColumn[i]);
                 }
-            
+
             gd.addMessage ("Select datasets in the order (left to right) desired in the output file.\nNo column will be output for blank selections.");
             gd.addSlider("Number of data selection boxes (next time):", 1, 20, maxSubsetColumns<21 && maxSubsetColumns>0?maxSubsetColumns:5);
             String[] saveColumns = new String[columns.length+1];
             saveColumns[0] = "";
             String meridian_flip = "Meridian_Flip";
             if (saveColumns.length > 1) saveColumns[1] = meridian_flip;
-            if (saveColumns.length > 2) 
+            if (saveColumns.length > 2)
                 {
                 System.arraycopy(columns, 1, saveColumns, 2, columns.length - 1);
                 }
@@ -18733,16 +18733,16 @@ static void initializeVariables()
                 gd.addCheckbox("Enable Column "+(i+1), subsetColumnEnable[i]);
                 gd.addChoice("Data Column "+(i+1)+":", saveColumns, subsetColumn[i]);
                 }
-             
+
             String[] optionLabels = {"Save column headings","Comment headings with '#'","Save row numbers","Save row labels"};
             boolean[] optionSettings = {saveColumnHeadings,saveHeadersAsComment,saveRowNumbers,saveRowLabels};
             gd.addCheckboxGroup(2, 2, optionLabels, optionSettings);
-            
+
             gd.showDialog();
             maxSubsetColumns = (int)gd.getNextNumber();
             Prefs.set("plot2.maxSubsetColumns", maxSubsetColumns);
             if (gd.wasCanceled()) return;
-            
+
             boolean meridianFlipSelected = false;
             for (int i=0; i<maxSubsetColumns; i++)
                 {
@@ -18759,23 +18759,23 @@ static void initializeVariables()
                 {
                 Prefs.set("plot2.subsetColumnEnable"+i, subsetColumnEnable[i]);
                 Prefs.set("plot2.subsetColumn"+i, subsetColumn[i]);
-                }            
+                }
             Prefs.set("plot2.saveColumnHeadings", saveColumnHeadings);
             Prefs.set("plot2.saveHeadersAsComment", saveHeadersAsComment);
             Prefs.set("plot2.saveRowNumbers", saveRowNumbers);
             Prefs.set("plot2.saveRowLabels", saveRowLabels);
-            
+
             if (meridianFlipSelected)
                 {
                 if (!meridianFlipTimeColumnNotice()) return;
                 }
-            
+
             if (savePath==null)
                 {
                 savePath = MeasurementTable.shorterName(table.shortTitle());
                 int location = savePath.lastIndexOf('.');
                 if (location >= 0) savePath = savePath.substring(0, location);
-                savePath += "_subset.dat";           
+                savePath += "_subset.dat";
                 SaveDialog sf = new SaveDialog("Save data subset", savePath, null);
                 if (sf.getDirectory() == null || sf.getFileName() == null)
                     {
@@ -18787,9 +18787,9 @@ static void initializeVariables()
                 }
             saveDataSubset(savePath);
             }
-            
+
         static void saveDataSubset(String savePath)
-            {        
+            {
             PrintWriter pw = null;
             maxSubsetColumns=(int)Prefs.get("plot2.maxSubsetColumns", maxSubsetColumns);
             boolean[] subsetColumnEnable = new boolean[maxSubsetColumns];
@@ -18798,12 +18798,12 @@ static void initializeVariables()
                 {
                 subsetColumnEnable[i] = Prefs.get("plot2.subsetColumnEnable"+i, subsetColumnEnable[i]);
                 subsetColumn[i] = Prefs.get("plot2.subsetColumn"+i, "");
-                }            
+                }
             boolean saveColumnHeadings = Prefs.get("plot2.saveColumnHeadings", true);
             boolean saveHeadersAsComment = Prefs.get("plot2.saveHeadersAsComment", true);
             boolean saveRowNumbers = Prefs.get("plot2.saveRowNumbers", true);
             boolean saveRowLabels = Prefs.get("plot2.saveRowLabels", true);
-            String meridian_flip = "Meridian_Flip";            
+            String meridian_flip = "Meridian_Flip";
 
             int numColumns = 0;
             for (int i=0; i<maxSubsetColumns; i++)
@@ -18831,10 +18831,10 @@ static void initializeVariables()
                 IJ.beep();
                 IJ.showMessage("Error: No table columns selected and not saving row labels. Aborting save subset.");
                 return;
-                }                
-            
+                }
+
             int rows = table.getCounter();
-            if (rows==0) 
+            if (rows==0)
                 {
                 IJ.beep();
                 IJ.showMessage("Error: No rows in table to save. Aborting save subset.");
@@ -18857,7 +18857,7 @@ static void initializeVariables()
                 String outText = "";
                 double value = -1.0;
                 boolean needDelimiter;
-                if (saveColumnHeadings) 
+                if (saveColumnHeadings)
                     {
                     line = (saveHeadersAsComment?"#":"")+(saveRowNumbers?delimiter:"")+(saveRowLabels?"Label"+delimiter:"");
                     needDelimiter = false;
@@ -18868,7 +18868,7 @@ static void initializeVariables()
                             line += (needDelimiter?delimiter:"")+subsetColumn[i];
                             needDelimiter = true;
                             }
-                        }                    
+                        }
                     pw.println(line);
                     }
                 for (int row=0; row<rows; row++)
@@ -18882,7 +18882,7 @@ static void initializeVariables()
                             {
                             if (subsetColumn[i].equals(meridian_flip))
                                 {
-                                if (row - excludedHeadSamples >= 0) 
+                                if (row - excludedHeadSamples >= 0)
                                     {
                                     if (row - excludedHeadSamples < xlen)
                                         value = x[firstCurve][row - excludedHeadSamples] < mfMarker1Value? -1.0 : 1.0;
@@ -18907,11 +18907,11 @@ static void initializeVariables()
                             line += ""+(needDelimiter?delimiter:"")+outText;
                             needDelimiter = true;
                             }
-                        }                     
+                        }
                     pw.println(line);
                     }
                 }
-            catch(IOException ioe) 
+            catch(IOException ioe)
                 {
                 IJ.beep();
                 IJ.showMessage("Error writing data subset file");
@@ -18919,18 +18919,18 @@ static void initializeVariables()
             finally
                 {
                 pw.close();
-                }            
-            
+                }
+
             }
-        
+
         static void createMpcFormatDialog()
             {
-            if (table==null) 
+            if (table==null)
                 {
                 IJ.showMessage("Open a measurements table into Multi-plot and then restart MPC formatting");
                 return;
                 }
-            
+
             String definitiveDesignation = Prefs.get("plot2.definitiveDesignation","");
             if (definitiveDesignation.length()>5) definitiveDesignation = definitiveDesignation.substring(0, 5);
             String provisionalDesignation = Prefs.get("plot2.provisionalDesignation","");
@@ -18940,7 +18940,7 @@ static void initializeVariables()
             String discovery = Prefs.get("plot2.discovery"," ");
             if (!(discovery.equals(" ") || discovery.equals("*"))) discovery = " ";
             String note1 = Prefs.get("plot2.note1"," ");
-            if (note1.length()>1) note1 = note1.substring(0, 1);          
+            if (note1.length()>1) note1 = note1.substring(0, 1);
             String note2 = Prefs.get("plot2.note2","C");
             if (note2.length()>1) note2 = note2.substring(0, 1);
             String filter = Prefs.get("plot2.filter","B");
@@ -18951,15 +18951,15 @@ static void initializeVariables()
             String contactName = Prefs.get("plot2.contactName","");
             if (contactName.length()>76) contactName = contactName.substring(0, 76);
             String observerName = Prefs.get("plot2.observerName","");
-            if (observerName.length()>76) observerName = observerName.substring(0, 76);            
+            if (observerName.length()>76) observerName = observerName.substring(0, 76);
             String measurerName = Prefs.get("plot2.measurerName","");
-            if (measurerName.length()>76) measurerName = measurerName.substring(0, 76);             
+            if (measurerName.length()>76) measurerName = measurerName.substring(0, 76);
             String telescopeDetails = Prefs.get("plot2.telescopeDetails","");
-            if (telescopeDetails.length()>76) telescopeDetails = telescopeDetails.substring(0, 76);  
+            if (telescopeDetails.length()>76) telescopeDetails = telescopeDetails.substring(0, 76);
             String reductionCatalogues = Prefs.get("plot2.reductionCatalogues","USNO-B1.0");
-            if (reductionCatalogues.length()>76) reductionCatalogues = reductionCatalogues.substring(0, 76);    
+            if (reductionCatalogues.length()>76) reductionCatalogues = reductionCatalogues.substring(0, 76);
             String MPCacknowledgement = Prefs.get("plot2.MPCacknowledgement","Data Submission Received");
-            if (MPCacknowledgement.length()>76) MPCacknowledgement = MPCacknowledgement.substring(0, 76); 
+            if (MPCacknowledgement.length()>76) MPCacknowledgement = MPCacknowledgement.substring(0, 76);
             String jdutcColumnName = Prefs.get("plot2.jdutcColumnName","");
             String magnitudeColumnName = Prefs.get("plot2.magnitudeColumnName","");
             double magnitude = Prefs.get("plot2.magnitude",0.0);
@@ -18968,7 +18968,7 @@ static void initializeVariables()
             String decColumnName = Prefs.get("plot2.decColumnName","");
 
             GenericDialog gd = new GenericDialog ("Create Minor Planet Center Format");
-            
+
             gd.addMessage("*** Detailed instructions for each field are at: http://www.minorplanetcenter.net/iau/info/OpticalObs.html ***");
             gd.addStringField("Definitive Designation (5 chars or empty)", definitiveDesignation, 5);
             gd.addStringField("Provisional Designation (7 chars or empty)", provisionalDesignation, 7);
@@ -18989,99 +18989,99 @@ static void initializeVariables()
             gd.addChoice("Select RA Column", columns, raColumnName);
             gd.addChoice("Select Dec Column", columns, decColumnName);
             gd.addCheckbox("Report magnitudes to 2 decimal places (deselect for standard 1 decimal place)", useTwoMagPlaces);
-            
+
             gd.showDialog();
-            
+
             if (gd.wasCanceled()) return;
-            
+
             definitiveDesignation = gd.getNextString();
             definitiveDesignation = forceLength(definitiveDesignation, 5);
             Prefs.set("plot2.definitiveDesignation",definitiveDesignation);
-            
+
             provisionalDesignation = gd.getNextString();
             provisionalDesignation = forceLength(provisionalDesignation, 7);
             Prefs.set("plot2.provisionalDesignation",provisionalDesignation);
-            
+
             observatoryDesignation = gd.getNextString();
             observatoryDesignation = forceLength(observatoryDesignation, 3);
             Prefs.set("plot2.observatoryDesignation",observatoryDesignation);
-            
+
             discovery = gd.getNextChoice();
             if (!(discovery.equals(" ") || discovery.equals("*"))) discovery = " ";
             Prefs.set("plot2.discovery",discovery);
-            
+
             note1 = gd.getNextString();
             note1 = forceLength(note1, 1);
             Prefs.set("plot2.note1",note1);
-            
+
             note2 = gd.getNextString();
             note2 = forceLength(note2, 1);
             Prefs.set("plot2.note2",note2);
-            
+
             filter = gd.getNextChoice();
             if (filter.length()>1) filter = filter.substring(0, 1);
             if (!(filter.equals(" ") || filter.equals("B") || filter.equals("V") || filter.equals("R") || filter.equals("I") || filter.equals("J") ||
                   filter.equals("W") || filter.equals("U") || filter.equals("g") || filter.equals("r") || filter.equals("i") ||
-                  filter.equals("w") || filter.equals("y") || filter.equals("z") || filter.equals("N") || filter.equals("T") )) filter = "B";            
+                  filter.equals("w") || filter.equals("y") || filter.equals("z") || filter.equals("N") || filter.equals("T") )) filter = "B";
             Prefs.set("plot2.filter",filter);
-            
+
             contactName = gd.getNextString().trim();
             if (contactName.length()>76) contactName = contactName.substring(0, 76);
             Prefs.set("plot2.contactName",contactName);
-            
+
             observerName = gd.getNextString().trim();
             if (observerName.length()>76) observerName = observerName.substring(0, 76);
             Prefs.set("plot2.observerName",observerName);
-            
+
             measurerName = gd.getNextString().trim();
             if (measurerName.length()>76) measurerName = measurerName.substring(0, 76);
             Prefs.set("plot2.measurerName",measurerName);
-            
+
             telescopeDetails = gd.getNextString().trim();
             if (telescopeDetails.length()>76) telescopeDetails = telescopeDetails.substring(0, 76);
             Prefs.set("plot2.telescopeDetails",telescopeDetails);
-            
+
             reductionCatalogues = gd.getNextString().trim();
             if (reductionCatalogues.length()>76) reductionCatalogues = reductionCatalogues.substring(0, 76);
             Prefs.set("plot2.reductionCatalogues",reductionCatalogues);
-            
+
             MPCacknowledgement = gd.getNextString().trim();
             if (MPCacknowledgement.length()>76) MPCacknowledgement = MPCacknowledgement.substring(0, 76);
-            Prefs.set("plot2.MPCacknowledgement",MPCacknowledgement);  
-            
+            Prefs.set("plot2.MPCacknowledgement",MPCacknowledgement);
+
             jdutcColumnName = gd.getNextChoice();
-            Prefs.set("plot2.jdutcColumnName",jdutcColumnName);            
-            if (jdutcColumnName.trim()=="") 
+            Prefs.set("plot2.jdutcColumnName",jdutcColumnName);
+            if (jdutcColumnName.trim()=="")
                 {
                 IJ.showMessage("No JD_UTC column selected");
                 return;
                 }
-                        
+
             magnitudeColumnName = gd.getNextChoice();
             Prefs.set("plot2.magnitudeColumnName",magnitudeColumnName);
             magnitude = gd.getNextNumber();
             Prefs.set("plot2.magnitude",magnitude);
-          
+
             raColumnName = gd.getNextChoice();
             Prefs.set("plot2.raColumnName",raColumnName);
-            if (raColumnName.trim()=="") 
+            if (raColumnName.trim()=="")
                 {
                 IJ.showMessage("No RA column selected");
                 return;
-                }            
-            
+                }
+
             decColumnName = gd.getNextChoice();
             Prefs.set("plot2.decColumnName",decColumnName);
-            if (decColumnName.trim()=="") 
+            if (decColumnName.trim()=="")
                 {
                 IJ.showMessage("No Dec column selected");
                 return;
-                }  
+                }
             Prefs.set("plot2.decColumnName",decColumnName);
-            
+
             useTwoMagPlaces = gd.getNextBoolean();
-            Prefs.set("plot2.useTwoMagPlaces",useTwoMagPlaces);            
-            
+            Prefs.set("plot2.useTwoMagPlaces",useTwoMagPlaces);
+
             int jdCol = table.getColumnIndex(jdutcColumnName);
             if (jdCol==MeasurementTable.COLUMN_NOT_FOUND)
                 {
@@ -19100,8 +19100,8 @@ static void initializeVariables()
                 {
                 IJ.showMessage("Dec column '"+decColumnName+"' not found. Aborting.");
                 return;
-                } 
-            
+                }
+
             IJ.log("COD "+observatoryDesignation);
             IJ.log("CON "+contactName);
             IJ.log("OBS "+observerName);
@@ -19109,8 +19109,8 @@ static void initializeVariables()
             IJ.log("TEL "+telescopeDetails);
             IJ.log("NET "+reductionCatalogues);
             IJ.log("ACK "+MPCacknowledgement);
-            IJ.log(""+table.getCounter());            
-            
+            IJ.log(""+table.getCounter());
+
             double jd, mag, ra, dec;
             String SMag;
             for (int row = 0; row < table.getCounter(); row++)
@@ -19134,16 +19134,16 @@ static void initializeVariables()
                         SMag = twoDigitsOnePlace.format(mag)+" ";
                     if (SMag.length()>5) SMag = SMag.substring(SMag.length()-5, SMag.length());
                     }
-                IJ.log(definitiveDesignation + provisionalDesignation + discovery + note1 + note2 + 
-                        JD_to_MPCDate(jd) + RA_to_MPCRA(ra) + Dec_to_MPCDec(dec) + "         " + 
+                IJ.log(definitiveDesignation + provisionalDesignation + discovery + note1 + note2 +
+                        JD_to_MPCDate(jd) + RA_to_MPCRA(ra) + Dec_to_MPCDec(dec) + "         " +
                         SMag + filter + "      " + observatoryDesignation);
                 }
             }
-        
+
     static String forceLength(String s, int len)
         {
         int slength = s.length();
-        if (slength > len) 
+        if (slength > len)
             {
             s = s.substring(0, len);
             }
@@ -19156,7 +19156,7 @@ static void initializeVariables()
             }
         return s;
         }
-        
+
     static String JD_to_MPCDate(double jd)
             {
             // Fliegel-Van Flandern algorithm
@@ -19182,14 +19182,14 @@ static void initializeVariables()
             double M = u + 2 - 12*v;
             double D = t - Math.floor(2447*u/80);
             D += F;
-            
+
             String SY = fourDigits.format(Y);
             String SM = twoDigits.format(M);
             String SD = twoDigitsFivePlaces.format(D);
-            return "" + SY + " " + SM + " " + SD + " ";	
-            }       
-        
-            
+            return "" + SY + " " + SM + " " + SD + " ";
+            }
+
+
 static String RA_to_MPCRA(double ra)
             {
             ra %= 24;
@@ -19227,9 +19227,9 @@ static String Dec_to_MPCDec(double dec)
             String SS = twoDigitsOnePlace.format(S);
             return "" + Sign + SD + " " + SM + " " + SS + " ";
             }
-        
-        
-        
+
+
+
         static void saveFitPanelToTextFileDialog(String savePath, int curve)
             {
             if (savePath==null)
@@ -19237,7 +19237,7 @@ static String Dec_to_MPCDec(double dec)
                 savePath = table==null?"NoTableLoaded":MeasurementTable.shorterName(table.shortTitle());
                 int location = savePath.lastIndexOf('.');
                 if (location >= 0) savePath = savePath.substring(0, location);
-                savePath += fitPanelTextSuffix+twoDigits.format(curve+1)+"_"+ylabel[curve]+".txt";           
+                savePath += fitPanelTextSuffix+twoDigits.format(curve+1)+"_"+ylabel[curve]+".txt";
                 SaveDialog sf = new SaveDialog("Save fit panel results to text file", savePath, null);
                 if (sf.getDirectory() == null || sf.getFileName() == null)
                     {
@@ -19249,9 +19249,9 @@ static String Dec_to_MPCDec(double dec)
                 }
             saveFitPanelToTextFile(savePath, curve);
             }
-            
+
         static void saveFitPanelToTextFile(String savePath, int curve)
-            {        
+            {
             PrintWriter pw = null;
             String mpf = "%-25s %8s %17.9f";
             String fpf = "%-25s %8s %17.9f";
@@ -19288,7 +19288,7 @@ static String Dec_to_MPCDec(double dec)
                         if (p==4) value *= 180.0/Math.PI;
                         pw.println(String.format(tpf, parName[p], lockToCenter[curve][p]?"LOCKED":"Fitted", value, priorCenter[curve][p], lockToCenter[curve][p]?0.0:usePriorWidth[curve][p]?priorWidth[curve][p]:Double.POSITIVE_INFINITY, getFitStep(curve, p)));
                         }
-                    
+
                     }
                 else if (useTransitFit[curve] && !converged[curve])
                     {
@@ -19298,8 +19298,8 @@ static String Dec_to_MPCDec(double dec)
                     {
                     pw.println("Transit Fit Disabled");
                     }
-                
-                
+
+
                 boolean useDetrend = false;
                 for (int d=0; d<maxDetrendVars; d++)
                     {
@@ -19316,7 +19316,7 @@ static String Dec_to_MPCDec(double dec)
                             }
                         }
                     }
-                  
+
                 if (useTransitFit[curve] && converged[curve])
                     {
                     pw.println("Calculated From Model");
@@ -19345,9 +19345,9 @@ static String Dec_to_MPCDec(double dec)
                     {
                     sigmaLabel += " (normalized)";
                     }
-                pw.println(String.format(mpf, "    "+sigmaLabel,"Stat ",sigmaValue)); 
+                pw.println(String.format(mpf, "    "+sigmaLabel,"Stat ",sigmaValue));
                 pw.println(String.format(mpf, "    chi^2/dof", "Stat ",chi2dof[curve]));
-                pw.println(String.format(mpf, "    BIC", "Stat ",bic[curve]));                                             
+                pw.println(String.format(mpf, "    BIC", "Stat ",bic[curve]));
                 pw.println(String.format(mpd, "    Degrees of freedom", "Stat ",dof[curve]));
                 pw.println(String.format(mpf, "    chi^2", "Stat ",chi2[curve]));
                 pw.println(String.format(mpd, "    Number of steps taken", "Stat ",nTries[curve]));
@@ -19355,7 +19355,7 @@ static String Dec_to_MPCDec(double dec)
                 pw.println(String.format(mpd, "    Max steps allowed", "Setting",maxFitSteps[curve]));
                 pw.println(String.format("%-25s %8s %7.1G", "    Tolerance of fit", "Setting",tolerance[curve]));
                 }
-            catch(IOException ioe) 
+            catch(IOException ioe)
                 {
                 IJ.beep();
                 IJ.showMessage("Error writing fit results to text file");
@@ -19363,13 +19363,13 @@ static String Dec_to_MPCDec(double dec)
             finally
                 {
                 pw.close();
-                }            
-            
-            }        
-        
+                }
+
+            }
+
         static boolean meridianFlipTimeColumnNotice()
             {
-            GenericDialog gd = new GenericDialog ("Meridian Flip Output Warning");            
+            GenericDialog gd = new GenericDialog ("Meridian Flip Output Warning");
             gd.addMessage ("Meridian_Flip has been selected as an output data column.\n"+
                            "Certain plot settings are first required to ensure that proper meridian flip data are written.\n"+
                            "(1) The meridian flip time marker must be set properly in the 'Multi-plot Main' panel.\n"+
@@ -19380,14 +19380,14 @@ static String Dec_to_MPCDec(double dec)
                            "measurements table using the 'New Col' button on the left side of a 'Multi-plot Y-data' row.\n"+
                            "Therefore, before saving a data subset, 'Bin Size' on the top-most enabled plot row should be set to '1'\n"+
                            "unless binned data were previously saved to the measurements table and are selected as the output data.");
-            
+
             gd.addMessage ("Press 'OK' if the plot settings are correct,\n"+
                            "or 'Cancel' if the plot settings need to be changed.");
             gd.showDialog();
-            if (gd.wasCanceled()) return false;            
+            if (gd.wasCanceled()) return false;
             return true;
             }
-        
+
         static void savePlotImageAsPng()
             {
             ImagePlus image = WindowManager.getImage("Plot of "+tableName);
@@ -19622,7 +19622,7 @@ static String Dec_to_MPCDec(double dec)
                     }
                 }
             }
-        
+
     static void saveAllDialog()
         {
         saveImage = Prefs.get("Astronomy_Tool.saveImage", saveImage);
@@ -19644,17 +19644,17 @@ static String Dec_to_MPCDec(double dec)
         fitPanelSuffix = Prefs.get("Astronomy_Tool.fitPanelSuffix", fitPanelSuffix);
         fitPanelTextSuffix = Prefs.get("Astronomy_Tool.fitPanelTextSuffix", fitPanelTextSuffix);
         dataSubsetSuffix = Prefs.get("Astronomy_Tool.dataSubsetSuffix", dataSubsetSuffix);
-        saveAllPNG = Prefs.get("Astronomy_Tool.saveAllPNG", saveAllPNG);        
-        
+        saveAllPNG = Prefs.get("Astronomy_Tool.saveAllPNG", saveAllPNG);
+
         GenericDialog gd = new GenericDialog ("Save all settings");
         gd.enableYesNoCancel("Save Files Now", "Save Settings Only");
 
         gd.addMessage ("Select items to save when using save all:");
-        gd.addCheckboxGroup(1, 8, 
-                new String[] {"Image","Plot","Plot Config","Data Table","Apertures","Fit Panels", "Fit Text", "Log"}, 
+        gd.addCheckboxGroup(1, 8,
+                new String[] {"Image","Plot","Plot Config","Data Table","Apertures","Fit Panels", "Fit Text", "Log"},
                 new boolean[] {saveImage, savePlot, saveConfig, saveTable, saveApertures, saveFitPanels, saveFitPanelText, saveLog});
-        gd.addCheckboxGroup(1, 2, 
-                new String[] {"Data Subset", "Show Data Subset Panel"}, 
+        gd.addCheckboxGroup(1, 2,
+                new String[] {"Data Subset", "Show Data Subset Panel"},
                 new boolean[] {saveDataSubset, showDataSubsetPanel});
 		gd.addStringField("Science Image display suffix:", imageSuffix, 40);
         gd.addStringField("Plot image display suffix:", plotSuffix, 40);
@@ -19665,7 +19665,7 @@ static String Dec_to_MPCDec(double dec)
         gd.addStringField("Fit panel image suffix:", fitPanelSuffix, 40);
         gd.addStringField("Fit data text file suffix:", fitPanelTextSuffix, 40);
         gd.addStringField("Log file suffix:", logSuffix, 40);
-        
+
         gd.addCheckbox("Save images in PNG format (uncheck for JPEG format)", saveAllPNG);
         gd.addMessage ("**Tip: make plot config and data table suffix the same so that the plot config\n"+
                        "will auto-load when a new data table file is opened by drag and drop.");
@@ -19680,10 +19680,10 @@ static String Dec_to_MPCDec(double dec)
         saveFitPanels = gd.getNextBoolean();
         saveFitPanelText = gd.getNextBoolean();
         saveLog = gd.getNextBoolean();
-        
+
         saveDataSubset = gd.getNextBoolean();
         showDataSubsetPanel = gd.getNextBoolean();
-        
+
 		imageSuffix = gd.getNextString();
         plotSuffix = gd.getNextString();
         configSuffix = gd.getNextString();
@@ -19693,9 +19693,9 @@ static String Dec_to_MPCDec(double dec)
         fitPanelSuffix = gd.getNextString();
         fitPanelTextSuffix = gd.getNextString();
         logSuffix = gd.getNextString();
-        
-        saveAllPNG = gd.getNextBoolean(); 
-        
+
+        saveAllPNG = gd.getNextBoolean();
+
         Prefs.set("Astronomy_Tool.saveImage", saveImage);
         Prefs.set("Astronomy_Tool.savePlot", savePlot);
         Prefs.set("Astronomy_Tool.saveConfig", saveConfig);
@@ -19705,8 +19705,8 @@ static String Dec_to_MPCDec(double dec)
         Prefs.set("Astronomy_Tool.saveFitPanelText", saveFitPanelText);
         Prefs.set("Astronomy_Tool.saveLog", saveLog);
         Prefs.set("Astronomy_Tool.saveDataSubset", saveDataSubset);
-        Prefs.set("Astronomy_Tool.showDataSubsetPanel", showDataSubsetPanel); 
-        
+        Prefs.set("Astronomy_Tool.showDataSubsetPanel", showDataSubsetPanel);
+
         Prefs.set("Astronomy_Tool.imageSuffix", imageSuffix);
         Prefs.set("Astronomy_Tool.plotSuffix", plotSuffix);
         Prefs.set("Astronomy_Tool.configSuffix", configSuffix);
@@ -19716,18 +19716,18 @@ static String Dec_to_MPCDec(double dec)
         Prefs.set("Astronomy_Tool.fitPanelSuffix", fitPanelSuffix);
         Prefs.set("Astronomy_Tool.fitPanelSuffix", fitPanelTextSuffix);
         Prefs.set("Astronomy_Tool.logSuffix", logSuffix);
-        
+
         Prefs.set("Astronomy_Tool.saveAllPNG", saveAllPNG);
-        
-        if (gd.wasOKed()) 
+
+        if (gd.wasOKed())
             {
             if (saveAllPNG)
                 saveAll("png", true);
             else
-                saveAll("jpg", true);            
+                saveAll("jpg", true);
             }
-        }  
-    
+        }
+
 
 static void saveAll(String format, boolean saveAll)
     {
@@ -19747,19 +19747,19 @@ static void saveAll(String format, boolean saveAll)
             WindowManager.toFront(iw);
             ic = iplus.getCanvas();
             ac = (AstroCanvas)ic;
-            imageDisplay = new BufferedImage(ac.getSize().width, ac.getSize().height, BufferedImage.TYPE_INT_RGB); 
+            imageDisplay = new BufferedImage(ac.getSize().width, ac.getSize().height, BufferedImage.TYPE_INT_RGB);
             Graphics gg = imageDisplay.createGraphics();
-            ac.paint(gg);  
-            gg.dispose();            
+            ac.paint(gg);
+            gg.dispose();
             imageFound = true;
             }
-        else if (WindowManager.getWindowCount()> 0) 
+        else if (WindowManager.getWindowCount()> 0)
             {
             int[] ID = WindowManager.getIDList();
             for (int win = 0; win < ID.length; win++)
                 {
                 iplus = WindowManager.getImage(ID[win]);
-                if (iplus != null) 
+                if (iplus != null)
                     iw = iplus.getWindow();
                 else
                     iw = null;
@@ -19769,11 +19769,11 @@ static void saveAll(String format, boolean saveAll)
                     WindowManager.toFront(iw);
                     ic = iplus.getCanvas();
                     ac = (AstroCanvas)ic;
-                    imageDisplay = new BufferedImage(ac.getSize().width, ac.getSize().height, BufferedImage.TYPE_INT_RGB); 
+                    imageDisplay = new BufferedImage(ac.getSize().width, ac.getSize().height, BufferedImage.TYPE_INT_RGB);
                     Graphics gg = imageDisplay.createGraphics();
-                    ac.paint(gg);  
-                    gg.dispose(); 
-                    imageFound = true;  
+                    ac.paint(gg);
+                    gg.dispose();
+                    imageFound = true;
                     break;
                     }
                 }
@@ -19811,17 +19811,17 @@ static void saveAll(String format, boolean saveAll)
         {
         location = outBase.lastIndexOf(dataSubsetSuffix);
         if (location >= 0) outBase = outBase.substring(0, location);
-        }    
+        }
     else if (outBase.endsWith(aperSuffix))
         {
         location = outBase.lastIndexOf(aperSuffix);
         if (location >= 0) outBase = outBase.substring(0, location);
-        }   
+        }
     else if (outBase.endsWith(logSuffix))
         {
         location = outBase.lastIndexOf(logSuffix);
         if (location >= 0) outBase = outBase.substring(0, location);
-        }    
+        }
 
     if (imageFound && (!saveAll || (saveAll && saveImage)))
         {
@@ -19843,7 +19843,7 @@ static void saveAll(String format, boolean saveAll)
     if (saveAll && saveLog)
         {
         saveLogToFile(outBase+logSuffix+".log");
-        }  
+        }
     if (saveAll && (saveFitPanels || saveFitPanelText))
         {
         for (int c=0; c<maxCurves; c++)
@@ -19852,9 +19852,9 @@ static void saveAll(String format, boolean saveAll)
                 {
                 if (saveFitPanels)
                     {
-                    BufferedImage bi = new BufferedImage(fitPanel[c].getSize().width, fitPanel[c].getSize().height, BufferedImage.TYPE_INT_RGB); 
+                    BufferedImage bi = new BufferedImage(fitPanel[c].getSize().width, fitPanel[c].getSize().height, BufferedImage.TYPE_INT_RGB);
                     Graphics gg = bi.createGraphics();
-                    fitPanel[c].paint(gg);  
+                    fitPanel[c].paint(gg);
                     gg.dispose();
                     IJU.saveAsPngOrJpg(bi, new File(outBase+fitPanelSuffix+twoDigits.format(c+1)+"_"+ylabel[c]+"."+format), format);
                     }
@@ -19876,8 +19876,8 @@ static void saveAll(String format, boolean saveAll)
             {
             saveDataSubset(outBase+dataSubsetSuffix+".dat");
             }
-        }    
-        
+        }
+
     }
 
 static void saveLogToFile(String path)
@@ -19900,7 +19900,7 @@ static void saveLogToFile(String path)
             {
             pw.println(loglines[i]);
             }
-        pw.close();        
+        pw.close();
         }
     }
 
@@ -19921,7 +19921,7 @@ static void saveLogToFile(String path)
 //                key.startsWith(".aperture.rback2") || key.startsWith(".aperture.removebackstars") ||
 //                key.startsWith(".aperture.backplane") || key.startsWith(".multiaperture.usevarsizeap") ||
 //                key.startsWith(".multiaperture.apfwhmfactor") || key.startsWith(".multiaperture.xapertures") ||
-//                key.startsWith(".multiaperture.yapertures") || key.startsWith(".multiaperture.isrefstar") || 
+//                key.startsWith(".multiaperture.yapertures") || key.startsWith(".multiaperture.isrefstar") ||
 //                key.startsWith(".multiaperture.naperturesmax"))
 //                prefs.put(key, Prefs.ijPrefs.getProperty(key));
 //        }
@@ -19937,8 +19937,8 @@ static void saveLogToFile(String path)
 //            IJ.beep();
 //            IJ.showMessage("Error writing apertures to file");
 //            }
-//        }    
-    
+//        }
+
 
 //        static void setSaveStateDialog()
 //            {
@@ -19967,24 +19967,24 @@ static void saveLogToFile(String path)
 //            Prefs.set("Astronomy_Tool.configSuffix", configSuffix);
 //            Prefs.set("Astronomy_Tool.dataSuffix", dataSuffix);
 //            }
-        
+
         static void openHelpPanel()
             {
             String filename = "help/multiplot_help.htm";
             new HelpPanel(filename, "Multi-plot");
-            }      
+            }
         static void openDataHelpPanel()
             {
             String filename = "help/multiplot_data_help.htm";
             new HelpPanel(filename, "Data Naming Convention");
-            }     
-        
-        
+            }
+
+
         public void keyTyped(KeyEvent e) {
 
         }
 
-        
+
         public void keyPressed(KeyEvent e) {
             int keyCode = e.getKeyCode();
             if (keyCode == KeyEvent.VK_ALT)
@@ -19993,7 +19993,7 @@ static void saveLogToFile(String path)
                 }
         }
 
-        
+
         public void keyReleased(KeyEvent e) {
             int keyCode = e.getKeyCode();
             if (keyCode == KeyEvent.VK_ALT)
@@ -20005,12 +20005,12 @@ static void saveLogToFile(String path)
         static void getPreferences()
                 {
                 tableName = Prefs.get("plot2.tableName",tableName);
-                keepFileNamesOnAppend=Prefs.get("plot2.keepFileNamesOnAppend", keepFileNamesOnAppend);   
+                keepFileNamesOnAppend=Prefs.get("plot2.keepFileNamesOnAppend", keepFileNamesOnAppend);
                 templateDir = Prefs.get("plot2.templateDir",templateDir);
                 JDColumn = Prefs.get("plot2.JDColumn",JDColumn);
                 raColumn = Prefs.get("plot2.raColumn",raColumn);
                 decColumn = Prefs.get("plot2.decColumn",decColumn);
-                
+
                 addAirmass = Prefs.get("plot2.addAirmass", addAirmass);
                 addAltitude = Prefs.get("plot2.addAltitude", addAltitude);
                 addAzimuth = Prefs.get("plot2.addAzimuth", addAzimuth);
@@ -20025,7 +20025,7 @@ static void saveLogToFile(String path)
                 addHJDCorr = Prefs.get("plot2.addHJDCorr", addHJDCorr);
                 addHourAngle = Prefs.get("plot2.addHourAngle", addHourAngle);
                 addZenithDistance = Prefs.get("plot2.addZenithDistance", addZenithDistance);
-                
+
                 airmassName = Prefs.get("plot2.airmassName", airmassName);
                 altitudeName = Prefs.get("plot2.altitudeName", altitudeName);
                 azimuthName = Prefs.get("plot2.azimuthName", azimuthName);
@@ -20040,7 +20040,7 @@ static void saveLogToFile(String path)
                 hjdCorrName = Prefs.get("plot2.hjdCorrName", hjdCorrName);
                 hourAngleName = Prefs.get("plot2.hourAngleName", hourAngleName);
                 zenithDistanceName = Prefs.get("plot2.zenithDistanceName", zenithDistanceName);
-                
+
                 useGJD  = Prefs.get("plot2.useGJD", useGJD);
                 useHJD  = Prefs.get("plot2.useHJD", useHJD);
                 useBJD  = Prefs.get("plot2.useBJD", useBJD);
@@ -20050,7 +20050,7 @@ static void saveLogToFile(String path)
                 maxSubsetColumns=(int)Prefs.get("plot2.maxSubsetColumns", maxSubsetColumns);
                 modifyCurvesAbove=Prefs.get("plot2.modifyCurvesAbove", modifyCurvesAbove);
                 modifyCurvesBelow=Prefs.get("plot2.modifyCurvesBelow", modifyCurvesBelow);
-                
+
                 plotAutoMode=Prefs.get("plot.automode",plotAutoMode);
                 xlabeldefault=Prefs.get("plot.xlabeldefault",xlabeldefault);
                 title=Prefs.get("plot.title", title);
@@ -20067,7 +20067,7 @@ static void saveLogToFile(String path)
                 yTics=Prefs.get("plot.yTics", yTics);
                 xGrid=Prefs.get("plot.xGrid", xGrid);
                 yGrid=Prefs.get("plot.yGrid", yGrid);
-                
+
                 xNumbers=Prefs.get("plot.xNumbers", xNumbers);
                 yNumbers=Prefs.get("plot.yNumbers", yNumbers);
                 autoScaleX=Prefs.get("plot.autoScaleX",autoScaleX);
@@ -20085,9 +20085,9 @@ static void saveLogToFile(String path)
                 subFrameLocationX=(int)Prefs.get("plot2.subFrameLocationX", subFrameLocationX);
                 subFrameLocationY=(int)Prefs.get("plot2.subFrameLocationY", subFrameLocationY);
                 refStarFrameLocationX=(int)Prefs.get("plot2.refStarFrameLocationX", refStarFrameLocationX);
-                refStarFrameLocationY=(int)Prefs.get("plot2.refStarFrameLocationY", refStarFrameLocationY);  
+                refStarFrameLocationY=(int)Prefs.get("plot2.refStarFrameLocationY", refStarFrameLocationY);
                 addAstroDataFrameLocationX=(int)Prefs.get("plot2.addAstroDataFrameLocationX", addAstroDataFrameLocationX);
-                addAstroDataFrameLocationY=(int)Prefs.get("plot2.addAstroDataFrameLocationY", addAstroDataFrameLocationY);                  
+                addAstroDataFrameLocationY=(int)Prefs.get("plot2.addAstroDataFrameLocationY", addAstroDataFrameLocationY);
                 plotFrameLocationX=(int)Prefs.get("plot2.plotFrameLocationX", plotFrameLocationX);
                 plotFrameLocationY=(int)Prefs.get("plot2.plotFrameLocationY", plotFrameLocationY);
                 openDataSetWindow=Prefs.get("plot2.openDataSetWindow", openDataSetWindow);
@@ -20192,13 +20192,13 @@ static void saveLogToFile(String path)
                 saveConfig = Prefs.get("Astronomy_Tool.saveConfig", saveConfig);
                 saveTable = Prefs.get("Astronomy_Tool.saveTable", saveTable);
                 saveApertures = Prefs.get("Astronomy_Tool.saveApertures", saveApertures);
-                saveFitPanels = Prefs.get("Astronomy_Tool.saveFitPanels", saveFitPanels); 
+                saveFitPanels = Prefs.get("Astronomy_Tool.saveFitPanels", saveFitPanels);
                 saveFitPanelText = Prefs.get("Astronomy_Tool.saveFitPanelText", saveFitPanelText);
                 saveLog = Prefs.get("Astronomy_Tool.saveLog", saveLog);
-                
+
                 saveDataSubset = Prefs.get("Astronomy_Tool.saveDataSubset", saveDataSubset);
                 showDataSubsetPanel = Prefs.get("Astronomy_Tool.showDataSubsetPanel", showDataSubsetPanel);
-                
+
                 imageSuffix = Prefs.get("Astronomy_Tool.imageSuffix", imageSuffix);
                 plotSuffix = Prefs.get("Astronomy_Tool.plotSuffix", plotSuffix);
                 configSuffix = Prefs.get("Astronomy_Tool.configSuffix", configSuffix);
@@ -20208,15 +20208,15 @@ static void saveLogToFile(String path)
                 fitPanelSuffix = Prefs.get("Astronomy_Tool.fitPanelSuffix", fitPanelSuffix);
                 fitPanelTextSuffix = Prefs.get("Astronomy_Tool.fitPanelTextSuffix", fitPanelTextSuffix);
                 logSuffix = Prefs.get("Astronomy_Tool.logSuffix", logSuffix);
-                
+
                 saveAllPNG = Prefs.get("Astronomy_Tool.saveAllPNG", saveAllPNG);
-                    
+
                 showSaturationWarning  = Prefs.get (Aperture_.AP_PREFS_SHOWSATWARNING, showSaturationWarning);
                 forceAbsMagDisplay = Prefs.get("plot2.forceAbsMagDisplay", forceAbsMagDisplay);
                 saturationWarningLevel = Prefs.get (Aperture_.AP_PREFS_SATWARNLEVEL, saturationWarningLevel);
                 showLinearityWarning  = Prefs.get (Aperture_.AP_PREFS_SHOWLINWARNING, showLinearityWarning);
-                linearityWarningLevel = Prefs.get (Aperture_.AP_PREFS_LINWARNLEVEL, linearityWarningLevel); 
-                
+                linearityWarningLevel = Prefs.get (Aperture_.AP_PREFS_LINWARNLEVEL, linearityWarningLevel);
+
                 orbitalPeriodStep=Prefs.get("plot.orbitalPeriodStep", orbitalPeriodStep);
                 eccentricityStep=Prefs.get("plot.eccentricityStep", eccentricityStep);
                 omegaStep=Prefs.get("plot.omegaStep", omegaStep);
@@ -20233,11 +20233,11 @@ static void saveLogToFile(String path)
                         priorWidthStep[i]=Prefs.get("plot.priorWidthStep["+i+"]",priorWidthStep[i]);
                         fitStepStep[i]=Prefs.get("plot.fitStepStep["+i+"]",fitStepStep[i]);
                         }
-                
+
                 for (int i=0; i<maxCurves; i++)
                         {
                         fitFrameLocationX[i]=(int)Prefs.get("plot2.fitFrameLocationX"+i, fitFrameLocationX[i]);
-                        fitFrameLocationY[i]=(int)Prefs.get("plot2.fitFrameLocationY"+i, fitFrameLocationY[i]);                        
+                        fitFrameLocationY[i]=(int)Prefs.get("plot2.fitFrameLocationY"+i, fitFrameLocationY[i]);
                         orbitalPeriod[i]=Prefs.get("plot.orbitalPeriod"+i,orbitalPeriod[i]);
                         eccentricity[i]=Prefs.get("plot.eccentricity"+i,eccentricity[i]);
                         omega[i]=Prefs.get("plot.omega"+i,omega[i]);
@@ -20261,7 +20261,7 @@ static void saveLogToFile(String path)
                         autoUpdatePrior[i][1]=Prefs.get("plot.autoUpdatePrior["+i+"][1]",autoUpdatePrior[i][1]);
                         autoUpdatePrior[i][2]=Prefs.get("plot.autoUpdatePrior["+i+"][2]",autoUpdatePrior[i][2]);
                         autoUpdatePrior[i][3]=Prefs.get("plot.autoUpdatePrior["+i+"][3]",autoUpdatePrior[i][3]);
-                        
+
                         moreOptions[i]=Prefs.get("plot.moreOptions"+i,moreOptions[i]);
                         oplabel[i]=Prefs.get("plot.oplabel"+i, oplabel[i]);
                         xlabel[i]=Prefs.get("plot.xlabel"+i,xlabel[i]);
@@ -20309,7 +20309,7 @@ static void saveLogToFile(String path)
                             detrendlabel[i][v]=Prefs.get("plot.detrendlabel["+i+"]["+v+"]",detrendlabel[i][v]);
                             detrendlabelhold[i][v]=Prefs.get("plot.detrendlabelhold["+i+"]["+v+"]",detrendlabelhold[i][v]);
                             detrendFactor[i][v]=Prefs.get("plot.detrendFactor["+i+"]["+v+"]",detrendFactor[i][v]);
-                            detrendFactorStep[i][v]=Prefs.get("plot.detrendFactorStep["+i+"]["+v+"]",detrendFactorStep[i][v]);  
+                            detrendFactorStep[i][v]=Prefs.get("plot.detrendFactorStep["+i+"]["+v+"]",detrendFactorStep[i][v]);
                             }
                         for (int v = 0; v < (maxFittedVars); v++)
                             {
@@ -20319,10 +20319,10 @@ static void saveLogToFile(String path)
                             usePriorWidth[i][v]=Prefs.get("plot.usePriorWidth["+i+"]["+v+"]",usePriorWidth[i][v]);
                             useCustomFitStep[i][v]=Prefs.get("plot.useCustomFitStep["+i+"]["+v+"]",useCustomFitStep[i][v]);
                             fitStep[i][v]=Prefs.get("plot.fitStep["+i+"]["+v+"]",fitStep[i][v]);
-                            }                        
+                            }
                         }
                 }
-        
+
         static void saveAstroPanelPrefs()
                 {
                 Prefs.set("plot2.addAirmass", addAirmass);
@@ -20338,8 +20338,8 @@ static void saveLogToFile(String path)
                 Prefs.set("plot2.addHJD", addHJD);
                 Prefs.set("plot2.addHJDCorr", addHJDCorr);
                 Prefs.set("plot2.addHourAngle", addHourAngle);
-                Prefs.set("plot2.addZenithDistance", addZenithDistance);                
-                
+                Prefs.set("plot2.addZenithDistance", addZenithDistance);
+
                 Prefs.set("plot2.airmassName", airmassName);
                 Prefs.set("plot2.altitudeName", altitudeName);
                 Prefs.set("plot2.azimuthName", azimuthName);
@@ -20353,10 +20353,10 @@ static void saveLogToFile(String path)
                 Prefs.set("plot2.hjdName", hjdName);
                 Prefs.set("plot2.hjdCorrName", hjdCorrName);
                 Prefs.set("plot2.hourAngleName", hourAngleName);
-                Prefs.set("plot2.zenithDistanceName", zenithDistanceName); 
+                Prefs.set("plot2.zenithDistanceName", zenithDistanceName);
                 Prefs.set("plot2.JDColumn",JDColumn);
                 Prefs.set("plot2.raColumn",raColumn);
-                Prefs.set("plot2.decColumn",decColumn);                
+                Prefs.set("plot2.decColumn",decColumn);
                 Prefs.set("plot2.useGJD", useGJD);
                 Prefs.set("plot2.useHJD", useHJD);
                 Prefs.set("plot2.useBJD", useBJD);
@@ -20364,16 +20364,16 @@ static void saveLogToFile(String path)
                 Prefs.set("plot2.unshift", unshift);
                 Prefs.set("plot2.useTableRaDec", useTableRaDec);
                 }
-        
-        
-        
+
+
+
         static void savePreferences()
                 {
                 Prefs.set("plot2.tableName",tableName);
                 Prefs.set("plot2.keepFileNamesOnAppend", keepFileNamesOnAppend);
                 Prefs.set("plot2.templateDir",templateDir);
                 Prefs.set("plot2.modifyCurvesAbove", modifyCurvesAbove);
-                Prefs.set("plot2.modifyCurvesBelow", modifyCurvesBelow);                
+                Prefs.set("plot2.modifyCurvesBelow", modifyCurvesBelow);
                 Prefs.set("plot2.maxSubsetColumns", maxSubsetColumns);
                 Prefs.set("plot2.forceAbsMagDisplay", forceAbsMagDisplay);
                 saveAstroPanelPrefs();
@@ -20415,8 +20415,8 @@ static void saveLogToFile(String path)
                 Prefs.set("plot.invertYAxis", invertYAxis);
                 Prefs.set("plot.negateMag", negateMag);
                 Prefs.set("plot.saveNewXColumn", saveNewXColumn);
-                Prefs.set("plot.saveNewYColumn", saveNewYColumn);   
-                Prefs.set("plot.saveNewYErrColumn", saveNewYErrColumn); 
+                Prefs.set("plot.saveNewYColumn", saveNewYColumn);
+                Prefs.set("plot.saveNewYErrColumn", saveNewYErrColumn);
                 Prefs.set("plot.plotSizeX",plotSizeX);
                 Prefs.set("plot.plotSizeY",plotSizeY);
                 Prefs.set("plot.title",title);
@@ -20461,8 +20461,8 @@ static void saveLogToFile(String path)
                 Prefs.set("plot.showXAxisAsHoursSinceTc", showXAxisAsHoursSinceTc);
                 Prefs.set("plot.showXAxisAsDaysSinceTc", showXAxisAsDaysSinceTc);
                 Prefs.set("plot.T0", T0);
-                Prefs.set("plot.period", period);  
-                Prefs.set("plot.duration", duration); 
+                Prefs.set("plot.period", period);
+                Prefs.set("plot.duration", duration);
                 Prefs.set("plot.T0Step", T0Step);
                 Prefs.set("plot.periodStep", periodStep);
                 Prefs.set("plot.durationStep", durationStep);
@@ -20485,7 +20485,7 @@ static void saveLogToFile(String path)
                 Prefs.set("plot.showYSymbolInfo", showYSymbolInfo);
                 Prefs.set("plot.showLSymbolInfo", showLSymbolInfo);
                 Prefs.set("plot.showSigmaForAllCurves", showSigmaForAllCurves);
-                Prefs.set("plot.showSigmaForDetrendedCurves", showSigmaForDetrendedCurves);                
+                Prefs.set("plot.showSigmaForDetrendedCurves", showSigmaForDetrendedCurves);
                 Prefs.set("plot2.useWideDataPanel", useWideDataPanel);
 //                Prefs.set("plot.useTwoLineLegend", useTwoLineLegend);
                 Prefs.set("plot2.useBoldedDatum", useBoldedDatum);
@@ -20495,14 +20495,14 @@ static void saveLogToFile(String path)
                 Prefs.set("plot.priorityColumns", priorityColumns);
                 Prefs.set("plot.priorityDetrendColumns", priorityDetrendColumns);
                 Prefs.set("plot.prioritizeColumns", prioritizeColumns);
-                
+
                 Prefs.set("Astronomy_Tool.saveImage", saveImage);
                 Prefs.set("Astronomy_Tool.savePlot", savePlot);
                 Prefs.set("Astronomy_Tool.saveConfig", saveConfig);
                 Prefs.set("Astronomy_Tool.saveTable", saveTable);
                 Prefs.set("Astronomy_Tool.saveApertures", saveApertures);
                 Prefs.set("Astronomy_Tool.saveLog", saveLog);
-                Prefs.set("Astronomy_Tool.saveFitPanels", saveFitPanels); 
+                Prefs.set("Astronomy_Tool.saveFitPanels", saveFitPanels);
                 Prefs.set("Astronomy_Tool.saveFitPanelText", saveFitPanelText);
                 Prefs.set("Astronomy_Tool.saveDataSubset", saveDataSubset);
                 Prefs.set("Astronomy_Tool.showDataSubsetPanel", showDataSubsetPanel);
@@ -20515,8 +20515,8 @@ static void saveLogToFile(String path)
                 Prefs.set("Astronomy_Tool.fitPanelSuffix", fitPanelSuffix);
                 Prefs.set("Astronomy_Tool.fitPanelTextSuffix", fitPanelTextSuffix);
                 Prefs.set("Astronomy_Tool.dataSubsetSuffix", dataSubsetSuffix);
-                Prefs.set("Astronomy_Tool.saveAllPNG", saveAllPNG);    
-                
+                Prefs.set("Astronomy_Tool.saveAllPNG", saveAllPNG);
+
                 Prefs.set("plot.orbitalPeriodStep", orbitalPeriodStep);
                 Prefs.set("plot.eccentricityStep", eccentricityStep);
                 Prefs.set("plot.omegaStep", omegaStep);
@@ -20526,7 +20526,7 @@ static void saveLogToFile(String path)
                 Prefs.set("plot.rStarStep", rStarStep);
                 Prefs.set("plot.rhoStarStep", rhoStarStep);
 //                Prefs.set("plot.residualShiftStep", residualShiftStep);
-               
+
                 for (int i = 0; i<(maxFittedVars); i++)
                         {
                         Prefs.set("plot.priorCenterStep["+i+"]",priorCenterStep[i]);
@@ -20537,7 +20537,7 @@ static void saveLogToFile(String path)
                 for (int i=0; i<maxCurves; i++)
                         {
                         Prefs.set("plot2.fitFrameLocationX"+i, fitFrameLocationX[i]);
-                        Prefs.set("plot2.fitFrameLocationY"+i, fitFrameLocationY[i]);                        
+                        Prefs.set("plot2.fitFrameLocationY"+i, fitFrameLocationY[i]);
                         Prefs.set("plot.orbitalPeriod"+i,orbitalPeriod[i]);
                         Prefs.set("plot.eccentricity"+i,eccentricity[i]);
                         Prefs.set("plot.omega"+i,omega[i]);
@@ -20561,7 +20561,7 @@ static void saveLogToFile(String path)
                         Prefs.set("plot.autoUpdatePrior["+i+"][1]",autoUpdatePrior[i][1]);
                         Prefs.set("plot.autoUpdatePrior["+i+"][2]",autoUpdatePrior[i][2]);
                         Prefs.set("plot.autoUpdatePrior["+i+"][3]",autoUpdatePrior[i][3]);
-                        
+
                         Prefs.set("plot.xlabel"+i,xlabel[i]);
                         Prefs.set("plot.ylabel"+i,ylabel[i]);
                         Prefs.set("plot.oplabel"+i,oplabel[i]);
@@ -20573,7 +20573,7 @@ static void saveLogToFile(String path)
                         Prefs.set("plot.colorIndex"+i,colorIndex[i]);
                         Prefs.set("plot.modelColorIndex"+i, modelColorIndex[i]);
                         Prefs.set("plot.residualModelColorIndex"+i, residualModelColorIndex[i]);
-                        Prefs.set("plot.residualColorIndex"+i, residualColorIndex[i]);                        
+                        Prefs.set("plot.residualColorIndex"+i, residualColorIndex[i]);
                         Prefs.set("plot.normIndex"+i,normIndex[i]);
                         Prefs.set("plot.detrendVarDisplayed"+i, detrendVarDisplayed[i]);
                         Prefs.set("plot.detrendFitIndex"+i,detrendFitIndex[i]);
@@ -20602,7 +20602,7 @@ static void saveLogToFile(String path)
                             Prefs.set("plot.detrendlabel["+i+"]["+v+"]",detrendlabel[i][v]);
                             Prefs.set("plot.detrendlabelhold["+i+"]["+v+"]",detrendlabelhold[i][v]);
                             Prefs.set("plot.detrendFactor["+i+"]["+v+"]",detrendFactor[i][v]);
-                            Prefs.set("plot.detrendFactorStep["+i+"]["+v+"]",detrendFactorStep[i][v]);  
+                            Prefs.set("plot.detrendFactorStep["+i+"]["+v+"]",detrendFactorStep[i][v]);
                             }
                         for (int v = 0; v < (maxFittedVars); v++)
                             {

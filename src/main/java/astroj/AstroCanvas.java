@@ -13,6 +13,7 @@ import ij.gui.StackWindow;
 import ij.gui.Roi;
 import ij.*;
 import ij.gui.ImageWindow;
+import ij.gui.Overlay;
 import ij.gui.ImageCanvas;
 import ij.gui.Toolbar;
 import ij.gui.Arrow;
@@ -26,7 +27,8 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.*;
 import javax.swing.UIManager;
 
-public class AstroCanvas extends OverlayCanvas {
+public class AstroCanvas extends OverlayCanvas
+{
 
         public static final int ROT_0 = 0;
         public static final int ROT_90 = -90;
@@ -46,6 +48,11 @@ public class AstroCanvas extends OverlayCanvas {
         private WCS wcs = null;
         public boolean showRedCrossHairCursor = true;
         public boolean showAnnotations = true;
+    	private Image offScreenImage;
+    	private int offScreenWidth = 0;
+    	private int offScreenHeight = 0;
+    	private boolean flattening;
+    	private boolean drawNames;
 
         //the internal states yielding proper orientation of a canvas given flipX, flipY, and rotation settings
         private boolean netRotate; // netRotate = rotate -90 degrees - other rotations are accomplished with netFlipX/Y
@@ -105,6 +112,8 @@ public class AstroCanvas extends OverlayCanvas {
         DecimalFormat onePlace = new DecimalFormat("0.0", IJU.dfs);
         DecimalFormat noPlaces = new DecimalFormat("0", IJU.dfs);
 
+    	private Font font; // FIXME: font is also used in ImageCanvas.drawRoiLabel()
+
         public AstroCanvas(ImagePlus imp) {
             super(imp);
             Locale.setDefault(IJU.locale);
@@ -123,13 +132,13 @@ public class AstroCanvas extends OverlayCanvas {
 ////                    try {UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");}
 ////                    try {UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");}
 ////                    try {UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");}
-//            else 
+//            else
 //                    {
 //
 //                    try {UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");}
 ////                        try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
 //                    catch (Exception e) { }
-//                    }            
+//                    }
             buildRedCrossHairCursor();
             buildClearCursor();
 
@@ -170,22 +179,22 @@ public class AstroCanvas extends OverlayCanvas {
 			Image img = createImage(new MemoryImageSource(curWidth,curHeight,pix,0,curWidth));
             clearCursor = Toolkit.getDefaultToolkit().createCustomCursor(img,new Point(curWidth/2,curHeight/2),"clear cursor");
 			}
-        
+
     public void setShowAbsMag(boolean showMag)
         {
         showAbsMag = showMag;
         }
-    
+
     public boolean getShowAbsMag()
         {
         return showAbsMag;
         }
-    
+
     public void setShowIntCntWithAbsMag(boolean showIntCnt)
         {
         showIntCntWithAbsMag = showIntCnt;
         }
-    
+
     public boolean getShowIntCntWithAbsMag()
         {
         return showIntCntWithAbsMag;
@@ -222,18 +231,18 @@ public class AstroCanvas extends OverlayCanvas {
     public void setShowXY(boolean showOrientation) {
         showXY = showOrientation;
     }
-    
+
     public void setShowAnnotations(boolean showAnnotationsOnCanvas) {
         showAnnotations = showAnnotationsOnCanvas;
-    }    
-    
+    }
+
 
     public void setShowPixelScale(boolean showX, boolean showY, double XPixScale, double YPixScale) {
         XPixelScale = XPixScale;
         YPixelScale = YPixScale;
         showXScale = showX;
         showYScale = showY;
-        
+
         if (wcs != null && wcs.hasScale)
             {
             XPixelScale = wcs.getXScaleArcSec();
@@ -259,7 +268,7 @@ public class AstroCanvas extends OverlayCanvas {
 
     public void setWCS(WCS wcsIn) {
         wcs = wcsIn;
-    }    
+    }
 
     void setCanvasTransform() {
         isTransformed = flipX || flipY || rotation != ROT_0;
@@ -442,194 +451,221 @@ public class AstroCanvas extends OverlayCanvas {
             astronomyMode = enabled;
             }
 
-
-
     @Override
-	    public void paint(Graphics g) 
-            {
-            if (g != null)
-                {
-                invCanvTrans = ((Graphics2D)g).getTransform();
-                canvTrans = ((Graphics2D)g).getTransform();
-                Roi roi = imp.getRoi();
-        //		if (roi!=null || getShowAllROIs() || getOverlay()!=null) {
-                if (roi!=null) roi.updatePaste();
-                if (true)//!IJ.isMacOSX())
-                    {
-                    if (imageWidth!=0 && imageHeight!=0) 
-                        {
-                        paintDoubleBuffered(g);
-                        }
-                    return;
-                    }
-                else
-                    {
-        //		}
-                    try {
-                        if (imageUpdated) 
-                            {
-                            imageUpdated = false;
-                            imp.updateImage();
-                            }
-                        int clipWidth = srcRect.width+1; //+1 to allow for partial pixel at edge
-                        int clipHeight = srcRect.height+1; //+1 to allow for partial pixel at edge
-                        int offScrnWidth = (int)(clipWidth*magnification);
-                        int offScrnHeight = (int)(clipHeight*magnification);                        
-                        setInterpolation(g, Prefs.interpolateScaledImages);
-                        Image img = imp.getImage();
-                        if (isTransformed)
-                            flipAndRotateCanvas(g);
-                        if (!netRotate)
-                            {
-                            if (img!=null)
-                                {
-            //                    IJ.log("update: srcRect.x="+srcRect.x+"  srcRect.y="+srcRect.y);
-                                g.drawImage(img, 
-                                    srcRect.x<0?(int)(-srcRect.x*magnification):0, 
-                                    srcRect.y<0?(int)(-srcRect.y*magnification):0, 
-                                    srcRect.x+srcRect.width<imp.getWidth()?offScrnWidth:(int)((imp.getWidth()-srcRect.x)*magnification), //(int)(srcRect.width*magnification)-(int)((srcRect.x+srcRect.width-imp.getWidth())*magnification),
-                                    srcRect.y+srcRect.height<imp.getHeight()?offScrnHeight:(int)((imp.getHeight()-srcRect.y)*magnification),//(int)(srcRect.height*magnification)-(int)((srcRect.y+srcRect.height-imp.getHeight())*magnification),
-                                    srcRect.x<0?0:srcRect.x, 
-                                    srcRect.y<0?0:srcRect.y, 
-                                    srcRect.x+srcRect.width<imp.getWidth()?srcRect.x+clipWidth:imp.getWidth(), 
-                                    srcRect.y+srcRect.height<imp.getHeight()?srcRect.y+clipHeight:imp.getHeight(), 
-                                    null);
-                                }
-                            }
-                        else
-                            {
-                            if (img!=null) //needs updating when netRotate is implemented
-                                g.drawImage(img, 0, 0, (int)(srcRect.height*magnification), (int)(srcRect.width*magnification),
-                                (int)(srcRect.x+srcRect.width/2.0-srcRect.height/2.0),
-                                (int)(srcRect.y+srcRect.height/2.0-srcRect.width/2.0),
-                                (int)(srcRect.x+srcRect.width/2.0+srcRect.height/2.0),
-                                (int)(srcRect.y+srcRect.height/2.0+srcRect.width/2.0), null);
-                            }
-
-                        transEnabled = false;
-                        int xx1 = screenX(0) > 0 ? screenX(0) : 0;    //top left screen x-location
-                        int yy1 = screenY(0) > 0 ? screenY(0) : 0;    //top left screen y-location
-                        int xx2 = screenX(imp.getWidth()) < offScrnWidth ? screenX(imp.getWidth()) : offScrnWidth;    //bottom right image x-pixel plus 1
-                        int yy2 = screenY(imp.getHeight()) < offScrnHeight ? screenY(imp.getHeight()) : offScrnHeight;    //bottom right image y-pixel plus 1
-
-                        g.setColor(Color.WHITE);
-                        if (xx1 > 0)
-                            g.fillRect(0, 0, xx1, offScrnHeight);
-                        if (yy1 > 0)
-                            g.fillRect(xx1, 0 , offScrnWidth-xx1, yy1);
-                        if (xx2 < offScrnWidth)
-                            g.fillRect(xx2, yy1 , offScrnWidth-xx2, offScrnHeight-yy1);
-                        if (yy2 < offScrnHeight)
-                            g.fillRect(xx1, yy2 , xx2-xx1, offScrnHeight-yy2);
-                        transEnabled = true;
-
-                        if (showPhotometerCursor && mouseInImage && astronomyMode) updatePhotometerOverlay(g);
-                        OverlayCanvas oc = OverlayCanvas.getOverlayCanvas(imp);
-                        if (oc.numberOfRois() > 0) drawOverlayCanvas(g);
-                        transEnabled = false;
-                        if (overlay!=null) ((ImageCanvas)this).drawOverlay(overlay, g);
-                        if (showAllOverlay!=null) ((ImageCanvas)this).drawOverlay(showAllOverlay, g);
-                        if (roi!=null) drawRoi(roi, g);
-                        transEnabled = true;
-                        drawZoomIndicator(g);
-                        if (IJ.debugMode) showFrameRate(g);
-                        }
-                    catch(OutOfMemoryError e)
-                        {
-                        IJ.outOfMemory("Paint");
-                        }
-                    }
-                }
-            }
+	public void paint(Graphics g)
+    {
+		if (g != null) {
+			invCanvTrans = ((Graphics2D) g).getTransform();
+			canvTrans = ((Graphics2D) g).getTransform();
+			Roi roi = imp.getRoi();
+			if (roi != null)
+				roi.endPaste(); // FIXME: Was updatePaste
+			if (imageWidth != 0 && imageHeight != 0) {
+				paintDoubleBuffered(g);
+			}
+			return;
+		}
+	}
 
 	// Use double buffer to reduce flicker when drawing complex ROIs.
 	// Author: Erik Meijering
 	void paintDoubleBuffered(Graphics g) {
-        int clipWidth = srcRect.width+1; //+1 to allow for partial pixel at edge
-        int clipHeight = srcRect.height+1; //+1 to allow for partial pixel at edge
-		int offScrnWidth = (int)(clipWidth*magnification);
-		int offScrnHeight = (int)(clipHeight*magnification);
-		if (offScreenImage==null || offScreenWidth!=getWidth() || offScreenHeight!=getHeight()) {
+		int clipWidth = srcRect.width + 1; // +1 to allow for partial pixel at edge
+		int clipHeight = srcRect.height + 1; // +1 to allow for partial pixel at edge
+		int offScrnWidth = (int) (clipWidth * magnification);
+		int offScrnHeight = (int) (clipHeight * magnification);
+		if (offScreenImage == null
+			|| offScreenWidth != getWidth()
+			|| offScreenHeight != getHeight())
+		{
 			offScreenImage = createImage(getWidth(), getHeight());
 			offScreenWidth = getWidth();
 			offScreenHeight = getHeight();
 		}
 		Roi roi = imp.getRoi();
-		try {
-			if (imageUpdated) 
-                {
+		try
+		{
+			if (imageUpdated) {
 				imageUpdated = false;
 				imp.updateImage();
-                }
+			}
 			Graphics offScreenGraphics = offScreenImage.getGraphics();
 			setInterpolation(offScreenGraphics, Prefs.interpolateScaledImages);
 			Image img = imp.getImage();
-            if (isTransformed)
-                flipAndRotateCanvas(offScreenGraphics);
-            if (!netRotate)
-                {
-                if (img!=null)
-                    {
-//                    IJ.log("update: srcRect.x="+srcRect.x+"  srcRect.y="+srcRect.y);
-                    offScreenGraphics.drawImage(img, 
-                        srcRect.x<0?(int)(-srcRect.x*magnification):0, 
-                        srcRect.y<0?(int)(-srcRect.y*magnification):0, 
-                        srcRect.x+srcRect.width<imp.getWidth()?offScrnWidth:(int)((imp.getWidth()-srcRect.x)*magnification), //(int)(srcRect.width*magnification)-(int)((srcRect.x+srcRect.width-imp.getWidth())*magnification),
-                        srcRect.y+srcRect.height<imp.getHeight()?offScrnHeight:(int)((imp.getHeight()-srcRect.y)*magnification),//(int)(srcRect.height*magnification)-(int)((srcRect.y+srcRect.height-imp.getHeight())*magnification),
-                        srcRect.x<0?0:srcRect.x, 
-                        srcRect.y<0?0:srcRect.y, 
-                        srcRect.x+srcRect.width<imp.getWidth()?srcRect.x+clipWidth:imp.getWidth(), 
-                        srcRect.y+srcRect.height<imp.getHeight()?srcRect.y+clipHeight:imp.getHeight(), 
-                        null);
-                    }
-                }
-            else
-                {
-                if (img!=null)  //needs major updating when netRotate is implemented
-                    offScreenGraphics.drawImage(img, 0, 0, (int)(srcRect.height*magnification), (int)(srcRect.width*magnification),
-                    (int)(srcRect.x+srcRect.width/2.0-srcRect.height/2.0),
-                    (int)(srcRect.y+srcRect.height/2.0-srcRect.width/2.0),
-                    (int)(srcRect.x+srcRect.width/2.0+srcRect.height/2.0),
-                    (int)(srcRect.y+srcRect.height/2.0+srcRect.width/2.0), null);
-                }
+			if (isTransformed) {
+				flipAndRotateCanvas(offScreenGraphics);
+			}
+			if (!netRotate)
+			{
+				if (img != null) {
+					// IJ.log("update: srcRect.x="+srcRect.x+"
+					// srcRect.y="+srcRect.y);
+					offScreenGraphics.drawImage(img, srcRect.x < 0
+						? (int) (-srcRect.x * magnification)
+						: 0,
+						srcRect.y < 0
+							? (int) (-srcRect.y * magnification)
+							: 0,
+						srcRect.x + srcRect.width < imp.getWidth()
+							? offScrnWidth
+							: (int) ((imp.getWidth() - srcRect.x)
+								* magnification), // (int)(srcRect.width*magnification)-(int)((srcRect.x+srcRect.width-imp.getWidth())*magnification),
+						srcRect.y + srcRect.height < imp.getHeight()
+							? offScrnHeight
+							: (int) ((imp.getHeight() - srcRect.y)
+								* magnification), // (int)(srcRect.height*magnification)-(int)((srcRect.y+srcRect.height-imp.getHeight())*magnification),
+						srcRect.x < 0
+							? 0
+							: srcRect.x,
+						srcRect.y < 0
+							? 0
+							: srcRect.y,
+						srcRect.x + srcRect.width < imp.getWidth()
+							? srcRect.x + clipWidth
+							: imp.getWidth(),
+						srcRect.y + srcRect.height < imp.getHeight()
+							? srcRect.y + clipHeight
+							: imp.getHeight(),
+						null);
+				}
+			} else {
+				if (img != null) // needs major updating when netRotate is
+									// implemented
+					offScreenGraphics.drawImage(img, 0, 0,
+						(int) (srcRect.height * magnification),
+						(int) (srcRect.width * magnification),
+						(int) (srcRect.x + srcRect.width / 2.0
+							- srcRect.height / 2.0),
+						(int) (srcRect.y + srcRect.height / 2.0
+							- srcRect.width / 2.0),
+						(int) (srcRect.x + srcRect.width / 2.0
+							+ srcRect.height / 2.0),
+						(int) (srcRect.y + srcRect.height / 2.0
+							+ srcRect.width / 2.0),
+						null);
+			}
 
-            transEnabled = false;
-            int xx1 = screenX(0) > 0 ? screenX(0) : 0;    //top left screen x-location
-            int yy1 = screenY(0) > 0 ? screenY(0) : 0;    //top left screen y-location
-            int xx2 = screenX(imp.getWidth()) < offScrnWidth ? screenX(imp.getWidth()) : offScrnWidth;    //bottom right image x-pixel plus 1
-            int yy2 = screenY(imp.getHeight()) < offScrnHeight ? screenY(imp.getHeight()) : offScrnHeight;    //bottom right image y-pixel plus 1
-            
-            offScreenGraphics.setColor(Color.WHITE);
-            if (xx1 > 0)
-                offScreenGraphics.fillRect(0, 0, xx1, offScrnHeight);
-            if (yy1 > 0)
-                offScreenGraphics.fillRect(xx1, 0 , offScrnWidth-xx1, yy1);
-            if (xx2 < offScrnWidth)
-                offScreenGraphics.fillRect(xx2, yy1 , offScrnWidth-xx2, offScrnHeight-yy1);
-            if (yy2 < offScrnHeight)
-                offScreenGraphics.fillRect(xx1, yy2 , xx2-xx1, offScrnHeight-yy2);
-            transEnabled = true;
+			transEnabled = false;
+			int xx1 = screenX(0) > 0
+				? screenX(0)
+				: 0; // top left screen x-location
+			int yy1 = screenY(0) > 0
+				? screenY(0)
+				: 0; // top left screen y-location
+			int xx2 = screenX(imp.getWidth()) < offScrnWidth
+				? screenX(imp.getWidth())
+				: offScrnWidth; // bottom right image x-pixel plus 1
+			int yy2 = screenY(imp.getHeight()) < offScrnHeight
+				? screenY(imp.getHeight())
+				: offScrnHeight; // bottom right image y-pixel plus 1
 
-            if (showPhotometerCursor && mouseInImage && astronomyMode) updatePhotometerOverlay(offScreenGraphics);
-            OverlayCanvas oc = OverlayCanvas.getOverlayCanvas(imp);
-            if (oc.numberOfRois() > 0) drawOverlayCanvas(offScreenGraphics);
-            transEnabled = false;
-			if (overlay!=null) ((ImageCanvas)this).drawOverlay(overlay, offScreenGraphics);
-			if (showAllOverlay!=null) ((ImageCanvas)this).drawOverlay(showAllOverlay, offScreenGraphics);
-			if (roi!=null) drawRoi(roi, offScreenGraphics);
-            transEnabled = true;
+			offScreenGraphics.setColor(Color.WHITE);
+			if (xx1 > 0)
+				offScreenGraphics.fillRect(0, 0, xx1, offScrnHeight);
+			if (yy1 > 0)
+				offScreenGraphics.fillRect(xx1, 0, offScrnWidth - xx1, yy1);
+			if (xx2 < offScrnWidth)
+				offScreenGraphics.fillRect(xx2, yy1, offScrnWidth - xx2,
+					offScrnHeight - yy1);
+			if (yy2 < offScrnHeight)
+				offScreenGraphics.fillRect(xx1, yy2, xx2 - xx1,
+					offScrnHeight - yy2);
+			transEnabled = true;
+
+			if (showPhotometerCursor && mouseInImage && astronomyMode)
+				updatePhotometerOverlay(offScreenGraphics);
+			OverlayCanvas oc = OverlayCanvas.getOverlayCanvas(imp);
+			if (oc.numberOfRois() > 0)
+				drawOverlayCanvas(offScreenGraphics);
+			transEnabled = false;
+			if (getOverlay() != null)
+				((ImageCanvas) this).drawOverlay(getOverlay(), offScreenGraphics);
+			if (getShowAllList() != null)
+				((ImageCanvas) this).drawOverlay(getShowAllList(), offScreenGraphics);
+			if (roi != null)
+				drawRoi(roi, offScreenGraphics);
+			transEnabled = true;
 			drawZoomIndicator(offScreenGraphics);
-			if (IJ.debugMode) showFrameRate(offScreenGraphics);
+			if (IJ.debugMode)
+				showFrameRate(offScreenGraphics);
 
 			g.drawImage(offScreenImage, 0, 0, null);
-            
-            }
-		catch(OutOfMemoryError e) 
-            {
-            IJ.outOfMemory("Paint");
-            }
-        }
 
+		} catch (OutOfMemoryError e) {
+			IJ.outOfMemory("Paint");
+		}
+	}
+
+	private void drawOverlay(Overlay overlay, Graphics g) {
+		ImagePlus imp = getImage();
+		if (imp!=null && imp.getHideOverlay() && overlay!=getShowAllList())
+			return;
+		flattening = imp!=null && ImagePlus.flattenTitle.equals(imp.getTitle());
+		if (imp!=null && getShowAllList()!=null && overlay!=getShowAllList())
+			overlay.drawLabels(false);
+		Color labelColor = overlay.getLabelColor();
+		if (labelColor==null) labelColor = Color.white;
+		initGraphics(overlay, g, labelColor, Roi.getColor());
+		int n = overlay.size();
+		if (IJ.debugMode) IJ.log("drawOverlay: "+n);
+		int currentImage = imp!=null?imp.getCurrentSlice():-1;
+		int stackSize = imp.getStackSize();
+		if (stackSize==1)
+			currentImage = -1;
+		int channel=0, slice=0, frame=0;
+		boolean hyperstack = imp.isHyperStack();
+		if (hyperstack) {
+			channel = imp.getChannel();
+			slice = imp.getSlice();
+			frame = imp.getFrame();
+		}
+		drawNames = getOverlay().getDrawNames() && getOverlay().getDrawLabels();
+		boolean drawLabels = drawNames || overlay.getDrawLabels();
+		if (drawLabels)
+			labelRects = new Rectangle[n];
+		else
+			labelRects = null;
+		font = getOverlay().getLabelFont();
+		if (getOverlay().scalableLabels() && font!=null) {
+			double mag = getMagnification();
+			if (mag!=1.0)
+				font = font.deriveFont((float)(font.getSize()*mag));
+		}
+		Roi activeRoi = imp.getRoi();
+		boolean roiManagerShowAllMode = getOverlay()==getShowAllList() && !Prefs.showAllSliceOnly;
+		for (int i=0; i<n; i++) {
+			if (getOverlay()==null) break;
+			Roi roi = getOverlay().get(i);
+			if (roi==null) break;
+			if (hyperstack) {
+				int c = roi.getCPosition();
+				int z = roi.getZPosition();
+				int t = roi.getTPosition();
+				int position = roi.getPosition();
+				//IJ.log(c+" "+z+" "+t+"  "+position+" "+roiManagerShowAllMode);
+				if (position>0) {
+					if (z==0 && imp.getNSlices()>1)
+						z = position;
+					else if (t==0)
+						t = position;
+				}
+				if (((c==0||c==channel) && (z==0||z==slice) && (t==0||t==frame)) || roiManagerShowAllMode)
+					drawRoi(g, roi, drawLabels?i+LIST_OFFSET:-1);
+			} else {
+				int position =  stackSize>1?roi.getPosition():0;
+				if (position==0 && stackSize>1)
+					position = getSliceNumber(roi.getName());
+				if (position>0 && imp.getCompositeMode()==IJ.COMPOSITE)
+					position = 0;
+				//IJ.log(position+"  "+currentImage+" "+roiManagerShowAllMode);
+				if (position==0 || position==currentImage || roiManagerShowAllMode)
+					drawRoi(g, roi, drawLabels?i+LIST_OFFSET:-1);
+			}
+		}
+		((Graphics2D)g).setStroke(Roi.onePixelWide);
+		drawNames = false;
+		font = null;
+	}
 
 	public Image graphicsToImage(Graphics g) {   //used by AstroStackWindow to save image display
         int swidth = srcRect.width + 1;
@@ -667,8 +703,8 @@ public class AstroCanvas extends OverlayCanvas {
         OverlayCanvas oc = OverlayCanvas.getOverlayCanvas(imp);
         if (oc.numberOfRois() > 0) drawOverlayCanvas(imageGraphics);
         transEnabled = false;
-        if (overlay!=null) ((ImageCanvas)this).drawOverlay(overlay, imageGraphics);
-        if (showAllOverlay!=null) ((ImageCanvas)this).drawOverlay(showAllOverlay, imageGraphics);
+        if (getOverlay()!=null) ((ImageCanvas)this).drawOverlay(getOverlay(), imageGraphics);
+        if (getShowAllList()!=null) ((ImageCanvas)this).drawOverlay(getShowAllList(), imageGraphics);
         if (roi!=null) drawRoi(roi, imageGraphics);
         transEnabled = true;
         drawZoomIndicator(imageGraphics);
@@ -746,11 +782,11 @@ public class AstroCanvas extends OverlayCanvas {
         else
 //            ((Graphics2D)g).translate((srcRect.height+aspectDelta)*magnification/2.0, srcRect.width*magnification/2.0);
             ((Graphics2D)g).translate(transY+aspectDelta, transX);
-        
+
         if (netRotate) ((Graphics2D)g).rotate(Math.toRadians(ROT_90));
         if (netFlipX) ((Graphics2D)g).scale(-1.0,1.0);
         if (netFlipY) ((Graphics2D)g).scale(1.0, -1.0);
-        
+
 
         if (!netRotate)
 //            ((Graphics2D)g).translate(-srcRect.width*magnification/2.0, -srcRect.height*magnification/2.0);
@@ -763,9 +799,9 @@ public class AstroCanvas extends OverlayCanvas {
         canvTrans = ((Graphics2D)g).getTransform();
         transEnabled = true;
     }
-    
+
 @Override
-	 public void drawZoomIndicator(Graphics g) {   
+	 public void drawZoomIndicator(Graphics g) {
         ((Graphics2D)g).setTransform(invCanvTrans);
         g.setFont (p12);
 		g.setColor(zoomIndicatorColor);
@@ -790,7 +826,7 @@ public class AstroCanvas extends OverlayCanvas {
                     g.drawRect(x3, y3, w2, h2);
                 }
             }
-        
+
         if (showDir)
             {
             g.setColor(wcs.hasPA ? dirIndicatorColorWCS : dirIndicatorColor);
@@ -878,7 +914,7 @@ public class AstroCanvas extends OverlayCanvas {
             g.drawLine(startX, Y-5, startX, Y+5);
             g.drawLine(endX, Y-5, endX, Y+5);
             }
-        
+
         if (showYScale)
             {
             ((Graphics2D)g).translate(getWidth()/2.0, getHeight()/2.0);
@@ -909,13 +945,13 @@ public class AstroCanvas extends OverlayCanvas {
                 arcLen = length/getMagnification();
                 units = " pixels";
                 }
-            
+
             String label = (YPixelScale == 0.0 ? noPlaces.format(arcLen) : twoplaces.format(arcLen))+units;
 //            if (IJ.isMacOSX())  //work around an apparent OS X java bug that reverses characters in a string when canvas is rotated (at least in JRE 1.6.0_37 (32-bit)
 //                {
 //                label = new StringBuffer(label).reverse().toString();
 //                }
-            
+
             FontMetrics fm   = ((Graphics2D)g).getFontMetrics(p16);
             java.awt.geom.Rectangle2D rect = fm.getStringBounds(label, ((Graphics2D)g));
             int labelWidth  = (int)(rect.getWidth());
@@ -923,7 +959,7 @@ public class AstroCanvas extends OverlayCanvas {
             ((Graphics2D)g).drawLine(startX, Y, endX, Y);
             ((Graphics2D)g).drawLine(startX, Y-5, startX, Y+5);
             ((Graphics2D)g).drawLine(endX, Y-5, endX, Y+5);
-            if (IJ.isMacOSX())  //new workaround for Mac OS X vertical character reversals in some OS X versions. 
+            if (IJ.isMacOSX())  //new workaround for Mac OS X vertical character reversals in some OS X versions.
                                 //The web post source describes the fix as an "odd solution for this problem (that matches the oddness of the bug)"
                                 //see http://stackoverflow.com/questions/14569475/java-rotated-text-has-reversed-characters-sequence
                 {
@@ -935,8 +971,8 @@ public class AstroCanvas extends OverlayCanvas {
                 ((Graphics2D)g).drawString(label, (startX+endX-labelWidth+10)/2, Y - 4);//IJ.isMacOSX()?(startX+endX+labelWidth-10)/2:(startX+endX-labelWidth+10)/2, Y - 4);
                 }
             ((Graphics2D)g).setTransform(canvTrans);
-            }        
-            
+            }
+
         }
 
     void updateZoomBoxParameters()
@@ -1088,10 +1124,10 @@ public class AstroCanvas extends OverlayCanvas {
     public void repaint(int x, int y, int width, int height) {
         x = netFlipX ? getWidth() - x - width: x;
         y = netFlipY ? getHeight() - y - height: y;
-        
+
         super.repaint(x, y, width, height);
 //        updatePhotometerOverlay(imp.getCanvas().getGraphics());
-        
+
         }
 
     } // AstroCanvas class
