@@ -2,7 +2,7 @@
  * Syntetic Flatfield Generation
  * See github: https://github.com/lboclboc/Flatfield
  */
-// sPECIAL VERSION BY lAS kARLSSON
+// Special version by Lars Karlsson
 
 import ij.IJ;
 import ij.ImageJ;
@@ -62,12 +62,10 @@ public class Flatfield_ implements PlugIn
 	
 	// plugin parameters polynomial
 	private double a; // constant
-	private double b; // not used yet, rotation symmetric
 	private double c; // 2th degree
-	private double d; // not used yet, rotation symmetric
 	private double e; // 4th degree
-	private double f; // not used yet, rotation symmetric
 	private double g; // 6th degree
+	
 	private static String propertyFile = "flatfield.properties";
 	private Map<String, FlatfieldPreset> presets = new HashMap<String, FlatfieldPreset>();
 
@@ -80,7 +78,7 @@ public class Flatfield_ implements PlugIn
 	private TextField eField;
 	private TextField gField;
 	
-	
+	/*
 	private void readProperties() 
 	{
 		 try (InputStream input = getClass().getClassLoader().getResourceAsStream(propertyFile))
@@ -105,7 +103,7 @@ public class Flatfield_ implements PlugIn
 		            
 		            String[] result = entry.split(",");
 		            FlatfieldPreset preset = new FlatfieldPreset();
-		            for (int x=0; x < result.length; x++) {
+		            //for (int x=0; x < result.length; x++) {
 		            	preset.cameraName = result[0];
 		            	preset.optics = result[1];
 		            	preset.size.width = Integer.parseInt(result[2]);
@@ -116,7 +114,9 @@ public class Flatfield_ implements PlugIn
 		            	preset.c = Double.parseDouble(result[7]);
 		            	preset.e = Double.parseDouble(result[8]);
 		            	preset.g = Double.parseDouble(result[9]);
-		            }
+		            	
+		            	System.out.println("preset no " + i + " " + result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", " + result[4] + ", " + result[5] + ", " + result[6] + ", " + result[7] + ", " + result[8] + ", " + result[9]);
+		            //}
 		            presets.put(preset.cameraName, preset);
 		            i++;
 	            }
@@ -124,6 +124,46 @@ public class Flatfield_ implements PlugIn
 	        } catch (IOException ex) {
 	            ex.printStackTrace();
         }
+	 }
+	 */
+	
+	//get the default startup value (Last Work)
+	private void readProperties() 
+	{
+		 try (InputStream input = getClass().getClassLoader().getResourceAsStream(propertyFile))
+		 {
+			 Properties prop = new Properties();
+
+			 if (input == null) {
+				 System.out.println("Sorry, unable to find " + propertyFile);
+				 return;
+			 }
+
+			 //load a properties file from class path, inside static method
+			 prop.load(input);
+	            
+			 //get the property value and print it out
+			 String entry = prop.getProperty("flatfield.preset." + Integer.toString(1));
+			 String[] result = entry.split(",");
+			 FlatfieldPreset preset = new FlatfieldPreset();
+			 preset.cameraName = result[0];
+			 preset.optics = result[1];
+			 preset.size.width = Integer.parseInt(result[2]);
+			 preset.size.height = Integer.parseInt(result[3]);
+			 preset.opticalCenter.width = Integer.parseInt(result[4]);
+			 preset.opticalCenter.height = Integer.parseInt(result[5]);
+			 preset.a = Double.parseDouble(result[6]);
+			 preset.c = Double.parseDouble(result[7]);
+			 preset.e = Double.parseDouble(result[8]);
+			 preset.g = Double.parseDouble(result[9]);
+			 
+			 System.out.println("preset no 1 " + result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", " + result[4] + ", " + result[5] + ", " + result[6] + ", " + result[7] + ", " + result[8] + ", " + result[9]);
+		            
+			 presets.put(preset.cameraName, preset);
+	        }
+			catch (IOException ex) {
+	            ex.printStackTrace();
+			}
 	 }
 	
 	@Override
@@ -148,50 +188,46 @@ public class Flatfield_ implements PlugIn
 	{
 		GenericDialog gd = new GenericDialog("Flatfield");
 		
-		String[] exponentDef = {"-21","-20","-19","-18","-17","-16","-15","-14","-13","-12","-11","-10","-09","-08","-07","-06","-05","-04","-03","-02","-01","0","+01","+02"};
+		// String[] exponentDef = {"-21","-20","-19","-18","-17","-16","-15","-14","-13","-12","-11","-10","-09","-08","-07","-06","-05","-04","-03","-02","-01","0","+01","+02"};
 		// position                0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20  21    22    23
 		
 		// default value is 0.00, 2 digits right of the decimal point
 		
 		gd.addMessage("Generate flat image from polynomial");
 		gd.addMessage("Flat image dimensions");
-		gd.addMessage("Fill in values or select preset." );
+		gd.addMessage("Fill in values or select preset.");
+		gd.addMessage(preset.cameraName);
 		
 		gd.addNumericField("Width:", 2238, 0, 6, "pixel");
 		gd.addNumericField("Height:", 1477, 0, 6, "pixel");
 		gd.addNumericField("Optical center X:", 1100, 0, 6, "pixel");
 		gd.addNumericField("Optical center Y:", 730, 0, 6, "pixel");
 		
-		gd.addMessage("Polynomial constants");
-		gd.addNumericField("a bas: ", +9.57, 5, 7, "* 10^exp * r^0"); // should be normalized to 1 in center !gd.addToSameRow();
-		gd.addChoice("a exp: ", exponentDef, exponentDef[20]);
-						
-		gd.addNumericField("c bas:", -9.4, 5, 7, "* 10^exp * r^2");
-		gd.addChoice("c exp: ", exponentDef, exponentDef[14]);
-						
-		gd.addNumericField("e bas: ", +1.3, 5, 7, "* 10^exp * r^4");
-		gd.addChoice("e exp: ", exponentDef, exponentDef[8]);
+		gd.addMessage("Polynomial constants = a*r^0 + c*r^2 + e*r^4 + g*r^6");
+		gd.addNumericField("a = ", 1, 4, 12, ""); // should be normalized to 1 in center
+		gd.addNumericField("c = ", 2, 4, 12, "");
+		gd.addNumericField("e = ", 3, 4, 12, "");
+		gd.addNumericField("g = ", 4, 4, 12, "");
 		
-		gd.addNumericField("d bas: ", -6.7, 5, 7, "* 10^exp * r^6, only in difficult case");
-		gd.addChoice("d exp: ", exponentDef, exponentDef[2]);
-		gd.addChoice("Presets: ", (String []) presets.keySet().toArray(new String[0]), "Latest");				
+		gd.addChoice("Presets: ", (String []) presets.keySet().toArray(new String[0]), "Latest");	
+		
 		gd.addMessage("Choose parameters to get it normalized to =1 in center");
 		gd.addMessage("Values lower than 0.3, i.e. vignetting of 70% will be cut");
 		gd.addMessage("Use Excel sheet to simulate curve and calculate constants");
 		gd.addMessage("www.astrofriend.eu/astronomy/tutorials");
 		gd.addMessage("See AstroImageJ tutorial page 3");
 		gd.addMessage(" ");
-		gd.addMessage("Version 20200304");
+		gd.addMessage("Version 20200310");
 
 
-		Choice presetChoice = (Choice)(gd.getChoices().get(4));
+		Choice presetChoice = (Choice)(gd.getChoices().get(0));
 		presetChoice.addItemListener(new java.awt.event.ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				FlatfieldPreset preset = presets.get((String)e.getItem());
 				widthField.setText(Integer.toString(preset.size.width));
 				heightField.setText(Integer.toString(preset.size.height));
-				centerWidthField.setText(Integer.toString(preset.opticalCenter.height));
+				centerWidthField.setText(Integer.toString(preset.opticalCenter.width));
 				centerHeightField.setText(Integer.toString(preset.opticalCenter.height));
 				aField.setText(Double.toString(preset.a));
 				cField.setText(Double.toString(preset.c));
@@ -219,30 +255,13 @@ public class Flatfield_ implements PlugIn
 		opt_cent_x = (int)gd.getNextNumber();
 		opt_cent_y = (int)gd.getNextNumber();
 		
-		double a_bas = gd.getNextNumber();
-		String a_exp = gd.getNextChoice();
-		a = a_bas * Math.pow(10, Double.parseDouble(a_exp));
-			
-		b = 0; // spare part for future maybe
+		a = gd.getNextNumber();
+		c = gd.getNextNumber();
+		e = gd.getNextNumber();
+		g = gd.getNextNumber();
 				
-		double c_bas = gd.getNextNumber();
-		String c_exp = gd.getNextChoice();
-		c = c_bas * Math.pow(10, Double.parseDouble(c_exp));
-		
-		d = 0; // spare part for future maybe
-				
-		double e_bas = gd.getNextNumber();
-		String e_exp = gd.getNextChoice();
-		e = e_bas * Math.pow(10, Double.parseDouble(e_exp));
-		
-		d = 0; // spare part for future maybe
-		
-		double g_bas = gd.getNextNumber();
-		String g_exp = gd.getNextChoice();
-		g = g_bas * Math.pow(10, Double.parseDouble(g_exp));
-		
 		// Check calculations:
-		System.out.println("A constant = " + a + ", B constant = " + b + ", C constant = " + c + ", D constant = " + d + ", E constant = " + e + ", F constant = " + f + ", G constant = " + g);
+		System.out.println("A constant = " + a + ", C constant = " + c + ", E constant = " + e + ", G constant = " + g);
 		
 		return true;
 	}
