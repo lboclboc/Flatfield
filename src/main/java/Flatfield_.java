@@ -61,14 +61,16 @@ public class Flatfield_ implements PlugIn
 	private int opt_cent_y; // In pixels
 	
 	// plugin parameters polynomial
-	private double a; // constant
+	private double a; // 0th constant
 	private double c; // 2th degree
 	private double e; // 4th degree
 	private double g; // 6th degree
 	
 	private static String propertyFile = "flatfield.properties";
 	private Map<String, FlatfieldPreset> presets = new HashMap<String, FlatfieldPreset>();
-
+	
+	private TextField cameraNameField;
+	private TextField opticsField;
 	private TextField widthField;
 	private TextField heightField;
 	private TextField centerWidthField;
@@ -78,7 +80,6 @@ public class Flatfield_ implements PlugIn
 	private TextField eField;
 	private TextField gField;
 	
-	/*
 	private void readProperties() 
 	{
 		 try (InputStream input = getClass().getClassLoader().getResourceAsStream(propertyFile))
@@ -87,7 +88,7 @@ public class Flatfield_ implements PlugIn
 
 	            if (input == null) {
 	                System.out.println("Sorry, unable to find " + propertyFile);
-	                return;
+	                return; // add: create a data base if it's missing
 	            }
 
 	            //load a properties file from class path, inside static method
@@ -118,53 +119,16 @@ public class Flatfield_ implements PlugIn
 		            	System.out.println("preset no " + i + " " + result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", " + result[4] + ", " + result[5] + ", " + result[6] + ", " + result[7] + ", " + result[8] + ", " + result[9]);
 		            //}
 		            presets.put(preset.cameraName, preset);
+		            
 		            i++;
 	            }
+	            System.out.println("Camera no " + i + presets);
 
 	        } catch (IOException ex) {
 	            ex.printStackTrace();
         }
 	 }
-	 */
-	
-	//get the default startup value (Last Work)
-	private void readProperties() 
-	{
-		 try (InputStream input = getClass().getClassLoader().getResourceAsStream(propertyFile))
-		 {
-			 Properties prop = new Properties();
 
-			 if (input == null) {
-				 System.out.println("Sorry, unable to find " + propertyFile);
-				 return;
-			 }
-
-			 //load a properties file from class path, inside static method
-			 prop.load(input);
-	            
-			 //get the property value and print it out
-			 String entry = prop.getProperty("flatfield.preset." + Integer.toString(1));
-			 String[] result = entry.split(",");
-			 FlatfieldPreset preset = new FlatfieldPreset();
-			 preset.cameraName = result[0];
-			 preset.optics = result[1];
-			 preset.size.width = Integer.parseInt(result[2]);
-			 preset.size.height = Integer.parseInt(result[3]);
-			 preset.opticalCenter.width = Integer.parseInt(result[4]);
-			 preset.opticalCenter.height = Integer.parseInt(result[5]);
-			 preset.a = Double.parseDouble(result[6]);
-			 preset.c = Double.parseDouble(result[7]);
-			 preset.e = Double.parseDouble(result[8]);
-			 preset.g = Double.parseDouble(result[9]);
-			 
-			 System.out.println("preset no 1 " + result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", " + result[4] + ", " + result[5] + ", " + result[6] + ", " + result[7] + ", " + result[8] + ", " + result[9]);
-		            
-			 presets.put(preset.cameraName, preset);
-	        }
-			catch (IOException ex) {
-	            ex.printStackTrace();
-			}
-	 }
 	
 	@Override
 	public void run(String value) {
@@ -188,29 +152,27 @@ public class Flatfield_ implements PlugIn
 	{
 		GenericDialog gd = new GenericDialog("Flatfield");
 		
-		// String[] exponentDef = {"-21","-20","-19","-18","-17","-16","-15","-14","-13","-12","-11","-10","-09","-08","-07","-06","-05","-04","-03","-02","-01","0","+01","+02"};
-		// position                0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20  21    22    23
-		
-		// default value is 0.00, 2 digits right of the decimal point
-		
+		// default value is 0.0000E-2, 4 digits right of the decimal point
+				
 		gd.addMessage("Generate flat image from polynomial");
-		gd.addMessage("Flat image dimensions");
-		gd.addMessage("Fill in values or select preset.");
-		gd.addMessage(preset.cameraName);
 		
-		gd.addNumericField("Width:", 2238, 0, 6, "pixel");
-		gd.addNumericField("Height:", 1477, 0, 6, "pixel");
-		gd.addNumericField("Optical center X:", 1100, 0, 6, "pixel");
-		gd.addNumericField("Optical center Y:", 730, 0, 6, "pixel");
+		gd.addChoice("Presets: ", (String []) presets.keySet().toArray(new String[0]), "Latest");
+		gd.addStringField("Optics: ", "optic",18);
+		
+		gd.addMessage("Fill in values or select preset.");
+				
+		gd.addMessage("Flat image dimensions");
+		gd.addNumericField("Width:", 0, 0, 6, "pixel");
+		gd.addNumericField("Height:", 0, 0, 6, "pixel");
+		gd.addNumericField("Optical center X:", 0, 0, 6, "pixel");
+		gd.addNumericField("Optical center Y:", 0, 0, 6, "pixel");
 		
 		gd.addMessage("Polynomial constants = a*r^0 + c*r^2 + e*r^4 + g*r^6");
-		gd.addNumericField("a = ", 1, 4, 12, ""); // should be normalized to 1 in center
-		gd.addNumericField("c = ", 2, 4, 12, "");
-		gd.addNumericField("e = ", 3, 4, 12, "");
-		gd.addNumericField("g = ", 4, 4, 12, "");
-		
-		gd.addChoice("Presets: ", (String []) presets.keySet().toArray(new String[0]), "Latest");	
-		
+		gd.addNumericField("a = ", 0, 4, 12, ""); // should be normalized to 1 in center
+		gd.addNumericField("c = ", 0, 4, 12, "");
+		gd.addNumericField("e = ", 0, 4, 12, "");
+		gd.addNumericField("g = ", 0, 4, 12, "");
+				
 		gd.addMessage("Choose parameters to get it normalized to =1 in center");
 		gd.addMessage("Values lower than 0.3, i.e. vignetting of 70% will be cut");
 		gd.addMessage("Use Excel sheet to simulate curve and calculate constants");
@@ -225,6 +187,7 @@ public class Flatfield_ implements PlugIn
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				FlatfieldPreset preset = presets.get((String)e.getItem());
+				opticsField.setText((preset.optics));
 				widthField.setText(Integer.toString(preset.size.width));
 				heightField.setText(Integer.toString(preset.size.height));
 				centerWidthField.setText(Integer.toString(preset.opticalCenter.width));
@@ -236,6 +199,7 @@ public class Flatfield_ implements PlugIn
 			}
 		});
 		
+		opticsField = (TextField)gd.getStringFields().get(0);
 		widthField = (TextField)gd.getNumericFields().get(0);
 		heightField = (TextField)gd.getNumericFields().get(1);
 		centerWidthField = (TextField)gd.getNumericFields().get(2);
