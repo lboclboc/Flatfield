@@ -1,12 +1,8 @@
 /*
- * To the extent possible under law, the ImageJ developers have waived
- * all copyright and related or neighboring rights to this tutorial code.
- *
- * See the CC0 1.0 Universal license for details:
- *     http://creativecommons.org/publicdomain/zero/1.0/
+ * Syntetic Flatfield Generation
+ * See github: https://github.com/lboclboc/Flatfield
  */
 // sPECIAL VERSION BY lAS kARLSSON
-// Added z4, z5 and opticl center
 
 import ij.IJ;
 import ij.ImageJ;
@@ -15,8 +11,47 @@ import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
 import ij.process.ImageProcessor;
 import java.lang.System;
+import java.util.Properties;
+import java.io.InputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.awt.Choice;
+import java.awt.TextField;
+import java.awt.event.ItemEvent;
 
-public class Flatfield_ implements PlugIn {
+
+class Rectangle
+{
+	public Rectangle(int w, int h) {
+		width = w;
+		height = h;
+	}
+	public int width;
+	public int height;
+}
+
+
+class FlatfieldPreset
+{
+	public FlatfieldPreset() {
+		cameraName = "";
+		optics = "";
+		size = new Rectangle(0, 0);
+		opticalCenter = new Rectangle(0, 0);
+		a = c = e = g = 0.0;
+	}
+
+	public String cameraName;
+	public String optics;
+	public Rectangle size;
+	public Rectangle opticalCenter;
+	public double a, c, e, g;
+}
+
+
+public class Flatfield_ implements PlugIn
+{
 	protected ImagePlus image;
 
 	// image property members
@@ -33,10 +68,69 @@ public class Flatfield_ implements PlugIn {
 	private double e; // 4th degree
 	private double f; // not used yet, rotation symmetric
 	private double g; // 6th degree
+	private static String propertyFile = "flatfield.properties";
+	private Map<String, FlatfieldPreset> presets = new HashMap<String, FlatfieldPreset>();
 
+	private TextField widthField;
+	private TextField heightField;
+	private TextField centerWidthField;
+	private TextField centerHeightField;
+	private TextField aField;
+	private TextField cField;
+	private TextField eField;
+	private TextField gField;
+	
+	
+	private void readProperties() 
+	{
+		 try (InputStream input = getClass().getClassLoader().getResourceAsStream(propertyFile))
+		 {
+	            Properties prop = new Properties();
+
+	            if (input == null) {
+	                System.out.println("Sorry, unable to find " + propertyFile);
+	                return;
+	            }
+
+	            //load a properties file from class path, inside static method
+	            prop.load(input);
+	            int i = 1;
+	            while(true)
+	            {
+		            //get the property value and print it out
+		            String entry = prop.getProperty("flatfield.preset." + Integer.toString(i));
+		            if (entry == null) {
+		            	break;
+		            }
+		            
+		            String[] result = entry.split(",");
+		            FlatfieldPreset preset = new FlatfieldPreset();
+		            for (int x=0; x < result.length; x++) {
+		            	preset.cameraName = result[0];
+		            	preset.optics = result[1];
+		            	preset.size.width = Integer.parseInt(result[2]);
+		            	preset.size.height = Integer.parseInt(result[3]);
+		            	preset.opticalCenter.width = Integer.parseInt(result[4]);
+		            	preset.opticalCenter.height = Integer.parseInt(result[5]);
+		            	preset.a = Double.parseDouble(result[6]);
+		            	preset.c = Double.parseDouble(result[7]);
+		            	preset.e = Double.parseDouble(result[8]);
+		            	preset.g = Double.parseDouble(result[9]);
+		            }
+		            presets.put(preset.cameraName, preset);
+		            i++;
+	            }
+
+	        } catch (IOException ex) {
+	            ex.printStackTrace();
+        }
+	 }
+	
 	@Override
 	public void run(String value) {
 		// get width, height and optical center
+		
+		readProperties();
 
 		if (showDialog()) {
 			// open the Clown sample
@@ -50,7 +144,8 @@ public class Flatfield_ implements PlugIn {
 		}
 	}
 
-	private boolean showDialog() {
+	private boolean showDialog()
+	{
 		GenericDialog gd = new GenericDialog("Flatfield");
 		
 		String[] exponentDef = {"-21","-20","-19","-18","-17","-16","-15","-14","-13","-12","-11","-10","-09","-08","-07","-06","-05","-04","-03","-02","-01","0","+01","+02"};
@@ -60,6 +155,8 @@ public class Flatfield_ implements PlugIn {
 		
 		gd.addMessage("Generate flat image from polynomial");
 		gd.addMessage("Flat image dimensions");
+		gd.addMessage("Fill in values or select preset." );
+		
 		gd.addNumericField("Width:", 2238, 0, 6, "pixel");
 		gd.addNumericField("Height:", 1477, 0, 6, "pixel");
 		gd.addNumericField("Optical center X:", 1100, 0, 6, "pixel");
@@ -77,7 +174,7 @@ public class Flatfield_ implements PlugIn {
 		
 		gd.addNumericField("d bas: ", -6.7, 5, 7, "* 10^exp * r^6, only in difficult case");
 		gd.addChoice("d exp: ", exponentDef, exponentDef[2]);
-				
+		gd.addChoice("Presets: ", (String []) presets.keySet().toArray(new String[0]), "Latest");				
 		gd.addMessage("Choose parameters to get it normalized to =1 in center");
 		gd.addMessage("Values lower than 0.3, i.e. vignetting of 70% will be cut");
 		gd.addMessage("Use Excel sheet to simulate curve and calculate constants");
@@ -85,7 +182,33 @@ public class Flatfield_ implements PlugIn {
 		gd.addMessage("See AstroImageJ tutorial page 3");
 		gd.addMessage(" ");
 		gd.addMessage("Version 20200304");
+
+
+		Choice presetChoice = (Choice)(gd.getChoices().get(4));
+		presetChoice.addItemListener(new java.awt.event.ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				FlatfieldPreset preset = presets.get((String)e.getItem());
+				widthField.setText(Integer.toString(preset.size.width));
+				heightField.setText(Integer.toString(preset.size.height));
+				centerWidthField.setText(Integer.toString(preset.opticalCenter.height));
+				centerHeightField.setText(Integer.toString(preset.opticalCenter.height));
+				aField.setText(Double.toString(preset.a));
+				cField.setText(Double.toString(preset.c));
+				eField.setText(Double.toString(preset.e));
+				gField.setText(Double.toString(preset.g));
+			}
+		});
 		
+		widthField = (TextField)gd.getNumericFields().get(0);
+		heightField = (TextField)gd.getNumericFields().get(1);
+		centerWidthField = (TextField)gd.getNumericFields().get(2);
+		centerHeightField = (TextField)gd.getNumericFields().get(3);
+		aField = (TextField)gd.getNumericFields().get(4);
+		cField = (TextField)gd.getNumericFields().get(5);
+		eField = (TextField)gd.getNumericFields().get(6);
+		gField = (TextField)gd.getNumericFields().get(7);
+	
 		gd.showDialog();
 		if (gd.wasCanceled())
 			return false;
