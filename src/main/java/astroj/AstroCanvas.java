@@ -10,6 +10,7 @@ import ij.plugin.frame.Recorder;
 import ij.plugin.frame.RoiManager;
 import ij.macro.*;
 import ij.gui.StackWindow;
+import ij.gui.TextRoi;
 import ij.gui.Roi;
 import ij.*;
 import ij.gui.ImageWindow;
@@ -579,9 +580,9 @@ public class AstroCanvas extends OverlayCanvas
 				drawOverlayCanvas(offScreenGraphics);
 			transEnabled = false;
 			if (getOverlay() != null)
-				((ImageCanvas) this).drawOverlay(getOverlay(), offScreenGraphics);
+				drawOverlay(getOverlay(), offScreenGraphics);
 			if (getShowAllList() != null)
-				((ImageCanvas) this).drawOverlay(getShowAllList(), offScreenGraphics);
+				drawOverlay(getShowAllList(), offScreenGraphics);
 			if (roi != null)
 				drawRoi(roi, offScreenGraphics);
 			transEnabled = true;
@@ -621,10 +622,13 @@ public class AstroCanvas extends OverlayCanvas
 		}
 		drawNames = getOverlay().getDrawNames() && getOverlay().getDrawLabels();
 		boolean drawLabels = drawNames || overlay.getDrawLabels();
+/*
+FIXME: Removed labelRects
 		if (drawLabels)
 			labelRects = new Rectangle[n];
 		else
 			labelRects = null;
+*/
 		font = getOverlay().getLabelFont();
 		if (getOverlay().scalableLabels() && font!=null) {
 			double mag = getMagnification();
@@ -650,7 +654,7 @@ public class AstroCanvas extends OverlayCanvas
 						t = position;
 				}
 				if (((c==0||c==channel) && (z==0||z==slice) && (t==0||t==frame)) || roiManagerShowAllMode)
-					drawRoi(g, roi, drawLabels?i+LIST_OFFSET:-1);
+					drawRoi(g, roi, drawLabels?i+100000:-1);
 			} else {
 				int position =  stackSize>1?roi.getPosition():0;
 				if (position==0 && stackSize>1)
@@ -659,13 +663,39 @@ public class AstroCanvas extends OverlayCanvas
 					position = 0;
 				//IJ.log(position+"  "+currentImage+" "+roiManagerShowAllMode);
 				if (position==0 || position==currentImage || roiManagerShowAllMode)
-					drawRoi(g, roi, drawLabels?i+LIST_OFFSET:-1);
+					drawRoi(g, roi, drawLabels?i+100000:-1);
 			}
 		}
 		((Graphics2D)g).setStroke(Roi.onePixelWide);
 		drawNames = false;
 		font = null;
 	}
+	
+    void drawRoi(Graphics g, Roi roi, int index) {
+		ImagePlus imp2 = roi.getImage();
+		roi.setImage(imp);
+		Color saveColor = roi.getStrokeColor();
+		if (saveColor==null)
+			roi.setStrokeColor(defaultColor);
+		if (roi.getStroke()==null)
+			((Graphics2D)g).setStroke(Roi.onePixelWide);
+		if (roi instanceof TextRoi)
+			((TextRoi)roi).drawText(g);
+		else
+			roi.drawOverlay(g);
+		roi.setStrokeColor(saveColor);
+		if (index>=0) {
+			if (roi==currentRoi)
+				g.setColor(Roi.getColor());
+			else
+				g.setColor(defaultColor);
+			drawRoiLabel(g, index, roi);
+		}
+		if (imp2!=null)
+			roi.setImage(imp2);
+		else
+			roi.setImage(null);
+    }
 
 	public Image graphicsToImage(Graphics g) {   //used by AstroStackWindow to save image display
         int swidth = srcRect.width + 1;
@@ -703,8 +733,8 @@ public class AstroCanvas extends OverlayCanvas
         OverlayCanvas oc = OverlayCanvas.getOverlayCanvas(imp);
         if (oc.numberOfRois() > 0) drawOverlayCanvas(imageGraphics);
         transEnabled = false;
-        if (getOverlay()!=null) ((ImageCanvas)this).drawOverlay(getOverlay(), imageGraphics);
-        if (getShowAllList()!=null) ((ImageCanvas)this).drawOverlay(getShowAllList(), imageGraphics);
+        if (getOverlay()!=null) drawOverlay(getOverlay(), imageGraphics);
+        if (getShowAllList()!=null) drawOverlay(getShowAllList(), imageGraphics);
         if (roi!=null) drawRoi(roi, imageGraphics);
         transEnabled = true;
         drawZoomIndicator(imageGraphics);

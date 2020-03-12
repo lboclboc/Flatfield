@@ -7203,4 +7203,28 @@ ImageProcessor removeGradient(ImageProcessor ip) { //Removes the average gradien
         Prefs.set ("dataproc.lonNegate",lonNegate);
         }
 
+    	/**
+    	 * Main method for debugging.
+    	 *
+    	 * For debugging, it is convenient to have a method that starts ImageJ, loads
+    	 * an image and calls the plugin, e.g. after setting breakpoints.
+    	 *
+    	 * @param args unused
+    	 */
+    	public static void main(String[] args) throws Exception {
+    		// set the plugins.dir property to make the plugin appear in the Plugins menu
+    		// see: https://stackoverflow.com/a/7060464/1207769
+    		Class<?> clazz = Data_Processor.class;
+    		java.net.URL url = clazz.getProtectionDomain().getCodeSource().getLocation();
+    		java.io.File file = new java.io.File(url.toURI());
+    		System.setProperty("plugins.dir", file.getAbsolutePath());
+    		System.out.println("plugins.dir: " + System.getProperty("plugins.dir"));
+
+    		// start ImageJ
+    		new ImageJ();
+
+    		// run the plugin
+    		IJ.runPlugIn(clazz.getName(), "");
+    	}
+
 	}
