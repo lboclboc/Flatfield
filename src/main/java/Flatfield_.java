@@ -39,14 +39,14 @@ class FlatfieldPreset
 		optics = "";
 		size = new Rectangle(0, 0);
 		opticalCenter = new Rectangle(0, 0);
-		a = c = e = g = 0.0;
+		a = c = e = g = i = 0.0;
 	}
 
 	public String cameraName;
 	public String optics;
 	public Rectangle size;
 	public Rectangle opticalCenter;
-	public double a, c, e, g;
+	public double a, c, e, g, i;
 }
 
 
@@ -65,6 +65,7 @@ public class Flatfield_ implements PlugIn
 	private double c; // 2th degree
 	private double e; // 4th degree
 	private double g; // 6th degree
+	private double i; // 8th degree
 	
 	private static String propertyFile = "flatfield.properties";
 	private Map<String, FlatfieldPreset> presets = new HashMap<String, FlatfieldPreset>();
@@ -79,6 +80,7 @@ public class Flatfield_ implements PlugIn
 	private TextField cField;
 	private TextField eField;
 	private TextField gField;
+	private TextField iField;
 	
 	private void readProperties() 
 	{
@@ -93,11 +95,11 @@ public class Flatfield_ implements PlugIn
 
 	            //load a properties file from class path, inside static method
 	            prop.load(input);
-	            int i = 1;
+	            int j = 1;
 	            while(true)
 	            {
 		            //get the property value and print it out
-		            String entry = prop.getProperty("flatfield.preset." + Integer.toString(i));
+		            String entry = prop.getProperty("flatfield.preset." + Integer.toString(j));
 		            if (entry == null) {
 		            	break;
 		            }
@@ -115,14 +117,15 @@ public class Flatfield_ implements PlugIn
 		            	preset.c = Double.parseDouble(result[7]);
 		            	preset.e = Double.parseDouble(result[8]);
 		            	preset.g = Double.parseDouble(result[9]);
+		            	preset.i = Double.parseDouble(result[10]);
 		            	
-		            	System.out.println("preset no " + i + " " + result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", " + result[4] + ", " + result[5] + ", " + result[6] + ", " + result[7] + ", " + result[8] + ", " + result[9]);
+		            	System.out.println("preset no " + j + " " + result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", " + result[4] + ", " + result[5] + ", " + result[6] + ", " + result[7] + ", " + result[8] + ", " + result[9] + ", " + result[10]);
 		            //}
 		            presets.put(preset.cameraName, preset);
 		            
-		            i++;
+		            j++;
 	            }
-	            System.out.println("Camera no " + i + presets);
+	            System.out.println("Camera no " + j + presets);
 
 	        } catch (IOException ex) {
 	            ex.printStackTrace();
@@ -167,11 +170,12 @@ public class Flatfield_ implements PlugIn
 		gd.addNumericField("Optical center X:", 0, 0, 6, "pixel");
 		gd.addNumericField("Optical center Y:", 0, 0, 6, "pixel");
 		
-		gd.addMessage("Polynomial constants = a*r^0 + c*r^2 + e*r^4 + g*r^6");
-		gd.addNumericField("a = ", 0, 4, 12, ""); // should be normalized to 1 in center
+		gd.addMessage("Polynomial constants = a*r^0 + c*r^2 + e*r^4 + g*r^6 + i*r^8");
+		gd.addNumericField("a = ", 0, 4, 12, "format -1.3E+12"); // should be normalized to 1 in center
 		gd.addNumericField("c = ", 0, 4, 12, "");
 		gd.addNumericField("e = ", 0, 4, 12, "");
 		gd.addNumericField("g = ", 0, 4, 12, "");
+		gd.addNumericField("i = ", 0, 4, 12, "");
 				
 		gd.addMessage("Choose parameters to get it normalized to =1 in center");
 		gd.addMessage("Values lower than 0.3, i.e. vignetting of 70% will be cut");
@@ -179,7 +183,7 @@ public class Flatfield_ implements PlugIn
 		gd.addMessage("www.astrofriend.eu/astronomy/tutorials");
 		gd.addMessage("See AstroImageJ tutorial page 3");
 		gd.addMessage(" ");
-		gd.addMessage("Version 20200310");
+		gd.addMessage("Version 20200323");
 
 
 		Choice presetChoice = (Choice)(gd.getChoices().get(0));
@@ -196,6 +200,7 @@ public class Flatfield_ implements PlugIn
 				cField.setText(Double.toString(preset.c));
 				eField.setText(Double.toString(preset.e));
 				gField.setText(Double.toString(preset.g));
+				iField.setText(Double.toString(preset.i));
 			}
 		});
 		
@@ -208,6 +213,7 @@ public class Flatfield_ implements PlugIn
 		cField = (TextField)gd.getNumericFields().get(5);
 		eField = (TextField)gd.getNumericFields().get(6);
 		gField = (TextField)gd.getNumericFields().get(7);
+		iField = (TextField)gd.getNumericFields().get(8);
 	
 		gd.showDialog();
 		if (gd.wasCanceled())
@@ -223,9 +229,10 @@ public class Flatfield_ implements PlugIn
 		c = gd.getNextNumber();
 		e = gd.getNextNumber();
 		g = gd.getNextNumber();
+		i = gd.getNextNumber();
 				
 		// Check calculations:
-		System.out.println("A constant = " + a + ", C constant = " + c + ", E constant = " + e + ", G constant = " + g);
+		System.out.println("A constant = " + a + ", C constant = " + c + ", E constant = " + e + ", G constant = " + g + ", I constant = " + i);
 		
 		return true;
 	}
@@ -267,7 +274,7 @@ public class Flatfield_ implements PlugIn
 		for (int y=0; y < height; y++) {
 			for (int x=0; x < width; x++) {
 				double radie = Math.sqrt(Math.pow(x - opt_cent_x, 2) + Math.pow(y - opt_cent_y, 2)); // only integers
-				float level = (float)(a + c*Math.pow(radie, 2) + e*Math.pow(radie, 4) + g*Math.pow(radie, 6));
+				float level = (float)(a + c*Math.pow(radie, 2) + e*Math.pow(radie, 4) + g*Math.pow(radie, 6) + i*Math.pow(radie, 8));
 				if (level < 0.3f) { // no correction of abnorm vignetting
 					level = 0.3f;
 				}
