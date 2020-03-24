@@ -175,7 +175,7 @@ public class Flatfield_ implements PlugIn
 		gd.addNumericField("c = ", 0, 4, 12, "");
 		gd.addNumericField("e = ", 0, 4, 12, "");
 		gd.addNumericField("g = ", 0, 4, 12, "");
-		gd.addNumericField("i = ", 0, 4, 12, "");
+		gd.addNumericField("i = ", 0, 4, 12, " ");
 				
 		gd.addMessage("Choose parameters to get it normalized to =1 in center");
 		gd.addMessage("Values lower than 0.3, i.e. vignetting of 70% will be cut");
