@@ -119,13 +119,13 @@ public class Flatfield_ implements PlugIn
 		            	preset.g = Double.parseDouble(result[9]);
 		            	preset.i = Double.parseDouble(result[10]);
 		            	
-		            	System.out.println("preset no " + j + " " + result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", " + result[4] + ", " + result[5] + ", " + result[6] + ", " + result[7] + ", " + result[8] + ", " + result[9] + ", " + result[10]);
+		            	// System.out.println("preset no " + j + " " + result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", " + result[4] + ", " + result[5] + ", " + result[6] + ", " + result[7] + ", " + result[8] + ", " + result[9] + ", " + result[10]);
 		            //}
 		            presets.put(preset.cameraName, preset);
 		            
 		            j++;
 	            }
-	            System.out.println("Camera no " + j + presets);
+	            // System.out.println("Camera no " + j + presets);
 
 	        } catch (IOException ex) {
 	            ex.printStackTrace();
@@ -176,15 +176,14 @@ public class Flatfield_ implements PlugIn
 		gd.addNumericField("e = ", 0, 4, 12, "");
 		gd.addNumericField("g = ", 0, 4, 12, "");
 		gd.addNumericField("i = ", 0, 4, 12, " ");
-				
+		
 		gd.addMessage("Choose parameters to get it normalized to =1 in center");
 		gd.addMessage("Values lower than 0.3, i.e. vignetting of 70% will be cut");
 		gd.addMessage("Use Excel sheet to simulate curve and calculate constants");
-		gd.addMessage("www.astrofriend.eu/astronomy/tutorials");
-		gd.addMessage("See AstroImageJ tutorial page 3");
 		gd.addMessage(" ");
-		gd.addMessage("Version 20200323");
-
+		gd.addMessage("Info at: www.astrofriend.eu/astronomy/tutorials/my-tutorials.html");
+		gd.addMessage("Look at: AstroImageJ Introduction");
+		gd.addMessage("Version 20200419");
 
 		Choice presetChoice = (Choice)(gd.getChoices().get(0));
 		presetChoice.addItemListener(new java.awt.event.ItemListener() {
@@ -284,7 +283,7 @@ public class Flatfield_ implements PlugIn
 		
 		// Check calculations radius:
 		double radius = Math.sqrt(Math.pow(0 - opt_cent_x, 2) + Math.pow(730 - opt_cent_y, 2));
-		System.out.println("Radiou at x=0 = " + radius);
+		// System.out.println("Radius at x=0 = " + radius);
 	}
 
 	public void showAbout() {
